@@ -34,8 +34,8 @@ export function Quiz({ questions, onComplete }: QuizProps) {
       setSelectedIndex(null);
       setShowExplanation(false);
     } else {
-      const finalCorrect = selectedIndex === question.correctIndex ? correctCount + 1 : correctCount;
-      const finalScore = Math.round((finalCorrect / questions.length) * 100);
+      // correctCount already includes the current question (handleSelect incremented it)
+      const finalScore = Math.round((correctCount / questions.length) * 100);
       setFinished(true);
       onComplete(finalScore);
     }

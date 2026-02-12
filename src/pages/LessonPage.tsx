@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getLessonBySlug, getLessonsByModule } from "../data/lessons";
 import { level1Quizzes } from "../data/quizzes/level1";
 import { level2Quizzes } from "../data/quizzes/level2";
@@ -22,6 +22,12 @@ export function LessonPage() {
 
   const [quizComplete, setQuizComplete] = useState(false);
   const [quizScore, setQuizScore] = useState<number | null>(null);
+
+  // Reset quiz state when navigating to a different lesson
+  useEffect(() => {
+    setQuizComplete(false);
+    setQuizScore(null);
+  }, [lesson?.id]);
 
   if (!lesson) {
     return (
