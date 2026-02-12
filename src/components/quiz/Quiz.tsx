@@ -35,7 +35,8 @@ export function Quiz({ questions, onComplete }: QuizProps) {
       setShowExplanation(false);
     } else {
       // correctCount already includes the current question (handleSelect incremented it)
-      const finalScore = Math.round((correctCount / questions.length) * 100);
+      const rawScore = Math.round((correctCount / questions.length) * 100);
+      const finalScore = Math.min(100, rawScore); // cap at 100%
       setFinished(true);
       onComplete(finalScore);
     }

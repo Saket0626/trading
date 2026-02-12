@@ -13,7 +13,12 @@ export function QuizResults({
   minPassScore = 80,
   onRetry,
 }: QuizResultsProps) {
-  const passed = score >= minPassScore;
+  const displayScore = Math.min(100, score);
+  const passed = displayScore >= minPassScore;
+  const correctCount = Math.min(
+    totalQuestions,
+    Math.round((displayScore / 100) * totalQuestions)
+  );
 
   return (
     <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-8 text-center">
@@ -32,10 +37,10 @@ export function QuizResults({
         {passed ? "Quiz Passed!" : "Keep Practicing"}
       </h2>
       <p className="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-        {score}%
+        {displayScore}%
       </p>
       <p className="text-surface-600 dark:text-surface-400 mb-6">
-        You got {Math.round((score / 100) * totalQuestions)} out of {totalQuestions} questions
+        You got {correctCount} out of {totalQuestions} questions
         correct. {minPassScore}% is required to pass.
       </p>
       {!passed && onRetry && (

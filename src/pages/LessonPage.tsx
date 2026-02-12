@@ -142,30 +142,30 @@ export function LessonPage() {
 
           <div className="flex gap-2">
             {prevLesson ? (
-              <Link
-                to={`/learn/${levelId}/${moduleSlug}/${prevLesson.slug}`}
+              <a
+                href={`/learn/${levelId}/${moduleSlug}/${prevLesson.slug}`}
                 className="inline-flex items-center gap-2 px-4 py-2 text-surface-600 dark:text-surface-400 hover:text-primary-600 dark:hover:text-primary-400 font-medium"
               >
                 <ChevronLeft className="h-5 w-5" />
                 Previous
-              </Link>
+              </a>
             ) : null}
             {nextLesson ? (
-              <Link
-                to={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
+              <a
+                href={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors"
               >
                 Next: {nextLesson.title}
                 <ChevronRight className="h-5 w-5" />
-              </Link>
+              </a>
             ) : (
-              <Link
-                to={`/learn/${levelId}`}
+              <a
+                href={`/learn/${levelId}`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors"
               >
                 Back to Level {levelId}
                 <ChevronRight className="h-5 w-5" />
-              </Link>
+              </a>
             )}
           </div>
         </div>
