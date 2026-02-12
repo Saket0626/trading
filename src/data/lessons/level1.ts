@@ -50,19 +50,55 @@ export const level1Lessons: Lesson[] = [
     hasQuiz: true,
   },
   {
-    id: "value-prices",
-    title: "What is Value and How Do Prices Work?",
-    slug: "value-and-prices",
+    id: "money-value",
+    title: "How Does Money Get Its Value?",
+    slug: "how-money-gets-value",
     level: 1,
     moduleId: "foundations-money",
     order: 2,
+    duration: "8 min",
+    objectives: [
+      "Understand that money's value comes from supply, demand, and trust",
+      "See why governments and central banks matter",
+      "Learn why inflation erodes purchasing power",
+    ],
+    prerequisites: ["money-basics"],
+    content: [
+      {
+        type: "text",
+        heading: "Why Does This Matter?",
+        content:
+          "A dollar today might buy less in 10 years. Currencies can strengthen or weaken. Understanding where money's value comes from helps you see why prices change and why traders watch central banks and economic data.",
+      },
+      {
+        type: "text",
+        heading: "Supply, Demand, and Trust",
+        content:
+          "Money holds value because people accept it in exchange for goods and services (demand) and because its supply isn't infinite (supply). If a government printed trillions of new units, each unit would be worth less—that's inflation. Trust matters too: if people lost faith in a currency, they'd dump it and its value would fall.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Money's value depends on supply (how much exists), demand (how much people want it), and trust. Central banks influence supply; economic health and interest rates influence demand. As a trader, you'll care about these when trading forex or thinking about inflation.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "value-prices",
+    title: "What Makes Prices Go Up and Down?",
+    slug: "value-and-prices",
+    level: 1,
+    moduleId: "foundations-money",
+    order: 3,
     duration: "10 min",
     objectives: [
       "Understand the difference between value and price",
       "Learn how supply and demand affect prices",
       "See why prices change over time",
     ],
-    prerequisites: ["money-basics"],
+    prerequisites: ["money-basics", "money-value"],
     content: [
       {
         type: "text",
@@ -87,6 +123,78 @@ export const level1Lessons: Lesson[] = [
         heading: "Key Takeaway",
         content:
           "Prices aren't random - they reflect supply and demand. When more people want to buy than sell, prices rise. When more people want to sell than buy, prices fall. Understanding this is the foundation of understanding any market.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "intro-markets",
+    title: "Introduction to Markets",
+    slug: "intro-markets",
+    level: 1,
+    moduleId: "foundations-money",
+    order: 4,
+    duration: "8 min",
+    objectives: [
+      "Understand what a marketplace is",
+      "See how buyers and sellers meet",
+      "Connect this to financial markets",
+    ],
+    prerequisites: ["value-prices"],
+    content: [
+      {
+        type: "text",
+        heading: "What is a Marketplace?",
+        content:
+          "A market is any place where buyers and sellers come together to trade. A farmers' market, an online store, or a stock exchange—all are markets. In each case, there's something being traded, a price, and agreement between buyer and seller.",
+      },
+      {
+        type: "text",
+        heading: "Financial Markets",
+        content:
+          "In financial markets, people trade assets: stocks, currencies, commodities, crypto. These markets can be physical (like a trading floor) or electronic. Prices move as buyers and sellers agree on new levels. When you trade, you're participating in that global marketplace.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Markets are where buyers and sellers meet and agree on prices. Financial markets are the same idea—just with stocks, forex, and other assets. Understanding markets starts with understanding that simple exchange.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "concept-of-value",
+    title: "The Concept of Value",
+    slug: "concept-of-value",
+    level: 1,
+    moduleId: "foundations-money",
+    order: 5,
+    duration: "8 min",
+    objectives: [
+      "Understand intrinsic vs market value",
+      "See why they can differ",
+      "Apply this to trading decisions",
+    ],
+    prerequisites: ["intro-markets"],
+    content: [
+      {
+        type: "text",
+        heading: "Intrinsic vs Market Value",
+        content:
+          "Intrinsic value is what something is 'really' worth based on fundamentals—e.g. a company's assets and future cash flows. Market value is what people are actually paying right now. They often differ. A stock might trade above intrinsic value (overvalued) or below (undervalued). Traders and investors use different tools to decide when market price is too high or too low.",
+      },
+      {
+        type: "text",
+        heading: "Why This Matters for You",
+        content:
+          "As a trader, you'll often focus on price action and market value—what the crowd is doing. As you learn more, you can combine that with ideas about intrinsic value. For now, remember: the price on the screen is market value; it can stay above or below what seems 'fair' for a long time.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Intrinsic value = what something might be worth by some measure. Market value = what people are paying. They can diverge. Trading and investing both involve forming a view on that difference.",
       },
     ],
     hasQuiz: true,
@@ -187,7 +295,7 @@ export const level1Lessons: Lesson[] = [
     slug: "trader-types",
     level: 1,
     moduleId: "foundations-trading",
-    order: 2,
+    order: 3,
     duration: "8 min",
     objectives: [
       "Learn about day traders, swing traders, and position traders",
@@ -278,6 +386,122 @@ export const level1Lessons: Lesson[] = [
     hasQuiz: true,
   },
   {
+    id: "why-people-trade",
+    title: "Why Do People Trade?",
+    slug: "why-people-trade",
+    level: 1,
+    moduleId: "foundations-trading",
+    order: 2,
+    duration: "8 min",
+    objectives: [
+      "Understand income, speculation, and hedging as reasons to trade",
+      "See how different goals need different approaches",
+    ],
+    prerequisites: ["what-is-trading"],
+    content: [
+      {
+        type: "text",
+        heading: "Three Main Reasons",
+        content:
+          "People trade for income (trying to make regular profits), speculation (betting on price direction for profit), or hedging (reducing risk in other investments—e.g. a farmer selling futures to lock in a price). Most retail traders are focused on income or speculation. Hedging is more common among businesses and institutions.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Your reason for trading will shape your style and goals. Be clear on whether you're seeking income, speculation, or hedging—and learn the approach that fits.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "time-commitment",
+    title: "Time Commitment for Each Trading Style",
+    slug: "time-commitment",
+    level: 1,
+    moduleId: "foundations-trading",
+    order: 4,
+    duration: "8 min",
+    objectives: [
+      "See how much time day trading vs swing trading requires",
+      "Match your schedule to a style",
+    ],
+    prerequisites: ["trader-types"],
+    content: [
+      {
+        type: "text",
+        heading: "Be Honest About Your Time",
+        content:
+          "Day trading usually means being at the screen during market hours—often 6+ hours. Swing trading might need 1–2 hours for analysis and orders. Position trading can be weekly check-ins. Scalping needs almost constant attention. Choose a style that fits your job and life; otherwise you'll burn out or make rushed decisions.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Your available time should drive your trading style. Don't try to day trade if you can only check markets at night—swing or position trade instead.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "realistic-expectations",
+    title: "Realistic Expectations: How Much Can You Make?",
+    slug: "realistic-expectations",
+    level: 1,
+    moduleId: "foundations-trading",
+    order: 5,
+    duration: "8 min",
+    objectives: [
+      "Replace 'get rich quick' with realistic returns",
+      "Understand that pros often aim for 10–20% a year",
+    ],
+    prerequisites: ["time-commitment"],
+    content: [
+      {
+        type: "warning",
+        heading: "The Truth",
+        content:
+          "Professional funds often target 10–20% annual returns; many fail to achieve that. Promises of 100% or 50% per month are marketing, not reality. Beginners should focus on not losing money in year one—learning and preserving capital is success.",
+      },
+      {
+        type: "text",
+        heading: "Key Takeaway",
+        content:
+          "Set realistic goals. Consistent small gains compound. Chasing huge returns usually leads to huge losses. Aim for steady progress and risk management first.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "truth-about-risk",
+    title: "The Truth About Risk: You Can Lose Money",
+    slug: "truth-about-risk",
+    level: 1,
+    moduleId: "foundations-trading",
+    order: 6,
+    duration: "8 min",
+    objectives: [
+      "Accept that losing money is possible",
+      "Understand that risk cannot be eliminated",
+    ],
+    prerequisites: ["realistic-expectations"],
+    content: [
+      {
+        type: "text",
+        heading: "No Guarantees",
+        content:
+          "Every trade can lose. Even the best traders have losing months. You must be willing to accept losses emotionally and financially. If you can't, don't trade with real money—stick to paper trading until your mindset and risk rules are solid.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Trading involves real risk of loss. Only use money you can afford to lose. Accepting this is the first step to managing risk properly.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
     id: "markets-overview",
     title: "Introduction to Different Markets",
     slug: "markets-overview",
@@ -333,11 +557,11 @@ export const level1Lessons: Lesson[] = [
   },
   {
     id: "stocks-basics",
-    title: "What Are Businesses and Stocks?",
+    title: "Stock Market Basics",
     slug: "stocks-basics",
     level: 1,
     moduleId: "foundations-markets",
-    order: 2,
+    order: 1,
     duration: "10 min",
     objectives: [
       "Understand what a stock represents",
@@ -370,6 +594,111 @@ export const level1Lessons: Lesson[] = [
         content:
           "A stock is ownership in a company. When you buy stock, you're betting the company will do well and your share will become more valuable. Stock prices move based on supply and demand - which is driven by news, emotions, and expectations about the company's future.",
       },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "forex-intro",
+    title: "What is the Forex Market?",
+    slug: "forex-intro",
+    level: 1,
+    moduleId: "foundations-markets",
+    order: 2,
+    duration: "8 min",
+    objectives: ["Understand currency trading", "See why forex is 24/5", "Know major pairs"],
+    prerequisites: ["stocks-basics"],
+    content: [
+      {
+        type: "text",
+        heading: "Trading Currencies",
+        content:
+          "Forex (foreign exchange) is trading one currency for another—e.g. EUR/USD (euro vs US dollar). When you think the euro will strengthen versus the dollar, you buy EUR/USD. It's the largest market by volume and is open 24 hours, 5 days a week.",
+      },
+      { type: "key-takeaway", heading: "Key Takeaway", content: "Forex = currency pairs. Huge liquidity and 24/5 hours. We'll go deeper in Level 2." },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "commodities-intro",
+    title: "What Are Commodities?",
+    slug: "commodities-intro",
+    level: 1,
+    moduleId: "foundations-markets",
+    order: 3,
+    duration: "8 min",
+    objectives: ["Define commodities", "Know gold, oil, agriculture"],
+    prerequisites: ["forex-intro"],
+    content: [
+      {
+        type: "text",
+        heading: "Physical Goods Traded",
+        content:
+          "Commodities are raw materials: gold, silver, oil, natural gas, wheat, coffee. You usually trade futures or ETFs linked to them. Prices move with supply, demand, weather, and geopolitics. They can diversify a portfolio and act as an inflation hedge.",
+      },
+      { type: "key-takeaway", heading: "Key Takeaway", content: "Commodities = tangible assets. Level 2 covers how to trade them." },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "crypto-intro",
+    title: "What is Cryptocurrency?",
+    slug: "crypto-intro",
+    level: 1,
+    moduleId: "foundations-markets",
+    order: 4,
+    duration: "8 min",
+    objectives: ["Define crypto", "Know Bitcoin basics", "Understand 24/7 trading"],
+    prerequisites: ["commodities-intro"],
+    content: [
+      {
+        type: "text",
+        heading: "Digital Assets",
+        content:
+          "Cryptocurrency is digital money—Bitcoin, Ethereum, and thousands of others. Markets run 24/7. Volatility is high. Crypto is speculative and less regulated than stocks or forex. Never invest more than you can afford to lose.",
+      },
+      { type: "key-takeaway", heading: "Key Takeaway", content: "Crypto = digital, 24/7, volatile. Level 2 goes deeper." },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "market-hours",
+    title: "How Do Markets Open and Close?",
+    slug: "market-hours",
+    level: 1,
+    moduleId: "foundations-markets",
+    order: 5,
+    duration: "8 min",
+    objectives: ["Know US stock hours", "Understand 24/5 forex", "See global sessions"],
+    prerequisites: ["crypto-intro"],
+    content: [
+      {
+        type: "text",
+        heading: "Different Hours for Different Markets",
+        content:
+          "US stocks: 9:30 AM–4:00 PM Eastern. Forex: 24 hours Monday–Friday. Crypto: 24/7. Commodities have set hours per exchange. When one market closes, another may open—so there's almost always something to trade, but liquidity and volatility vary by session.",
+      },
+      { type: "key-takeaway", heading: "Key Takeaway", content: "Each market has its own hours. Plan your trading around when your market is open and liquid." },
+    ],
+    hasQuiz: true,
+  },
+  {
+    id: "market-participants",
+    title: "Who Participates in Markets?",
+    slug: "market-participants",
+    level: 1,
+    moduleId: "foundations-markets",
+    order: 6,
+    duration: "8 min",
+    objectives: ["Retail vs institutional", "Market makers", "Why it matters"],
+    prerequisites: ["market-hours"],
+    content: [
+      {
+        type: "text",
+        heading: "Retail, Institutional, and Market Makers",
+        content:
+          "Retail traders are individuals (you). Institutions are banks, funds, and hedge funds—they move huge volume. Market makers provide liquidity by quoting bid and ask; they profit from the spread. As a retail trader, you're the smallest player; understanding who else is in the market helps you interpret price action and liquidity.",
+      },
+      { type: "key-takeaway", heading: "Key Takeaway", content: "You're trading alongside institutions and market makers. Level 2+ covers how to use this in your analysis." },
     ],
     hasQuiz: true,
   },

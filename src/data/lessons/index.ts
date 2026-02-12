@@ -1,4 +1,5 @@
 import { level1Lessons } from "./level1";
+import { riskRewardLessons, gettingStartedLessons } from "./level1-risk-getting-started";
 import { candlestickLessons } from "./level2-candlestick";
 import { level2RemainingLessons } from "./level2-remaining";
 import { level3StubLessons } from "./level3-stub";
@@ -6,6 +7,8 @@ import { level4StubLessons, level5StubLessons } from "./level4-5-stub";
 
 export const allLessons = [
   ...level1Lessons,
+  ...riskRewardLessons,
+  ...gettingStartedLessons,
   ...candlestickLessons,
   ...level2RemainingLessons,
   ...level3StubLessons,
