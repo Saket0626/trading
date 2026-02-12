@@ -54,9 +54,9 @@ export function ModulePage() {
         lessons.map((lesson) => {
           const complete = isLessonComplete(lesson.id);
           return (
-            <Link
+            <a
               key={lesson.id}
-              to={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
+              href={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
               className="flex items-center gap-4 p-4 rounded-lg border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all"
             >
               <div className="flex-shrink-0">
@@ -74,7 +74,7 @@ export function ModulePage() {
                   {lesson.duration} • {lesson.objectives.length} objectives
                 </p>
               </div>
-            </Link>
+            </a>
           );
         })
         )}

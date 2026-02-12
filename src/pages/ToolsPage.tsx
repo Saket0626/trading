@@ -6,7 +6,6 @@ import { PipCalculator } from "../components/tools/PipCalculator";
 import { CompoundInterestCalculator } from "../components/tools/CompoundInterestCalculator";
 import { CandlestickBuilder } from "../components/charts/CandlestickBuilder";
 import { PythonSandbox } from "../components/tools/PythonSandbox";
-import { Link } from "react-router-dom";
 
 const tools = [
   { id: "position-size", title: "Position Size", icon: Calculator },
@@ -46,9 +45,9 @@ export function ToolsPage() {
       </h1>
       <p className="text-surface-600 dark:text-surface-400 mb-8">
         Practical tools to support your trading decisions. Use the{" "}
-        <Link to="/learn/2/candlestick-mastery/candlestick-anatomy" className="text-primary-500 hover:underline">
+        <a href="/learn/2/candlestick-mastery/candlestick-anatomy" className="text-primary-500 hover:underline">
           Candlestick Mastery
-        </Link>{" "}
+        </a>{" "}
         lesson for context on the builder.
       </p>
 

@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getLessonBySlug, getLessonsByModule } from "../data/lessons";
 import { level1Quizzes } from "../data/quizzes/level1";
 import { level2Quizzes } from "../data/quizzes/level2";
@@ -20,14 +20,11 @@ export function LessonPage() {
 
   const lesson = getLessonBySlug(lessonSlug || "");
 
-  const [quizComplete, setQuizComplete] = useState(false);
-  const [quizScore, setQuizScore] = useState<number | null>(null);
-
-  // Reset quiz state when navigating to a different lesson
-  useEffect(() => {
-    setQuizComplete(false);
-    setQuizScore(null);
-  }, [lesson?.id]);
+  // Tie quiz state to lesson id so it never persists across lessons (no stale state)
+  const [quizStateForLesson, setQuizStateForLesson] = useState<{
+    lessonId: string;
+    score: number;
+  } | null>(null);
 
   if (!lesson) {
     return (
@@ -49,15 +46,15 @@ export function LessonPage() {
 
   const quizQuestions = level1Quizzes[lesson.id] || level2Quizzes[lesson.id] || [];
   const hasQuiz = lesson.hasQuiz && quizQuestions.length > 0; // Only show quiz if we have questions
-  const showQuizResults = quizComplete && quizScore !== null;
+  const showQuizResults =
+    quizStateForLesson !== null && quizStateForLesson.lessonId === lesson.id;
 
   const handleMarkComplete = () => {
     completeLesson(lesson.id);
   };
 
   const handleQuizComplete = (score: number) => {
-    setQuizScore(score);
-    setQuizComplete(true);
+    setQuizStateForLesson({ lessonId: lesson.id, score });
     completeQuiz(lesson.id, score);
   };
 
@@ -109,18 +106,24 @@ export function LessonPage() {
         </div>
 
         {hasQuiz && (
-          <section className="mt-12">
+          <section className="mt-12" key={lesson.id}>
             <h2 className="font-display text-xl font-semibold text-surface-900 dark:text-surface-100 mb-4">
               Knowledge Check
             </h2>
             {showQuizResults ? (
               <QuizResults
-                score={quizScore ?? 0}
+                key={`${lesson.id}-results`}
+                score={quizStateForLesson?.score ?? 0}
                 totalQuestions={quizQuestions.length}
                 minPassScore={80}
               />
             ) : (
-              <Quiz questions={quizQuestions} onComplete={handleQuizComplete} minPassScore={80} />
+              <Quiz
+                key={`${lesson.id}-quiz`}
+                questions={quizQuestions}
+                onComplete={handleQuizComplete}
+                minPassScore={80}
+              />
             )}
           </section>
         )}
