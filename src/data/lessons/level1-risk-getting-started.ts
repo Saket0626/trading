@@ -451,3 +451,40 @@ export const gettingStartedLessons: Lesson[] = [
     hasQuiz: true,
   },
 ];
+
+/** Level 1 Final Exam (single "lesson" that is the exam; 25 questions in level1Quizzes) */
+export const level1ExamLesson: Lesson = {
+  id: "level-1-exam",
+  title: "Level 1 Final Exam",
+  slug: "level-1-exam",
+  level: 1,
+  moduleId: "level-1-exam",
+  order: 1,
+  duration: "25 min",
+  objectives: [
+    "Demonstrate mastery of money, markets, risk, and getting started",
+    "Pass with 80% or higher to unlock Level 2",
+  ],
+  prerequisites: [],
+  content: [
+    {
+      type: "text",
+      heading: "About This Exam",
+      content:
+        "This exam has 25 questions drawn from all five Level 1 modules: Money & Economics, Trading & Investing, Markets, Risk & Reward, and Getting Started Safely. You need 80% (20 out of 25 correct) to pass and unlock Level 2. Take your time and use what you've learned.",
+    },
+    {
+      type: "warning",
+      heading: "Unlock Requirement",
+      content:
+        "Level 2 (Market Basics & Chart Reading) stays locked until you pass this exam. There's no time limit—review the modules if you need a refresher before taking it.",
+    },
+    {
+      type: "key-takeaway",
+      heading: "Ready?",
+      content:
+        "When you're ready, the quiz below will show all 25 questions. Good luck.",
+    },
+  ],
+  hasQuiz: true,
+};

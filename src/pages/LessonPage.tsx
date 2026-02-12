@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getLessonBySlug, getLessonsByModule } from "../data/lessons";
 import { level1Quizzes } from "../data/quizzes/level1";
 import { level2Quizzes } from "../data/quizzes/level2";
+import { level3Quizzes, level4Quizzes, level5Quizzes } from "../data/quizzes/level3-4-5";
 import { useProgress } from "../contexts/ProgressContext";
 import { LessonContentBlock } from "../components/lesson/LessonContent";
 import { Quiz } from "../components/quiz/Quiz";
@@ -50,7 +51,13 @@ export function LessonPage() {
   const nextLesson =
     currentIndex < allLessonsInModule.length - 1 ? allLessonsInModule[currentIndex + 1] : null;
 
-  const quizQuestions = level1Quizzes[lesson.id] || level2Quizzes[lesson.id] || [];
+  const quizQuestions =
+    level1Quizzes[lesson.id] ||
+    level2Quizzes[lesson.id] ||
+    level3Quizzes[lesson.id] ||
+    level4Quizzes[lesson.id] ||
+    level5Quizzes[lesson.id] ||
+    [];
   const hasQuiz = lesson.hasQuiz && quizQuestions.length > 0; // Only show quiz if we have questions
   const showQuizResults =
     quizStateForLesson !== null && quizStateForLesson.lessonId === lesson.id;
