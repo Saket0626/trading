@@ -52,11 +52,29 @@ git push origin master
 
 ### Optional: use a branch
 
+**First time** (create the branch and push):
+
 ```bash
 git checkout -b your-branch-name
 git add .
 git commit -m "Your commit message here"
 git push origin your-branch-name
+```
+
+**Every time after** (when you just want to update GitHub with new changes), use only these three—do **not** run `git checkout -b` again:
+
+```bash
+git add .
+git commit -m "Your commit message here"
+git push origin your-branch-name
+```
+
+If you usually work on `main` and push there:
+
+```bash
+git add .
+git commit -m "Your commit message describing the changes"
+git push origin main
 ```
 
 ---
