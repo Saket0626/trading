@@ -1,0 +1,78 @@
+import { Link } from "react-router-dom";
+
+export function Footer() {
+  return (
+    <footer className="border-t border-surface-200 dark:border-surface-800 bg-surface-100 dark:bg-surface-900/50 mt-auto">
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+            <h3 className="font-display font-semibold text-surface-900 dark:text-surface-100 mb-2">
+              Trading Education Platform
+            </h3>
+            <p className="text-sm text-surface-600 dark:text-surface-400 max-w-md">
+              Learn trading from scratch to quantitative expertise. Built with honesty about risks
+              and realistic expectations. Education first, trading second.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">Learn</h4>
+            <ul className="space-y-1 text-sm text-surface-600 dark:text-surface-400">
+              <li>
+                <Link to="/learn/1" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Level 1: Foundations
+                </Link>
+              </li>
+              <li>
+                <Link to="/learn/2" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Level 2: Market Basics
+                </Link>
+              </li>
+              <li>
+                <Link to="/learn/3" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Level 3: Intermediate
+                </Link>
+              </li>
+              <li>
+                <Link to="/learn/4" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Level 4: Advanced
+                </Link>
+              </li>
+              <li>
+                <Link to="/learn/5" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Level 5: Quantitative
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">Resources</h4>
+            <ul className="space-y-1 text-sm text-surface-600 dark:text-surface-400">
+              <li>
+                <Link to="/tools" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Calculators & Tools
+                </Link>
+              </li>
+              <li>
+                <Link to="/warnings" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Risk Warnings
+                </Link>
+              </li>
+              <li>
+                <Link to="/glossary" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Glossary
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-8 pt-6 border-t border-surface-200 dark:border-surface-800">
+          <p className="text-xs text-surface-500 dark:text-surface-500">
+            <strong>Important:</strong> Trading involves substantial risk of loss. Past performance
+            does not guarantee future results. This platform is for educational purposes only. Never
+            trade with money you cannot afford to lose. 70-90% of retail traders lose money.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
