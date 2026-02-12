@@ -1,5 +1,13 @@
 import { Trophy, RotateCcw } from "lucide-react";
 
+/** Ensure score is always 0–100 and valid (no NaN). */
+function validateScore(score: number): number {
+  if (typeof score !== "number" || Number.isNaN(score)) return 0;
+  if (score < 0) return 0;
+  if (score > 100) return 100;
+  return Math.round(score);
+}
+
 interface QuizResultsProps {
   score: number;
   totalQuestions: number;
@@ -13,7 +21,7 @@ export function QuizResults({
   minPassScore = 80,
   onRetry,
 }: QuizResultsProps) {
-  const displayScore = Math.min(100, score);
+  const displayScore = validateScore(score);
   const passed = displayScore >= minPassScore;
   const correctCount = Math.min(
     totalQuestions,

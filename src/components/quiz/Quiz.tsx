@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { QuizQuestion } from "../../types";
 import { ChevronRight, Check, X } from "lucide-react";
 import { clsx } from "clsx";
+
+function validateScore(score: number): number {
+  if (typeof score !== "number" || Number.isNaN(score)) return 0;
+  if (score < 0) return 0;
+  if (score > 100) return 100;
+  return Math.round(score);
+}
 
 interface QuizProps {
   questions: QuizQuestion[];
@@ -15,6 +22,27 @@ export function Quiz({ questions, onComplete }: QuizProps) {
   const [showExplanation, setShowExplanation] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [finished, setFinished] = useState(false);
+
+  const resetQuiz = useCallback(() => {
+    setCurrentIndex(0);
+    setSelectedIndex(null);
+    setShowExplanation(false);
+    setCorrectCount(0);
+    setFinished(false);
+  }, []);
+
+  // Reset all state when questions change (e.g. new lesson)
+  useEffect(() => {
+    resetQuiz();
+  }, [questions.length, resetQuiz]);
+
+  if (!questions || questions.length === 0) {
+    return (
+      <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-6 md:p-8 text-center text-surface-600 dark:text-surface-400">
+        No quiz available for this lesson.
+      </div>
+    );
+  }
 
   const question = questions[currentIndex];
   const hasAnswered = selectedIndex !== null;
@@ -36,7 +64,7 @@ export function Quiz({ questions, onComplete }: QuizProps) {
     } else {
       // correctCount already includes the current question (handleSelect incremented it)
       const rawScore = Math.round((correctCount / questions.length) * 100);
-      const finalScore = Math.min(100, rawScore); // cap at 100%
+      const finalScore = validateScore(rawScore);
       setFinished(true);
       onComplete(finalScore);
     }

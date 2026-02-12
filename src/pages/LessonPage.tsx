@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getLessonBySlug, getLessonsByModule } from "../data/lessons";
 import { level1Quizzes } from "../data/quizzes/level1";
 import { level2Quizzes } from "../data/quizzes/level2";
@@ -7,6 +7,7 @@ import { useProgress } from "../contexts/ProgressContext";
 import { LessonContentBlock } from "../components/lesson/LessonContent";
 import { Quiz } from "../components/quiz/Quiz";
 import { QuizResults } from "../components/quiz/QuizResults";
+import { QuizErrorBoundary } from "../components/quiz/QuizErrorBoundary";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { MODULES } from "../data/curriculum";
 
@@ -25,6 +26,11 @@ export function LessonPage() {
     lessonId: string;
     score: number;
   } | null>(null);
+
+  // Scroll to top when lesson changes (e.g. client-side nav) so quiz is in view
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [lesson?.id]);
 
   if (!lesson) {
     return (
@@ -110,21 +116,23 @@ export function LessonPage() {
             <h2 className="font-display text-xl font-semibold text-surface-900 dark:text-surface-100 mb-4">
               Knowledge Check
             </h2>
-            {showQuizResults ? (
-              <QuizResults
-                key={`${lesson.id}-results`}
-                score={quizStateForLesson?.score ?? 0}
-                totalQuestions={quizQuestions.length}
-                minPassScore={80}
-              />
-            ) : (
-              <Quiz
-                key={`${lesson.id}-quiz`}
-                questions={quizQuestions}
-                onComplete={handleQuizComplete}
-                minPassScore={80}
-              />
-            )}
+            <QuizErrorBoundary>
+              {showQuizResults ? (
+                <QuizResults
+                  key={`${lesson.id}-results`}
+                  score={quizStateForLesson?.score ?? 0}
+                  totalQuestions={quizQuestions.length}
+                  minPassScore={80}
+                />
+              ) : (
+                <Quiz
+                  key={`${lesson.id}-quiz`}
+                  questions={quizQuestions}
+                  onComplete={handleQuizComplete}
+                  minPassScore={80}
+                />
+              )}
+            </QuizErrorBoundary>
           </section>
         )}
 
