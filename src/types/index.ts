@@ -56,6 +56,8 @@ export interface UserProgress {
   xp: number;
   badges: string[];
   lastActivity: string;
+  lastCompletedDate?: string; // "YYYY-MM-DD" for streak
+  streakDays?: number;
 }
 
 export interface Badge {

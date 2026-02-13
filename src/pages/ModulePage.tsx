@@ -3,6 +3,9 @@ import { MODULES } from "../data/curriculum";
 import { getLessonsByModule } from "../data/lessons";
 import { useProgress } from "../contexts/ProgressContext";
 import { Check, Circle } from "lucide-react";
+import { LearnSidebar } from "../components/learn/LearnSidebar";
+import { Flashcards } from "../components/learn/Flashcards";
+import { getFlashcardsForModule } from "../data/moduleFlashcards";
 
 export function ModulePage() {
   const { levelId, moduleSlug } = useParams<{ levelId: string; moduleSlug: string }>();
@@ -24,6 +27,9 @@ export function ModulePage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="flex gap-8">
+        <LearnSidebar />
+        <div className="flex-1 min-w-0">
       <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
         <Link to="/" className="hover:text-primary-500">Home</Link>
         <span className="mx-2">/</span>
@@ -78,6 +84,21 @@ export function ModulePage() {
           );
         })
         )}
+      </div>
+
+          {/* Chapter Flashcards */}
+          {lessons.length > 0 && (
+            <section className="mt-12 pt-8 border-t border-surface-200 dark:border-surface-700">
+              <h2 className="font-display text-xl font-semibold text-surface-900 dark:text-surface-100 mb-4">
+                Chapter Flashcards
+              </h2>
+              <Flashcards
+                cards={getFlashcardsForModule(module_.slug)}
+                title={`${module_.title} - Review`}
+              />
+            </section>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -8,8 +8,17 @@ import { ConceptCheck } from "./ConceptCheck";
 import { RiskRewardCalculator } from "../tools/RiskRewardCalculator";
 import { PositionSizeCalculator } from "../tools/PositionSizeCalculator";
 import { PipCalculator } from "../tools/PipCalculator";
+import { Flashcards, type FlashcardsProps } from "../learn/Flashcards";
+
+const FlashcardsWrapper = (props: Record<string, unknown>) => (
+  <Flashcards
+    cards={(props.cards as FlashcardsProps["cards"]) ?? []}
+    title={(props.title as string) ?? "Chapter Flashcards"}
+  />
+);
 
 const COMPONENTS: Record<string, ComponentType<Record<string, unknown>>> = {
+  Flashcards: FlashcardsWrapper as ComponentType<Record<string, unknown>>,
   CandlestickBuilder,
   WhichMarketQuiz,
   SupplyDemandSimulator,
@@ -52,7 +61,7 @@ const typeConfig = {
   },
 };
 
-export function LessonContentBlock({ block }: { block: LessonContentType }) {
+export function LessonContentBlock({ block, sectionId }: { block: LessonContentType; sectionId?: string }) {
   const config = typeConfig[block.type] || typeConfig.text;
   const Icon = config.icon;
 
@@ -63,10 +72,13 @@ export function LessonContentBlock({ block }: { block: LessonContentType }) {
     block.type === "key-takeaway";
 
   const CustomComponent = block.component ? COMPONENTS[block.component] : null;
+  const Wrapper = sectionId ? "section" : "div";
+  const wrapperProps = sectionId ? { id: sectionId } : {};
 
   return (
-    <div
-      className={`rounded-r-lg p-6 mb-6 ${useWrapper ? config.wrapperClass : ""}`}
+    <Wrapper
+      {...wrapperProps}
+      className={`rounded-r-lg p-6 mb-6 lesson-content ${useWrapper ? config.wrapperClass : ""}`}
     >
       {CustomComponent ? (
         <div>
@@ -95,7 +107,7 @@ export function LessonContentBlock({ block }: { block: LessonContentType }) {
                 {block.heading}
               </h3>
             )}
-            <div className="prose prose-slate dark:prose-invert max-w-none">
+            <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
               <p className="text-surface-700 dark:text-surface-300 leading-relaxed whitespace-pre-line">
                 {block.content}
               </p>
@@ -103,6 +115,6 @@ export function LessonContentBlock({ block }: { block: LessonContentType }) {
           </div>
         </div>
       )}
-    </div>
+    </Wrapper>
   );
 }

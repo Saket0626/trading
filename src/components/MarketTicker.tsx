@@ -7,6 +7,10 @@ const TICKER_ITEMS = [
   { symbol: "ETHUSD", name: "Ethereum" },
   { symbol: "MSFT", name: "Microsoft" },
   { symbol: "NVDA", name: "NVIDIA" },
+  { symbol: "GOOGL", name: "Alphabet" },
+  { symbol: "AMZN", name: "Amazon" },
+  { symbol: "EURUSD", name: "EUR/USD" },
+  { symbol: "QQQ", name: "Nasdaq 100" },
 ];
 
 export function MarketTicker() {
@@ -14,7 +18,7 @@ export function MarketTicker() {
 
   return (
     <div className="overflow-hidden border-y border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-900/50 py-3">
-      <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+      <div className="ticker-scroll flex gap-x-8 gap-y-2 whitespace-nowrap animate-marquee">
         {TICKER_ITEMS.map((item) => {
           const quote = quotes[item.symbol];
           if (!quote && !loading) {
@@ -49,6 +53,36 @@ export function MarketTicker() {
               <span className={isUp ? "text-bull font-medium" : "text-bear font-medium"}>
                 {isUp ? "+" : ""}
                 {(quote.changePercent ?? 0).toFixed(2)}%
+              </span>
+            </span>
+          );
+        })}
+        {/* Duplicate for seamless loop */}
+        {TICKER_ITEMS.map((item) => {
+          const quote = quotes[item.symbol];
+          if (!quote) return null;
+          const isUp = (quote.changePercent ?? 0) >= 0;
+          const priceStr = quote.price < 1 ? quote.price.toFixed(4) : quote.price < 100 ? quote.price.toFixed(2) : quote.price.toFixed(0);
+          return (
+            <span key={`${item.symbol}-2`} className="inline-flex items-center gap-2 text-surface-700 dark:text-surface-300 shrink-0">
+              <span className="font-semibold">{item.symbol}</span>
+              <span>${priceStr}</span>
+              <span className={isUp ? "text-bull font-medium" : "text-bear font-medium"}>
+                {isUp ? "+" : ""}{(quote.changePercent ?? 0).toFixed(2)}%
+              </span>
+            </span>
+          );
+        })}
+        {!loading && TICKER_ITEMS.filter((i) => quotes[i.symbol]).map((item) => {
+          const quote = quotes[item.symbol]!;
+          const isUp = (quote.changePercent ?? 0) >= 0;
+          const priceStr = quote.price < 1 ? quote.price.toFixed(4) : quote.price < 100 ? quote.price.toFixed(2) : quote.price.toFixed(0);
+          return (
+            <span key={`${item.symbol}-2`} className="inline-flex items-center gap-2 text-surface-700 dark:text-surface-300 shrink-0">
+              <span className="font-semibold">{item.symbol}</span>
+              <span>${priceStr}</span>
+              <span className={isUp ? "text-bull font-medium" : "text-bear font-medium"}>
+                {isUp ? "+" : ""}{(quote.changePercent ?? 0).toFixed(2)}%
               </span>
             </span>
           );

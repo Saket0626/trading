@@ -26,6 +26,7 @@ interface ProgressContextType extends UserProgress {
   addBadge: (badgeId: string) => void;
   isLessonComplete: (lessonId: string) => boolean;
   getQuizScore: (lessonId: string) => number | undefined;
+  streakDays: number;
 }
 
 const ProgressContext = createContext<ProgressContextType | null>(null);
@@ -52,6 +53,19 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     }
   }, [progress]);
 
+  const updateStreakAndDate = (prev: UserProgress) => {
+    const today = new Date().toISOString().slice(0, 10);
+    const last = prev.lastCompletedDate;
+    let streak = prev.streakDays ?? 0;
+    if (last === today) return { lastCompletedDate: today, streakDays: streak };
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().slice(0, 10);
+    if (last === yesterdayStr) streak = (streak || 0) + 1;
+    else streak = 1;
+    return { lastCompletedDate: today, streakDays: streak };
+  };
+
   const completeLesson = useCallback((lessonId: string) => {
     setProgress((prev) => {
       const alreadyDone = prev.completedLessons.includes(lessonId);
@@ -63,12 +77,28 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       if (!alreadyDone && newLessons.length >= 10 && !newBadges.includes("dedicated")) {
         newBadges = [...newBadges, "dedicated"];
       }
+      const { lastCompletedDate, streakDays } = updateStreakAndDate(prev);
+      if (streakDays >= 7 && !newBadges.includes("streak-7")) {
+        newBadges = [...newBadges, "streak-7"];
+      }
+      const candlestickCount = newLessons.filter((id) =>
+        ["candlestick-anatomy", "candlestick-bullish", "candlestick-bearish", "doji", "hammer", "engulfing"].includes(id)
+      ).length;
+      if (candlestickCount >= 3 && !newBadges.includes("pattern-master")) {
+        newBadges = [...newBadges, "pattern-master"];
+      }
+      const riskLesson = newLessons.some((id) => id.startsWith("risk-") || id.includes("position-sizing"));
+      if (riskLesson && !newBadges.includes("risk-manager")) {
+        newBadges = [...newBadges, "risk-manager"];
+      }
       return {
         ...prev,
         completedLessons: newLessons,
         badges: newBadges,
         xp: prev.xp + (alreadyDone ? 0 : 50),
         lastActivity: new Date().toISOString(),
+        lastCompletedDate,
+        streakDays,
       };
     });
   }, []);
@@ -84,12 +114,15 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       if (passed && quizCount >= 5 && !newBadges.includes("quiz-master")) {
         newBadges = [...newBadges, "quiz-master"];
       }
+      const { lastCompletedDate, streakDays } = updateStreakAndDate(prev);
       return {
         ...prev,
         completedQuizzes: { ...prev.completedQuizzes, [lessonId]: score },
         badges: newBadges,
         xp: prev.xp + Math.floor(score / 10),
         lastActivity: new Date().toISOString(),
+        lastCompletedDate,
+        streakDays,
       };
     });
   }, []);
@@ -122,10 +155,13 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     [progress.completedQuizzes]
   );
 
+  const streakDays = progress.streakDays ?? 0;
+
   return (
     <ProgressContext.Provider
       value={{
         ...progress,
+        streakDays,
         completeLesson,
         completeQuiz,
         addXP,

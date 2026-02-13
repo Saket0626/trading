@@ -8,11 +8,20 @@ import { useProgress } from "../contexts/ProgressContext";
 import { useAdmin } from "../contexts/AdminContext";
 import { trackQuizAttempt } from "../lib/analytics";
 import { LessonContentBlock } from "../components/lesson/LessonContent";
+import { LessonTOC } from "../components/lesson/LessonTOC";
 import { Quiz } from "../components/quiz/Quiz";
 import { QuizResults } from "../components/quiz/QuizResults";
 import { QuizErrorBoundary } from "../components/quiz/QuizErrorBoundary";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { MODULES } from "../data/curriculum";
+import { LearnSidebar } from "../components/learn/LearnSidebar";
+
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 export function LessonPage() {
   const { levelId, moduleSlug, lessonSlug } = useParams<{
@@ -75,8 +84,47 @@ export function LessonPage() {
     completeQuiz(lesson.id, score);
   };
 
+  const tocItems = lesson.content
+    .map((block, i) => {
+      const heading = block.heading;
+      if (!heading) return null;
+      const id = `s-${i}-${slugify(heading)}`;
+      return { id, title: heading };
+    })
+    .filter((x): x is { id: string; title: string } => Boolean(x));
+
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0);
+    };
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [lesson?.id]);
+
   return (
-    <div className="container mx-auto px-4 py-8 max-w-3xl">
+    <div className="min-h-screen">
+      {/* Scroll progress bar */}
+      <div
+        className="fixed top-0 left-0 right-0 h-1 bg-primary-500/20 z-50"
+        role="progressbar"
+        aria-valuenow={Math.round(scrollProgress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
+        <div
+          className="h-full bg-primary-500 transition-all duration-150"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex gap-8">
+        <LearnSidebar />
+        <div className="flex-1 min-w-0">
       <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
         <Link to="/" className="hover:text-primary-500">Home</Link>
         <span className="mx-2">/</span>
@@ -96,7 +144,18 @@ export function LessonPage() {
         <span className="text-surface-900 dark:text-surface-100">{lesson.title}</span>
       </nav>
 
-      <article>
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* TOC sidebar - 20% on desktop */}
+        {tocItems.length > 0 && (
+          <aside className="lg:w-56 flex-shrink-0 order-2 lg:order-1">
+            <div className="lg:sticky lg:top-24">
+              <LessonTOC items={tocItems} />
+            </div>
+          </aside>
+        )}
+
+        {/* Main content - 60% - 18px min font, 1.6 line spacing for readability */}
+        <article className={`flex-1 min-w-0 text-lg leading-relaxed ${tocItems.length > 0 ? "lg:max-w-[60%]" : "max-w-3xl"}`}>
         <header className="mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-surface-900 dark:text-surface-100">
             {lesson.title}
@@ -117,9 +176,11 @@ export function LessonPage() {
         </header>
 
         <div className="space-y-2">
-          {lesson.content.map((block, i) => (
-            <LessonContentBlock key={i} block={block} />
-          ))}
+          {lesson.content.map((block, i) => {
+            const heading = block.heading;
+            const sectionId = heading ? `s-${i}-${slugify(heading)}` : undefined;
+            return <LessonContentBlock key={i} block={block} sectionId={sectionId} />;
+          })}
         </div>
 
         {hasQuiz && (
@@ -193,6 +254,28 @@ export function LessonPage() {
           </div>
         </div>
       </article>
+
+        {/* Quick reference - 20% on desktop */}
+        <aside className="lg:w-56 flex-shrink-0 order-3 hidden xl:block">
+          <div className="sticky top-24 p-4 rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/50">
+            <p className="text-xs font-semibold uppercase text-surface-500 dark:text-surface-400 mb-3">
+              Quick reference
+            </p>
+            <p className="text-sm text-surface-600 dark:text-surface-400">
+              {lesson.duration} • {lesson.objectives.length} objectives
+            </p>
+            <Link
+              to={`/learn/${levelId}/${moduleSlug}`}
+              className="mt-4 block text-sm text-primary-500 hover:text-primary-600"
+            >
+              ← Back to {module_?.title}
+            </Link>
+          </div>
+        </aside>
+      </div>
+        </div>
+      </div>
+    </div>
     </div>
   );
 }

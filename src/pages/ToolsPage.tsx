@@ -1,19 +1,45 @@
 import { useState } from "react";
-import { Calculator, Percent, DollarSign, BarChart3, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  Calculator,
+  Percent,
+  DollarSign,
+  BarChart3,
+  TrendingUp,
+  Calendar,
+  Grid3X3,
+  Ruler,
+  Code,
+  BookOpen,
+  Layers,
+  Activity,
+  Columns3,
+} from "lucide-react";
 import { PositionSizeCalculator } from "../components/tools/PositionSizeCalculator";
 import { RiskRewardCalculator } from "../components/tools/RiskRewardCalculator";
 import { PipCalculator } from "../components/tools/PipCalculator";
 import { CompoundInterestCalculator } from "../components/tools/CompoundInterestCalculator";
 import { CandlestickBuilder } from "../components/charts/CandlestickBuilder";
 import { PythonSandbox } from "../components/tools/PythonSandbox";
+import { EconomicCalendar } from "../components/tools/EconomicCalendar";
+import { OrderBookVisualizer } from "../components/tools/OrderBookVisualizer";
+import { PatternRecognitionGame } from "../components/tools/PatternRecognitionGame";
+import { MarketCorrelationHeatmap } from "../components/tools/MarketCorrelationHeatmap";
 
 const tools = [
-  { id: "position-size", title: "Position Size", icon: Calculator },
-  { id: "risk-reward", title: "Risk-Reward", icon: Percent },
-  { id: "pip", title: "Pip Calculator", icon: DollarSign },
-  { id: "compound", title: "Compound Interest", icon: TrendingUp },
-  { id: "candlestick", title: "Candlestick Builder", icon: BarChart3 },
-  { id: "python", title: "Python Sandbox", icon: Calculator },
+  { id: "position-size", title: "Position Size Calculator", icon: Calculator, built: true },
+  { id: "risk-reward", title: "Risk-Reward Visualizer", icon: Percent, built: true },
+  { id: "pip", title: "Pip Calculator", icon: DollarSign, built: true },
+  { id: "compound", title: "Compound Interest Simulator", icon: TrendingUp, built: true },
+  { id: "candlestick", title: "Candlestick Builder", icon: BarChart3, built: true },
+  { id: "python", title: "Live Python Editor", icon: Code, built: true },
+  { id: "economic-calendar", title: "Economic Calendar", icon: Calendar, built: true },
+  { id: "order-book", title: "Order Book Visualizer", icon: Columns3, built: true },
+  { id: "indicator-playground", title: "Indicator Playground", icon: Activity, built: false, link: "/simulator" },
+  { id: "pattern-game", title: "Pattern Recognition Game", icon: Grid3X3, built: true },
+  { id: "sr-drawing", title: "Support/Resistance Drawing", icon: Ruler, built: false, link: "/learn/2/support-and-resistance/support-resistance-basics" },
+  { id: "correlation-heatmap", title: "Market Correlation Heatmap", icon: Layers, built: true },
+  { id: "strategy-simulator", title: "Strategy Simulator", icon: BookOpen, built: false, link: "/simulator" },
 ];
 
 export function ToolsPage() {
@@ -33,6 +59,31 @@ export function ToolsPage() {
         return <CandlestickBuilder />;
       case "python":
         return <PythonSandbox />;
+      case "economic-calendar":
+        return <EconomicCalendar />;
+      case "order-book":
+        return <OrderBookVisualizer />;
+      case "pattern-game":
+        return <PatternRecognitionGame />;
+      case "correlation-heatmap":
+        return <MarketCorrelationHeatmap />;
+      case "indicator-playground":
+      case "sr-drawing":
+      case "strategy-simulator": {
+        const t = tools.find((x) => x.id === activeTool);
+        const href = t?.link || "/learn";
+        return (
+          <div className="p-8 rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/50 text-center">
+            <p className="text-surface-600 dark:text-surface-400 mb-4">
+              {t?.title} is integrated into lessons and the Paper Trading simulator.
+            </p>
+            <Link to={href} className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600">
+              Open {href.startsWith("/learn") ? "Lesson" : "Simulator"}
+              <BookOpen className="h-4 w-4" />
+            </Link>
+          </div>
+        );
+      }
       default:
         return <PositionSizeCalculator />;
     }
@@ -51,19 +102,19 @@ export function ToolsPage() {
         lesson for context on the builder.
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mb-8">
         {tools.map((t) => (
           <button
             key={t.id}
             onClick={() => setActiveTool(t.id)}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-colors text-left ${
               activeTool === t.id
                 ? "bg-primary-500 text-white"
                 : "bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600"
             }`}
           >
-            <t.icon className="h-4 w-4" />
-            {t.title}
+            <t.icon className="h-4 w-4 flex-shrink-0" />
+            <span className="truncate">{t.title}</span>
           </button>
         ))}
       </div>

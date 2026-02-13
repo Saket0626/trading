@@ -4,6 +4,7 @@ import { MODULES } from "../data/curriculum";
 import { useProgress } from "../contexts/ProgressContext";
 import { useAdmin } from "../contexts/AdminContext";
 import { canAccessLevel } from "../lib/access";
+import { LearnSidebar } from "../components/learn/LearnSidebar";
 
 export function LearnPage() {
   const { levelId } = useParams<{ levelId: string }>();
@@ -37,6 +38,9 @@ export function LearnPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="flex gap-8">
+        <LearnSidebar />
+        <div className="flex-1 min-w-0">
       <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
         <Link to="/" className="hover:text-primary-500">Home</Link>
         <span className="mx-2">/</span>
@@ -72,6 +76,8 @@ export function LearnPage() {
             </p>
           </Link>
         ))}
+      </div>
+        </div>
       </div>
     </div>
   );

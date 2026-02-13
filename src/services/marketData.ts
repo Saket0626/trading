@@ -1,9 +1,26 @@
 /**
  * Market Data Service - Real live data with multiple sources and fallbacks
- * Sources: Binance (crypto), CoinGecko (crypto), Finnhub (stocks), ExchangeRate.host (forex)
+ * Sources: Binance (crypto), CoinGecko (crypto), Finnhub (stocks), Alpha Vantage (stocks/forex),
+ * ExchangeRate.host (forex)
  */
 
-export type MarketType = "stocks" | "forex" | "crypto" | "commodities";
+export type MarketType = "stocks" | "forex" | "crypto" | "commodities" | "futures";
+
+const ALPHA_VANTAGE_KEY = import.meta.env.VITE_ALPHA_VANTAGE_API_KEY || "";
+const RETRY_ATTEMPTS = 3;
+const RETRY_DELAY_MS = 500;
+
+async function withRetry<T>(fn: () => Promise<T>): Promise<T | null> {
+  for (let i = 0; i < RETRY_ATTEMPTS; i++) {
+    try {
+      const result = await fn();
+      if (result != null) return result;
+    } catch {
+      if (i < RETRY_ATTEMPTS - 1) await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
+    }
+  }
+  return null;
+}
 
 export interface Quote {
   symbol: string;
@@ -131,6 +148,53 @@ export async function fetchFinnhubQuote(symbol: string): Promise<Quote | null> {
   }
 }
 
+// Alpha Vantage - Forex (free tier: 25 req/day)
+async function fetchAlphaVantageForex(pair: string): Promise<Quote | null> {
+  if (!ALPHA_VANTAGE_KEY) return null;
+  try {
+    const from = pair.slice(0, 3);
+    const to = pair.slice(3, 6);
+    const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${from}&to_currency=${to}&apikey=${ALPHA_VANTAGE_KEY}`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    const rate = data["Realtime Currency Exchange Rate"];
+    if (!rate) return null;
+    const price = parseFloat(rate["5. Exchange Rate"] || 0);
+    return { symbol: pair, price, timestamp: Date.now(), source: "alphavantage" };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchAlphaVantageStock(symbol: string): Promise<Quote | null> {
+  if (!ALPHA_VANTAGE_KEY) return null;
+  try {
+    const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${ALPHA_VANTAGE_KEY}`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    const q = data["Global Quote"];
+    if (!q || !q["05. price"]) return null;
+    const price = parseFloat(q["05. price"]);
+    const prevClose = parseFloat(q["08. previous close"] || price);
+    const change = price - prevClose;
+    return {
+      symbol,
+      price,
+      change,
+      changePercent: prevClose ? (change / prevClose) * 100 : 0,
+      high: parseFloat(q["03. high"]),
+      low: parseFloat(q["04. low"]),
+      volume: parseFloat(q["06. volume"]),
+      timestamp: Date.now(),
+      source: "alphavantage",
+    };
+  } catch {
+    return null;
+  }
+}
+
 // Open ER-API - Forex (free, no key, daily updates)
 export async function fetchForexRate(pair: string): Promise<Quote | null> {
   try {
@@ -153,7 +217,7 @@ export async function fetchForexRate(pair: string): Promise<Quote | null> {
   }
 }
 
-// Aggregated fetcher with fallbacks
+// Aggregated fetcher with fallbacks and retry
 export async function fetchQuote(
   symbol: string,
   type: MarketType
@@ -165,20 +229,25 @@ export async function fetchQuote(
   let quote: Quote | null = null;
 
   if (type === "crypto") {
-    quote = await fetchBinancePrice(symbol);
-    if (!quote) quote = await fetchCoinGeckoPrice(symbol);
+    quote = await withRetry(() => fetchBinancePrice(symbol));
+    if (!quote) quote = await withRetry(() => fetchCoinGeckoPrice(symbol));
   } else if (type === "stocks") {
-    quote = await fetchFinnhubQuote(symbol);
+    quote = await withRetry(() => fetchFinnhubQuote(symbol));
+    if (!quote && ALPHA_VANTAGE_KEY) quote = await withRetry(() => fetchAlphaVantageStock(symbol));
   } else if (type === "forex") {
-    quote = await fetchForexRate(symbol);
+    quote = await withRetry(() => fetchForexRate(symbol));
+    if (!quote && ALPHA_VANTAGE_KEY) quote = await withRetry(() => fetchAlphaVantageForex(symbol));
   } else if (type === "commodities") {
-    // Commodities often tracked via ETFs - use Finnhub for GLD, USO etc
-    const commoditySymbols: Record<string, string> = {
-      GOLD: "GLD",
-      OIL: "USO",
-    };
+    const commoditySymbols: Record<string, string> = { GOLD: "GLD", OIL: "USO", SILVER: "SLV", NATGAS: "UNG" };
     const stockSymbol = commoditySymbols[symbol] || symbol;
-    quote = await fetchFinnhubQuote(stockSymbol);
+    quote = await withRetry(() => fetchFinnhubQuote(stockSymbol));
+    if (!quote && ALPHA_VANTAGE_KEY) quote = await withRetry(() => fetchAlphaVantageStock(stockSymbol));
+    if (quote) quote.symbol = symbol;
+  } else if (type === "futures") {
+    const futuresMap: Record<string, string> = { ES: "SPY", NQ: "QQQ", GC: "GLD", CL: "USO", SI: "SLV", NG: "UNG", YM: "DIA" };
+    const stockSymbol = futuresMap[symbol] || symbol;
+    quote = await withRetry(() => fetchFinnhubQuote(stockSymbol));
+    if (!quote && ALPHA_VANTAGE_KEY) quote = await withRetry(() => fetchAlphaVantageStock(stockSymbol));
     if (quote) quote.symbol = symbol;
   }
 
@@ -209,6 +278,38 @@ export async function fetchBinanceKlines(
     }));
   } catch {
     return [];
+  }
+}
+
+// Binance order book (free, no key)
+export interface OrderBookLevel {
+  price: number;
+  quantity: number;
+}
+
+export async function fetchBinanceOrderBook(
+  symbol: string,
+  limit = 20
+): Promise<{ bids: OrderBookLevel[]; asks: OrderBookLevel[] }> {
+  try {
+    const binanceSymbol = symbol.replace("USD", "USDT").replace("BTCUSD", "BTCUSDT");
+    const res = await fetch(
+      `https://api.binance.com/api/v3/depth?symbol=${binanceSymbol}&limit=${limit}`
+    );
+    if (!res.ok) return { bids: [], asks: [] };
+    const data = await res.json();
+    return {
+      bids: (data.bids || []).map(([p, q]: [string, string]) => ({
+        price: parseFloat(p),
+        quantity: parseFloat(q),
+      })),
+      asks: (data.asks || []).map(([p, q]: [string, string]) => ({
+        price: parseFloat(p),
+        quantity: parseFloat(q),
+      })),
+    };
+  } catch {
+    return { bids: [], asks: [] };
   }
 }
 

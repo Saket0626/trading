@@ -5,10 +5,17 @@ import type { Quote } from "../services/marketData";
 const TICKER_SYMBOLS = [
   { symbol: "BTCUSD", type: "crypto" as const },
   { symbol: "ETHUSD", type: "crypto" as const },
+  { symbol: "SOLUSD", type: "crypto" as const },
   { symbol: "SPY", type: "stocks" as const },
   { symbol: "AAPL", type: "stocks" as const },
   { symbol: "MSFT", type: "stocks" as const },
   { symbol: "NVDA", type: "stocks" as const },
+  { symbol: "GOOGL", type: "stocks" as const },
+  { symbol: "AMZN", type: "stocks" as const },
+  { symbol: "QQQ", type: "stocks" as const },
+  { symbol: "EURUSD", type: "forex" as const },
+  { symbol: "GBPUSD", type: "forex" as const },
+  { symbol: "USDJPY", type: "forex" as const },
 ];
 
 export function useTickerData(pollMs = 30000) {

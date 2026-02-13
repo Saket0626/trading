@@ -9,8 +9,10 @@ const navLinks = [
   { to: "/", label: "Home" },
   { to: "/learn", label: "Learn" },
   { to: "/simulator", label: "Practice" },
+  { to: "/simulator", label: "Trade" },
   { to: "/tools", label: "Tools" },
   { to: "/progress", label: "Progress" },
+  { to: "/progress", label: "Profile" },
   { to: "/donations", label: "Donations" },
 ];
 
@@ -30,7 +32,7 @@ export function Header() {
     (e: React.FormEvent) => {
       e.preventDefault();
       if (searchQuery.trim()) {
-        navigate(`/glossary?q=${encodeURIComponent(searchQuery.trim())}`);
+        navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
         setSearchQuery("");
       }
     },

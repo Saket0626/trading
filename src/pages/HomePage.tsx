@@ -5,12 +5,14 @@ import {
   Calculator,
   Trophy,
   TrendingUp,
-  Shield,
   AlertTriangle,
   ChevronRight,
+  Flame,
 } from "lucide-react";
 import { LEVELS } from "../data/curriculum";
 import { useProgress } from "../contexts/ProgressContext";
+import { getNextLessonToContinue, getProgressPercentage } from "../lib/continue";
+import { MarketOverviewWidget } from "../components/MarketOverviewWidget";
 
 const levelColors: Record<string, string> = {
   emerald: "from-emerald-500 to-teal-600",
@@ -21,7 +23,9 @@ const levelColors: Record<string, string> = {
 };
 
 export function HomePage() {
-  const { xp, completedLessons } = useProgress();
+  const { xp, completedLessons, streakDays } = useProgress();
+  const nextLesson = getNextLessonToContinue(completedLessons);
+  const progressPercent = getProgressPercentage(completedLessons);
 
   return (
     <div className="min-h-screen">
@@ -31,7 +35,7 @@ export function HomePage() {
         <div className="container mx-auto px-4 py-20 md:py-28 relative">
           <div className="max-w-3xl">
             <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight mb-6">
-              Learn Trading
+              Master Trading
               <br />
               <span className="bg-gradient-to-r from-primary-400 to-cyan-400 bg-clip-text text-transparent">
                 From Zero to Quant
@@ -44,7 +48,7 @@ export function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/learn/1"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
+                className="hover-lift inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
               >
                 Start Learning
                 <ChevronRight className="h-5 w-5" />
@@ -60,6 +64,36 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Continue where you left off */}
+      {nextLesson && (
+        <section className="py-6 border-b border-surface-200 dark:border-surface-800 bg-primary-50 dark:bg-primary-900/20">
+          <div className="container mx-auto px-4">
+            <Link
+              to={`/learn/${nextLesson.levelId}/${nextLesson.moduleSlug}/${nextLesson.lesson.slug}`}
+              className="flex flex-wrap items-center justify-between gap-4 p-6 rounded-xl bg-white dark:bg-surface-800 shadow-sm border border-primary-200 dark:border-primary-800 hover:border-primary-400 dark:hover:border-primary-600 transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center">
+                  <BookOpen className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-primary-600 dark:text-primary-400">
+                    Continue where you left off
+                  </p>
+                  <p className="font-semibold text-surface-900 dark:text-surface-100 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                    {nextLesson.lesson.title}
+                  </p>
+                  <p className="text-sm text-surface-600 dark:text-surface-400 mt-0.5">
+                    Level {nextLesson.levelId} • {nextLesson.lesson.duration}
+                  </p>
+                </div>
+              </div>
+              <ChevronRight className="h-6 w-6 text-surface-400 group-hover:text-primary-500 group-hover:translate-x-1 transition-all" />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Stats / Progress */}
       <section className="py-8 border-b border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-900/50">
@@ -83,9 +117,39 @@ export function HomePage() {
                 <p className="text-sm text-surface-600 dark:text-surface-400">Lessons Completed</p>
               </div>
             </div>
+            <div className="flex items-center gap-3 px-6 py-3 bg-white dark:bg-surface-800 rounded-xl shadow-sm">
+              <div className="text-2xl font-bold text-surface-900 dark:text-surface-100">
+                {progressPercent}%
+              </div>
+              <div>
+                <p className="text-sm text-surface-600 dark:text-surface-400">Overall Progress</p>
+                <div className="mt-1 h-2 w-24 rounded-full bg-surface-200 dark:bg-surface-700 overflow-hidden">
+                  <div
+                    className="h-full bg-primary-500 rounded-full transition-all duration-500"
+                    style={{ width: `${progressPercent}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+            {streakDays > 0 && (
+              <div className="flex items-center gap-3 px-6 py-3 bg-white dark:bg-surface-800 rounded-xl shadow-sm">
+                <Flame className="h-8 w-8 text-orange-500" />
+                <div>
+                  <p className="text-2xl font-bold text-surface-900 dark:text-surface-100">
+                    {streakDays}
+                  </p>
+                  <p className="text-sm text-surface-600 dark:text-surface-400">
+                    Day{streakDays !== 1 ? "s" : ""} Streak
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
+
+      {/* Market Overview */}
+      <MarketOverviewWidget />
 
       {/* Curriculum Path */}
       <section className="py-16">
@@ -127,48 +191,57 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Feature Showcase - 3 columns per spec */}
       <section className="py-16 bg-surface-100 dark:bg-surface-900/30">
         <div className="container mx-auto px-4">
           <h2 className="font-display text-2xl md:text-3xl font-bold text-center mb-12">
             What You'll Get
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 bg-white dark:bg-surface-800 rounded-xl shadow-sm">
-              <BarChart3 className="h-10 w-10 text-primary-500 mb-4" />
-              <h3 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">
-                Interactive Charts
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="card-hover p-8 bg-white dark:bg-surface-800 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700">
+              <BarChart3 className="h-12 w-12 text-primary-500 mb-4" />
+              <h3 className="font-semibold text-lg text-surface-900 dark:text-surface-100 mb-2">
+                Real Live Data
               </h3>
-              <p className="text-sm text-surface-600 dark:text-surface-400">
-                Candlestick builder, pattern recognition, and live chart tools.
+              <p className="text-surface-600 dark:text-surface-400">
+                Live prices from Binance, Finnhub, CoinGecko. Stocks, forex, crypto, commodities. No mock data.
               </p>
+              <Link
+                to="/simulator"
+                className="mt-4 inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 font-medium hover:underline"
+              >
+                View markets <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
-            <div className="p-6 bg-white dark:bg-surface-800 rounded-xl shadow-sm">
-              <Calculator className="h-10 w-10 text-primary-500 mb-4" />
-              <h3 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">
-                Real Calculators
+            <div className="card-hover p-8 bg-white dark:bg-surface-800 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700">
+              <Calculator className="h-12 w-12 text-primary-500 mb-4" />
+              <h3 className="font-semibold text-lg text-surface-900 dark:text-surface-100 mb-2">
+                Interactive Learning
               </h3>
-              <p className="text-sm text-surface-600 dark:text-surface-400">
-                Position sizing, risk-reward, margin, and pip calculators.
+              <p className="text-surface-600 dark:text-surface-400">
+                Candlestick builder, pattern recognition, position size calculator, Python sandbox. Learn by doing.
               </p>
+              <Link
+                to="/tools"
+                className="mt-4 inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 font-medium hover:underline"
+              >
+                Explore tools <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
-            <div className="p-6 bg-white dark:bg-surface-800 rounded-xl shadow-sm">
-              <TrendingUp className="h-10 w-10 text-primary-500 mb-4" />
-              <h3 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">
+            <div className="card-hover p-8 bg-white dark:bg-surface-800 rounded-xl shadow-sm border border-surface-200 dark:border-surface-700">
+              <TrendingUp className="h-12 w-12 text-primary-500 mb-4" />
+              <h3 className="font-semibold text-lg text-surface-900 dark:text-surface-100 mb-2">
                 Paper Trading
               </h3>
-              <p className="text-sm text-surface-600 dark:text-surface-400">
-                Practice with real market data. Stocks, forex, crypto accounts.
+              <p className="text-surface-600 dark:text-surface-400">
+                Practice with real market prices. Stock, forex, crypto, commodity accounts. PDT rules enforced.
               </p>
-            </div>
-            <div className="p-6 bg-white dark:bg-surface-800 rounded-xl shadow-sm">
-              <Shield className="h-10 w-10 text-primary-500 mb-4" />
-              <h3 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">
-                Honest Education
-              </h3>
-              <p className="text-sm text-surface-600 dark:text-surface-400">
-                No hype. Real statistics on failure rates. Risk management first.
-              </p>
+              <Link
+                to="/simulator"
+                className="mt-4 inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 font-medium hover:underline"
+              >
+                Start paper trading <ChevronRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </div>
