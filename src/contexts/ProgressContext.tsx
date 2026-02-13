@@ -24,6 +24,7 @@ interface ProgressContextType extends UserProgress {
   completeQuiz: (lessonId: string, score: number) => void;
   addXP: (amount: number) => void;
   addBadge: (badgeId: string) => void;
+  setUsername: (username: string) => void;
   isLessonComplete: (lessonId: string) => boolean;
   getQuizScore: (lessonId: string) => number | undefined;
   streakDays: number;
@@ -145,6 +146,14 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
+  const setUsername = useCallback((username: string) => {
+    setProgress((prev) => ({
+      ...prev,
+      username: username.trim().slice(0, 32) || undefined,
+      lastActivity: new Date().toISOString(),
+    }));
+  }, []);
+
   const isLessonComplete = useCallback(
     (lessonId: string) => progress.completedLessons.includes(lessonId),
     [progress.completedLessons]
@@ -166,6 +175,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         completeQuiz,
         addXP,
         addBadge,
+        setUsername,
         isLessonComplete,
         getQuizScore,
       }}

@@ -15,6 +15,7 @@ A world-class, interactive web-based trading education platform that takes compl
 - **Which Market Quiz**: Interactive quiz to recommend your starting market
 - **Quizzes**: Knowledge checks after each lesson (80% to pass)
 - **Progress & Gamification**: XP, completed lessons, badges (First Lesson, First Quiz, 10 Lessons, Quiz Master)
+- **Live Leaderboards**: Compete with other users in real time (Lessons Completed, Paper Trading P&L) — requires Supabase
 - **PWA**: Installable, offline-capable Progressive Web App
 - **Dark Mode**: Full theme support
 - **Risk Warnings**: Honest disclaimers about trader failure rates
@@ -100,6 +101,20 @@ src/
 For stock data, add `VITE_FINNHUB_API_KEY` to `.env` (free at finnhub.io).
 Crypto works without any key (Binance/CoinGecko).
 Forex works without key (Open ER-API).
+
+## Live Leaderboards (Optional)
+
+To enable live leaderboards where users compete in real time:
+
+1. Create a free project at [Supabase](https://supabase.com)
+2. Add to `.env`:
+   ```
+   VITE_SUPABASE_URL=https://your-project.supabase.co
+   VITE_SUPABASE_ANON_KEY=your-anon-key
+   ```
+3. In the Supabase SQL Editor, run `supabase-leaderboard.sql`
+
+Users must set a username in Profile to appear on the leaderboard. They appear after completing at least one lesson.
 
 ## Important Disclaimer
 

@@ -1,9 +1,17 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Trophy, BookOpen, Target, Flame, Award, Medal, BarChart3 } from "lucide-react";
+import { Trophy, BookOpen, Target, Flame, Award, Medal, BarChart3, User, Save } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
 import { getProgressPercentage } from "../lib/continue";
 import { DailyChallenge } from "../components/DailyChallenge";
+import { isLeaderboardEnabled } from "../lib/supabase";
+import {
+  fetchLessonsLeaderboard,
+  fetchPnlLeaderboard,
+  upsertLeaderboardEntry,
+  getLeaderboardUserId,
+  type LeaderboardEntry,
+} from "../services/leaderboard";
 
 const SIMULATOR_STORAGE_KEY = "trading-edu-simulator";
 
@@ -61,25 +69,119 @@ function getLevelTier(xp: number, progressPercent: number): { tier: string; next
 }
 
 export function ProgressPage() {
-  const { xp, completedLessons, badges, streakDays, addBadge } = useProgress();
+  const { xp, completedLessons, badges, streakDays, username, setUsername, addBadge } = useProgress();
   const { paperTradingPnl, paperTradingPnlPercent } = useSimulatorStats();
+  const [usernameInput, setUsernameInput] = useState(username ?? "");
+  const [usernameSaved, setUsernameSaved] = useState(false);
+  const [lessonsLeaderboard, setLessonsLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [pnlLeaderboard, setPnlLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const leaderboardEnabled = isLeaderboardEnabled();
+  const userId = getLeaderboardUserId();
 
   useEffect(() => {
     if (paperTradingPnl > 0 && !badges.includes("profitable-trader")) {
       addBadge("profitable-trader");
     }
   }, [paperTradingPnl, badges, addBadge]);
+
+  // Sync username input when context loads
+  useEffect(() => {
+    setUsernameInput(username ?? "");
+  }, [username]);
+
+  // Sync to leaderboard when username set and at least 1 lesson
+  useEffect(() => {
+    if (!leaderboardEnabled || !username?.trim() || completedLessons.length === 0) return;
+    upsertLeaderboardEntry(userId, username.trim(), completedLessons.length, paperTradingPnl, paperTradingPnlPercent);
+  }, [leaderboardEnabled, userId, username, completedLessons.length, paperTradingPnl, paperTradingPnlPercent]);
+
+  // Fetch leaderboards
+  const loadLeaderboards = useCallback(async () => {
+    if (!leaderboardEnabled) return;
+    const [lessons, pnl] = await Promise.all([fetchLessonsLeaderboard(), fetchPnlLeaderboard()]);
+    setLessonsLeaderboard(lessons);
+    setPnlLeaderboard(pnl);
+  }, [leaderboardEnabled]);
+
+  useEffect(() => {
+    loadLeaderboards();
+    const interval = setInterval(loadLeaderboards, 15000);
+    return () => clearInterval(interval);
+  }, [loadLeaderboards]);
+
+  const handleSaveUsername = () => {
+    const trimmed = usernameInput.trim().slice(0, 32);
+    if (trimmed) {
+      setUsername(trimmed);
+      setUsernameSaved(true);
+      setTimeout(() => setUsernameSaved(false), 2000);
+    }
+  };
+
   const progressPercent = getProgressPercentage(completedLessons);
   const { tier, nextTier, progressToNext } = getLevelTier(xp, progressPercent);
+  const hasUsername = !!username?.trim();
+  const showLeaderboardPrompt = leaderboardEnabled && !hasUsername;
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100 mb-1">
         Your Progress
       </h1>
-      <p className="text-sm text-surface-500 dark:text-surface-400 mb-8">
+      <p className="text-sm text-surface-500 dark:text-surface-400 mb-6">
         Track your learning journey and earned achievements.
       </p>
+
+      {/* Username / Profile - required for live leaderboards */}
+      {leaderboardEnabled && (
+        <div className="mb-6 p-4 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+          <div className="flex items-start gap-3">
+            <User className="h-5 w-5 text-surface-500 mt-0.5 shrink-0" />
+            <div className="flex-1 min-w-0">
+              {hasUsername ? (
+                <p className="text-sm text-surface-700 dark:text-surface-300">
+                  You&apos;re on the leaderboard as <strong>{username}</strong>.{" "}
+                  <button
+                    type="button"
+                    onClick={() => setUsernameInput(username ?? "")}
+                    className="text-primary-600 dark:text-primary-400 hover:underline"
+                  >
+                    Change
+                  </button>
+                </p>
+              ) : (
+                <>
+                  <p className="text-sm font-medium text-surface-900 dark:text-surface-100 mb-1">
+                    Compete with others in real time
+                  </p>
+                  <p className="text-xs text-surface-500 dark:text-surface-400 mb-3">
+                    Enter a username to join the live leaderboard. You&apos;ll show up once you complete at least one lesson.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <input
+                      type="text"
+                      value={usernameInput}
+                      onChange={(e) => setUsernameInput(e.target.value)}
+                      placeholder="Enter your username"
+                      maxLength={32}
+                      className="px-3 py-2 rounded border border-surface-200 dark:border-surface-600 bg-surface-50 dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleSaveUsername}
+                      disabled={!usernameInput.trim()}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-primary-600 hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium transition-colors"
+                    >
+                      <Save className="h-4 w-4" />
+                      {usernameSaved ? "Saved!" : "Save"}
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="mb-6 p-4 rounded border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900">
         <div className="flex items-center gap-4">
@@ -221,55 +323,118 @@ export function ProgressPage() {
         <h2 className="font-semibold text-lg text-surface-900 dark:text-surface-100 mb-4">
           Leaderboards
         </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
-            <div className="flex items-center gap-2 mb-4">
-              <Medal className="h-5 w-5 text-amber-500" />
-              <h3 className="font-medium text-surface-900 dark:text-surface-100">Lessons Completed</h3>
+        {leaderboardEnabled ? (
+          showLeaderboardPrompt ? (
+            <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 max-w-xl">
+              <p className="text-base font-medium text-surface-900 dark:text-surface-100 mb-2">
+                Compete with others in real time
+              </p>
+              <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
+                Every user who completes at least one lesson can appear on the leaderboard. Set your username above to join and see your rank alongside other learners.
+              </p>
+              <p className="text-xs text-surface-500 dark:text-surface-400">
+                Complete a lesson and add your username to get on the board!
+              </p>
             </div>
-            <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
-              Top learners by lessons completed. Complete more lessons to climb the ranks!
-            </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3 py-2 px-3 rounded-lg bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800">
-                <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center text-xs font-bold">
-                  1
-                </span>
-                <span className="font-medium text-surface-900 dark:text-surface-100">You</span>
-                <span className="ml-auto font-semibold text-primary-600 dark:text-primary-400">
-                  {completedLessons.length} lessons
-                </span>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+                <div className="flex items-center gap-2 mb-4">
+                  <Medal className="h-5 w-5 text-amber-500" />
+                  <h3 className="font-medium text-surface-900 dark:text-surface-100">Lessons Completed</h3>
+                </div>
+                <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
+                  Top learners by lessons completed. Complete more lessons to climb the ranks!
+                </p>
+                <div className="space-y-2">
+                  {lessonsLeaderboard.length === 0 ? (
+                    <p className="text-sm text-surface-500 py-2">No entries yet. Complete a lesson to appear!</p>
+                  ) : (
+                    lessonsLeaderboard.map((entry, i) => (
+                      <div
+                        key={entry.user_id}
+                        className={`flex items-center gap-3 py-2 px-3 rounded ${
+                          entry.user_id === userId
+                            ? "bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800"
+                            : "bg-surface-50 dark:bg-surface-800 border border-surface-100 dark:border-surface-700"
+                        }`}
+                      >
+                        <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                          {i + 1}
+                        </span>
+                        <span className="font-medium text-surface-900 dark:text-surface-100 truncate">
+                          {entry.username}
+                          {entry.user_id === userId && " (you)"}
+                        </span>
+                        <span className="ml-auto font-semibold text-primary-600 dark:text-primary-400 shrink-0 tabular-nums">
+                          {entry.lessons_count} lessons
+                        </span>
+                      </div>
+                    ))
+                  )}
+                </div>
+                <p className="mt-4 text-xs text-surface-500">Live • Updates every 15s</p>
+              </div>
+              <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+                <div className="flex items-center gap-2 mb-4">
+                  <BarChart3 className="h-5 w-5 text-emerald-500" />
+                  <h3 className="font-medium text-surface-900 dark:text-surface-100">Paper Trading P&L</h3>
+                </div>
+                <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
+                  Top paper traders by profit. Practice in the simulator to compete!
+                </p>
+                <div className="space-y-2">
+                  {pnlLeaderboard.length === 0 ? (
+                    <p className="text-sm text-surface-500 py-2">No entries yet. Practice in the simulator!</p>
+                  ) : (
+                    pnlLeaderboard.map((entry, i) => (
+                      <div
+                        key={entry.user_id}
+                        className={`flex items-center gap-3 py-2 px-3 rounded ${
+                          entry.user_id === userId
+                            ? "bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800"
+                            : "bg-surface-50 dark:bg-surface-800 border border-surface-100 dark:border-surface-700"
+                        }`}
+                      >
+                        <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                          {i + 1}
+                        </span>
+                        <span className="font-medium text-surface-900 dark:text-surface-100 truncate">
+                          {entry.username}
+                          {entry.user_id === userId && " (you)"}
+                        </span>
+                        <span
+                          className={`ml-auto font-semibold shrink-0 tabular-nums ${
+                            entry.pnl >= 0 ? "text-bull" : "text-bear"
+                          }`}
+                        >
+                          {entry.pnl >= 0 ? "+" : ""}${entry.pnl.toFixed(2)} ({entry.pnl >= 0 ? "+" : ""}
+                          {entry.pnl_percent.toFixed(1)}%)
+                        </span>
+                      </div>
+                    ))
+                  )}
+                </div>
+                <Link
+                  to="/simulator"
+                  className="mt-4 inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 text-sm font-medium hover:underline"
+                >
+                  Go to Paper Trading →
+                </Link>
+                <p className="mt-2 text-xs text-surface-500">Live • Updates every 15s</p>
               </div>
             </div>
-            <p className="mt-4 text-xs text-surface-500">Keep learning to improve your rank!</p>
-          </div>
-          <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
-            <div className="flex items-center gap-2 mb-4">
-              <BarChart3 className="h-5 w-5 text-emerald-500" />
-              <h3 className="font-medium text-surface-900 dark:text-surface-100">Paper Trading P&L</h3>
-            </div>
-            <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
-              Top paper traders by profit. Practice in the simulator to compete!
+          )
+        ) : (
+          <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 max-w-xl">
+            <p className="text-sm text-surface-600 dark:text-surface-400">
+              Live leaderboards require Supabase. Add <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">VITE_SUPABASE_URL</code> and{" "}
+              <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">VITE_SUPABASE_ANON_KEY</code> to your{" "}
+              <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">.env</code>, then run{" "}
+              <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">supabase-leaderboard.sql</code> in the Supabase SQL Editor.
             </p>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3 py-2 px-3 rounded-lg bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800">
-                <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center text-xs font-bold">
-                  1
-                </span>
-                <span className="font-medium text-surface-900 dark:text-surface-100">You</span>
-                <span className={`ml-auto font-semibold ${paperTradingPnl >= 0 ? "text-bull" : "text-bear"}`}>
-                  {paperTradingPnl >= 0 ? "+" : ""}${paperTradingPnl.toFixed(2)} ({paperTradingPnl >= 0 ? "+" : ""}{paperTradingPnlPercent.toFixed(1)}%)
-                </span>
-              </div>
-            </div>
-            <Link
-              to="/simulator"
-              className="mt-4 inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 text-sm font-medium hover:underline"
-            >
-              Go to Paper Trading →
-            </Link>
           </div>
-        </div>
+        )}
       </section>
 
       <section>
