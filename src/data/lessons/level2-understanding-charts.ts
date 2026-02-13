@@ -10,11 +10,12 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 1,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Understand why we visualize price data",
       "See how charts tell the story of supply and demand",
       "Know what a price chart represents",
+      "Connect charts to trading decisions",
     ],
     prerequisites: [],
     content: [
@@ -22,19 +23,31 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "Why We Visualize Data",
         content:
-          "Imagine you're looking at a table of numbers: Apple stock closed at 172.50 on Monday, 171.20 on Tuesday, 173.80 on Wednesday, and so on for hundreds of days. Spotting a trend or a reversal in raw numbers is hard. A price chart turns that same data into a picture. Your brain can instantly see whether price has been going up, down, or sideways, and where it might be turning. That's why traders and investors rely on charts—they turn history into visual information we can act on.",
+          "Imagine you're looking at a table of numbers: Apple stock closed at 172.50 on Monday, 171.20 on Tuesday, 173.80 on Wednesday, and so on for hundreds of days. Spotting a trend or a reversal in raw numbers is hard. Your brain struggles to see patterns in columns of digits. A price chart turns that same data into a picture. Your brain can instantly see whether price has been going up, down, or sideways, and where it might be turning.\n\nThat's why traders and investors rely on charts—they turn history into visual information we can act on. A chart answers at a glance: Is this asset trending up or down? Where did it stall before? Where might it stall again? You can't trade effectively without understanding what you're looking at. Charts are the primary tool.",
       },
       {
         type: "text",
         heading: "What a Price Chart Really Shows",
         content:
-          "A price chart plots price (or another measure of value) over time. Every point on the chart is an answer to: 'At this moment in time, what was the price?' Over many points, you see the path price took. That path reflects the ongoing battle between buyers and sellers. When buyers are more aggressive, price tends to rise; when sellers are, it falls. So a chart is really a visualization of supply and demand over time.",
+          "A price chart plots price (or another measure of value) over time. Every point on the chart is an answer to: 'At this moment in time, what was the price?' Over many points, you see the path price took. That path reflects the ongoing battle between buyers and sellers. When buyers are more aggressive, price tends to rise. When sellers are, it falls. So a chart is really a visualization of supply and demand over time.\n\nCharts don't predict the future. They show the past. But the past reveals patterns—support levels where buyers stepped in, resistance levels where sellers appeared, trends that persisted or reversed. Traders use those patterns to form hypotheses about what might happen next. The chart is your evidence.",
       },
       {
-        type: "example",
-        heading: "Real-World Example",
+        type: "analogy",
+        heading: "The GPS Route Analogy",
         content:
-          "Think of a chart like a GPS route. Instead of streets, you have time (horizontal) and price (vertical). The line or candles show the route price took. Just as you'd use a map to decide where to turn next, traders use charts to decide when to enter or exit a trade.",
+          "Think of a chart like a GPS route. Instead of streets, you have time (horizontal) and price (vertical). The line or candles show the route price took—where it's been. Just as you'd use a map to decide where to turn next, traders use charts to decide when to enter or exit a trade. You're not predicting the route; you're using the route so far to plan your next move. A chart is a map of price history.",
+      },
+      {
+        type: "text",
+        heading: "Charts vs Fundamentals",
+        content:
+          "Fundamental analysts study company financials, earnings, and economic data. Technical analysts (chart traders) study price and volume. Charts don't care why price moved—only that it did. A breakout above resistance might be driven by an earnings beat, a news release, or herd behavior. The chart shows the result. Many traders combine both: use fundamentals for bias (is this stock worth owning?) and charts for timing (when do I enter and exit?).",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Start with one asset and one timeframe. Learn to read that chart well before adding complexity. AAPL on a daily chart is a good place to begin—liquid, well-known, clear trends. Master reading one chart before you try to read ten.",
       },
       {
         type: "interactive",
@@ -44,13 +57,19 @@ export const understandingChartsLessons: Lesson[] = [
         props: { question: "Why do traders prefer charts over tables of numbers?", reveal: "Charts let the brain see trends, reversals, and levels at a glance. A picture of price over time is faster to read than rows of numbers and makes supply/demand visible." },
       },
       {
+        type: "preview",
+        heading: "Chart Types (Preview)",
+        content:
+          "Charts come in several forms: line charts (close only), bar charts (OHLC), and candlestick charts (OHLC with a different visual). We'll cover each. Candlesticks are the most popular for trading because they pack the most information into an easy-to-scan format. But first, understand the axes—time and price—which every chart shares.",
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
           "A price chart visualizes price over time so we can quickly see trends, reversals, and key levels. It turns raw data into a picture of supply and demand.",
       },
     ],
-    hasQuiz: false,
+    hasQuiz: true,
   },
   {
     id: "chart-axes",
@@ -59,11 +78,12 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 2,
-    duration: "6 min",
+    duration: "10 min",
     objectives: [
       "Know what the horizontal axis (X) represents",
       "Know what the vertical axis (Y) represents",
       "Read scale and intervals correctly",
+      "Avoid misreading chart scale",
     ],
     prerequisites: ["price-chart-intro"],
     content: [
@@ -71,19 +91,25 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "The Horizontal Axis: Time",
         content:
-          "On almost every price chart, the horizontal axis (X-axis) is time. It runs from left (past) to right (present or most recent). Each tick might be one minute, one hour, one day, or one week—depending on the timeframe you're viewing. So 'further right' always means 'later in time.'",
+          "On almost every price chart, the horizontal axis (X-axis) is time. It runs from left (past) to right (present or most recent). Each tick might be one minute, one hour, one day, or one week—depending on the timeframe you're viewing. So 'further right' always means 'later in time.'\n\nThe timeframe determines how much history you see. A 1-minute chart might show a few hours. A daily chart might show years. The same asset, the same price history—just different zoom levels. Always know which timeframe you're looking at. It changes everything.",
       },
       {
         type: "text",
         heading: "The Vertical Axis: Price",
         content:
-          "The vertical axis (Y-axis) is price. Lower on the chart means lower price; higher means higher price. The scale can be linear (equal spacing per dollar) or logarithmic (equal spacing per percentage move). For most day-to-day trading, linear is used. Always check the scale when comparing charts—two assets with different price ranges will look different even if their percentage moves are the same.",
+          "The vertical axis (Y-axis) is price. Lower on the chart means lower price; higher means higher price. Simple. The scale can be linear (equal spacing per dollar) or logarithmic (equal spacing per percentage move). For most day-to-day trading, linear is used—a $10 move looks the same whether the stock is at $50 or $500.\n\nLogarithmic scales compress large moves and expand small ones—useful when comparing assets that have moved 10% vs 1000% over time. Always check the scale when comparing charts. Two assets with different price ranges will look different even if their percentage moves are the same.",
       },
       {
-        type: "text",
-        heading: "Why It Matters",
+        type: "analogy",
+        heading: "The Map Zoom Analogy",
         content:
-          "Misreading the axes leads to wrong conclusions. For example, a 'big' move on a 1-minute chart might be tiny on a daily chart. The axes tell you the scale of both time and price, so you know what you're actually looking at.",
+          "Think of a chart like Google Maps. The X-axis is like scrolling left to right through time. The Y-axis is like the elevation—price going up or down. When you zoom in (shorter timeframe), you see more detail but less context. When you zoom out (longer timeframe), you see the big picture but miss the nuances. A 'big' mountain on a street-level view might be a tiny bump on a country-level view. Same with price: a $5 move looks huge on a 1-minute chart and insignificant on a monthly chart.",
+      },
+      {
+        type: "warning",
+        heading: "Common Mistake: Misreading Scale",
+        content:
+          "Beginners often see a 'big' move on a 5-minute chart and think they've found a major reversal—then get run over because the daily trend is still strong. A $2 move on a $20 stock (10%) is significant. A $2 move on a $200 stock (1%) might be noise. Always check: what timeframe am I on? What's the percentage move? Don't confuse chart scale with trading significance.",
       },
       {
         type: "interactive",
@@ -99,7 +125,7 @@ export const understandingChartsLessons: Lesson[] = [
           "X = time (left to right, past to present). Y = price (low to high, bottom to top). Always be aware of the timeframe and price scale.",
       },
     ],
-    hasQuiz: false,
+    hasQuiz: true,
   },
   {
     id: "line-charts",
@@ -108,7 +134,7 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 3,
-    duration: "6 min",
+    duration: "10 min",
     objectives: [
       "Understand how line charts are built",
       "Know when to use a line chart",
@@ -120,19 +146,31 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "How Line Charts Work",
         content:
-          "A line chart takes one price per period—usually the closing price—and connects those points with a line. So for each day (or hour, or minute), you get a single dot at the close, and the line links them. No open, high, or low—just the closing value over time. That makes it the simplest and cleanest chart type.",
+          "A line chart takes one price per period—usually the closing price—and connects those points with a line. So for each day (or hour, or minute), you get a single dot at the close, and the line links them. No open, high, or low—just the closing value over time. That makes it the simplest and cleanest chart type.\n\nThe closing price is used because it's considered the most important: it's the last agreed-upon value before the period ended. It reflects where buyers and sellers finally settled. Opening, high, and low are discarded. You get a smooth line that shows the path of closing prices.",
       },
       {
         type: "text",
         heading: "When to Use a Line Chart",
         content:
-          "Line charts are great for seeing the overall trend without clutter. They're used in news and presentations, and for long-term views (e.g. yearly performance). They hide the intra-period volatility—you don't see how wild price was within each bar, only where it closed. So use a line chart when you care about the general direction and closing levels, not the full range of each period.",
+          "Line charts are great for seeing the overall trend without clutter. They're used in news, presentations, and investor reports. For long-term views—yearly performance, decade-long trends—a line chart keeps things clean. They hide intra-period volatility: you don't see how wild price was within each bar, only where it closed.\n\nUse a line chart when you care about the general direction and closing levels, not the full range of each period. Perfect for: 'Is this stock in an uptrend?' Not perfect for: 'Where should I place my stop loss?'",
       },
       {
-        type: "text",
-        heading: "Limitation",
+        type: "analogy",
+        heading: "The Summary Report Analogy",
         content:
-          "Because they show only the close, you miss information: Did price spike up and then collapse? Did it open high and drift lower? For trading decisions that depend on range, support/resistance, or candlestick patterns, you need bar or candlestick charts. Line charts are for clarity of trend, not for detailed entry/exit analysis.",
+          "A line chart is like a summary report—it gives you the headline, not the details. Imagine a daily newspaper that only reported the final score of a basketball game, not the quarter-by-quarter breakdown. You'd know who won, but you wouldn't know when the momentum shifted. Line charts are the same: they tell you where price ended each period, but not the battle that happened in between. Sometimes that's enough. Often, for trading, you need more.",
+      },
+      {
+        type: "warning",
+        heading: "Don't Trade Off Line Charts Alone",
+        content:
+          "Because line charts show only the close, you miss critical information. Did price spike up 5% and then collapse to close flat? The line chart shows a flat close—you'd never know about the spike. Did it gap down at the open and drift lower? The line hides the gap. For trading decisions that depend on range, support/resistance, or candlestick patterns, you need bar or candlestick charts. Line charts are for clarity of trend—not for detailed entry/exit analysis.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Many pros use a line chart for the big-picture trend, then switch to candlesticks for entry timing. Check the daily line chart: uptrend or downtrend? Then go to the 1-hour or 15-minute candlestick chart to find your entry. Best of both worlds.",
       },
       {
         type: "interactive",
@@ -148,7 +186,7 @@ export const understandingChartsLessons: Lesson[] = [
           "Line charts plot closing prices only and connect them with a line. Use them for clean trend views; switch to bar or candlestick when you need OHLC detail.",
       },
     ],
-    hasQuiz: false,
+    hasQuiz: true,
   },
   {
     id: "bar-charts",
@@ -157,7 +195,7 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 4,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "Understand OHLC: Open, High, Low, Close",
       "Read a single bar",
@@ -169,19 +207,31 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "What OHLC Means",
         content:
-          "Each bar on a bar chart represents one period (e.g. one day). For that period you get four prices: Open (O)—where price started; High (H)—the highest price reached; Low (L)—the lowest; and Close (C)—where price ended. So one bar packs in the full range and the direction (open to close).",
+          "Each bar on a bar chart represents one period (e.g. one day). For that period you get four prices: Open (O)—where price started; High (H)—the highest price reached; Low (L)—the lowest; and Close (C)—where price ended. So one bar packs in the full range and the direction (open to close).\n\nOHLC is the foundation of price data. Every bar chart and candlestick chart uses it. Line charts throw away O, H, and L—they only keep C. Bar charts give you the full picture: how far price traveled, where it started, and where it ended. That extra information matters for trading.",
       },
       {
         type: "text",
         heading: "How to Read One Bar",
         content:
-          "The vertical line runs from the low to the high—that's the full range. A tick to the left marks the open; a tick to the right marks the close. If the close is above the open, the bar is often colored green (or white) for up; if the close is below the open, red (or black) for down. So in one bar you see: how far price traveled (high to low), where it started (open), and where it ended (close).",
+          "The vertical line runs from the low to the high—that's the full range. A tick to the left marks the open; a tick to the right marks the close. If the close is above the open, the bar is often colored green (or white) for up; if the close is below the open, red (or black) for down.\n\nSo in one bar you see: how far price traveled (high to low), where it started (open), and where it ended (close). A tall bar means high volatility—price moved a lot. A short bar means low volatility—price barely budged. The position of the ticks tells you who won: close above open = buyers; close below open = sellers.",
+      },
+      {
+        type: "analogy",
+        heading: "The Thermometer Analogy",
+        content:
+          "Think of a bar like a thermometer reading for the day. The bottom is the day's low (coldest point). The top is the day's high (hottest point). The left tick is where you started (morning temperature). The right tick is where you ended (evening temperature). One bar captures the full range of action—not just the final number. That's why bars (and candlesticks) are more useful than line charts for trading: they show the full story of each period.",
       },
       {
         type: "text",
         heading: "Why Bars Are Useful",
         content:
-          "Bars give you more information than a line chart. You can see volatility (tall bar = big range), gaps (when the next bar's open is far from the previous close), and whether buyers or sellers won the period (close vs open). Many professional traders still use bar charts; others prefer candlesticks, which show the same OHLC data in a different visual form.",
+          "Bars give you more information than a line chart. You can see volatility (tall bar = big range), gaps (when the next bar's open is far from the previous close), and whether buyers or sellers won the period (close vs open). Many professional traders still use bar charts; others prefer candlesticks, which show the same OHLC data in a more visually intuitive form. Both are valid—it's personal preference. The data is identical.",
+      },
+      {
+        type: "preview",
+        heading: "Candlestick Charts (Preview)",
+        content:
+          "Candlestick charts use the exact same OHLC data as bar charts—just a different visual representation. Instead of a vertical line with ticks, candlesticks use a rectangular body (open to close) and thin wicks (high and low). Many traders find candlesticks easier to scan for patterns. We'll cover them in the next lesson. For now, master reading one bar—the logic transfers directly to candles.",
       },
       {
         type: "interactive",
@@ -197,7 +247,7 @@ export const understandingChartsLessons: Lesson[] = [
           "Bar charts show Open, High, Low, and Close for each period. The vertical line is the range; left tick = open, right tick = close. They add range and direction to the simple close-only line.",
       },
     ],
-    hasQuiz: false,
+    hasQuiz: true,
   },
   {
     id: "candlestick-charts-intro",
@@ -206,7 +256,7 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 5,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "See why traders prefer candlesticks",
       "Understand body vs wicks",
@@ -218,19 +268,31 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "Same Data, Different Picture",
         content:
-          "Candlestick charts use the exact same OHLC data as bar charts. The difference is how they draw it. Instead of a vertical line with ticks, each period is shown as a 'candle': a rectangular body (open to close) with thin wicks (shadows) extending to the high and low. The result is easier to scan: you quickly see which periods were bullish (e.g. green body) or bearish (e.g. red body), and how much of the range was 'body' versus 'wick.'",
+          "Candlestick charts use the exact same OHLC data as bar charts. The difference is how they draw it. Instead of a vertical line with ticks, each period is shown as a 'candle': a rectangular body (open to close) with thin wicks (shadows) extending to the high and low. The result is easier to scan: you quickly see which periods were bullish (e.g. green body) or bearish (e.g. red body), and how much of the range was 'body' versus 'wick.'\n\nCandlesticks originated in Japan centuries ago. They've dominated Western trading since the 1990s. Most charting platforms default to candlesticks. They're the standard for a reason: they pack the most information into the most readable format.",
       },
       {
         type: "text",
         heading: "Body and Wicks",
         content:
-          "The body is the thick part—the range between open and close. A long body means a strong move in one direction. The wicks (thin lines above and below the body) show how far price went beyond the open/close—the high and low. A long upper wick with a small body often means buyers pushed price up but sellers brought it back down by the close. So candlesticks don't just show levels; they hint at who had the upper hand during the period.",
+          "The body is the thick part—the range between open and close. A long body means a strong move in one direction. The wicks (thin lines above and below the body) show how far price went beyond the open/close—the high and low.\n\nA long upper wick with a small body often means buyers pushed price up but sellers brought it back down by the close. That's rejection at the highs—a bearish signal. A long lower wick with a small body means sellers pushed price down but buyers fought back—rejection at the lows, potentially bullish. Candlesticks don't just show levels; they hint at who had the upper hand during the period and where price was rejected.",
       },
       {
-        type: "text",
-        heading: "Why Traders Prefer Them",
+        type: "analogy",
+        heading: "The Battle Summary Analogy",
         content:
-          "Candlesticks make it easier to spot patterns (doji, hammer, engulfing, etc.) and to judge momentum and rejection at a glance. The next module goes deep into candlestick patterns; here, the point is that candlesticks are the same OHLC in a form that many find more readable for trading.",
+          "Imagine each candle is a summary of a boxing round. The body tells you who won the round (green = bulls, red = bears). The wicks tell you the action: a long upper wick means the bulls got punched down from the ceiling; a long lower wick means the bears got punched back from the floor. One candle = one round. You're reading the scorecard of the battle between buyers and sellers. Candlesticks make that scorecard visually obvious at a glance.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Many platforms let you switch between bar and candlestick charts. Try both. Some traders prefer bars for clean S/R levels; others prefer candles for pattern recognition. There's no right answer—use what your brain reads best. The data is identical.",
+      },
+      {
+        type: "preview",
+        heading: "Candlestick Patterns (Preview)",
+        content:
+          "The next module goes deep into candlestick patterns: hammer, doji, engulfing, morning star, and more. These patterns form when specific candle shapes appear at key levels. A hammer at support in an uptrend can signal a bounce. A shooting star at resistance can signal a reversal. Master reading individual candles first—then patterns will make sense. We'll cover them in the Candlestick Mastery module.",
       },
       {
         type: "interactive",
@@ -246,7 +308,7 @@ export const understandingChartsLessons: Lesson[] = [
           "Candlestick charts display OHLC as a body (open–close) and wicks (high–low). They're preferred by many traders for pattern recognition and quick reading of momentum.",
       },
     ],
-    hasQuiz: false,
+    hasQuiz: true,
   },
   {
     id: "volume-intro",
@@ -255,7 +317,7 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 6,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Define volume",
       "Understand why volume confirms price moves",
@@ -267,7 +329,37 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "What Is Volume?",
         content:
-          "Volume is the number of shares (or contracts, or lots) traded during a given period. For a daily chart, it's how many shares traded that day. For a 5-minute bar, it's the volume in those 5 minutes. Volume answers: 'How much actually changed hands?' High volume means many participants; low volume means fewer. It's usually shown as a histogram under the price chart—each bar's height is the volume for that period.",
+          "Volume is the number of shares (or contracts, or lots) traded during a given period. For a daily chart, it's how many shares traded that day. For a 5-minute bar, it's the volume in those 5 minutes. Volume answers: 'How much actually changed hands?' High volume means many participants; low volume means fewer. It's usually shown as a histogram under the price chart—each bar's height is the volume for that period.\n\nVolume is the 'weight' behind price moves. A $5 move on 1 million shares is very different from a $5 move on 10,000 shares. The first suggests broad participation—lots of buyers and sellers agreed on that price. The second might be a few large orders moving the market—easy to reverse. Volume gives you context that price alone cannot.",
+      },
+      {
+        type: "text",
+        heading: "Why Volume Matters",
+        content:
+          "A price move on huge volume is more significant than the same move on tiny volume. Big volume means real conviction—many buyers and sellers agreed on that price. A breakout above resistance with strong volume is more trustworthy than a breakout on thin volume, which might reverse. So volume doesn't tell you direction by itself, but it helps confirm or question what price is doing.\n\nThink of it this way: price tells you WHAT happened. Volume tells you HOW MUCH conviction was behind it. A breakout on low volume is like a crowd 'voting' with only a few hands raised—questionable. A breakout on high volume is a full stadium cheering—the move has real support.",
+      },
+      {
+        type: "analogy",
+        heading: "The Auction Audience Analogy",
+        content:
+          "Imagine an auction. The hammer price (closing price) is what the item sold for. But did one person bid, or did the room erupt in competitive bidding? Volume is the size of the audience. A $100 sale with 50 people bidding tells you the price was strongly agreed upon. A $100 sale with 2 people whispering tells you it might have been a fluke. Volume answers: How many people participated? How much conviction was there? Charts show price. Volume shows the crowd behind it.",
+      },
+      {
+        type: "text",
+        heading: "Practical Use",
+        content:
+          "When price breaks a key level, check volume. If volume is high, the break is more likely to hold. If volume is low, be cautious—the move might be a fake-out. Similarly, in uptrends, you often see higher volume on up bars and lower volume on pullbacks; that's healthy. The opposite—higher volume on down bars during an uptrend—can signal weakening trend.\n\nUse volume as a filter, not a standalone signal. Volume never tells you to buy or sell by itself. It tells you whether the price move you're seeing has conviction or not. A breakout with volume = more reliable. A reversal candle with volume = more reliable. Ignore volume and you're trading blind.",
+      },
+      {
+        type: "warning",
+        heading: "Critical Warning",
+        content:
+          "Never ignore volume on breakouts. A breakout above resistance on thin volume is one of the most common traps. Price punches through, you chase, then it reverses because few participants were involved. Always check: Is volume above average? Is it expanding on the breakout bar? If not, wait. Low-volume breakouts fail more often than they succeed.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Compare current bar volume to the 20-period average. If today's volume is 2x the average on a breakout, that's strong confirmation. If it's below average, be skeptical. Most platforms show volume average as a line overlay—use it.",
       },
       {
         type: "interactive",
@@ -277,16 +369,10 @@ export const understandingChartsLessons: Lesson[] = [
         props: { question: "Why is a breakout with high volume more reliable than one with low volume?", reveal: "High volume means many participants agreed on the move—strong conviction. Low volume breakouts often fail because few were involved; the move may reverse quickly." },
       },
       {
-        type: "text",
-        heading: "Why Volume Matters",
+        type: "preview",
+        heading: "Volume Analysis (Preview)",
         content:
-          "A price move on huge volume is more significant than the same move on tiny volume. Big volume means real conviction—many buyers and sellers agreed on that price. A breakout above resistance with strong volume is more trustworthy than a breakout on thin volume, which might reverse. So volume doesn't tell you direction by itself, but it helps confirm or question what price is doing.",
-      },
-      {
-        type: "text",
-        heading: "Practical Use",
-        content:
-          "When price breaks a key level, check volume. If volume is high, the break is more likely to hold. If volume is low, be cautious—the move might be a fake-out. Similarly, in uptrends, you often see higher volume on up bars and lower volume on pullbacks; the opposite can signal weakening trend. Use volume as a filter, not a standalone signal.",
+          "Advanced traders use volume profiles, VWAP (volume-weighted average price), and on-balance volume to deepen their analysis. We'll cover these in later modules. For now, master the basics: volume confirms or questions price moves. High volume = conviction. Low volume = caution.",
       },
       {
         type: "key-takeaway",
@@ -295,7 +381,7 @@ export const understandingChartsLessons: Lesson[] = [
           "Volume is how much was traded. Use it to confirm breakouts and trend strength; low volume often makes moves less reliable.",
       },
     ],
-    hasQuiz: false,
+    hasQuiz: true,
   },
   {
     id: "timeframes-explained",
@@ -304,7 +390,7 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 7,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Understand 1-min to monthly timeframes",
       "Match timeframes to trading style",
@@ -316,19 +402,37 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "What Is a Timeframe?",
         content:
-          "The timeframe is the length of each bar or candle. A 1-minute chart has one candle per minute; a daily chart has one per day; a monthly chart has one per month. So the same asset can be shown on a 1m, 5m, 15m, 1h, 4h, daily, or monthly chart—same price history, different level of zoom.",
+          "The timeframe is the length of each bar or candle. A 1-minute chart has one candle per minute; a daily chart has one per day; a monthly chart has one per month. So the same asset can be shown on a 1m, 5m, 15m, 1h, 4h, daily, or monthly chart—same price history, different level of zoom.\n\nTimeframe is the most important setting on your chart. It determines what you see. A 1m chart of AAPL might show 500 candles for one day. A daily chart might show 500 days—years of history. Same data, completely different picture. Always know which timeframe you're on. It changes everything.",
       },
       {
         type: "text",
         heading: "From Short to Long",
         content:
-          "Short timeframes (1m, 5m) show lots of detail and noise—every small move is visible. They're used by scalpers and day traders. Medium timeframes (1h, 4h) smooth out some noise and show intraday or multi-day swings; good for swing traders. Long timeframes (daily, weekly, monthly) show the big picture—trends and key levels that matter for position traders and investors. There's no 'best' timeframe; it depends on how long you hold and how much detail you need.",
+          "Short timeframes (1m, 5m) show lots of detail and noise—every small move is visible. They're used by scalpers and day traders who hold for minutes or hours. Medium timeframes (1h, 4h) smooth out some noise and show intraday or multi-day swings; good for swing traders who hold for days or weeks. Long timeframes (daily, weekly, monthly) show the big picture—trends and key levels that matter for position traders and investors who hold for months or years.\n\nThere's no 'best' timeframe. It depends on how long you hold and how much detail you need. A day trader staring at a monthly chart will miss entries. An investor staring at a 1-minute chart will get whipsawed. Match the timeframe to your style.",
+      },
+      {
+        type: "analogy",
+        heading: "The Camera Zoom Analogy",
+        content:
+          "Think of timeframes like camera zoom. A 1-minute chart is like a macro lens—you see every tiny movement, every wrinkle. A daily chart is like a wide-angle shot—you see the whole landscape. The same mountain looks completely different at different zoom levels. A 'big' move on 1m might be invisible on daily. A 'tiny' pullback on daily might be a massive swing on 1m. Same mountain. Different perspective.",
       },
       {
         type: "text",
         heading: "Noise vs Signal",
         content:
-          "On a 1-minute chart, small, random fluctuations can look like signals. On a daily chart, those same moves disappear into a single candle. So shorter timeframes have more noise; longer ones emphasize the main trend. Many traders use multiple timeframes: a higher one for trend direction and a lower one for entry timing.",
+          "On a 1-minute chart, small, random fluctuations can look like signals. On a daily chart, those same moves disappear into a single candle. So shorter timeframes have more noise; longer ones emphasize the main trend.\n\nThis is why beginners get chopped up on 1m and 5m charts—they're reacting to noise, not signal. The 'reversal' they see might just be normal fluctuation. Many traders use multiple timeframes: a higher one (e.g. daily) for trend direction and key levels, and a lower one (e.g. 1h or 15m) for entry timing. You trade the big picture, enter on the detail.",
+      },
+      {
+        type: "warning",
+        heading: "Common Mistake",
+        content:
+          "Don't mix timeframes randomly. If you're a swing trader, don't enter off a 1m chart. If you're a day trader, don't ignore the daily trend. Beginners often switch timeframes when they don't like what they see—'the 5m looks bad, let me check the 1h.' That's cherry-picking. Pick your primary timeframe for your style and stick to it. Use higher timeframes for context, not escape.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Use the 4x–6x rule: your entry timeframe should be 4–6x smaller than your trend timeframe. Daily trend → 4h or 1h entry. 4h trend → 1h or 15m entry. 1h trend → 15m or 5m entry. This keeps you aligned with the big picture while getting clear entries.",
       },
       {
         type: "interactive",
@@ -338,13 +442,19 @@ export const understandingChartsLessons: Lesson[] = [
         props: { question: "Why do day traders use short timeframes and investors use long ones?", reveal: "Day traders hold for minutes or hours, so they need 1m–15m detail. Investors hold for months or years, so daily/weekly shows the trend that matters. Timeframe should match holding period." },
       },
       {
+        type: "preview",
+        heading: "Multi-Timeframe Analysis (Preview)",
+        content:
+          "The next lesson covers how the same asset looks on different timeframes and how to use multi-timeframe analysis (higher for trend, lower for entry). Master single-timeframe thinking first—then we'll combine them.",
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
           "Timeframe = length of each bar (1m, 5m, 1h, daily, etc.). Short = more detail and noise; long = smoother, bigger picture. Choose based on your holding period and style.",
       },
     ],
-    hasQuiz: false,
+    hasQuiz: true,
   },
   {
     id: "same-asset-timeframes",
@@ -353,7 +463,7 @@ export const understandingChartsLessons: Lesson[] = [
     level: 2,
     moduleId: MODULE_ID,
     order: 8,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "See how one asset looks on 1m vs daily",
       "Understand multi-timeframe analysis",
@@ -365,19 +475,37 @@ export const understandingChartsLessons: Lesson[] = [
         type: "text",
         heading: "One Symbol, Many Views",
         content:
-          "The same stock or pair—e.g. AAPL or EUR/USD—can look like a raging uptrend on a 1-hour chart and a messy range on a 1-minute chart. Or the daily might show a clear downtrend while the 4-hour shows a short-term bounce. Nothing changed in the asset; you're just zooming in or out. So 'trend' and 'setup' always depend on which timeframe you're looking at.",
+          "The same stock or pair—e.g. AAPL or EUR/USD—can look like a raging uptrend on a 1-hour chart and a messy range on a 1-minute chart. Or the daily might show a clear downtrend while the 4-hour shows a short-term bounce. Nothing changed in the asset; you're just zooming in or out. So 'trend' and 'setup' always depend on which timeframe you're looking at.\n\nThis confuses beginners. They see a 'reversal' on 5m and go short—then the daily uptrend resumes and they get run over. The 'reversal' was just a pullback. Always ask: What does the next higher timeframe say? If daily is up, 5m 'reversals' are often just entries for the long side.",
       },
       {
         type: "text",
         heading: "Multi-Timeframe Analysis",
         content:
-          "A common approach is to use a higher timeframe for bias and a lower one for execution. For example: on the daily chart, you see an uptrend and a key support level. You then switch to the 1-hour or 15-minute chart to wait for a pullback to that support and a clear entry candle. That way you trade in the direction of the bigger trend but enter on a timeframe that gives you a defined stop and target.",
+          "A common approach is to use a higher timeframe for bias and a lower one for execution. For example: on the daily chart, you see an uptrend and a key support level. You then switch to the 1-hour or 15-minute chart to wait for a pullback to that support and a clear entry candle. That way you trade in the direction of the bigger trend but enter on a timeframe that gives you a defined stop and target.\n\nTop-down analysis: Start with the highest timeframe (e.g. weekly or daily) to identify the trend. Then go to the next lower (e.g. 4h or 1h) to find key levels. Finally, use the lowest (e.g. 15m or 5m) for precise entry. You're always trading with the big picture, never against it.",
+      },
+      {
+        type: "analogy",
+        heading: "The Map Layers Analogy",
+        content:
+          "Think of multi-timeframe analysis like map layers. The daily chart is the country view—you see the whole terrain. The 4h is the state view—you see regions. The 1h or 15m is the street view—you see exactly where to turn. You don't navigate a city using only the country map, and you don't plan a road trip using only street view. You use all layers together. Same with trading: higher timeframe = direction; lower timeframe = execution.",
+      },
+      {
+        type: "text",
+        heading: "How to Apply It",
+        content:
+          "Step 1: Identify the trend on the highest timeframe you care about (daily for swing, 4h for intraday). Step 2: Find key support and resistance on that timeframe. Step 3: Switch to a lower timeframe (4–6x smaller) and wait for price to reach that level. Step 4: Enter when you get a clear signal (e.g. bullish candle at support) on the lower timeframe. Step 5: Place your stop below the level, your target at the next resistance. You're trading the big trend with a precise entry.",
       },
       {
         type: "warning",
         heading: "Common Mistake",
         content:
-          "Beginners often look at a 5-minute chart and think they've found a 'sure' reversal, then get run over because the daily trend is still strong. Always be aware of the next higher timeframe. What looks like a reversal on 5m might just be a small pullback in a larger move.",
+          "Beginners often look at a 5-minute chart and think they've found a 'sure' reversal, then get run over because the daily trend is still strong. Always be aware of the next higher timeframe. What looks like a reversal on 5m might just be a small pullback in a larger move.\n\nAnother trap: switching timeframes when you don't like what you see. 'The daily says downtrend, but the 1h has a bounce—I'll go long.' That's fighting the trend. Use higher timeframes for bias. Use lower for timing. Never use lower to override higher.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Keep both timeframes on screen. Many platforms let you split-view: daily on top, 1h or 15m on bottom. Same symbol. You see the trend and the entry at once. No mental switching. When the lower timeframe pulls back to a higher-timeframe level, you're ready.",
       },
       {
         type: "interactive",

@@ -300,11 +300,12 @@ export const riskRewardLessons: Lesson[] = [
     level: 1,
     moduleId: "risk-reward-fundamentals",
     order: 6,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Understand the statistics (e.g. 70–90% of retail traders lose)",
       "Learn the main reasons: overtrading, poor risk management, emotion",
       "See how to be in the minority that succeeds",
+      "Avoid the traps that destroy accounts",
     ],
     prerequisites: ["protecting-money-stops"],
     content: [
@@ -312,19 +313,37 @@ export const riskRewardLessons: Lesson[] = [
         type: "text",
         heading: "The Harsh Statistics",
         content:
-          "Studies and regulator reports consistently show that a large majority of retail traders lose money—often cited in the 70–90% range. That doesn't mean trading is impossible; it means most people approach it without the right knowledge, discipline, or risk management.",
+          "Studies and regulator reports consistently show that a large majority of retail traders lose money—often cited in the 70–90% range. The exact number varies by market and study, but the pattern is clear: most people who try to trade lose. That doesn't mean trading is impossible; it means most people approach it without the right knowledge, discipline, or risk management.\n\nWhy does this matter? Because you need to know what you're up against. The odds are stacked against the unprepared. The good news: the failures are largely preventable. You're learning. That already puts you ahead.",
       },
       {
         type: "text",
         heading: "Main Reasons Traders Fail",
         content:
-          "(1) Risking too much per trade—one bad streak wipes them out. (2) No stop loss or moving it when wrong. (3) Overtrading—taking low-quality setups and paying fees/spreads. (4) Trading on emotion—revenge trading after a loss, or FOMO. (5) Unrealistic expectations—expecting to get rich quickly. (6) Insufficient education—jumping in before understanding the basics.",
+          "Six patterns show up again and again. (1) Risking too much per trade—one bad streak wipes them out. (2) No stop loss or moving it when wrong—small losses become disasters. (3) Overtrading—taking low-quality setups, paying fees and spreads on every trade, churning the account. (4) Trading on emotion—revenge trading after a loss, or FOMO when they see a move they missed. (5) Unrealistic expectations—expecting to get rich quickly, then taking huge risks to get there. (6) Insufficient education—jumping in before understanding the basics, treating the market like a casino.\n\nNotice: none of these are about 'bad luck.' They're about choices. Choices you can avoid.",
+      },
+      {
+        type: "analogy",
+        heading: "The Casino Analogy",
+        content:
+          "In a casino, the house has an edge. Over time, most gamblers lose. But some people win in the short term—they get lucky. They think they're skilled. They come back and bet bigger. Then variance catches up. They lose everything. Trading is similar. Beginners sometimes win early by luck. They confuse luck with skill. They increase size. They stop using stops. The market eventually teaches them the difference—expensively. Don't be that person. Assume you'll have losing streaks. Plan for them.",
+      },
+      {
+        type: "warning",
+        heading: "The Revenge Trade Trap",
+        content:
+          "After a loss, many traders immediately take another trade to 'get it back.' That's revenge trading. Emotions are high. Judgment is clouded. They size up, ignore their plan, and often lose again. One bad trade becomes five. The solution: after a loss, step away. Take a break. Review what happened when you're calm. Don't trade angry.",
       },
       {
         type: "text",
         heading: "What Winners Do Differently",
         content:
-          "They risk a small percentage per trade (e.g. 1%). They use stop losses and stick to them. They have a plan and follow it. They treat trading as a business, not gambling. They keep learning and keep records. You're here learning—that already puts you ahead of many who never bother.",
+          "They risk a small percentage per trade (e.g. 1%). They use stop losses and stick to them. They have a plan and follow it. They treat trading as a business, not gambling. They keep learning and keep records. They accept losses as part of the process. They don't overtrade—they wait for their setup. They manage emotions. None of this is secret. It's discipline. You're here learning—that already puts you ahead of many who never bother. Now execute.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Keep a trading journal. Write down every trade: entry, exit, reason, emotion. Review weekly. Patterns emerge. You'll see your mistakes repeat. Fix those first. The traders who improve are the ones who learn from their losses instead of pretending they didn't happen.",
       },
       {
         type: "interactive",
@@ -415,7 +434,7 @@ export const gettingStartedLessons: Lesson[] = [
     level: 1,
     moduleId: "getting-started-safely",
     order: 2,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Get realistic numbers for different markets",
       "Understand that you should only use money you can afford to lose",
@@ -427,13 +446,25 @@ export const gettingStartedLessons: Lesson[] = [
         type: "text",
         heading: "The Honest Answer",
         content:
-          "You can open some brokerage accounts with $0–500. But to trade properly—with risk management (e.g. 1% per trade) and room for drawdowns—you need more. Many educators suggest at least $2,000–5,000 for stocks (and more for day trading due to the PDT rule). Forex and crypto often allow smaller minimums, but the same risk rules apply: never risk money you need for life expenses.",
+          "You can open some brokerage accounts with $0–500. But to trade properly—with risk management (e.g. 1% per trade) and room for drawdowns—you need more. Many educators suggest at least $2,000–5,000 for stocks. For day trading US stocks, the PDT rule requires $25,000 minimum to avoid restrictions. Forex and crypto often allow smaller minimums, but the same risk rules apply: never risk money you need for life expenses.\n\nStarting with $500 and risking 1% means $5 per trade. That limits which stocks you can trade (many cost $50–500 per share) and makes fees eat a larger share of profits. $2,000–5,000 gives you room to practice position sizing realistically.",
+      },
+      {
+        type: "text",
+        heading: "Why Size Matters",
+        content:
+          "With too small an account, you can't properly implement risk management. If you have $500 and want to risk 1%, that's $5. On a $100 stock, you can barely buy one share, and your stop might be so tight that normal noise stops you out. You're not really learning—you're just getting chopped up. Save until you have enough to trade with proper sizing. Paper trade in the meantime.",
       },
       {
         type: "warning",
         heading: "Critical Rule",
         content:
-          "Only use money you can afford to lose completely. Trading is speculative. If losing this money would affect your rent, food, or family, don't trade it. Save up an emergency fund first, then allocate a separate 'trading' portion you're willing to lose.",
+          "Only use money you can afford to lose completely. Trading is speculative. If losing this money would affect your rent, food, or family, don't trade it. Save up an emergency fund first—3–6 months of expenses. Then allocate a separate 'trading' portion you're willing to lose. That money is tuition. You might lose it learning. It must not matter to your life.",
+      },
+      {
+        type: "analogy",
+        heading: "The Driving School Analogy",
+        content:
+          "You wouldn't learn to drive in a car you can't afford to scratch. Trading capital is the same. You're going to make mistakes. You might lose 20–30% in your first year while learning. If that loss would devastate you, you're undercapitalized. Save more. Paper trade longer. The right amount is the amount that, if lost, you can say 'that was expensive education' and move on.",
       },
       {
         type: "interactive",
@@ -457,11 +488,12 @@ export const gettingStartedLessons: Lesson[] = [
     level: 1,
     moduleId: "getting-started-safely",
     order: 3,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Compare stocks, forex, commodities, crypto for beginners",
       "Understand capital and time requirements",
       "Make an informed first choice",
+      "Avoid spreading yourself too thin",
     ],
     prerequisites: ["how-much-to-start"],
     content: [
@@ -469,13 +501,31 @@ export const gettingStartedLessons: Lesson[] = [
         type: "text",
         heading: "A Simple Framework",
         content:
-          "Consider: (1) How much capital do you have? Stocks often need more for meaningful position sizing; forex and crypto allow smaller accounts (with higher leverage risk). (2) What hours can you trade? US stocks = market hours; forex = 24/5; crypto = 24/7. (3) What are you interested in? You'll learn faster if you care about the asset. (4) Regulation and safety—stick to regulated brokers and well-known instruments.",
+          "Four factors should drive your choice. (1) Capital: How much do you have? Stocks often need more for meaningful position sizing—$2,000–5,000 minimum for serious learning. Forex and crypto allow smaller accounts, but leverage risk increases. (2) Time: What hours can you trade? US stocks = 9:30 AM–4 PM Eastern. Forex = 24/5. Crypto = 24/7. If you work days, forex or crypto might fit better. (3) Interest: What are you drawn to? You'll learn faster if you care about the asset. (4) Safety: Stick to regulated brokers and well-known instruments. Avoid exotic or unregulated products when starting.",
       },
       {
         type: "text",
-        heading: "A Common Path",
+        heading: "Stocks vs Forex vs Crypto",
         content:
-          "Many educators suggest starting with stocks or forex because of the abundance of learning material, regulated brokers, and clear market structure. Crypto is volatile and exciting but riskier and less regulated. Pick one market, learn it deeply, and only add others once you're consistent.",
+          "Stocks offer the most learning resources, clearest structure, and strong regulation. Many beginners start here. Forex offers 24/5 access, high liquidity, and the ability to trade with smaller accounts—but leverage is dangerous. Crypto is 24/7 and volatile; it attracts speculation but has less regulation and more risk. Commodities (gold, oil) sit in between. There's no 'best' market—there's the best market for YOU given your capital, schedule, and goals.",
+      },
+      {
+        type: "analogy",
+        heading: "The Language Learning Analogy",
+        content:
+          "Learning to trade a market is like learning a language. You could try to learn Spanish, Mandarin, and French at once—but you'd progress slowly in all of them. Better to master one language first, then add another. Pick one market. Learn its rhythms, its patterns, its quirks. Get good. Then, if you want, add another. Deep skill in one market beats mediocre skill in several.",
+      },
+      {
+        type: "warning",
+        heading: "Don't Chase Every Market",
+        content:
+          "Beginners often see stocks up one day, crypto pumping the next, forex moving, and want to trade everything. That leads to scattered attention, shallow knowledge, and losses everywhere. You'll miss the best setups because you're watching too many things. Commit to one market for at least 6–12 months. Master it. Then expand if you want.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Your first market doesn't have to be forever. Many traders start with stocks (most familiar), get comfortable with charts and risk, then try forex or crypto. The skills transfer—chart reading, risk management, psychology. But learn them in one place first.",
       },
       {
         type: "interactive",
@@ -500,11 +550,12 @@ export const gettingStartedLessons: Lesson[] = [
     level: 1,
     moduleId: "getting-started-safely",
     order: 4,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Know how to open a demo account",
       "Understand what to practice",
       "Use demo as a bridge to live trading",
+      "Avoid common demo mistakes",
     ],
     prerequisites: ["choosing-first-market"],
     content: [
@@ -512,13 +563,31 @@ export const gettingStartedLessons: Lesson[] = [
         type: "text",
         heading: "How to Get a Demo Account",
         content:
-          "Most brokers offer free demo accounts. Sign up on their website, choose 'Demo' or 'Paper Trading', and you'll get a virtual balance (e.g. $100,000). You trade with that in real market conditions (sometimes delayed data). No ID or deposit required for most demos.",
+          "Most brokers offer free demo accounts. Sign up on their website, look for 'Demo,' 'Paper Trading,' or 'Practice Account,' and you'll get a virtual balance—often $100,000 or similar. You trade with that in real market conditions. Some brokers offer real-time data; others use delayed data (usually 15–20 minutes). No ID or deposit required for most demos.\n\nPick a broker that serves your chosen market. For stocks: think Schwab, E*TRADE, TD Ameritrade, Interactive Brokers. For forex: Oanda, Forex.com, IG. For crypto: Binance, Coinbase, Kraken. Most have demo options. Download their platform and start practicing.",
       },
       {
         type: "text",
         heading: "What to Practice",
         content:
-          "Learn the platform: placing orders, setting stop losses, reading charts. Test your strategy: do you take trades that fit your plan? Track your results: win rate, average win/loss, drawdowns. If you can't be profitable in demo over 1–3 months, don't go live yet—keep learning and adjusting.",
+          "Learn the platform first: placing market and limit orders, setting stop losses, reading charts, checking positions. Get comfortable with the mechanics. Then test your strategy: do you take trades that fit your plan? Do you use stops every time? Do you size positions correctly? Track your results: win rate, average win/loss, maximum drawdown. If you can't be profitable (or at least not blow up) in demo over 1–3 months, don't go live yet. Keep learning and adjusting. The goal is to build habits that will survive the transition to real money.",
+      },
+      {
+        type: "analogy",
+        heading: "The Flight Simulator Analogy",
+        content:
+          "Pilots train in simulators before flying real planes. They practice takeoffs, landings, emergencies—all without risk. Demo trading is your flight simulator. You're learning the controls (platform), practicing maneuvers (strategy), and building muscle memory (discipline). When you eventually go live, you'll still be nervous—but you'll have reps. You'll know what a good trade looks like. You'll have built the habits. Skipping demo is like a pilot skipping the simulator. Possible. Reckless.",
+      },
+      {
+        type: "warning",
+        heading: "Don't Treat Demo Like a Game",
+        content:
+          "Some traders go crazy in demo—huge positions, no stops, 'it's fake money.' That builds bad habits. When they go live, those habits come with them. Treat demo like real money. Use the same position sizes (as % of account), the same risk rules, the same discipline. The point is to build real habits, not to 'win' at a game. If you wouldn't do it with real money, don't do it in demo.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Use the same broker for demo that you might use for live. That way, when you switch, the platform is familiar. You won't be learning new software and real money at the same time. One less variable.",
       },
       {
         type: "interactive",
@@ -543,11 +612,12 @@ export const gettingStartedLessons: Lesson[] = [
     level: 1,
     moduleId: "getting-started-safely",
     order: 5,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Know what to study first",
       "Follow a logical order: basics → charts → risk → strategy",
       "Avoid skipping ahead",
+      "Understand the full curriculum",
     ],
     prerequisites: ["demo-account-setup"],
     content: [
@@ -555,13 +625,31 @@ export const gettingStartedLessons: Lesson[] = [
         type: "text",
         heading: "Build Foundations First",
         content:
-          "Start with what you're doing now: money, markets, risk. Then move to chart reading (candlesticks, support/resistance, trends). After that, risk management in detail (position sizing, stops). Only then focus on specific strategies and execution. Skipping to 'strategies' without foundations leads to random trading and losses.",
+          "Start with what you're doing now: money, markets, risk. Understand why trading exists, what risk and reward mean, and why most people lose. Then move to chart reading—candlesticks, support/resistance, trends. You need to read price before you can trade it. After that, risk management in detail: position sizing, stops, the 1% rule. Only then focus on specific strategies and execution.\n\nSkipping to 'strategies' without foundations leads to random trading and losses. A strategy is useless if you don't know how to size positions or read a chart. Build the foundation. The strategies will make sense once you do.",
       },
       {
         type: "text",
         heading: "This Course's Structure",
         content:
-          "Level 1 = foundations. Level 2 = charts and markets in depth. Level 3 = indicators, risk management, psychology, and day trading strategies. Level 4 = options and advanced topics. Level 5 = quantitative and algorithmic trading. Complete each level before relying on the next for real-money decisions.",
+          "Level 1 = foundations. Money, markets, risk, getting started. Level 2 = charts and markets in depth—candlesticks, support/resistance, trendlines, and deep dives into stocks, forex, commodities, crypto. Level 3 = indicators (moving averages, RSI, MACD), risk management, psychology, trading plans, and day trading strategies. Level 4 = options, derivatives, portfolio theory, advanced technical analysis. Level 5 = quantitative and algorithmic trading—Python, backtesting, machine learning. Complete each level before relying on the next for real-money decisions. The levels build on each other.",
+      },
+      {
+        type: "analogy",
+        heading: "The Building Blocks Analogy",
+        content:
+          "You can't learn calculus before arithmetic. You can't build a house without a foundation. Trading is the same. Chart reading is your arithmetic—you need it before strategies (calculus). Risk management is your foundation—without it, the house collapses. Don't rush. Each level prepares you for the next. Skipping ahead means you'll hit walls and have to go back anyway. Do it in order.",
+      },
+      {
+        type: "warning",
+        heading: "Don't Skip to 'The Good Stuff'",
+        content:
+          "Beginners often want to jump to Level 3 or 4—indicators, strategies, options. They think Level 1 is boring. It's not boring; it's essential. The traders who skip foundations are the ones who blow up. They have a 'strategy' but no risk management. They can read a chart but don't understand why they're trading. Finish Level 1. Then Level 2. Then decide if you're ready for more.",
+      },
+      {
+        type: "preview",
+        heading: "What's Coming in Level 2",
+        content:
+          "Level 2 dives deep into charts: candlestick patterns, support and resistance, trendlines, and timeframes. You'll also get comprehensive coverage of each market—stocks, forex, commodities, crypto—so you can understand how they work and choose your focus. By the end of Level 2, you'll be able to read a chart like a trader and understand the structure of the major markets.",
       },
       {
         type: "interactive",
@@ -586,11 +674,12 @@ export const gettingStartedLessons: Lesson[] = [
     level: 1,
     moduleId: "getting-started-safely",
     order: 6,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Avoid the most frequent beginner errors",
       "Learn from others' losses",
       "Start with good habits",
+      "Recognize the traps before they catch you",
     ],
     prerequisites: ["learning-path"],
     content: [
@@ -598,13 +687,31 @@ export const gettingStartedLessons: Lesson[] = [
         type: "text",
         heading: "Mistakes to Avoid",
         content:
-          "(1) Trading with money you need—never. (2) No stop loss—always define your exit. (3) Overtrading—wait for your setup. (4) Revenge trading after a loss—take a break. (5) Chasing price (FOMO)—if you missed the move, wait for the next setup. (6) Risking too much per trade—use 1% or less. (7) Ignoring fees and spreads—they add up. (8) Expecting to get rich fast—realistic expectations save your account and your sanity.",
+          "Eight patterns destroy beginner accounts. (1) Trading with money you need—never. Rent, bills, emergency fund are off-limits. (2) No stop loss—always define your exit before entry. (3) Overtrading—taking every setup, churning the account, paying fees. Wait for your setup. (4) Revenge trading after a loss—emotions high, judgment clouded. Take a break. (5) Chasing price (FOMO)—if you missed the move, wait for the next setup. (6) Risking too much per trade—use 1% or less. (7) Ignoring fees and spreads—they add up and erode returns. (8) Expecting to get rich fast—realistic expectations save your account and your sanity.",
       },
       {
         type: "warning",
-        heading: "The One That Hurts Most",
+        heading: "The One That Hurts Most: Averaging Down",
         content:
-          "The single most destructive habit is adding to a losing position ('averaging down') hoping it will come back. Sometimes it does; often it doesn't. When it doesn't, you've doubled or tripled your loss. Cut losses quickly; let winners run.",
+          "The single most destructive habit is adding to a losing position ('averaging down') hoping it will come back. You buy at $100, it drops to $90, you buy more to lower your average to $95. Sometimes it bounces and you win. Often it keeps dropping. Now you're down 20% on a doubled position. One big loser wipes out many small gains. Cut losses quickly. Let winners run. Never add to a loser.",
+      },
+      {
+        type: "analogy",
+        heading: "The Sinking Boat Analogy",
+        content:
+          "Imagine your trade is a boat with a leak. Averaging down is like pouring more water into the boat to 'dilute' the leak. It doesn't fix the problem—it makes it worse. The boat sinks faster. The right move is to abandon ship: cut the loss, get out, live to trade another day. Adding to a losing position rarely ends well. The market doesn't care about your average cost.",
+      },
+      {
+        type: "text",
+        heading: "Why These Mistakes Happen",
+        content:
+          "They all stem from two roots: poor risk management and emotion. Fear makes you hold losers too long or panic-sell. Greed makes you overtrade or chase. Ego makes you revenge-trade or refuse to admit you're wrong. The solution isn't to eliminate emotion—it's to have rules that override it. Pre-defined stops. Position sizing. A written plan. When emotion screams, the plan answers.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Write down your top 3 mistakes before you trade. Keep the list visible. Before every trade, ask: am I about to make one of these? It's a simple check that catches many errors. 'Am I adding to a loser? Am I revenge trading? Am I chasing?' If yes—don't trade.",
       },
       {
         type: "interactive",

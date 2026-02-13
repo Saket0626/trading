@@ -317,11 +317,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-money",
     order: 3,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "Understand what happens when you buy or sell something",
       "Learn about buyers and sellers in markets",
       "See how every trade has two sides",
+      "Know why your counterparty matters",
     ],
     prerequisites: ["money-basics", "value-prices"],
     content: [
@@ -329,25 +330,31 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Every Trade Has Two Sides",
         content:
-          "When you buy something, someone else is selling. When you sell, someone else is buying. There's no such thing as a one-sided trade. In financial markets, this happens millions of times per second - buyers and sellers constantly matching up.",
+          "When you buy something, someone else is selling. When you sell, someone else is buying. There's no such thing as a one-sided trade. In financial markets, this happens millions of times per second—buyers and sellers constantly matching up through exchanges and brokers.\n\nEvery time you click 'buy' on a stock, someone—perhaps a mutual fund, a hedge fund, or another individual—is clicking 'sell.' You're taking the other side of their trade. The price is the point where your willingness to buy meets their willingness to sell. That's how markets discover value.",
       },
       {
         type: "analogy",
-        heading: "Like a Flea Market",
+        heading: "The Flea Market Analogy",
         content:
-          "At a flea market, some people walk around looking to buy (buyers), and some have stalls with stuff to sell (sellers). They negotiate - 'I'll give you $5 for that.' 'Deal!' The moment they agree, a trade happens. Stock markets work the same way, just much faster and with computers matching buyers and sellers.",
+          "At a flea market, some people walk around looking to buy (buyers), and some have stalls with stuff to sell (sellers). They negotiate—'I'll give you $5 for that.' 'Deal!' The moment they agree, a trade happens. Both sides leave satisfied (or at least willing).\n\nStock markets work the same way, just much faster and with computers matching buyers and sellers. Instead of haggling face-to-face, you submit an order. The exchange matches it with someone on the other side. The trade executes in milliseconds. But the principle is identical: no trade happens without both a buyer and a seller agreeing on a price.",
       },
       {
         type: "text",
         heading: "Why Do People Buy and Sell at Different Times?",
         content:
-          "Buyers think the price will go UP - they want to get in before it does. Sellers think the price will go DOWN - they want to get out before they lose money. Or maybe the seller needs cash for something else. Different people have different reasons, and that's what makes markets work.",
+          "Buyers think the price will go UP—they want to get in before it does. They're optimistic. Sellers think the price will go DOWN—they want to get out before they lose money. Or maybe the seller needs cash for something else—a house, a bill, a different investment. Different people have different reasons, and that's what makes markets work.\n\nThe beauty of a liquid market is that you never need to convince your counterparty. There are always people on both sides. Your job is to form a view: do I want to be a buyer or a seller at this price? The market will find someone to take the other side.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "When you buy, remember: someone else chose to sell. They might know something you don't—or they might be wrong. The same when you sell: someone chose to buy. Don't assume you're the smart one. Stay humble. The market is a collection of different views, and no one has a monopoly on truth.",
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Buying and selling is the basic activity of all markets. You're always on one side - when you buy, you're betting the price will go up. When you sell, you're either taking profit, cutting losses, or think it will go down. There's no trade without both a buyer AND a seller.",
+          "Buying and selling is the basic activity of all markets. You're always on one side—when you buy, you're betting the price will go up. When you sell, you're either taking profit, cutting losses, or think it will go down. There's no trade without both a buyer AND a seller.",
       },
     ],
     hasQuiz: true,
@@ -359,11 +366,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-trading",
     order: 1,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Understand the difference between trading and investing",
       "Learn the time horizons for each approach",
       "See when each approach might make sense",
+      "Choose the right path for your goals",
     ],
     prerequisites: ["buying-selling"],
     content: [
@@ -371,31 +379,37 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Why Does This Matter?",
         content:
-          "Trading and investing are often confused, but they're very different. Investors think in years or decades. Traders might hold for minutes or days. The skills, risks, and mindset required are different. Choosing the right approach for YOU is critical.",
+          "Trading and investing are often confused, but they're very different activities. Investors think in years or decades. Traders might hold for minutes or days. The skills, risks, mindset, and time commitment required are different. Choosing the right approach for YOU is critical—mixing them up leads to bad decisions and blown accounts.\n\nMany beginners say they want to 'invest' but then check their portfolio every hour and panic-sell on a 5% drop. That's trading behavior with an investing goal—it doesn't work. Clarity on which game you're playing changes everything.",
       },
       {
         type: "text",
         heading: "Investing: The Long Game",
         content:
-          "Investors buy assets (like stocks) and hold them for a long time - often years or decades. They believe the company will grow over time and the investment will become more valuable. Famous investor Warren Buffett says his favorite holding period is 'forever.' Investors care about the business's health, not daily price movements.",
+          "Investors buy assets (like stocks or index funds) and hold them for a long time—often years or decades. They believe the company or market will grow over time and the investment will become more valuable. Famous investor Warren Buffett says his favorite holding period is 'forever.' Investors care about the business's health: earnings, management, competitive moat. They largely ignore daily price movements.\n\nInvesting is simpler in some ways: buy quality, hold, let compound interest work. It requires patience, a long time horizon, and the ability to stomach drawdowns without selling. Historically, a diversified portfolio held for decades has been one of the best ways to build wealth. For most people, it's the right default.",
       },
       {
         type: "text",
         heading: "Trading: The Short Game",
         content:
-          "Traders buy and sell frequently to profit from price movements. A day trader might buy in the morning and sell by afternoon. A swing trader might hold for days or weeks. Traders care about price patterns, momentum, and short-term supply and demand - not necessarily the long-term business fundamentals.",
+          "Traders buy and sell frequently to profit from price movements. A day trader might buy in the morning and sell by afternoon. A swing trader might hold for days or weeks. Traders care about price patterns, momentum, support/resistance, and short-term supply and demand—not necessarily the long-term business fundamentals.\n\nTrading is active. It requires screen time, quick decisions, discipline, and rigorous risk management. It can be lucrative for those who master it—but it's harder than it looks. Many who try it would have been better off investing.",
+      },
+      {
+        type: "analogy",
+        heading: "The Landlord vs Flipper Analogy",
+        content:
+          "An investor is like a landlord: buy a property, rent it out, collect income over years. You care about location, rent growth, tenant quality. You're not selling next month. A trader is like a house flipper: buy, fix up, sell quickly for a profit. You care about purchase price, renovation cost, and what you can sell for in 6 months. Different skills, different timelines, different risks. Both can make money—but you don't flip houses with your retirement fund.",
       },
       {
         type: "warning",
         heading: "Important Reality Check",
         content:
-          "Studies show that the majority of retail traders lose money - some estimates say 70-90%. Trading is hard. It requires discipline, education, and emotional control. Many people are better off with long-term investing. We'll teach you trading properly so you can make an informed choice - but never risk money you can't afford to lose.",
+          "Studies show that the majority of retail traders lose money—some estimates say 70–90%. Trading is hard. It requires discipline, education, emotional control, and capital you can afford to lose. Many people are better off with long-term investing. We'll teach you trading properly so you can make an informed choice—but never risk money you can't afford to lose. If you're unsure, start with investing.",
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Investing = buy and hold for years, focus on business value. Trading = buy and sell frequently, focus on price movements. Both can be valid - but they require different skills and suit different personalities. Most beginners should start by learning, not trading with real money.",
+          "Investing = buy and hold for years, focus on business value. Trading = buy and sell frequently, focus on price movements. Both can be valid—but they require different skills and suit different personalities. Most beginners should start by learning, not trading with real money.",
       },
     ],
     hasQuiz: true,
@@ -407,11 +421,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-trading",
     order: 3,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Learn about day traders, swing traders, and position traders",
       "Understand the time commitment for each style",
       "See which might fit your lifestyle",
+      "Know the PDT rule for US stocks",
     ],
     prerequisites: ["what-is-trading"],
     content: [
@@ -419,31 +434,43 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Day Traders",
         content:
-          "Day traders open and close all positions within the same day. They never hold overnight. This requires watching the markets during trading hours (9:30 AM - 4 PM Eastern for US stocks). Day trading requires focus, quick decisions, and often significant capital (the Pattern Day Trader rule requires $25,000 minimum for US stocks).",
+          "Day traders open and close all positions within the same day. They never hold overnight. This requires watching the markets during trading hours—9:30 AM to 4 PM Eastern for US stocks. Day trading demands focus, quick decisions, and often significant capital.\n\nIn the US, the Pattern Day Trader (PDT) rule requires a minimum $25,000 account balance to make more than 3 day trades in a 5-day period. If you have less, you're restricted. Many beginners hit this wall. Forex and futures don't have PDT—you can day trade with smaller accounts, though the risks remain.",
       },
       {
         type: "text",
         heading: "Swing Traders",
         content:
-          "Swing traders hold positions for days to weeks. They capture 'swings' in price - the up and down movements within a trend. This style is more flexible - you don't need to watch the screen all day. Many part-time traders use swing trading because it fits around a day job.",
+          "Swing traders hold positions for days to weeks. They capture 'swings' in price—the up and down movements within a trend. You might buy on a pullback and sell when price reaches resistance. This style is more flexible—you don't need to watch the screen all day. Check charts in the morning and evening, set alerts, and let trades play out.\n\nMany part-time traders use swing trading because it fits around a day job. You can analyze at night and place orders before work. The holding period gives you room to breathe—you're not making split-second decisions.",
       },
       {
         type: "text",
         heading: "Position Traders",
         content:
-          "Position traders hold for weeks to months. They're closer to investors but still make active decisions based on technical or fundamental analysis. They ride longer trends and need less screen time than day or swing traders.",
+          "Position traders hold for weeks to months. They're closer to investors but still make active decisions based on technical or fundamental analysis. They ride longer trends—maybe a stock breaking out of a 6-month range or a sector rotation. They need less screen time than day or swing traders.\n\nPosition trading suits people who can tolerate drawdowns and don't need instant gratification. A position might be down 10% before it turns. You need the patience to hold through normal volatility.",
       },
       {
         type: "text",
         heading: "Scalpers (The Fastest)",
         content:
-          "Scalpers make many tiny trades throughout the day, holding for seconds or minutes. They profit from small price movements. This requires the most screen time, the fastest execution, and often the most experience. Not recommended for beginners.",
+          "Scalpers make many tiny trades throughout the day, holding for seconds or minutes. They profit from small price movements—a few ticks, a few cents. This requires the most screen time, the fastest execution (low latency matters), and often the most experience. Not recommended for beginners. The competition includes algorithms and professional market makers.",
+      },
+      {
+        type: "analogy",
+        heading: "The Restaurant Analogy",
+        content:
+          "Day trading is like running a fast-food joint—high turnover, constant action, you're serving customers (trades) all day. Swing trading is like a sit-down restaurant—you have tables (positions) that stay for a while, you check on them periodically. Position trading is like catering—you book an event (trade) and show up for the outcome days or weeks later. Each requires different skills and energy levels. Pick the one that matches how you want to work.",
+      },
+      {
+        type: "warning",
+        heading: "Don't Mix Styles Mid-Trade",
+        content:
+          "A common mistake: enter as a swing trade, then get nervous and close as a day trade (locking in a small loss), or hold a day trade overnight and turn it into a swing trade (taking on risk you didn't plan for). Decide your style before you enter. Stick to the plan. Mixing styles turns discipline into chaos.",
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Your trading style should match your lifestyle. Can you watch markets all day? Day trading might work. Do you have a full-time job? Swing trading could fit better. Be honest about your time and commitment - that determines which style makes sense.",
+          "Your trading style should match your lifestyle. Can you watch markets all day? Day trading might work. Do you have a full-time job? Swing trading could fit better. Be honest about your time and commitment.",
       },
     ],
     hasQuiz: true,
@@ -552,10 +579,11 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-trading",
     order: 4,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "See how much time day trading vs swing trading requires",
       "Match your schedule to a style",
+      "Avoid the burnout trap",
     ],
     prerequisites: ["trader-types"],
     content: [
@@ -563,7 +591,25 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Be Honest About Your Time",
         content:
-          "Day trading usually means being at the screen during market hours—often 6+ hours. Swing trading might need 1–2 hours for analysis and orders. Position trading can be weekly check-ins. Scalping needs almost constant attention. Choose a style that fits your job and life; otherwise you'll burn out or make rushed decisions.",
+          "Day trading usually means being at the screen during market hours—often 6+ hours. You need to catch the open, monitor positions, and manage exits before the close. Swing trading might need 1–2 hours daily for analysis, checking charts, and placing orders. Position trading can be weekly check-ins. Scalping needs almost constant attention—you're in and out constantly.\n\nChoose a style that fits your job and life. If you work 9–5, day trading US stocks is nearly impossible without sacrificing sleep or work. Swing trading or trading forex in the evening might work. Be realistic. Burning out helps no one.",
+      },
+      {
+        type: "text",
+        heading: "The Part-Time Reality",
+        content:
+          "Most successful part-time traders swing trade or position trade. They do their homework at night or on weekends. They set alerts. They place orders before work or during a lunch break. They don't try to catch every move—they wait for their setup. That's sustainable. Trying to day trade with 30 minutes at lunch usually ends in frustration and losses.",
+      },
+      {
+        type: "analogy",
+        heading: "The Gym Membership Analogy",
+        content:
+          "People buy gym memberships and never go because they don't have time. Trading is similar. Don't pick a style that requires 8 hours a day if you have 1 hour. You'll either skip the work (and lose) or sacrifice sleep and relationships (and burn out). Pick the style that fits. A 1-hour daily commitment to swing trading beats a fantasy of 8-hour day trading you'll never execute.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Your best trading hours might not be the market's busiest. If you can only trade the last hour of the US session, learn what works then—maybe momentum, maybe reversals. Work with your constraints instead of fighting them. The market is always there; find when YOU can be there effectively.",
       },
       {
         type: "key-takeaway",
@@ -581,24 +627,43 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-trading",
     order: 5,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Replace 'get rich quick' with realistic returns",
       "Understand that pros often aim for 10–20% a year",
+      "Set achievable goals for year one",
     ],
     prerequisites: ["time-commitment"],
     content: [
       {
-        type: "warning",
-        heading: "The Truth",
+        type: "text",
+        heading: "What the Pros Actually Make",
         content:
-          "Professional funds often target 10–20% annual returns; many fail to achieve that. Promises of 100% or 50% per month are marketing, not reality. Beginners should focus on not losing money in year one—learning and preserving capital is success.",
+          "Professional hedge funds often target 10–20% annual returns. Many fail to achieve even that. Warren Buffett's long-term average is around 20% per year—and he's one of the best investors in history. The S&P 500 has historically returned about 10% per year. Those are the benchmarks.\n\nIf someone promises you 50% per month or 100% in a year, they're either lying, running a scam, or taking insane risk that will eventually blow up. Real trading is a grind. Consistent small gains compound over time. Get-rich-quick is a fantasy.",
+      },
+      {
+        type: "warning",
+        heading: "The Truth About Beginner Returns",
+        content:
+          "Beginners should focus on not losing money in year one. Learning and preserving capital IS success. If you end year one with your account intact and a solid education, you're ahead of most. Many lose 30–50% or more in their first year. The goal is to be the exception—to learn without paying a fortune in tuition to the market.",
+      },
+      {
+        type: "analogy",
+        heading: "The Apprentice Analogy",
+        content:
+          "You wouldn't expect to earn master-plumber wages in your first year of apprenticeship. You're learning. You make mistakes. You get better. Trading is the same. Year one is apprenticeship. Year two and three, if you're diligent, you might start to see consistent results. Year five, you might have an edge. There are no shortcuts. The market exposes impatience quickly.",
       },
       {
         type: "text",
+        heading: "What 'Good' Looks Like",
+        content:
+          "A retail trader who consistently makes 15–25% per year with controlled drawdowns is doing very well. That doubles your money in roughly 4–5 years. It's not glamorous. It won't make headlines. But it's real. It's sustainable. It beats the vast majority of traders and many professional funds. Aim for that. Adjust your position sizes and risk so that hitting that target is possible without gambling.",
+      },
+      {
+        type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Set realistic goals. Consistent small gains compound. Chasing huge returns usually leads to huge losses. Aim for steady progress and risk management first.",
+          "Set realistic goals. Consistent small gains compound. Chasing huge returns usually leads to huge losses. Aim for steady progress and risk management first. Year one: don't blow up.",
       },
     ],
     hasQuiz: true,
@@ -610,10 +675,11 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-trading",
     order: 6,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "Accept that losing money is possible",
       "Understand that risk cannot be eliminated",
+      "Prepare emotionally for losses",
     ],
     prerequisites: ["realistic-expectations"],
     content: [
@@ -621,7 +687,25 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "No Guarantees",
         content:
-          "Every trade can lose. Even the best traders have losing months. You must be willing to accept losses emotionally and financially. If you can't, don't trade with real money—stick to paper trading until your mindset and risk rules are solid.",
+          "Every trade can lose. Even the best traders have losing months. A 60% win rate means 4 out of 10 trades lose. You will have strings of losers. You will watch positions move against you. You must be willing to accept losses emotionally and financially before you trade with real money.\n\nIf the thought of losing $500 ruins your week, don't risk $500. If you can't sleep when a trade is down, your position is too big. Size your risk so that losses are uncomfortable but not devastating. That's the only way to stay in the game long enough to improve.",
+      },
+      {
+        type: "text",
+        heading: "Risk Cannot Be Eliminated",
+        content:
+          "The only way to have zero trading risk is not to trade. Every position carries the possibility of loss. Stop losses limit loss but don't eliminate it—slippage can occur, gaps can happen. The goal is to manage risk, not pretend it doesn't exist. Traders who deny risk are the ones who blow up. Traders who embrace it and plan for it are the ones who survive.",
+      },
+      {
+        type: "analogy",
+        heading: "The Weather Analogy",
+        content:
+          "You can't control the weather. You can check the forecast, carry an umbrella, and avoid sailing in a storm—but you can't make it not rain. Trading risk is similar. You can't control whether a trade wins or loses. You can control your position size, your stop loss, and your emotional response. Prepare for rain. When it comes, you'll be ready.",
+      },
+      {
+        type: "warning",
+        heading: "If You Can't Stomach Losses, Don't Trade",
+        content:
+          "If you can't accept losses emotionally, don't trade with real money. Stick to paper trading until your mindset and risk rules are solid. Traders who panic-sell, revenge-trade, or go on tilt after a loss are not ready. The market will exploit that. Build the mental game first.",
       },
       {
         type: "key-takeaway",
@@ -639,11 +723,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 1,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Get an overview of stocks, forex, commodities, and crypto",
       "Understand the basic differences between markets",
       "Know where we'll go deeper in later modules",
+      "See how each market fits different goals",
     ],
     prerequisites: ["trader-types"],
     content: [
@@ -651,37 +736,43 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "The Four Main Markets",
         content:
-          "When people talk about trading, they usually mean one of four markets: (1) Stocks - ownership in companies; (2) Forex - currencies; (3) Commodities - physical goods like gold and oil; (4) Cryptocurrency - digital assets like Bitcoin. Each has different hours, rules, risks, and characteristics.",
+          "When people talk about trading, they usually mean one of four markets. Stocks (equities) = ownership in companies. Forex = currencies. Commodities = physical goods like gold and oil. Cryptocurrency = digital assets like Bitcoin. Each has different hours, rules, risks, and characteristics. Understanding the basics of each helps you choose where to focus—and eventually, where to put your capital.\n\nYou don't need to trade all of them. Most successful traders specialize. But you should know what each offers before you decide.",
       },
       {
         type: "text",
         heading: "Stocks (Equities)",
         content:
-          "When you buy a stock, you own a tiny piece of a company. Stocks trade during market hours (roughly 9:30 AM - 4 PM in your local market). You can profit when the company does well and the stock price goes up. Stocks can also pay dividends - a share of the company's profits.",
+          "When you buy a stock, you own a tiny piece of a company. Stocks trade during market hours—roughly 9:30 AM to 4 PM in your local exchange. You profit when the company does well and the stock price goes up. Stocks can also pay dividends—a share of the company's profits. The US stock market is highly regulated, has abundant learning resources, and is where most beginners start. You need enough capital for meaningful position sizing—many educators suggest $2,000+ to start properly.",
       },
       {
         type: "text",
         heading: "Forex (Foreign Exchange)",
         content:
-          "Forex is trading currency pairs - like EUR/USD (Euro vs US Dollar). When you think the Euro will get stronger vs the Dollar, you buy EUR/USD. Forex markets are open 24 hours, 5 days a week (closed weekends). It's the largest market in the world by volume.",
+          "Forex is trading currency pairs—like EUR/USD (Euro vs US Dollar). When you think the Euro will get stronger versus the Dollar, you buy EUR/USD. Forex markets are open 24 hours, 5 days a week (closed weekends). It's the largest market in the world by volume—over $6 trillion daily. Forex allows smaller account sizes and 24/5 access, but leverage is high and risk is real. Major pairs (EUR/USD, USD/JPY) have the tightest spreads and most liquidity.",
       },
       {
         type: "text",
-        heading: "Commodities",
+        heading: "Commodities and Crypto",
         content:
-          "Commodities are raw materials - gold, silver, oil, natural gas, wheat, coffee. You're trading contracts for these goods. Commodities can be an inflation hedge and diversify a portfolio. They're affected by weather, geopolitics, and supply/demand.",
+          "Commodities are raw materials: gold, silver, oil, natural gas, wheat, coffee. You trade futures or ETFs. Prices move with supply, demand, weather, and geopolitics. They can diversify a portfolio and act as an inflation hedge. Cryptocurrency is digital: Bitcoin, Ethereum, thousands of others. Crypto markets never close—24/7. They're highly volatile. Crypto has attracted many traders but comes with significant risk and regulatory uncertainty. Never risk more than you can afford to lose.",
       },
       {
-        type: "text",
-        heading: "Cryptocurrency",
+        type: "analogy",
+        heading: "The Restaurant Menu Analogy",
         content:
-          "Crypto is digital money - Bitcoin, Ethereum, and thousands of others. Crypto markets never close - 24/7. They're highly volatile and relatively new. Crypto has attracted many traders but comes with significant risk and regulatory uncertainty.",
+          "Think of markets like a restaurant menu. Stocks are the classic entrée—familiar, well-established. Forex is the international section—available at odd hours, different flavors. Commodities are the farm-to-table option—tied to real-world stuff. Crypto is the new fusion dish—exciting but unpredictable. You don't order everything. You pick what fits your appetite (goals), budget (capital), and schedule (time). We'll help you understand each dish before you order.",
+      },
+      {
+        type: "preview",
+        heading: "Level 2 Deep Dives (Preview)",
+        content:
+          "In Level 2, we'll go deep into each market. You'll learn how stocks work (exchanges, order types, sectors), forex (pips, lots, sessions), commodities (futures, contango), and crypto (exchanges, wallets, volatility). By the end, you'll know enough to choose your first market—and trade it with understanding.",
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Each market has different characteristics. In Level 2, we'll go deep into each one so you can understand them and choose which fits your goals, capital, and lifestyle. Don't rush - learn before you trade.",
+          "Each market has different characteristics. In Level 2, we'll go deep into each one so you can understand them and choose which fits your goals, capital, and lifestyle. Don't rush—learn before you trade.",
       },
     ],
     hasQuiz: true,
@@ -693,11 +784,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 1,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Understand what a stock represents",
       "Learn how companies raise money by selling stock",
       "See why stock prices change",
+      "Connect ownership to price movement",
     ],
     prerequisites: ["markets-overview"],
     content: [
@@ -705,25 +797,37 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "A Stock = A Piece of a Company",
         content:
-          "When a company wants to raise money, it can 'go public' - sell shares (stocks) to the public. When you buy a share, you become a part-owner of that company. If the company has 1 million shares and you own 1, you own 0.0001% of the company. You're entitled to a tiny fraction of its profits and assets.",
+          "When a company wants to raise money, it can 'go public'—sell shares (stocks) to the public in an initial public offering (IPO). When you buy a share, you become a part-owner of that company. If the company has 1 million shares and you own 1, you own 0.0001% of the company. You're entitled to a tiny fraction of its profits (through dividends, if paid) and assets.\n\nStocks trade on exchanges like the NYSE or NASDAQ. You buy through a broker. The price you pay is determined by what other buyers and sellers are willing to accept. It changes every second the market is open.",
       },
       {
         type: "analogy",
-        heading: "The Pizza Party",
+        heading: "The Pizza Party Analogy",
         content:
-          "Imagine you and 3 friends start a lemonade stand. You each put in $25, so you each own 25% (1 slice of a 4-slice pizza). If the business is worth $400 now, your slice is worth $100. If it grows to $800, your slice is worth $200. Stocks work the same way - you own a slice of a company, and the value of your slice changes as the company's value changes.",
+          "Imagine you and 3 friends start a lemonade stand. You each put in $25, so you each own 25% (1 slice of a 4-slice pizza). If the business is worth $400 now, your slice is worth $100. If it grows to $800, your slice is worth $200. Stocks work the same way—you own a slice of a company, and the value of your slice changes as the company's value changes.\n\nThe difference: with a lemonade stand, the value is hard to know until you sell. With a stock, the market constantly prices your slice—you can see it on a chart every second. That's both a blessing (liquidity) and a curse (volatility).",
       },
       {
         type: "text",
         heading: "Why Do Stock Prices Change?",
         content:
-          "Stock prices change constantly because of supply and demand. Good news (great earnings, new product) → more people want to buy → price rises. Bad news (lost a big customer, legal trouble) → people want to sell → price falls. Millions of people make decisions every second, and the price reflects the balance of all those decisions.",
+          "Stock prices change constantly because of supply and demand. Good news—great earnings, a new product, a favorable court ruling—makes more people want to buy. Price rises. Bad news—lost a big customer, legal trouble, a recession—makes people want to sell. Price falls.\n\nMillions of participants make decisions every second. The price reflects the balance of all those decisions. No single person controls it. That's why predicting short-term moves is so hard—you're competing with everyone else's analysis and emotions.",
+      },
+      {
+        type: "warning",
+        heading: "Stocks Can Go to Zero",
+        content:
+          "When you buy a stock, you can lose your entire investment if the company fails. Bankruptcy, fraud, or a collapsed business model can wipe out shareholders. Diversification and position sizing protect you. Never risk more on a single stock than you can afford to lose.",
+      },
+      {
+        type: "preview",
+        heading: "Chart Reading (Preview)",
+        content:
+          "In Level 2, we'll learn to read stock charts—candlesticks, support, resistance, trends. Charts show the history of these supply-demand battles. They don't predict the future, but they help you see patterns, key levels, and where other traders might act. For now, know: a stock price is the market's constantly updated estimate of what a company is worth.",
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "A stock is ownership in a company. When you buy stock, you're betting the company will do well and your share will become more valuable. Stock prices move based on supply and demand - which is driven by news, emotions, and expectations about the company's future.",
+          "A stock is ownership in a company. When you buy stock, you're betting the company will do well and your share will become more valuable. Stock prices move based on supply and demand—driven by news, emotions, and expectations.",
       },
     ],
     hasQuiz: true,
@@ -888,17 +992,45 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 5,
-    duration: "8 min",
-    objectives: ["Know US stock hours", "Understand 24/5 forex", "See global sessions"],
+    duration: "10 min",
+    objectives: [
+      "Know US stock hours",
+      "Understand 24/5 forex",
+      "See global sessions",
+      "Trade when liquidity is best",
+    ],
     prerequisites: ["crypto-intro"],
     content: [
       {
         type: "text",
         heading: "Different Hours for Different Markets",
         content:
-          "US stocks: 9:30 AM–4:00 PM Eastern. Forex: 24 hours Monday–Friday. Crypto: 24/7. Commodities have set hours per exchange. When one market closes, another may open—so there's almost always something to trade, but liquidity and volatility vary by session.",
+          "US stocks: 9:30 AM–4:00 PM Eastern (6.5 hours). Pre-market and after-hours exist but have less liquidity. Forex: 24 hours Monday–Friday—when Sydney closes, Tokyo opens; when Tokyo winds down, London opens; when London overlaps with New York, volume peaks. Crypto: 24/7, no closing bell. Commodities have set hours per exchange (e.g. CME gold, crude oil).\n\nWhen one market closes, another may open—so there's almost always something to trade. But liquidity and volatility vary by session. Trading during low liquidity means wider spreads and choppier price action. Plan your trading around when your market is open and liquid.",
       },
-      { type: "key-takeaway", heading: "Key Takeaway", content: "Each market has its own hours. Plan your trading around when your market is open and liquid." },
+      {
+        type: "text",
+        heading: "Why Session Matters",
+        content:
+          "The London-New York overlap (roughly 8 AM–11 AM Eastern) is often the most volatile and liquid period for forex. US stock open (9:30 AM) and close (3:30–4 PM) tend to have the most volume. Asian session can be quieter for US stocks and major forex pairs. If you're day trading, you want to be active when your market is moving. If you're swing trading, exact session matters less—you're holding across sessions.",
+      },
+      {
+        type: "analogy",
+        heading: "The Mall Hours Analogy",
+        content:
+          "Stocks are like a mall that opens at 9:30 and closes at 4. When it's closed, you can't trade (except in limited after-hours). Forex is like a mall that never closes during the week—different stores (sessions) are busy at different times. Crypto is like a 24/7 convenience store—always open. Pick the market whose hours fit your schedule. If you work 9–5, US stock day trading is tough; forex or crypto might offer evening opportunities.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Avoid trading in the first and last 5 minutes of the stock market session unless you know what you're doing. The open and close often have gap moves, whipsaws, and unusual volatility. Many pros wait 15–30 minutes after the open for the dust to settle.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Each market has its own hours. Plan your trading around when your market is open and liquid. Match your schedule to the market you trade.",
+      },
     ],
     hasQuiz: true,
   },
@@ -909,17 +1041,44 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 6,
-    duration: "8 min",
-    objectives: ["Retail vs institutional", "Market makers", "Why it matters"],
+    duration: "10 min",
+    objectives: [
+      "Retail vs institutional",
+      "Market makers and liquidity",
+      "Why it matters for your trading",
+    ],
     prerequisites: ["market-hours"],
     content: [
       {
         type: "text",
         heading: "Retail, Institutional, and Market Makers",
         content:
-          "Retail traders are individuals (you). Institutions are banks, funds, and hedge funds—they move huge volume. Market makers provide liquidity by quoting bid and ask; they profit from the spread. As a retail trader, you're the smallest player; understanding who else is in the market helps you interpret price action and liquidity.",
+          "Retail traders are individuals—you. You're trading your own account through a broker. Institutions are banks, hedge funds, mutual funds, and pension funds. They move huge volume. A single institutional order can be millions of shares. They have more information, faster execution, and more capital. Market makers are firms that quote both bid and ask prices—they're always willing to buy or sell. They profit from the spread (the difference between bid and ask) and provide liquidity so you can enter and exit easily.\n\nAs a retail trader, you're the smallest player. That doesn't mean you can't win—but you need to understand who you're trading against. When you buy, someone sold. Often it's a market maker or an institution. They have reasons. Understanding the participants helps you interpret price action and avoid getting run over.",
       },
-      { type: "key-takeaway", heading: "Key Takeaway", content: "You're trading alongside institutions and market makers. Level 2+ covers how to use this in your analysis." },
+      {
+        type: "text",
+        heading: "Why This Matters",
+        content:
+          "Institutional activity often drives big moves. When a fund accumulates a position, price can drift up. When they distribute, price can fall. You don't see their orders directly, but you see the result in volume and price action. Market makers provide liquidity—without them, spreads would be wide and execution would be difficult. They're not your enemy; they're the middleman. But they profit from the spread, so you pay a small cost on every trade. As a retail trader, you want tight spreads and good execution. Choosing a broker with access to quality liquidity matters.",
+      },
+      {
+        type: "analogy",
+        heading: "The Casino Floor Analogy",
+        content:
+          "Retail traders are like individual gamblers. Institutions are the high-rollers in the VIP section—they move the action. Market makers are like the house—they facilitate the game and profit from the vig (spread). You're playing at the same table. You don't need to beat the house every hand; you need to make good decisions and manage risk. Understanding who's at the table helps you play smarter.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "Volume tells you who's active. Low volume = mostly retail, choppy. High volume = institutions are in. Big moves often happen when institutions participate. As you learn chart reading, you'll learn to spot institutional footprints—accumulation, distribution, breakouts on volume.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "You're trading alongside institutions and market makers. Understanding who participates helps you interpret price action and liquidity. Level 2+ covers how to use this in your analysis.",
+      },
     ],
     hasQuiz: true,
   },
@@ -930,7 +1089,7 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 3,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "Apply supply and demand to financial markets",
       "Understand how market sentiment drives prices",
@@ -942,25 +1101,37 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Supply and Demand: The Engine of Prices",
         content:
-          "In any market, price is determined by supply (how much is available to sell) and demand (how much people want to buy). When demand is high and supply is low, prices rise. When supply is high and demand is low, prices fall. This applies to stocks, forex, commodities, crypto - everything.",
+          "In any market, price is determined by supply (how much is available to sell) and demand (how much people want to buy). When demand is high and supply is low, prices rise. When supply is high and demand is low, prices fall. This applies to stocks, forex, commodities, crypto—everything. It's the fundamental law of markets.\n\nNothing is more important to understand. Every price move—up or down—reflects a shift in the balance of supply and demand. Your job as a trader is to anticipate those shifts before they're fully reflected in the price.",
       },
       {
         type: "text",
         heading: "In Markets, 'Supply' and 'Demand' Mean Willingness",
         content:
-          "For stocks, it's not physical supply - there are a fixed number of shares. 'Demand' means how many people want to buy at various prices. 'Supply' means how many people want to sell at various prices. When more people want to buy than sell at the current price, the price goes up until enough sellers appear.",
+          "For stocks, it's not physical supply—there are a fixed number of shares. 'Demand' means how many people want to buy at various prices. 'Supply' means how many people want to sell at various prices. When more people want to buy than sell at the current price, the price goes up until enough sellers appear. Equilibrium is where buyers and sellers agree.\n\nThe order book—the list of buy and sell orders at different prices—shows this in real time. A wall of buy orders below price acts as support. A wall of sell orders above acts as resistance. You'll learn to read these as you progress.",
+      },
+      {
+        type: "analogy",
+        heading: "The Concert Ticket Analogy",
+        content:
+          "When a popular artist announces a tour, demand for tickets spikes. Limited supply + high demand = prices soar on the secondary market. If the artist adds 20 more shows, supply increases. Prices drop. Same idea in stocks: great earnings increase demand (everyone wants in). A dilutive share offering increases supply (more shares for sale). Price adjusts. The mechanism is identical across all markets.",
       },
       {
         type: "text",
         heading: "What Shifts Supply and Demand?",
         content:
-          "News, earnings reports, economic data, interest rate changes, geopolitical events - all of these change how people feel about buying or selling. Fear increases selling (supply). Greed or optimism increases buying (demand). As a trader, you're trying to anticipate these shifts before they're fully reflected in the price.",
+          "News, earnings reports, economic data, interest rate changes, geopolitical events—all of these change how people feel about buying or selling. Fear increases selling (supply). Greed or optimism increases buying (demand). As a trader, you're trying to anticipate these shifts before they're fully reflected in the price. That's the edge. Get it right, and you profit. Get it wrong, and you lose—which is why risk management is non-negotiable.",
+      },
+      {
+        type: "warning",
+        heading: "The Market Can Stay Irrational",
+        content:
+          "Supply and demand determine price—but the market can misprice things for a long time. A stock can stay 'overvalued' for years if demand keeps coming. Don't assume that because something looks expensive, it will drop tomorrow. Trade what you see. Manage your risk. Let the market tell you when the balance has shifted.",
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Supply and demand drive all market prices. More buyers than sellers = price up. More sellers than buyers = price down. Your job as a trader is to understand what might shift the balance - and to manage your risk when you're wrong, because you will be wrong sometimes.",
+          "Supply and demand drive all market prices. More buyers than sellers = price up. More sellers than buyers = price down. Your job as a trader is to understand what might shift the balance—and to manage your risk when you're wrong, because you will be wrong sometimes.",
       },
     ],
     hasQuiz: true,
