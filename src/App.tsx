@@ -8,6 +8,7 @@ import { Footer } from "./components/Layout/Footer";
 import { AnalyticsTracker } from "./components/AnalyticsTracker";
 import { MarketTicker } from "./components/MarketTicker";
 import { OfflineBanner } from "./components/OfflineBanner";
+import { UsernamePromptModal } from "./components/UsernamePromptModal";
 import { AdminShell } from "./components/admin/AdminShell";
 import { Navigate } from "react-router-dom";
 import { useAdmin } from "./contexts/AdminContext";
@@ -76,6 +77,7 @@ function AppLayoutInner() {
       </main>
       <Footer />
       <OfflineBanner />
+      <UsernamePromptModal />
     </div>
     </AdminShell>
   );
