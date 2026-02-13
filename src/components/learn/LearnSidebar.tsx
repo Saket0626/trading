@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, Lock } from "lucide-react";
 import { LEVELS, MODULES } from "../../data/curriculum";
 import { getLessonsByModule } from "../../data/lessons";
 import { useProgress } from "../../contexts/ProgressContext";
@@ -67,6 +67,9 @@ export function LearnSidebar() {
                   <span className="font-medium text-surface-900 dark:text-surface-100">
                     Level {level.id}
                   </span>
+                  {!unlocked && (
+                    <Lock className="h-4 w-4 text-surface-400 dark:text-surface-500 shrink-0 ml-auto" aria-hidden />
+                  )}
                 </button>
                 {isExpanded && (
                   <div className="pb-2">
