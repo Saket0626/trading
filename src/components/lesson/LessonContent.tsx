@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import type { LessonContent as LessonContentType } from "../../types";
-import { Lightbulb, AlertTriangle, Target, BookOpen } from "lucide-react";
+import { Lightbulb, AlertTriangle, Target, BookOpen, CheckCircle, Eye } from "lucide-react";
 import { CandlestickBuilder } from "../charts/CandlestickBuilder";
 import { WhichMarketQuiz } from "../quiz/WhichMarketQuiz";
 import { SupplyDemandSimulator } from "./SupplyDemandSimulator";
@@ -54,6 +54,16 @@ const typeConfig = {
     className: "text-surface-700 dark:text-surface-300",
     wrapperClass: "bg-surface-100 dark:bg-surface-800/50",
   },
+  "pro-tip": {
+    icon: CheckCircle,
+    className: "text-emerald-700 dark:text-emerald-300",
+    wrapperClass: "bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500",
+  },
+  preview: {
+    icon: Eye,
+    className: "text-violet-700 dark:text-violet-300",
+    wrapperClass: "bg-violet-50 dark:bg-violet-900/20 border-l-4 border-violet-500",
+  },
   interactive: {
     icon: Target,
     className: "text-primary-700 dark:text-primary-300",
@@ -69,7 +79,9 @@ export function LessonContentBlock({ block, sectionId }: { block: LessonContentT
     block.type === "interactive" ||
     block.type === "analogy" ||
     block.type === "warning" ||
-    block.type === "key-takeaway";
+    block.type === "key-takeaway" ||
+    block.type === "pro-tip" ||
+    block.type === "preview";
 
   const CustomComponent = block.component ? COMPONENTS[block.component] : null;
   const Wrapper = sectionId ? "section" : "div";
@@ -108,9 +120,14 @@ export function LessonContentBlock({ block, sectionId }: { block: LessonContentT
               </h3>
             )}
             <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
-              <p className="text-surface-700 dark:text-surface-300 leading-relaxed whitespace-pre-line">
-                {block.content}
-              </p>
+              {(block.content || "")
+                .split(/\n\n+/)
+                .filter((p) => p.trim())
+                .map((para, i) => (
+                  <p key={i} className="text-surface-700 dark:text-surface-300 leading-relaxed mb-4 last:mb-0">
+                    {para.trim()}
+                  </p>
+                ))}
             </div>
           </div>
         </div>

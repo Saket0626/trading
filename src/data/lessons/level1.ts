@@ -8,11 +8,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-money",
     order: 1,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Understand what money is and why we use it instead of bartering",
       "Learn the three main functions of money",
       "See how money makes trading possible",
+      "Connect money to financial markets and trading",
     ],
     prerequisites: [],
     content: [
@@ -20,38 +21,50 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Why Does This Matter?",
         content:
-          "Before you can understand trading, you need to understand money. Money is the tool that makes all trading possible. Imagine trying to trade your lemonade for a video game - the game shop owner might not want lemonade! Money solves this problem.",
-      },
-      {
-        type: "analogy",
-        heading: "Think of Money Like Video Game Currency",
-        content:
-          "In a video game, you earn gold or coins by completing quests. You use that currency to buy weapons, armor, or items. You can't directly trade 'defeating 10 goblins' for a sword - you need the game's currency in between. Real money works the same way in our economy!",
-      },
-      {
-        type: "text",
-        heading: "The Three Jobs of Money",
-        content:
-          "Money has three main jobs: (1) Medium of exchange - you can use it to buy anything; (2) Store of value - you can save it for later and it (usually) keeps its worth; (3) Unit of account - we measure the value of things in money (this car costs $20,000).",
+          "Before you can understand trading, you need to understand money. Money is the tool that makes all trading possible—whether you're buying groceries, a car, or shares of a company. Every trade you'll ever make involves money on one side.\n\nImagine trying to trade your lemonade for a video game. The game shop owner might not want lemonade! You'd need to find someone who wants lemonade AND has a video game to trade. Money solves this problem: you sell lemonade for money, then use that money to buy anything from anyone.",
       },
       {
         type: "text",
         heading: "From Barter to Money",
         content:
-          "Long ago, people bartered - trading things directly. If you had extra apples and wanted bread, you needed to find someone with extra bread who wanted apples. Money changed everything: now you sell your apples for money, then use that money to buy bread from anyone.",
+          "Long ago, people bartered—trading things directly. If you had extra apples and wanted bread, you needed to find someone with extra bread who wanted apples. Economists call this the 'double coincidence of wants' problem. You both had to want exactly what the other had.\n\nMoney changed everything. Now you sell your apples to anyone who wants them, receive money, and use that money to buy bread from anyone selling it. You never need to find one person who has bread and wants apples. Money is the bridge that connects all traders.",
+      },
+      {
+        type: "analogy",
+        heading: "The Video Game Currency Analogy",
+        content:
+          "In a video game, you earn gold or coins by completing quests. You use that currency to buy weapons, armor, or items from any vendor. You can't directly trade 'defeating 10 goblins' for a sword—the blacksmith doesn't want goblin corpses. You need the game's currency in between.\n\nReal money works the same way. You exchange your time and work for dollars. Those dollars can then buy anything from anyone who accepts them. The whole economy runs on this simple idea: money is the universal translator of value.",
+      },
+      {
+        type: "text",
+        heading: "The Three Jobs of Money",
+        content:
+          "Money has three main functions that make it essential. First, it's a medium of exchange—you can use it to buy anything. A dollar is accepted everywhere. You don't need to carry around goods to trade.\n\nSecond, money is a store of value. You can save it for later. If you earn $100 today, you can spend it next week or next month. Of course, inflation can erode its value over time—a dollar today might buy less in 10 years—but in the short run, money holds its worth well enough to delay spending.\n\nThird, money is a unit of account. We measure the value of everything in money. This car costs $20,000. That stock is $150 per share. Your salary is $50,000 a year. Money gives us a common language to compare values.",
+      },
+      {
+        type: "warning",
+        heading: "Money Isn't Perfect",
+        content:
+          "Money loses value over time due to inflation. If inflation is 3% per year, $100 today will only buy what $97 buys next year. That's why people invest—they want their money to grow faster than inflation erodes it. Putting cash under the mattress is slowly losing value. This connects directly to why trading and investing exist: people are trying to preserve and grow their money's purchasing power.",
+      },
+      {
+        type: "preview",
+        heading: "Supply and Demand (Preview)",
+        content:
+          "Money's value—how much it can buy—isn't fixed. It depends on supply (how much money exists) and demand (how much people want to hold it). Central banks influence the supply. We'll cover this in the next lesson. For now, remember: understanding money is step one. Understanding what affects its value is step two—and that's where trading begins.",
       },
       {
         type: "interactive",
         heading: "Think It Through",
         content: "Why might a society switch from barter to money?",
         component: "ConceptCheck",
-        props: { question: "Why might a society switch from barter to money?", reveal: "Because barter requires a 'double coincidence of wants'—you must find someone who has what you want and wants what you have. Money lets everyone trade with everyone else through one common medium." },
+        props: { question: "Why might a society switch from barter to money?", reveal: "Because barter requires a 'double coincidence of wants'—you must find someone who has what you want and wants what you have. Money lets everyone trade with everyone else through one common medium. It massively increases the number of possible trades." },
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Money is a tool that makes trading possible. Without it, we'd be stuck trying to find someone who wants exactly what we have and has exactly what we want. Money is the 'middle man' that makes the whole economy work.",
+          "Money is a tool that makes trading possible. Without it, we'd be stuck finding someone who wants exactly what we have and has exactly what we want. Money is the middleman that makes the whole economy—and every financial market—work.",
       },
     ],
     hasQuiz: true,
@@ -63,11 +76,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-money",
     order: 2,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Understand that money's value comes from supply, demand, and trust",
       "See why governments and central banks matter",
       "Learn why inflation erodes purchasing power",
+      "Connect currency value to forex trading",
     ],
     prerequisites: ["money-basics"],
     content: [
@@ -75,13 +89,31 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Why Does This Matter?",
         content:
-          "A dollar today might buy less in 10 years. Currencies can strengthen or weaken. Understanding where money's value comes from helps you see why prices change and why traders watch central banks and economic data.",
+          "A dollar today might buy less in 10 years. Currencies can strengthen or weaken against each other. When you trade forex, you're literally betting on which currency will hold or gain more value. Understanding where money's value comes from helps you see why prices change and why traders obsess over central bank announcements and economic data.\n\nThis isn't just theory—it's the foundation of trillions of dollars in daily currency trading.",
       },
       {
         type: "text",
         heading: "Supply, Demand, and Trust",
         content:
-          "Money holds value because people accept it in exchange for goods and services (demand) and because its supply isn't infinite (supply). If a government printed trillions of new units, each unit would be worth less—that's inflation. Trust matters too: if people lost faith in a currency, they'd dump it and its value would fall.",
+          "Money holds value for three reasons. First, people accept it in exchange for goods and services—that's demand. If everyone stopped accepting dollars tomorrow, they'd be worthless. Second, its supply isn't infinite. If a government printed trillions of new dollars overnight, each dollar would buy less—that's inflation. Scarcity matters.\n\nThird, trust. People must believe the currency will still be accepted tomorrow. Hyperinflation often starts when people lose faith—they rush to spend or convert money before it loses more value, which makes it lose value faster. Trust is fragile.",
+      },
+      {
+        type: "analogy",
+        heading: "The Concert Ticket Analogy",
+        content:
+          "Imagine a concert with 1,000 tickets. If 10,000 people want to go, tickets sell out fast and prices soar on the secondary market. If only 100 people want to go, tickets sit unsold and prices drop. The same ticket has different value depending on demand.\n\nCurrency works the same way. When more people want to hold dollars (strong economy, high interest rates, global demand for US assets), the dollar strengthens. When people dump dollars for other assets or currencies, it weakens. Supply and demand for the currency itself determine its value.",
+      },
+      {
+        type: "text",
+        heading: "Central Banks and Supply",
+        content:
+          "Central banks—like the Federal Reserve in the US—control the supply of money. They can print more (quantitative easing) or withdraw it (raising rates, selling bonds). When they print a lot, more money chases the same amount of goods—prices rise. When they tighten, less money in circulation can mean slower inflation or even deflation.\n\nTraders watch every central bank decision. A surprise rate hike can send a currency soaring. A dovish stance can sink it. This is fundamental to forex: you're trading expectations about future money supply and demand.",
+      },
+      {
+        type: "warning",
+        heading: "Inflation Erodes Purchasing Power",
+        content:
+          "If inflation runs at 3% per year, $100 today buys what $97 buys next year. Over 10 years, that same $100 buys what about $74 buys today. Cash in a mattress slowly loses value. This is why people invest—stocks, bonds, real estate—to try to grow wealth faster than inflation eats it. As a trader, you're participating in that same effort: trying to preserve and grow the value of your capital.",
       },
       {
         type: "interactive",
@@ -94,7 +126,7 @@ export const level1Lessons: Lesson[] = [
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Money's value depends on supply (how much exists), demand (how much people want it), and trust. Central banks influence supply; economic health and interest rates influence demand. As a trader, you'll care about these when trading forex or thinking about inflation.",
+          "Money's value depends on supply (how much exists), demand (how much people want it), and trust. Central banks influence supply; economic health and interest rates influence demand. As a trader, you'll care about these constantly—especially in forex.",
       },
     ],
     hasQuiz: true,
@@ -106,11 +138,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-money",
     order: 3,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Understand the difference between value and price",
       "Learn how supply and demand affect prices",
       "See why prices change over time",
+      "Apply this to stocks, forex, and commodities",
     ],
     prerequisites: ["money-basics", "money-value"],
     content: [
@@ -118,19 +151,31 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Value vs Price",
         content:
-          "Value is what something is worth TO YOU - it's personal. A rare trading card might be priceless to a collector but worthless to someone who doesn't collect. Price is what people actually pay in the market - it's where buyers and sellers agree to trade.",
+          "Value is what something is worth TO YOU—it's personal and subjective. A rare trading card might be priceless to a collector but worthless to someone who doesn't collect. Two people can disagree completely on value.\n\nPrice is different. Price is what people actually pay in the market—it's where buyers and sellers agree to trade. The market price is the balance point: the highest price buyers are willing to pay meets the lowest price sellers are willing to accept. That's the trade.\n\nAs a trader, you'll often focus on price. You don't need to know what something is 'really' worth—you need to know whether more people will want to buy or sell at the next moment. Price tells you that.",
       },
       {
         type: "analogy",
-        heading: "The Lemonade Stand",
+        heading: "The Lemonade Stand Analogy",
         content:
-          "Imagine you run a lemonade stand. On a hot day, lots of people want lemonade (high demand) - you can charge more. On a cold rainy day, nobody wants it (low demand) - you might lower your price to sell any. When lemons are scarce and expensive (low supply), you charge more. When lemons are cheap and plentiful (high supply), you can charge less. This is supply and demand in action!",
+          "Imagine you run a lemonade stand. On a scorching hot day, lots of people want lemonade—high demand. You can charge $3 a cup and sell out. On a cold rainy day, nobody wants it—low demand. You might drop to $1 just to sell a few.\n\nWhen lemons are scarce and expensive at the wholesale market—low supply—you charge more to cover your costs. When lemons are cheap and plentiful—high supply—you can afford to charge less and still profit. This is supply and demand in its simplest form. The same logic drives stock prices, currency rates, and the price of oil.",
       },
       {
         type: "text",
-        heading: "Prices Are Like a Compass",
+        heading: "Prices Constantly Search for Balance",
         content:
-          "In markets, prices constantly move as new information arrives. If a company announces great news, more people want to buy - price goes up. If bad news hits, people want to sell - price goes down. The price is always searching for the point where buyers and sellers agree.",
+          "In financial markets, prices move every second as new information arrives. A company announces great earnings—more people want to buy the stock—price goes up until enough sellers appear. Bad news hits—people want to sell—price falls until enough buyers step in.\n\nThe price is always searching for equilibrium: the point where the number of people willing to buy at that price equals the number willing to sell. When that balance shifts, price moves. Traders try to anticipate those shifts before they're fully reflected in the price.",
+      },
+      {
+        type: "text",
+        heading: "What Shifts Supply and Demand?",
+        content:
+          "For stocks: earnings reports, product launches, management changes, industry news. For forex: interest rate decisions, economic data (GDP, jobs), political stability. For commodities: weather, geopolitics, supply disruptions. For crypto: regulation, adoption news, market sentiment.\n\nEvery piece of news changes someone's view. Enough someones change their view, and the balance of buyers and sellers shifts. Price moves. As you learn each market, you'll learn which catalysts matter most.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Pro Tip",
+        content:
+          "The price already reflects everything known. When news breaks, the market reacts in seconds. By the time you read a headline and decide to trade, the move may be over. Pros either react faster, trade on anticipation, or find inefficiencies. Don't assume you can consistently beat the crowd by reading the same news.",
       },
       {
         type: "interactive",
@@ -142,7 +187,7 @@ export const level1Lessons: Lesson[] = [
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Prices aren't random - they reflect supply and demand. When more people want to buy than sell, prices rise. When more people want to sell than buy, prices fall. Understanding this is the foundation of understanding any market.",
+          "Prices reflect supply and demand. More buyers than sellers—price rises. More sellers than buyers—price falls. Understanding this is the foundation of every market. Your job as a trader is to anticipate shifts in that balance.",
       },
     ],
     hasQuiz: true,
@@ -154,11 +199,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-money",
     order: 4,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "Understand what a marketplace is",
       "See how buyers and sellers meet",
       "Connect this to financial markets",
+      "Know the main types of financial markets",
     ],
     prerequisites: ["value-prices"],
     content: [
@@ -166,26 +212,38 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "What is a Marketplace?",
         content:
-          "A market is any place where buyers and sellers come together to trade. A farmers' market, an online store, or a stock exchange—all are markets. In each case, there's something being traded, a price, and agreement between buyer and seller.",
+          "A market is any place where buyers and sellers come together to trade. A farmers' market, an online store, a garage sale, or a stock exchange—all are markets. In each case, there's something being traded, a price is discovered through negotiation or matching, and a deal is struck when both sides agree.\n\nThe core idea is simple: markets exist to connect people who have something with people who want it. The price is the signal that coordinates everyone. When demand rises, price rises, which attracts more supply. When supply exceeds demand, price falls, which discourages production or encourages consumption. Markets are self-organizing systems.",
+      },
+      {
+        type: "analogy",
+        heading: "The Flea Market Analogy",
+        content:
+          "At a flea market, hundreds of buyers and sellers roam around. Sellers display their wares and name prices. Buyers browse and make offers. When a buyer and seller agree on a price, a trade happens. No central authority sets the price—it emerges from thousands of individual negotiations.\n\nFinancial markets work the same way, just faster and with computers. Instead of haggling over vintage records, traders submit orders to buy or sell at specific prices. A match happens when a buyer's price meets a seller's price. Millions of these matches occur every second on stock and forex exchanges worldwide.",
       },
       {
         type: "text",
-        heading: "Financial Markets",
+        heading: "Financial Markets: The Big Four",
         content:
-          "In financial markets, people trade assets: stocks, currencies, commodities, crypto. These markets can be physical (like a trading floor) or electronic. Prices move as buyers and sellers agree on new levels. When you trade, you're participating in that global marketplace.",
+          "When people talk about trading, they usually mean one of four markets. Stocks (equities) are ownership in companies. Forex is trading currency pairs—euro vs dollar, yen vs dollar. Commodities are physical goods: gold, oil, wheat. Cryptocurrency is digital assets like Bitcoin and Ethereum.\n\nEach market has different hours, rules, participants, and behavior. Stocks trade during exchange hours. Forex runs 24 hours, five days a week. Crypto never sleeps. We'll go deep into each in Level 2. For now, understand: they're all markets. Buyers and sellers. Supply and demand. Prices that move.",
+      },
+      {
+        type: "text",
+        heading: "Electronic vs Physical",
+        content:
+          "Modern financial markets are mostly electronic. Orders flow through computers. Matching engines pair buyers with sellers in milliseconds. You don't need to stand on a trading floor—you can trade from your phone. This has made markets more accessible, faster, and more liquid. It has also made them more competitive. When everyone has instant access, edges get smaller.",
       },
       {
         type: "interactive",
         heading: "Think It Through",
         content: "What do a farmers' market and a stock exchange have in common?",
         component: "ConceptCheck",
-        props: { question: "What do a farmers' market and a stock exchange have in common?", reveal: "Both are markets: buyers and sellers meet, something is traded, and a price is agreed. The stock exchange just trades shares instead of vegetables—the same supply/demand and agreement ideas apply." },
+        props: { question: "What do a farmers' market and a stock exchange have in common?", reveal: "Both are markets: buyers and sellers meet, something is traded, and a price is agreed. The stock exchange just trades shares instead of vegetables—the same supply/demand and price discovery ideas apply." },
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Markets are where buyers and sellers meet and agree on prices. Financial markets are the same idea—just with stocks, forex, and other assets. Understanding markets starts with understanding that simple exchange.",
+          "Markets are where buyers and sellers meet and agree on prices. Financial markets are the same idea—stocks, forex, commodities, crypto. When you trade, you're participating in that global marketplace.",
       },
     ],
     hasQuiz: true,
@@ -197,11 +255,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-money",
     order: 5,
-    duration: "8 min",
+    duration: "12 min",
     objectives: [
       "Understand intrinsic vs market value",
       "See why they can differ",
       "Apply this to trading decisions",
+      "Know when traders vs investors care about each",
     ],
     prerequisites: ["intro-markets"],
     content: [
@@ -209,13 +268,31 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Intrinsic vs Market Value",
         content:
-          "Intrinsic value is what something is 'really' worth based on fundamentals—e.g. a company's assets and future cash flows. Market value is what people are actually paying right now. They often differ. A stock might trade above intrinsic value (overvalued) or below (undervalued). Traders and investors use different tools to decide when market price is too high or too low.",
+          "Intrinsic value is what something might be 'really' worth based on fundamentals—a company's assets, future cash flows, growth prospects. Analysts use financial models to estimate it. There's no single right answer; different assumptions yield different estimates.\n\nMarket value is simpler: it's what people are actually paying right now. The price on the screen. The last trade. Market value is a fact. Intrinsic value is an opinion.\n\nThey often differ. A stock might trade above intrinsic value (overvalued) or below (undervalued). Investors try to buy undervalued and sell overvalued. Traders might not care—they trade price action regardless of 'fair value.'",
       },
       {
         type: "text",
-        heading: "Why This Matters for You",
+        heading: "Why They Diverge",
         content:
-          "As a trader, you'll often focus on price action and market value—what the crowd is doing. As you learn more, you can combine that with ideas about intrinsic value. For now, remember: the price on the screen is market value; it can stay above or below what seems 'fair' for a long time.",
+          "Markets are driven by humans. Sentiment, fear, greed, and herd behavior push prices away from any冷静 calculation of value. A stock can stay overvalued for years if enough people keep buying. It can stay undervalued if everyone ignores it.\n\nNew information constantly changes views. An earnings beat might justify a higher intrinsic value. A scandal might collapse it. The market digests this information and adjusts price—sometimes slowly, sometimes in seconds. The gap between intrinsic and market value is where opportunity (and risk) lives.",
+      },
+      {
+        type: "analogy",
+        heading: "The House Appraisal Analogy",
+        content:
+          "When you sell a house, an appraiser estimates its value based on comparable sales, condition, location. That's like intrinsic value—an expert's estimate. But the actual sale price depends on who shows up to bid. In a hot market, you might get 20% above appraisal. In a crash, you might get 20% below. The market price is what a willing buyer and seller agree on today—not what a model says it 'should' be.\n\nStocks work the same way. Fundamental analysis gives you an appraisal. The market price is what people are actually paying. Both matter—but they're not the same.",
+      },
+      {
+        type: "warning",
+        heading: "Overvalued Doesn't Mean 'Sell Tomorrow'",
+        content:
+          "Beginners often hear 'this stock is overvalued' and assume it will drop immediately. Wrong. Overvalued stocks can keep rising for months or years. The market can stay irrational longer than you can stay solvent, as the saying goes. Never short a stock just because it looks expensive. Price can disconnect from value for a long time.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Traders vs Investors",
+        content:
+          "Investors care deeply about intrinsic value. They buy when price is below their estimate of value and hold. Traders often care more about price action—momentum, support/resistance, order flow. They don't need to know if a stock is 'fairly valued' to trade a breakout. Both approaches can work. Know which one you're doing.",
       },
       {
         type: "interactive",
@@ -228,7 +305,7 @@ export const level1Lessons: Lesson[] = [
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Intrinsic value = what something might be worth by some measure. Market value = what people are paying. They can diverge. Trading and investing both involve forming a view on that difference.",
+          "Intrinsic value = an estimate of worth based on fundamentals. Market value = what people are paying now. They can diverge for a long time. Trading and investing both involve forming a view on that difference.",
       },
     ],
     hasQuiz: true,
@@ -378,11 +455,12 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-trading",
     order: 3,
-    duration: "10 min",
+    duration: "12 min",
     objectives: [
       "Understand that higher potential rewards usually mean higher risk",
       "Learn why you should never risk more than you can afford to lose",
       "See how professional traders think about risk",
+      "Preview the 1% rule for position sizing",
     ],
     prerequisites: ["what-is-trading"],
     content: [
@@ -390,31 +468,31 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "The Fundamental Trade-off",
         content:
-          "In trading and investing, risk and reward are connected. Investments with higher potential returns usually come with higher risk of loss. A savings account pays little interest but is very safe. A speculative stock might double or go to zero - much higher potential reward, but much higher risk.",
+          "In trading and investing, risk and reward are inextricably linked. You cannot have meaningful reward without accepting meaningful risk. If an opportunity offered high returns with no risk, everyone would pile in, and the edge would vanish. The market doesn't give free lunches.\n\nA savings account pays little interest—maybe 1–2% a year—but is very safe. Your principal is protected. A speculative growth stock might double in a year or collapse 80%. Much higher potential reward, but much higher risk of loss. Bonds sit in between: moderate returns, moderate risk. The pattern holds everywhere: higher potential returns come with higher probability of loss.\n\nSmart traders don't try to eliminate risk. They manage it. They decide in advance how much they're willing to lose, and they only take trades where the potential reward justifies that risk.",
       },
       {
         type: "analogy",
         heading: "The Video Game Analogy",
         content:
-          "In a video game, the hardest boss usually gives the best loot. Easy enemies give weak rewards. Trading is similar - 'easy' safe trades offer small gains. Trades that could make big money usually have a real chance of big losses. Anyone promising 'high returns with no risk' is not being honest.",
+          "In a video game, the hardest boss usually drops the best loot. Easy enemies give weak rewards—a few coins, basic items. The final boss might drop legendary gear, but you could die and lose progress trying to beat it. Trading works the same way.\n\n'Easy' safe trades—like parking cash in a savings account—offer small, predictable gains. Trades that could make big money—picking a hot stock, leveraging forex—usually come with a real chance of big losses. The high-reward opportunities are the 'boss fights.' They're harder, and you can lose. Anyone promising 'high returns with no risk' is either lying or doesn't understand what they're selling. There is no such thing.",
       },
       {
-        type: "text",
+        type: "preview",
         heading: "The 1% Rule (Preview)",
         content:
-          "Professional traders often risk only 1% of their account on any single trade. If you have $10,000, that means $100 max risk per trade. Why? Because losses WILL happen. Even great traders have losing streaks. Risking 1% means you could have 20 losing trades in a row and still have 80% of your capital. We'll cover this in detail in the Risk Management module.",
+          "Professional traders often risk only 1% of their account on any single trade. If you have $10,000, that means $100 maximum loss per trade. Why so little? Because losses WILL happen. Even the best traders have losing streaks. A 60% win rate is considered strong—that means 4 out of 10 trades lose.\n\nRisking 1% per trade means you could have 20 losing trades in a row and still have about 80% of your capital. You'd be bruised, but you'd still be in the game. Risk 5% per trade, and 20 losses in a row could wipe you out. We'll cover position sizing and the 1% rule in detail in the Risk Management module. For now, remember: pros protect capital first, chase profits second.",
       },
       {
         type: "warning",
         heading: "Critical Warning",
         content:
-          "Never trade with money you need for rent, food, bills, or emergencies. Trading is speculative - you can lose your entire investment. The money you trade with should be money you can afford to lose completely without it affecting your life. This isn't being pessimistic - it's being realistic and responsible.",
+          "Never trade with money you need for rent, food, bills, or emergencies. Trading is speculative—you can lose your entire investment. The money you trade with should be money you can afford to lose completely without it affecting your life. Not your kid's college fund. Not your mortgage payment. Not your emergency fund.\n\nThis isn't being pessimistic—it's being realistic and responsible. If losing the money would cause you stress, relationship problems, or financial hardship, don't trade it. Use only disposable income—money that, if lost, wouldn't change your lifestyle. This single rule protects more traders than any strategy.",
       },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
-          "Risk and reward go together. More potential profit usually means more potential loss. Smart traders focus on managing risk first - they know that preserving capital is how you stay in the game long enough to succeed. Never risk money you can't afford to lose.",
+          "Risk and reward go together. More potential profit usually means more potential loss. Smart traders focus on managing risk first—they know that preserving capital is how you stay in the game long enough to succeed. Never risk money you can't afford to lose.",
       },
     ],
     hasQuiz: true,
@@ -426,10 +504,11 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-trading",
     order: 2,
-    duration: "8 min",
+    duration: "10 min",
     objectives: [
       "Understand income, speculation, and hedging as reasons to trade",
       "See how different goals need different approaches",
+      "Clarify your own motivation",
     ],
     prerequisites: ["what-is-trading"],
     content: [
@@ -437,7 +516,25 @@ export const level1Lessons: Lesson[] = [
         type: "text",
         heading: "Three Main Reasons",
         content:
-          "People trade for income (trying to make regular profits), speculation (betting on price direction for profit), or hedging (reducing risk in other investments—e.g. a farmer selling futures to lock in a price). Most retail traders are focused on income or speculation. Hedging is more common among businesses and institutions.",
+          "People trade for three primary reasons. Income: trying to make regular profits, perhaps as a side hustle or primary livelihood. Speculation: betting on price direction for profit—buying low, selling high. Hedging: reducing risk in other investments. A farmer might sell corn futures to lock in a price before harvest. A company with foreign revenue might buy forex contracts to protect against currency moves.\n\nMost retail traders are focused on income or speculation. Hedging is more common among businesses and institutions. Your reason matters—it shapes your style, time horizon, and risk tolerance.",
+      },
+      {
+        type: "text",
+        heading: "Income vs Speculation",
+        content:
+          "Income-focused traders often want steady, repeatable returns. They might swing trade, use systematic strategies, or focus on high-probability setups. They're treating trading like a business. Speculation can be more opportunistic—chasing big moves, taking higher risk for higher potential reward. Neither is wrong, but they require different mindsets and approaches. Income traders prioritize consistency. Speculators accept more variance for bigger swings.",
+      },
+      {
+        type: "analogy",
+        heading: "The Side Hustle vs Lottery Analogy",
+        content:
+          "Income trading is like a side hustle—you're building something that generates regular returns. You might make $500 this month, $300 next, $600 the month after. Speculation is more like buying a lottery ticket—you might hit big or lose it all. Most people who succeed in trading treat it like the side hustle: consistent effort, managed risk, steady improvement. The lottery mentality—'I'll get rich on one trade'—usually ends badly.",
+      },
+      {
+        type: "pro-tip",
+        heading: "Be Honest About Your Goal",
+        content:
+          "If you're trading for excitement, say so. If you're trading to replace a job, be realistic about how long that takes. If you're hedging a business, your approach is different. Clarity on why you trade helps you choose the right style, manage risk appropriately, and avoid the trap of changing strategies every time you have a bad week.",
       },
       {
         type: "key-takeaway",
@@ -638,17 +735,51 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 2,
-    duration: "8 min",
-    objectives: ["Understand currency trading", "See why forex is 24/5", "Know major pairs"],
+    duration: "10 min",
+    objectives: [
+      "Understand currency trading",
+      "See why forex is 24/5",
+      "Know major pairs",
+      "Understand why forex attracts traders",
+    ],
     prerequisites: ["stocks-basics"],
     content: [
       {
         type: "text",
         heading: "Trading Currencies",
         content:
-          "Forex (foreign exchange) is trading one currency for another—e.g. EUR/USD (euro vs US dollar). When you think the euro will strengthen versus the dollar, you buy EUR/USD. It's the largest market by volume and is open 24 hours, 5 days a week.",
+          "Forex (foreign exchange) is trading one currency for another. When you trade EUR/USD, you're betting on the euro's value relative to the US dollar. If you think the euro will strengthen, you buy EUR/USD. If you think the dollar will strengthen, you sell EUR/USD (or buy USD/EUR). Every forex trade involves a pair—you're always long one currency and short another.\n\nForex is the largest market in the world by daily volume—over $6 trillion changes hands every day. It dwarfs the stock market. That means deep liquidity: you can usually enter and exit without moving the price.",
       },
-      { type: "key-takeaway", heading: "Key Takeaway", content: "Forex = currency pairs. Huge liquidity and 24/5 hours. We'll go deeper in Level 2." },
+      {
+        type: "text",
+        heading: "24 Hours, 5 Days a Week",
+        content:
+          "Unlike stocks, forex doesn't close. When New York sleeps, Sydney and Tokyo are open. When Asia winds down, London opens. There's always a major financial center trading. Markets open Sunday evening (Eastern time) and close Friday afternoon. That's appealing if you work during US stock hours—you can trade forex before or after work.\n\nLiquidity and volatility vary by session. The London-New York overlap (morning Eastern) is often the most active. Asian session can be quieter for major pairs. We'll cover sessions in detail in Level 2.",
+      },
+      {
+        type: "analogy",
+        heading: "The Exchange Rate Booth Analogy",
+        content:
+          "When you travel, you exchange dollars for euros at an airport booth. The rate changes constantly—$1 might buy 0.92 euros today and 0.94 tomorrow. Forex trading is the same idea, just on a massive scale. You're betting that the exchange rate will move in your favor. Banks, companies, and speculators all participate. The difference: as a trader, you're not exchanging for a trip—you're trying to profit from the rate movement itself.",
+      },
+      {
+        type: "text",
+        heading: "Major Pairs",
+        content:
+          "The most traded pairs involve the US dollar: EUR/USD, USD/JPY, GBP/USD, USD/CHF. These have the tightest spreads (the cost of trading) and the most liquidity. Minor pairs don't include the dollar: EUR/GBP, EUR/JPY. Exotic pairs involve emerging market currencies: USD/MXN, USD/TRY. Beginners should stick to majors—lower costs, more predictable behavior.",
+      },
+      {
+        type: "preview",
+        heading: "Leverage and Pips (Preview)",
+        content:
+          "Forex brokers often offer high leverage—50:1 or even 100:1. That means a $1,000 account can control $50,000 or $100,000 in positions. Leverage amplifies both gains and losses. We'll cover pips (the smallest price move), lots, and leverage in the Forex deep dive. For now, know: forex allows small accounts to trade, but leverage is dangerous if not managed.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Forex = currency pairs. Huge liquidity, 24/5 hours. Major pairs (EUR/USD, etc.) are the best place to start. We'll go deeper in Level 2.",
+      },
     ],
     hasQuiz: true,
   },
@@ -659,17 +790,45 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 3,
-    duration: "8 min",
-    objectives: ["Define commodities", "Know gold, oil, agriculture"],
+    duration: "10 min",
+    objectives: [
+      "Define commodities",
+      "Know gold, oil, and agriculture",
+      "Understand why traders care about commodities",
+      "See how they differ from stocks and forex",
+    ],
     prerequisites: ["forex-intro"],
     content: [
       {
         type: "text",
         heading: "Physical Goods Traded",
         content:
-          "Commodities are raw materials: gold, silver, oil, natural gas, wheat, coffee. You usually trade futures or ETFs linked to them. Prices move with supply, demand, weather, and geopolitics. They can diversify a portfolio and act as an inflation hedge.",
+          "Commodities are raw materials—things you can touch or extract. Gold, silver, oil, natural gas, wheat, coffee, cotton. Unlike stocks (ownership in a company) or forex (currencies), commodities are tangible assets. Their prices are driven by supply and demand in the physical world.\n\nYou typically don't buy a barrel of oil and store it. You trade futures contracts (agreements to buy/sell at a future date) or ETFs that track commodity prices. This gives you exposure without handling the physical goods.",
       },
-      { type: "key-takeaway", heading: "Key Takeaway", content: "Commodities = tangible assets. Level 2 covers how to trade them." },
+      {
+        type: "text",
+        heading: "Hard vs Soft Commodities",
+        content:
+          "Hard commodities are mined or extracted: gold, silver, copper, oil, natural gas. Soft (or agricultural) commodities are grown: wheat, corn, soybeans, coffee, sugar. Each has different drivers. Gold reacts to inflation, interest rates, and fear. Oil reacts to supply (OPEC, shale), demand (economic growth), and geopolitics. Wheat reacts to weather, harvests, and global demand. Understanding the driver is key to trading each.",
+      },
+      {
+        type: "analogy",
+        heading: "The Gasoline Pump Analogy",
+        content:
+          "When you fill your car, you're buying a commodity—oil, refined into gasoline. You've noticed prices go up in summer (driving season) and when hurricanes hit Gulf refineries. Commodities are like that: real-world events directly affect price. A drought in Brazil raises coffee prices. A cold snap raises natural gas. Trading commodities means paying attention to weather, politics, and global supply chains.",
+      },
+      {
+        type: "text",
+        heading: "Why Traders Care",
+        content:
+          "Commodities diversify a portfolio—they often move differently than stocks. When inflation rises, gold and oil can outperform. They're also traded 24 hours (futures) and offer leverage. Many traders specialize in one or two—gold and oil are popular. We'll cover contracts, contango, and seasonal patterns in Level 2.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Commodities = tangible raw materials. Prices move with supply, demand, weather, geopolitics. Trade via futures or ETFs. Level 2 covers how to trade them.",
+      },
     ],
     hasQuiz: true,
   },
@@ -680,17 +839,45 @@ export const level1Lessons: Lesson[] = [
     level: 1,
     moduleId: "foundations-markets",
     order: 4,
-    duration: "8 min",
-    objectives: ["Define crypto", "Know Bitcoin basics", "Understand 24/7 trading"],
+    duration: "10 min",
+    objectives: [
+      "Define crypto",
+      "Know Bitcoin basics",
+      "Understand 24/7 trading",
+      "Recognize the unique risks",
+    ],
     prerequisites: ["commodities-intro"],
     content: [
       {
         type: "text",
         heading: "Digital Assets",
         content:
-          "Cryptocurrency is digital money—Bitcoin, Ethereum, and thousands of others. Markets run 24/7. Volatility is high. Crypto is speculative and less regulated than stocks or forex. Never invest more than you can afford to lose.",
+          "Cryptocurrency is digital money built on blockchain technology. Bitcoin, Ethereum, and thousands of others. Unlike dollars in a bank, crypto exists on decentralized networks—no central authority controls it. You hold it in a digital wallet. You can transfer it peer-to-peer without a bank.\n\nCrypto markets run 24/7—no closing bell. Volatility is extreme. Bitcoin can move 5–10% in a day. Altcoins can double or halve in a week. That attracts traders seeking big moves. It also creates huge risk.",
       },
-      { type: "key-takeaway", heading: "Key Takeaway", content: "Crypto = digital, 24/7, volatile. Level 2 goes deeper." },
+      {
+        type: "text",
+        heading: "Why Crypto Is Different",
+        content:
+          "Crypto is speculative and less regulated than stocks or forex. Scams, hacks, and exchange failures have cost investors billions. There's no FDIC insurance. If an exchange goes under, your funds can vanish. Regulation is evolving—governments are still figuring out how to treat crypto. That uncertainty adds risk.\n\nDespite that, crypto has attracted massive interest. Institutions are adding it to portfolios. Some see it as digital gold or a new asset class. As a trader, you need to understand it—but never risk more than you can afford to lose.",
+      },
+      {
+        type: "warning",
+        heading: "Critical Warning",
+        content:
+          "Never invest more in crypto than you can afford to lose completely. Hacks, scams, and regulatory crackdowns can wipe out holdings. Use reputable exchanges. Enable two-factor authentication. Consider cold storage for large amounts. Crypto is high-risk. Treat it that way.",
+      },
+      {
+        type: "preview",
+        heading: "Crypto Trading (Preview)",
+        content:
+          "Level 2 covers exchanges, wallets, volatility drivers, and charting. You'll learn how crypto moves differently than traditional markets—24/7, weekend gaps, funding rates. For now, know: crypto is a real market with real liquidity, but it's the Wild West. Tread carefully.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Crypto = digital, 24/7, volatile. High risk, less regulation. Never risk money you can't afford to lose. Level 2 goes deeper.",
+      },
     ],
     hasQuiz: true,
   },

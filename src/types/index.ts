@@ -16,7 +16,7 @@ export interface Lesson {
 }
 
 export interface LessonContent {
-  type: "text" | "analogy" | "warning" | "interactive" | "example" | "key-takeaway";
+  type: "text" | "analogy" | "warning" | "interactive" | "example" | "key-takeaway" | "pro-tip" | "preview";
   heading?: string;
   content: string;
   component?: string;
