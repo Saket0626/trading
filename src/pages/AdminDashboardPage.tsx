@@ -33,8 +33,13 @@ export function AdminDashboardPage() {
     URL.revokeObjectURL(url);
   }, []);
 
-  const dates = Object.keys(summary.visitsByDate).sort();
-  const last30Days = dates.slice(-30);
+  const last30Days: string[] = [];
+  const now = new Date();
+  for (let i = 29; i >= 0; i--) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - i);
+    last30Days.push(d.toISOString().slice(0, 10));
+  }
   const maxVisits = Math.max(
     1,
     ...last30Days.map((d) => summary.visitsByDate[d] || 0)
