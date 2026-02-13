@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Heart, Copy, Check } from "lucide-react";
+import { Copy, Check } from "lucide-react";
 import { useState } from "react";
 
 const PAYPAL_USER = "Saket Amanana";
@@ -29,14 +29,11 @@ export function DonationsPage() {
         </span>
       </nav>
 
-      <header className="mb-12 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-500 mb-4">
-          <Heart className="h-8 w-8" />
-        </div>
-        <h1 className="font-display text-3xl font-bold text-surface-900 dark:text-surface-100">
+      <header className="mb-8">
+        <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100 mb-1">
           Support This Project
         </h1>
-        <p className="mt-2 text-surface-600 dark:text-surface-400">
+        <p className="text-sm text-surface-500 dark:text-surface-400">
           If this platform has helped you, consider a donation. Every bit helps keep it free for everyone.
         </p>
       </header>
@@ -46,7 +43,7 @@ export function DonationsPage() {
           href={`https://paypal.me/${PAYPAL_ME}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="block p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-surface-50 dark:hover:bg-surface-800/80 transition-all"
+          className="block p-4 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 hover:border-surface-300 dark:hover:border-surface-600 transition-colors"
         >
           <div className="flex items-start gap-4">
             <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-[#00457C] flex items-center justify-center text-white font-bold text-sm">

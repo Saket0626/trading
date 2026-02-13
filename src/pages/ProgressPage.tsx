@@ -73,22 +73,22 @@ export function ProgressPage() {
   const { tier, nextTier, progressToNext } = getLevelTier(xp, progressPercent);
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="font-display text-3xl font-bold text-surface-900 dark:text-surface-100 mb-2">
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100 mb-1">
         Your Progress
       </h1>
-      <p className="text-surface-600 dark:text-surface-400 mb-12">
+      <p className="text-sm text-surface-500 dark:text-surface-400 mb-8">
         Track your learning journey and earned achievements.
       </p>
 
-      <div className="mb-8 p-6 rounded-xl border-2 border-primary-200 dark:border-primary-800 bg-primary-50/50 dark:bg-primary-900/10">
+      <div className="mb-6 p-4 rounded border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center">
-            <Award className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+          <div className="w-12 h-12 rounded border border-surface-200 dark:border-surface-700 flex items-center justify-center">
+            <Award className="h-6 w-6 text-surface-600 dark:text-surface-400" />
           </div>
           <div className="flex-1">
-            <p className="text-sm font-medium text-primary-600 dark:text-primary-400">Your Level</p>
-            <p className="text-2xl font-bold text-surface-900 dark:text-surface-100">{tier}</p>
+            <p className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide">Your Level</p>
+            <p className="text-lg font-semibold text-surface-900 dark:text-surface-100 tabular-nums">{tier}</p>
             {nextTier && (
               <div className="mt-2">
                 <div className="flex justify-between text-xs text-surface-500 mb-1">
@@ -107,15 +107,15 @@ export function ProgressPage() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
-        <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-              <Trophy className="h-7 w-7 text-amber-600 dark:text-amber-400" />
+      <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+        <div className="p-4 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded border border-surface-200 dark:border-surface-700 flex items-center justify-center">
+              <Trophy className="h-5 w-5 text-surface-500" />
             </div>
             <div>
-              <p className="text-3xl font-bold text-surface-900 dark:text-surface-100">{xp}</p>
-              <p className="text-sm text-surface-600 dark:text-surface-400">XP Earned</p>
+              <p className="text-lg font-semibold text-surface-900 dark:text-surface-100 tabular-nums">{xp}</p>
+              <p className="text-xs text-surface-500 dark:text-surface-400">XP</p>
             </div>
           </div>
         </div>

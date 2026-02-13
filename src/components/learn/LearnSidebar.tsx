@@ -26,9 +26,9 @@ export function LearnSidebar() {
 
   return (
     <aside className="w-64 flex-shrink-0 hidden lg:block">
-      <div className="sticky top-24 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 overflow-hidden">
-        <div className="p-4 border-b border-surface-200 dark:border-surface-700">
-          <h3 className="font-semibold text-surface-900 dark:text-surface-100">
+      <div className="sticky top-24 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 overflow-hidden">
+        <div className="p-3 border-b border-surface-200 dark:border-surface-700">
+          <h3 className="font-medium text-surface-900 dark:text-surface-100 text-sm">
             Curriculum
           </h3>
         </div>
@@ -55,8 +55,8 @@ export function LearnSidebar() {
               <div key={level.id} className="border-b border-surface-100 dark:border-surface-700 last:border-0">
                 <button
                   onClick={() => toggleLevel(level.id)}
-                  className={`w-full flex items-center gap-2 px-4 py-3 text-left ${
-                    isCurrentLevel ? "bg-primary-50 dark:bg-primary-900/20" : "hover:bg-surface-50 dark:hover:bg-surface-700/50"
+                  className={`w-full flex items-center gap-2 px-3 py-2.5 text-left text-sm ${
+                    isCurrentLevel ? "bg-surface-100 dark:bg-surface-700/50" : "hover:bg-surface-50 dark:hover:bg-surface-800/50"
                   } ${!unlocked ? "opacity-60" : ""}`}
                 >
                   {isExpanded ? (

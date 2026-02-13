@@ -55,11 +55,11 @@ export function MarketOverviewWidget() {
   };
 
   return (
-    <section className="py-8 border-b border-surface-200 dark:border-surface-800">
+    <section className="py-6 border-b border-surface-200 dark:border-surface-800">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-display text-xl font-bold text-surface-900 dark:text-surface-100 flex items-center gap-2">
-            <TrendingUp className="h-6 w-6 text-primary-500" />
+          <h2 className="text-base font-semibold text-surface-900 dark:text-surface-100 flex items-center gap-2">
+            <TrendingUp className="h-4 w-4 text-surface-500" />
             Market Overview
           </h2>
           <Link
@@ -69,21 +69,21 @@ export function MarketOverviewWidget() {
             Trade →
           </Link>
         </div>
-        <div className="grid sm:grid-cols-3 gap-6">
-          <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
-            <h3 className="text-sm font-semibold text-surface-500 dark:text-surface-400 uppercase mb-2">
+        <div className="grid sm:grid-cols-3 gap-4">
+          <div className="rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
+            <h3 className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-2">
               Indices & Stocks
             </h3>
             {INDICES.map(renderRow)}
           </div>
-          <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
-            <h3 className="text-sm font-semibold text-surface-500 dark:text-surface-400 uppercase mb-2">
+          <div className="rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
+            <h3 className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-2">
               Forex
             </h3>
             {FOREX.map(renderRow)}
           </div>
-          <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
-            <h3 className="text-sm font-semibold text-surface-500 dark:text-surface-400 uppercase mb-2">
+          <div className="rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
+            <h3 className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-2">
               Crypto
             </h3>
             {CRYPTO.map(renderRow)}

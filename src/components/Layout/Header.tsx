@@ -40,16 +40,16 @@ export function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-surface-200 dark:border-surface-800 bg-surface-50/95 dark:bg-surface-950/95 backdrop-blur supports-[backdrop-filter]:bg-surface-50/80 dark:supports-[backdrop-filter]:bg-surface-950/80"
+      className="sticky top-0 z-50 w-full border-b border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-950"
       role="banner"
     >
       <div className="container mx-auto px-4 flex h-16 items-center justify-between gap-4">
         <Link
           to="/"
-          className="flex items-center gap-2 font-display font-bold text-lg shrink-0"
+          className="flex items-center gap-2 font-semibold text-base shrink-0"
           aria-label="Trading Edu - Home"
         >
-          <GraduationCap className="h-8 w-8 text-primary-500" aria-hidden />
+          <GraduationCap className="h-6 w-6 text-primary-600 dark:text-primary-400" aria-hidden />
           <span className="hidden sm:inline">Trading Edu</span>
         </Link>
 
@@ -67,7 +67,7 @@ export function Header() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search lessons, terms..."
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-100 dark:bg-surface-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full pl-9 pr-3 py-2 rounded border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
               aria-label="Search"
             />
           </div>
@@ -78,7 +78,7 @@ export function Header() {
             <Link
               key={link.to}
               to={link.to}
-              className="px-3 py-2 rounded-lg text-surface-600 dark:text-surface-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-surface-100 dark:hover:bg-surface-800 font-medium transition-colors"
+              className="px-3 py-2 rounded text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-800 text-sm font-medium transition-colors duration-150"
             >
               {link.label}
             </Link>
@@ -105,7 +105,7 @@ export function Header() {
 
         <div className="flex items-center gap-2 shrink-0">
           <span
-            className="hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-medium"
+            className="hidden sm:flex items-center gap-1 px-2 py-1 rounded border border-surface-200 dark:border-surface-700 text-surface-700 dark:text-surface-300 text-sm font-medium tabular-nums"
             title="XP Earned"
           >
             {xp} XP
@@ -124,7 +124,7 @@ export function Header() {
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="md:hidden p-2 rounded text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 focus:outline-none focus:ring-1 focus:ring-primary-500"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -148,7 +148,7 @@ export function Header() {
                 key={link.to}
                 to={link.to}
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-3 px-4 rounded-lg text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-800 font-medium"
+                className="py-3 px-4 rounded text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-800 text-sm font-medium transition-colors duration-150"
               >
                 {link.label}
               </Link>

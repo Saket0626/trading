@@ -10,11 +10,11 @@ export function Footer() {
 
   return (
     <>
-      <footer className="border-t border-surface-200 dark:border-surface-800 bg-surface-100 dark:bg-surface-900/50 mt-auto">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer className="border-t border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-900 mt-auto">
+      <div className="container mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="md:col-span-2">
-            <h3 className="font-display font-semibold text-surface-900 dark:text-surface-100 mb-2">
+            <h3 className="font-semibold text-surface-900 dark:text-surface-100 text-sm mb-2">
               Trading Education Platform
             </h3>
             <p className="text-sm text-surface-600 dark:text-surface-400 max-w-md">
@@ -23,7 +23,7 @@ export function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">Learn</h4>
+            <h4 className="font-medium text-surface-900 dark:text-surface-100 text-sm mb-2">Learn</h4>
             <ul className="space-y-1 text-sm text-surface-600 dark:text-surface-400">
               <li>
                 <Link to="/learn/1" className="hover:text-primary-600 dark:hover:text-primary-400">
@@ -53,7 +53,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-surface-900 dark:text-surface-100 mb-2">Resources</h4>
+            <h4 className="font-medium text-surface-900 dark:text-surface-100 text-sm mb-2">Resources</h4>
             <ul className="space-y-1 text-sm text-surface-600 dark:text-surface-400">
               <li>
                 <Link to="/tools" className="hover:text-primary-600 dark:hover:text-primary-400">
@@ -83,7 +83,7 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-6 border-t border-surface-200 dark:border-surface-800 flex items-center justify-between gap-4 flex-wrap">
+        <div className="mt-6 pt-4 border-t border-surface-200 dark:border-surface-800 flex items-center justify-between gap-4 flex-wrap">
           <p className="text-xs text-surface-500 dark:text-surface-500">
             <strong>Important:</strong> Trading involves substantial risk of loss. Past performance
             does not guarantee future results. This platform is for educational purposes only. Never

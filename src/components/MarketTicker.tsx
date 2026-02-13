@@ -17,7 +17,7 @@ export function MarketTicker() {
   const { quotes, loading } = useTickerData(30000);
 
   return (
-    <div className="overflow-hidden border-y border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-900/50 py-3">
+    <div className="overflow-hidden border-b border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-900 py-2.5">
       <div className="ticker-scroll flex gap-x-8 gap-y-2 whitespace-nowrap animate-marquee">
         {TICKER_ITEMS.map((item) => {
           const quote = quotes[item.symbol];
@@ -88,7 +88,7 @@ export function MarketTicker() {
           );
         })}
       </div>
-      <p className="text-xs text-surface-500 text-center mt-2">
+      <p className="text-[10px] text-surface-500 text-center mt-1.5">
         Live data • Crypto: Binance • Stocks: Finnhub (add VITE_FINNHUB_API_KEY for stocks)
       </p>
     </div>

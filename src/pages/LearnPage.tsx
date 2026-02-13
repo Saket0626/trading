@@ -49,29 +49,29 @@ export function LearnPage() {
         <span className="text-surface-900 dark:text-surface-100">Level {level.id}</span>
       </nav>
 
-      <header className="mb-12">
-        <h1 className="font-display text-3xl md:text-4xl font-bold text-surface-900 dark:text-surface-100">
+      <header className="mb-8">
+        <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100">
           Level {level.id}: {level.title}
         </h1>
-        <p className="mt-2 text-surface-600 dark:text-surface-400 text-lg">
+        <p className="mt-1 text-surface-500 dark:text-surface-400 text-sm">
           {level.description}
         </p>
       </header>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {modules.map((module) => (
           <Link
             key={module!.id}
             to={`/learn/${level.id}/${module!.slug}`}
-            className="block p-6 rounded-xl border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all"
+            className="block p-4 rounded border border-surface-200 dark:border-surface-700 hover:border-surface-300 dark:hover:border-surface-600 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-colors"
           >
-            <h2 className="font-display font-semibold text-lg text-surface-900 dark:text-surface-100">
+            <h2 className="font-medium text-surface-900 dark:text-surface-100 text-sm">
               {module!.title}
             </h2>
-            <p className="mt-2 text-sm text-surface-600 dark:text-surface-400 line-clamp-2">
+            <p className="mt-1 text-xs text-surface-500 dark:text-surface-400 line-clamp-2">
               {module!.description}
             </p>
-            <p className="mt-4 text-sm text-primary-600 dark:text-primary-400 font-medium">
+            <p className="mt-3 text-xs text-primary-600 dark:text-primary-400 font-medium">
               {module!.lessonIds.length} lessons →
             </p>
           </Link>

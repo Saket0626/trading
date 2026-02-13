@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { TrendingUp, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const TRADINGVIEW_URL = "https://www.tradingview.com/";
 
@@ -16,21 +16,18 @@ export function TradePage() {
         </span>
       </nav>
 
-      <header className="mb-12 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-500 mb-4">
-          <TrendingUp className="h-8 w-8" />
-        </div>
-        <h1 className="font-display text-3xl font-bold text-surface-900 dark:text-surface-100">
+      <header className="mb-8">
+        <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100 mb-1">
           Real Paper Trading
         </h1>
-        <p className="mt-2 text-surface-600 dark:text-surface-400">
+        <p className="text-sm text-surface-500 dark:text-surface-400">
           Ready to practice with real market data? Use a professional platform to start your paper trading experience.
         </p>
       </header>
 
       <div className="space-y-6">
-        <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
-          <h2 className="font-display text-xl font-semibold text-surface-900 dark:text-surface-100 mb-3">
+        <div className="p-4 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+          <h2 className="font-medium text-surface-900 dark:text-surface-100 text-sm mb-2">
             TradingView
           </h2>
           <p className="text-surface-700 dark:text-surface-300 text-sm leading-relaxed">
@@ -47,7 +44,7 @@ export function TradePage() {
             href={TRADINGVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-semibold text-sm transition-colors"
+            className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded bg-primary-600 hover:bg-primary-700 text-white font-medium text-sm transition-colors"
           >
             Create Account on TradingView
             <ExternalLink className="h-4 w-4" />
