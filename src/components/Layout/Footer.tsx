@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
+import { Settings } from "lucide-react";
+import { useState } from "react";
+import { useAdmin } from "../../contexts/AdminContext";
+import { AdminAuthModal } from "../admin/AdminAuthModal";
 
 export function Footer() {
+  const { activate, attemptsRemaining } = useAdmin();
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <footer className="border-t border-surface-200 dark:border-surface-800 bg-surface-100 dark:bg-surface-900/50 mt-auto">
+    <>
+      <footer className="border-t border-surface-200 dark:border-surface-800 bg-surface-100 dark:bg-surface-900/50 mt-auto">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
@@ -62,17 +70,37 @@ export function Footer() {
                   Glossary
                 </Link>
               </li>
+              <li>
+                <Link to="/donations" className="hover:text-primary-600 dark:hover:text-primary-400">
+                  Donations
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-6 border-t border-surface-200 dark:border-surface-800">
+        <div className="mt-8 pt-6 border-t border-surface-200 dark:border-surface-800 flex items-center justify-between gap-4 flex-wrap">
           <p className="text-xs text-surface-500 dark:text-surface-500">
             <strong>Important:</strong> Trading involves substantial risk of loss. Past performance
             does not guarantee future results. This platform is for educational purposes only. Never
             trade with money you cannot afford to lose. 70-90% of retail traders lose money.
           </p>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="p-1.5 rounded text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+            aria-label="Settings"
+          >
+            <Settings className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </footer>
+    <AdminAuthModal
+      isOpen={modalOpen}
+      onClose={() => setModalOpen(false)}
+      onSuccess={() => {}}
+      onAttempt={activate}
+      attemptsRemaining={attemptsRemaining}
+    />
+    </>
   );
 }

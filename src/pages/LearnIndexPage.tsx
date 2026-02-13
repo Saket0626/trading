@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { LEVELS } from "../data/curriculum";
-import { ChevronRight, Lock } from "lucide-react";
+import { ChevronRight, Lock, Crown } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
+import { useAdmin } from "../contexts/AdminContext";
+import { canAccessLevel } from "../lib/access";
 
 const levelColors: Record<string, string> = {
   emerald: "from-emerald-500 to-teal-600",
@@ -11,18 +13,13 @@ const levelColors: Record<string, string> = {
   rose: "from-rose-500 to-pink-600",
 };
 
-const EXAM_PASS_PERCENT = 80;
-
 export function LearnIndexPage() {
   const { getQuizScore } = useProgress();
-  const level1ExamScore = getQuizScore("level-1-exam");
-  const level2ExamScore = getQuizScore("level-2-exam");
-  const level3ExamScore = getQuizScore("level-3-exam");
-  const level4ExamScore = getQuizScore("level-4-exam");
-  const level2Unlocked = level1ExamScore !== undefined && level1ExamScore >= EXAM_PASS_PERCENT;
-  const level3Unlocked = level2ExamScore !== undefined && level2ExamScore >= EXAM_PASS_PERCENT;
-  const level4Unlocked = level3ExamScore !== undefined && level3ExamScore >= EXAM_PASS_PERCENT;
-  const level5Unlocked = level4ExamScore !== undefined && level4ExamScore >= EXAM_PASS_PERCENT;
+  const { isAdmin } = useAdmin();
+  const level2Unlocked = canAccessLevel(2, getQuizScore, isAdmin);
+  const level3Unlocked = canAccessLevel(3, getQuizScore, isAdmin);
+  const level4Unlocked = canAccessLevel(4, getQuizScore, isAdmin);
+  const level5Unlocked = canAccessLevel(5, getQuizScore, isAdmin);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -58,10 +55,15 @@ export function LearnIndexPage() {
               <div className="flex-1 min-w-0">
                 <h2 className="font-display font-semibold text-lg text-surface-900 dark:text-surface-100 flex items-center gap-2">
                   {level.title}
-                  {locked && (
+                  {locked && !isAdmin && (
                     <span className="inline-flex items-center gap-1 text-sm font-normal text-amber-600 dark:text-amber-400">
                       <Lock className="h-4 w-4" />
                       Locked
+                    </span>
+                  )}
+                  {isAdmin && (
+                    <span className="inline-flex items-center gap-1 text-sm font-normal text-amber-600 dark:text-amber-400" title="Admin unlocked">
+                      <Crown className="h-4 w-4" />
                     </span>
                   )}
                 </h2>
@@ -120,7 +122,7 @@ export function LearnIndexPage() {
           );
           return (
             <div key={level.id}>
-              {locked ? (
+              {locked && !isAdmin ? (
                 <div className="block">{cardContent}</div>
               ) : (
                 <Link to={`/learn/${level.id}`} className="block group">

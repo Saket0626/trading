@@ -5,6 +5,8 @@ import { level1Quizzes } from "../data/quizzes/level1";
 import { level2Quizzes } from "../data/quizzes/level2";
 import { level3Quizzes, level4Quizzes, level5Quizzes } from "../data/quizzes/level3-4-5";
 import { useProgress } from "../contexts/ProgressContext";
+import { useAdmin } from "../contexts/AdminContext";
+import { trackQuizAttempt } from "../lib/analytics";
 import { LessonContentBlock } from "../components/lesson/LessonContent";
 import { Quiz } from "../components/quiz/Quiz";
 import { QuizResults } from "../components/quiz/QuizResults";
@@ -19,6 +21,7 @@ export function LessonPage() {
     lessonSlug: string;
   }>();
   const { completeLesson, completeQuiz, isLessonComplete } = useProgress();
+  const { isAdmin } = useAdmin();
 
   const lesson = getLessonBySlug(lessonSlug || "");
 
@@ -67,6 +70,7 @@ export function LessonPage() {
   };
 
   const handleQuizComplete = (score: number) => {
+    trackQuizAttempt(lesson.id, score);
     setQuizStateForLesson({ lessonId: lesson.id, score });
     completeQuiz(lesson.id, score);
   };
@@ -137,6 +141,7 @@ export function LessonPage() {
                   questions={quizQuestions}
                   onComplete={handleQuizComplete}
                   minPassScore={80}
+                  isAdmin={isAdmin}
                 />
               )}
             </QuizErrorBoundary>

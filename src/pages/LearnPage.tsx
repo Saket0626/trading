@@ -2,12 +2,13 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { LEVELS } from "../data/curriculum";
 import { MODULES } from "../data/curriculum";
 import { useProgress } from "../contexts/ProgressContext";
-
-const EXAM_PASS_PERCENT = 80;
+import { useAdmin } from "../contexts/AdminContext";
+import { canAccessLevel } from "../lib/access";
 
 export function LearnPage() {
   const { levelId } = useParams<{ levelId: string }>();
   const { getQuizScore } = useProgress();
+  const { isAdmin } = useAdmin();
   const level = LEVELS.find((l) => l.id === parseInt(levelId || "1"));
 
   if (!level) {
@@ -21,18 +22,14 @@ export function LearnPage() {
     );
   }
 
-  const level1ExamScore = getQuizScore("level-1-exam");
-  const level2ExamScore = getQuizScore("level-2-exam");
-  const level3ExamScore = getQuizScore("level-3-exam");
-  const level4ExamScore = getQuizScore("level-4-exam");
-  const level2Unlocked = level1ExamScore !== undefined && level1ExamScore >= EXAM_PASS_PERCENT;
-  const level3Unlocked = level2ExamScore !== undefined && level2ExamScore >= EXAM_PASS_PERCENT;
-  const level4Unlocked = level3ExamScore !== undefined && level3ExamScore >= EXAM_PASS_PERCENT;
-  const level5Unlocked = level4ExamScore !== undefined && level4ExamScore >= EXAM_PASS_PERCENT;
-  if (level.id === 2 && !level2Unlocked) return <Navigate to="/learn/1" replace />;
-  if (level.id === 3 && !level3Unlocked) return <Navigate to="/learn/2" replace />;
-  if (level.id === 4 && !level4Unlocked) return <Navigate to="/learn/3" replace />;
-  if (level.id === 5 && !level5Unlocked) return <Navigate to="/learn/4" replace />;
+  const level2Unlocked = canAccessLevel(2, getQuizScore, isAdmin);
+  const level3Unlocked = canAccessLevel(3, getQuizScore, isAdmin);
+  const level4Unlocked = canAccessLevel(4, getQuizScore, isAdmin);
+  const level5Unlocked = canAccessLevel(5, getQuizScore, isAdmin);
+  if (!isAdmin && level.id === 2 && !level2Unlocked) return <Navigate to="/learn/1" replace />;
+  if (!isAdmin && level.id === 3 && !level3Unlocked) return <Navigate to="/learn/2" replace />;
+  if (!isAdmin && level.id === 4 && !level4Unlocked) return <Navigate to="/learn/3" replace />;
+  if (!isAdmin && level.id === 5 && !level5Unlocked) return <Navigate to="/learn/4" replace />;
 
   const modules = level.moduleIds
     .map((id) => MODULES.find((m) => m.id === id))

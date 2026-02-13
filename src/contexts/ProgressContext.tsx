@@ -7,6 +7,7 @@ import {
 } from "react";
 import type { ReactNode } from "react";
 import type { UserProgress } from "../types";
+import { trackProgressUpdate } from "../lib/analytics";
 
 const STORAGE_KEY = "trading-edu-progress";
 
@@ -45,6 +46,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      trackProgressUpdate(progress.completedLessons);
     } catch {
       console.warn("Failed to save progress to localStorage");
     }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import type { QuizQuestion } from "../../types";
-import { ChevronRight, Check, X } from "lucide-react";
+import { ChevronRight, Check, X, Zap, CheckCircle } from "lucide-react";
 import { clsx } from "clsx";
 
 function validateScore(score: number): number {
@@ -14,9 +14,10 @@ interface QuizProps {
   questions: QuizQuestion[];
   onComplete: (score: number) => void;
   minPassScore?: number;
+  isAdmin?: boolean;
 }
 
-export function Quiz({ questions, onComplete }: QuizProps) {
+export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -74,6 +75,26 @@ export function Quiz({ questions, onComplete }: QuizProps) {
 
   return (
     <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-6 md:p-8">
+      {isAdmin && (
+        <div className="flex flex-wrap gap-2 mb-4 p-3 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
+          <button
+            type="button"
+            onClick={() => onComplete(100)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-orange-500 hover:bg-orange-600 text-orange-950"
+          >
+            <Zap className="h-4 w-4" />
+            Skip Quiz (Admin)
+          </button>
+          <button
+            type="button"
+            onClick={() => onComplete(100)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-orange-600 hover:bg-orange-700 text-orange-50"
+          >
+            <CheckCircle className="h-4 w-4" />
+            Auto-Complete 100%
+          </button>
+        </div>
+      )}
       <div className="flex items-center justify-between mb-6">
         <span className="text-sm font-medium text-surface-500 dark:text-surface-400">
           Question {currentIndex + 1} of {questions.length}

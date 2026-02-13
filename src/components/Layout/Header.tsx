@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Moon, Sun, Menu, X, GraduationCap, Search } from "lucide-react";
+import { Moon, Sun, Menu, X, GraduationCap, Search, BarChart3, LogOut } from "lucide-react";
 import { useState, useCallback } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useProgress } from "../../contexts/ProgressContext";
+import { useAdmin } from "../../contexts/AdminContext";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -10,11 +11,13 @@ const navLinks = [
   { to: "/simulator", label: "Practice" },
   { to: "/tools", label: "Tools" },
   { to: "/progress", label: "Progress" },
+  { to: "/donations", label: "Donations" },
 ];
 
 export function Header() {
   const { setTheme, resolvedTheme } = useTheme();
   const { xp } = useProgress();
+  const { isAdmin, deactivate } = useAdmin();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -79,6 +82,24 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          {isAdmin && (
+            <>
+              <Link
+                to="/admin/dashboard"
+                className="px-3 py-2 rounded-lg text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 font-medium transition-colors flex items-center gap-1.5"
+              >
+                <BarChart3 className="h-4 w-4" />
+                Analytics
+              </Link>
+              <button
+                onClick={deactivate}
+                className="px-3 py-2 rounded-lg text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 font-medium transition-colors flex items-center gap-1.5"
+              >
+                <LogOut className="h-4 w-4" />
+                Exit Admin
+              </button>
+            </>
+          )}
         </nav>
 
         <div className="flex items-center gap-2 shrink-0">
@@ -131,6 +152,28 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            {isAdmin && (
+              <>
+                <Link
+                  to="/admin/dashboard"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-3 px-4 rounded-lg text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-900/20 font-medium flex items-center gap-2"
+                >
+                  <BarChart3 className="h-4 w-4" />
+                  Analytics
+                </Link>
+                <button
+                  onClick={() => {
+                    deactivate();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="py-3 px-4 rounded-lg text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-900/20 font-medium flex items-center gap-2 text-left w-full"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Exit Admin Mode
+                </button>
+              </>
+            )}
           </div>
         </nav>
       )}
