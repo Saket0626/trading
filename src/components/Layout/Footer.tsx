@@ -75,11 +75,7 @@ export function Footer() {
                   API Setup
                 </Link>
               </li>
-              <li>
-                <Link to="/donations" className="hover:text-primary-600 dark:hover:text-primary-400">
-                  Donations
-                </Link>
-              </li>
+              {/* Donations temporarily hidden from footer */}
             </ul>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 import { useProgress } from "../../contexts/ProgressContext";
 import { useAdmin } from "../../contexts/AdminContext";
 
+// Donations temporarily hidden from nav – route & page still work at /donations
 const navLinks = [
   { to: "/", label: "Home" },
   { to: "/learn", label: "Learn" },
@@ -12,7 +13,6 @@ const navLinks = [
   { to: "/trade", label: "Trade" },
   { to: "/tools", label: "Tools" },
   { to: "/progress", label: "Profile" },
-  { to: "/donations", label: "Donations" },
 ];
 
 export function Header() {
