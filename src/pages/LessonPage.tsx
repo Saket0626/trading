@@ -12,7 +12,7 @@ import { LessonTOC } from "../components/lesson/LessonTOC";
 import { Quiz } from "../components/quiz/Quiz";
 import { QuizResults } from "../components/quiz/QuizResults";
 import { QuizErrorBoundary } from "../components/quiz/QuizErrorBoundary";
-import { ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MODULES } from "../data/curriculum";
 import { LearnSidebar } from "../components/learn/LearnSidebar";
 
@@ -29,7 +29,7 @@ export function LessonPage() {
     moduleSlug: string;
     lessonSlug: string;
   }>();
-  const { completeLesson, completeQuiz, isLessonComplete } = useProgress();
+  const { completeLesson, completeQuiz } = useProgress();
   const { isAdmin } = useAdmin();
 
   const lesson = getLessonBySlug(lessonSlug || "");
@@ -73,10 +73,6 @@ export function LessonPage() {
   const hasQuiz = lesson.hasQuiz && quizQuestions.length > 0; // Only show quiz if we have questions
   const showQuizResults =
     quizStateForLesson !== null && quizStateForLesson.lessonId === lesson.id;
-
-  const handleMarkComplete = () => {
-    completeLesson(lesson.id);
-  };
 
   const handleQuizComplete = (score: number) => {
     trackQuizAttempt(lesson.id, score);
@@ -214,21 +210,7 @@ export function LessonPage() {
           </section>
         )}
 
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-surface-200 dark:border-surface-700">
-          <button
-            onClick={handleMarkComplete}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
-          >
-            {isLessonComplete(lesson.id) ? (
-              <>
-                <Check className="h-5 w-5" />
-                Completed
-              </>
-            ) : (
-              "Mark as Complete"
-            )}
-          </button>
-
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-end gap-4 pt-8 border-t border-surface-200 dark:border-surface-700">
           <div className="flex gap-2">
             {prevLesson ? (
               <Link
