@@ -82,6 +82,7 @@ export function LessonPage() {
     trackQuizAttempt(lesson.id, score);
     setQuizStateForLesson({ lessonId: lesson.id, score });
     completeQuiz(lesson.id, score);
+    if (score === 100) completeLesson(lesson.id);
   };
 
   const tocItems = lesson.content
@@ -94,11 +95,15 @@ export function LessonPage() {
     .filter((x): x is { id: string; title: string } => Boolean(x));
 
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Update scroll progress bar (no auto-complete)
   useEffect(() => {
+    if (!lesson) return;
     const onScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0);
+      const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+      setScrollProgress(pct);
     };
     window.addEventListener("scroll", onScroll);
     onScroll();
@@ -226,30 +231,30 @@ export function LessonPage() {
 
           <div className="flex gap-2">
             {prevLesson ? (
-              <a
-                href={`/learn/${levelId}/${moduleSlug}/${prevLesson.slug}`}
+              <Link
+                to={`/learn/${levelId}/${moduleSlug}/${prevLesson.slug}`}
                 className="inline-flex items-center gap-2 px-4 py-2 text-surface-600 dark:text-surface-400 hover:text-primary-600 dark:hover:text-primary-400 font-medium"
               >
                 <ChevronLeft className="h-5 w-5" />
                 Previous
-              </a>
+              </Link>
             ) : null}
             {nextLesson ? (
-              <a
-                href={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
+              <Link
+                to={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors"
               >
                 Next: {nextLesson.title}
                 <ChevronRight className="h-5 w-5" />
-              </a>
+              </Link>
             ) : (
-              <a
-                href={`/learn/${levelId}`}
+              <Link
+                to={`/learn/${levelId}`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors"
               >
                 Back to Level {levelId}
                 <ChevronRight className="h-5 w-5" />
-              </a>
+              </Link>
             )}
           </div>
         </div>
