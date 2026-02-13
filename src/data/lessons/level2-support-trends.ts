@@ -45,6 +45,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "You're not trading against a random chart—you're trading against other participants who also see these levels. When you know where the crowd is looking, you can plan entries (near support in an uptrend) and exits (near resistance) with clearer risk.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Why do support and resistance work?", component: "ConceptCheck", props: { question: "Why do support and resistance work?", reveal: "Collective memory and order flow—traders remember where price reversed and cluster orders at those levels." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "S/R works because of collective memory and order flow at key levels." },
     ]
   ),
@@ -69,6 +70,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "Many beginners draw too many lines or draw through price. Keep it clean: focus on the clearest, most obvious levels. If a level is fuzzy, it's probably not strong enough to trade.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How many touches make a level stronger?", component: "ConceptCheck", props: { question: "How many touches make a level stronger?", reveal: "At least two; more touches that hold = stronger. Fewer, clearer levels beat a cluttered chart." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Identify S/R where price has reacted multiple times. Fewer, clearer levels beat a cluttered chart." },
     ]
   ),
@@ -87,6 +89,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "A level that has been tested three or four times and held is stronger than one tested once. Each successful hold reinforces the level in traders' minds. Conversely, after a level breaks, it often loses its power—so focus on levels that have recently held.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What happens to a level after it breaks?", component: "ConceptCheck", props: { question: "What happens to a level after it breaks?", reveal: "It often loses significance. Focus on levels that have recently held." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "More touches that hold = stronger level. Broken levels often lose significance." },
     ]
   ),
@@ -105,6 +108,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "When price breaks below support, that support often becomes resistance on the way back up. Why? Traders who bought at support and held are now sitting on losses; when price returns to that level, they may sell to break even. Same in reverse: broken resistance can become support. This 'role reversal' is one of the most reliable concepts in technical analysis.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What happens when support breaks?", component: "ConceptCheck", props: { question: "What happens when support breaks?", reveal: "Broken support often acts as new resistance (role reversal). Same idea in reverse for broken resistance." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Broken support often acts as new resistance; broken resistance often acts as new support." },
     ]
   ),
@@ -123,6 +127,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "Draw levels where price clearly reacted—not where you wish it had. Use the body of the candle or the wick consistently (many use the wick for the true extreme). If you're erasing and redrawing constantly, the level probably isn't valid. The best levels are obvious at a glance.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How should you draw S/R?", component: "ConceptCheck", props: { question: "How should you draw S/R?", reveal: "Where price clearly reacted. Keep it simple and consistent; don't force or clutter." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Draw S/R where price clearly reacted. Keep it simple and consistent." },
     ]
   ),
@@ -141,6 +146,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "Support and resistance don't have to be horizontal. A moving average (e.g. 50-day or 200-day) can act as dynamic support in an uptrend—price pulls back to it and bounces. In a downtrend, the MA can act as dynamic resistance. These levels move with price, so they adapt to the trend.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Can moving averages act as support or resistance?", component: "ConceptCheck", props: { question: "Can moving averages act as support or resistance?", reveal: "Yes—dynamic S/R. In uptrends price often respects the MA as support." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "MAs can act as dynamic S/R. In uptrends price often respects the MA as support." },
     ]
   ),
@@ -159,6 +165,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "Round numbers (100, 150, 200, 1000, etc.) and half-rounds (50, 150.50) often attract orders. Traders place stops and targets at these levels, so they become minor or major S/R. Don't rely on them alone, but be aware when price is approaching a big round number.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Why do round numbers often act as S/R?", component: "ConceptCheck", props: { question: "Why do round numbers often act as S/R?", reveal: "Psychological levels—order clustering. Traders place orders at round numbers." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Round numbers often act as psychological S/R because of order clustering." },
     ]
   ),
@@ -177,6 +184,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "After a move, traders often look for pullbacks to Fibonacci retracement levels: 38.2%, 50%, and 61.8% of the move. These levels frequently coincide with support or resistance. For example, in an uptrend, a pullback to 50% or 61.8% may find buyers. Fib works best when it aligns with a visible horizontal S/R level.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Which Fib levels are commonly used for S/R?", component: "ConceptCheck", props: { question: "Which Fib levels are commonly used for S/R?", reveal: "38.2%, 50%, 61.8% retracements often align with S/R. Use with other confirmation." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Fib retracements (38.2%, 50%, 61.8%) often align with S/R. Use with other confirmation." },
     ]
   ),
@@ -195,6 +203,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "Volume profile shows how much volume traded at each price level. Levels where a lot of volume occurred (high-volume nodes) often act as support or resistance—they represent price areas where many participants have a stake. The point of control (POC) is the price with the most volume and often acts as a magnet or key level.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What does volume profile show?", component: "ConceptCheck", props: { question: "What does volume profile show?", reveal: "Levels with the most trading. These often become S/R (high-volume nodes)." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Volume profile highlights levels with the most trading; these often become S/R." },
     ]
   ),
@@ -219,6 +228,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "Entering before confirmation leads to fake-outs. A break that fails and reverses is common. Wait for the candle to close beyond the level or for a clear rejection candle.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What should you plan for at S/R?", component: "ConceptCheck", props: { question: "What should you plan for at S/R?", reveal: "Both bounce and break. Wait for confirmation and use a stop. Don't assume one outcome." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "At S/R, plan for both bounce and break. Wait for confirmation and use a stop." },
     ]
   ),
@@ -237,6 +247,7 @@ export const supportResistanceLessons: Lesson[] = [
         content:
           "Support = floor (buying). Resistance = ceiling (selling). Levels work due to psychology and memory. Identify clear horizontal levels with multiple touches. Broken support becomes resistance and vice versa. Use dynamic S/R (MAs), round numbers, and Fib when they align. At S/R, wait for bounce or break confirmation and always use a stop.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What are the keys to using S/R?", component: "ConceptCheck", props: { question: "What are the keys to using S/R?", reveal: "Draw cleanly, trade with confirmation, and manage risk. S/R is foundational." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "S/R is foundational. Draw it cleanly, trade with confirmation, and manage risk." },
     ],
     true
@@ -259,6 +270,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "In a downtrend, price makes a series of lower highs and lower lows. Each rally fails to make a new high, and each drop makes a new low. Sellers are in control. A downtrend line is drawn along the highs—price often respects it as resistance on bounces.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How do you define a downtrend?", component: "ConceptCheck", props: { question: "How do you define a downtrend?", reveal: "Lower highs and lower lows. Draw the trendline along the highs." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Downtrend = lower highs, lower lows. Draw the trendline along the highs." },
     ]
   ),
@@ -277,6 +289,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "Price doesn't always trend. In a range, price oscillates between a support and resistance zone without making consistent higher highs or lower lows. Trend-following strategies often fail in ranges; mean reversion (buying support, selling resistance) can work. Identify the range and don't force a trend.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What can you do in a ranging market?", component: "ConceptCheck", props: { question: "What can you do in a ranging market?", reveal: "Trade the range (buy support, sell resistance) or wait for a breakout. No clear trend." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Ranging markets have no clear trend. Trade the range or wait for a breakout." },
     ]
   ),
@@ -295,6 +308,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "An uptrend line connects at least two significant lows; the line slopes up. A downtrend line connects at least two significant highs; the line slopes down. Use touches that are clear swing points—not every tiny wick. The more touches, the more valid the line. Don't force a line through price; if it doesn't fit, the trend may be weak or over.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How many points do you need to draw a trendline?", component: "ConceptCheck", props: { question: "How many points do you need to draw a trendline?", reveal: "At least two swing lows (uptrend) or swing highs (downtrend). More touches = stronger line." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Connect at least two swing lows (uptrend) or swing highs (downtrend). More touches = stronger line." },
     ]
   ),
@@ -313,6 +327,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "A trendline drawn from two points is provisional. When price comes back and touches the line a third time (or more) and holds, the trendline is validated. If price slices through on the third touch, the trend may be weakening or over. Use the third touch to confirm before relying on the line for entries.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What does a third touch on a trendline do?", component: "ConceptCheck", props: { question: "What does a third touch on a trendline do?", reveal: "If it holds, it validates the trendline. A break on the third touch suggests weakness." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "A third touch that holds validates the trendline. A break on the third touch suggests weakness." },
     ]
   ),
@@ -331,6 +346,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "A clear break of a validated trendline (especially on a close) can signal a potential trend change or pause. In an uptrend, a break below the trendline might lead to a pullback or reversal. Don't reverse your position on the first tick—wait for confirmation (e.g. close below, follow-through). False breaks are common; price sometimes wicks through and then resumes the trend.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Should you act immediately on a trendline break?", component: "ConceptCheck", props: { question: "Should you act immediately on a trendline break?", reveal: "Wait for confirmation; false breaks happen. Trendline breaks can signal change but need confirmation." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Trendline breaks can signal change. Wait for confirmation; be aware of false breaks." },
     ]
   ),
@@ -349,6 +365,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "A channel is formed by two parallel trendlines—one along the lows, one along the highs. In an uptrend channel, price tends to bounce between the lower and upper line. You can buy near the lower line and take profit near the upper line, with a stop below the channel. Same idea in reverse for a downtrend channel.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How do you trade a channel?", component: "ConceptCheck", props: { question: "How do you trade a channel?", reveal: "Trade bounces within the channel (buy support, sell resistance) or breakouts. Two parallel lines contain price." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Channels contain price between two parallel lines. Trade bounces within the channel or breakouts." },
     ]
   ),
@@ -367,6 +384,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "A steep trendline (price rising or falling quickly) often doesn't last as long—it can be exhausted. A more gentle, consistent slope often indicates a healthier, more sustainable trend. Also look at consistency: does price keep making higher lows (uptrend) or lower highs (downtrend) without big violations? That consistency suggests strength.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Do steep trends or gentler trends tend to last longer?", component: "ConceptCheck", props: { question: "Do steep trends or gentler trends tend to last longer?", reveal: "Gentler, consistent trends often last longer. Steep trends can burn out quickly." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Gentler, consistent trends often last longer. Steep trends can burn out quickly." },
     ]
   ),
@@ -385,6 +403,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "The saying 'trend is your friend' means that taking trades in the direction of the prevailing trend has a higher probability of success than fighting it. In an uptrend, look for buy opportunities on pullbacks (to the trendline, MA, or support). In a downtrend, look for sell opportunities on bounces. You don't have to catch the exact bottom or top—catching a portion of the trend is enough.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What does 'trend is your friend' mean?", component: "ConceptCheck", props: { question: "What does 'trend is your friend' mean?", reveal: "Align trades with the trend. Buy pullbacks in uptrends, sell bounces in downtrends." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Align your trades with the trend. Buy pullbacks in uptrends, sell bounces in downtrends." },
     ]
   ),
@@ -408,6 +427,7 @@ export const trendlinesLessons: Lesson[] = [
         heading: "Common Mistake",
         content: "Beginners often counter-trend trade without a clear level or stop. That leads to catching falling knives or selling into strength.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Is counter-trend trading riskier than trend-following?", component: "ConceptCheck", props: { question: "Is counter-trend trading riskier than trend-following?", reveal: "Yes. Counter-trend is possible but riskier. Use clear levels and tight risk; prefer trend-following when learning." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Counter-trend is possible but riskier. Use clear levels and tight risk; prefer trend-following when learning." },
     ]
   ),
@@ -426,6 +446,7 @@ export const trendlinesLessons: Lesson[] = [
         content:
           "Uptrend = higher highs, higher lows. Downtrend = lower highs, lower lows. Draw trendlines along swing lows (uptrend) or swing highs (downtrend); validate with a third touch. Breaks can signal change—confirm before acting. Channels give you parallel boundaries. Trade with the trend when you can; counter-trend only with clear levels and strict risk.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What do trends and trendlines help you do?", component: "ConceptCheck", props: { question: "What do trends and trendlines help you do?", reveal: "Stay on the right side of the market. Draw cleanly, confirm, and manage risk." } },
       { type: "key-takeaway", heading: "Key Takeaway", content: "Trends and trendlines help you stay on the right side of the market. Draw cleanly, confirm, and manage risk." },
     ],
     true

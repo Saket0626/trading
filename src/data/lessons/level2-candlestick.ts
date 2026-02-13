@@ -102,6 +102,13 @@ export const candlestickLessons: Lesson[] = [
           "DOJI: open = close (or very close). Small or no body. Indecision. HAMMER: long lower wick, small body at top. Bullish reversal signal—sellers pushed down, buyers recovered. SHOOTING STAR: long upper wick, small body at bottom. Bearish reversal—buyers pushed up, sellers rejected. MARUBOZU: no wicks, full body. Strong momentum in one direction.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What does a long lower wick tell you?",
+        component: "ConceptCheck",
+        props: { question: "What does a long lower wick tell you?", reveal: "Buyers rejected lower prices—price dipped but was pushed back up by the close. At support or after a downtrend it can signal potential bullish reversal." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -142,6 +149,13 @@ export const candlestickLessons: Lesson[] = [
         heading: "Patterns Aren't Magic",
         content:
           "Candlestick patterns don't work in isolation. They're more reliable at support/resistance, in strong trends, or with volume confirmation. A bullish engulfing in the middle of a downtrend with no support nearby is weak. Always consider context. Many patterns fail—use stop losses.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "When is a bullish engulfing pattern stronger?",
+        component: "ConceptCheck",
+        props: { question: "When is a bullish engulfing pattern stronger?", reveal: "When it appears at support, in an uptrend (as a pullback), or with high volume. In the middle of a downtrend with no support, it's weak." },
       },
       {
         type: "key-takeaway",
@@ -186,6 +200,13 @@ export const candlestickLessons: Lesson[] = [
           "Many traders use a top-down approach: Check the higher timeframe (e.g., daily) for the overall trend. Then drop to a lower timeframe (e.g., 4h or 1h) for entries. Trade in the direction of the higher timeframe. This aligns your trades with the bigger picture.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why match timeframe to trading style?",
+        component: "ConceptCheck",
+        props: { question: "Why match timeframe to trading style?", reveal: "Day traders need short timeframes (1m–15m) to see intraday setups. Swing traders use 1h–daily. Using the wrong timeframe means you either miss detail or see too much noise." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -226,6 +247,13 @@ export const candlestickLessons: Lesson[] = [
         heading: "Volume Confirmation",
         content:
           "A bullish engulfing with high volume is stronger than one with low volume. Volume shows conviction. Big moves on big volume = real. Big moves on low volume = suspect, might reverse. Always consider volume with candle patterns.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What do long bodies and long wicks tell you about psychology?",
+        component: "ConceptCheck",
+        props: { question: "What do long bodies and long wicks tell you about psychology?", reveal: "Long body = strong conviction (buyers or sellers dominated). Long wicks = rejection—price tried to go there but was pushed back. Together they show who's in control and where price was refused." },
       },
       {
         type: "key-takeaway",

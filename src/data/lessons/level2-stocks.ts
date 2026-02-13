@@ -43,6 +43,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "To list on the NYSE or Nasdaq, a company must meet criteria such as minimum share price, number of shareholders, and financial thresholds. These requirements help ensure a baseline of liquidity and disclosure. When a company fails to meet them, it can be delisted—so listing is a quality filter, not a guarantee of success.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Where do US stocks mainly trade?", component: "ConceptCheck", props: { question: "Where do US stocks mainly trade?", reveal: "On regulated exchanges like the NYSE and Nasdaq. The exchange matches buy and sell orders and reports trades." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -71,6 +72,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Most common stock carries one vote per share. Some companies have dual-class structures (e.g. founders have shares with more votes). As a small shareholder you rarely affect outcomes, but the right exists. Preferred stock often has no or limited voting rights but may have priority for dividends.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What do you get when you own a share?", component: "ConceptCheck", props: { question: "What do you get when you own a share?", reveal: "A fractional piece of the company: potential dividends, usually voting rights, and return from price appreciation and/or dividends." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -105,6 +107,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Large caps tend to have tighter spreads and more volume, so you can enter and exit easily. Small caps can gap or move sharply on news and may have wider spreads. Beginners often start with large or mid cap names for easier execution.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How is market cap calculated?", component: "ConceptCheck", props: { question: "How is market cap calculated?", reveal: "Share price × number of shares outstanding. It's the total market value of the company's equity." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -133,6 +136,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Sector rotation—money moving from one sector to another—drives a lot of relative performance. In a recession, defensive sectors (staples, utilities) may hold up better. In a strong economy, cyclicals (industrials, discretionary) may lead. Diversifying across sectors reduces concentration risk.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Why does sector matter?", component: "ConceptCheck", props: { question: "Why does sector matter?", reveal: "Different sectors perform differently across the economic cycle. Defensive sectors may hold up in recessions; cyclicals may lead in growth. Diversifying across sectors can smooth returns." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -167,6 +171,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Thinking a $2 stock is 'cheaper' than a $200 stock is wrong. What matters is total value (price × shares) and the company's quality. Penny stocks are not a shortcut to riches—they're where many people lose money.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Why is a $2 stock not necessarily cheaper than a $200 stock?", component: "ConceptCheck", props: { question: "Why is a $2 stock not necessarily cheaper than a $200 stock?", reveal: "What matters is total value (price × shares) and company quality. A $2 penny stock can be riskier and more overvalued than a $200 blue chip." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -201,6 +206,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Growth and value can rotate in and out of favor. Diversifying across both can smooth your equity exposure. As a trader, knowing whether the market is favoring growth or value helps you focus on the right names.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How do growth and value stocks differ?", component: "ConceptCheck", props: { question: "How do growth and value stocks differ?", reveal: "Growth = high expected growth, often high P/E, reinvest profits. Value = cheap on earnings/book/cash flow, often pay dividends. They tend to rotate in and out of favor." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -229,6 +235,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Dividend stocks can provide income without selling shares. Retirees and income-focused investors often build portfolios of dividend payers. High yield can be attractive but be careful: a very high yield sometimes signals the market expects a cut. Sustainable payout ratios and a history of raising dividends are better signs of quality.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How do you calculate dividend yield?", component: "ConceptCheck", props: { question: "How do you calculate dividend yield?", reveal: "Annual dividends per share ÷ share price. Example: $4 per year ÷ $100 = 4% yield. Sustainability matters more than yield alone." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -263,6 +270,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Use ETFs for diversification and for tracking the market or a sector. Use individual stocks when you have a strong view on a specific company and accept the extra risk. Many investors combine both: core in ETFs, satellite positions in stocks.",
       },
+      { type: "interactive", heading: "Think It Through", content: "When might you choose an ETF over a single stock?", component: "ConceptCheck", props: { question: "When might you choose an ETF over a single stock?", reveal: "When you want diversification or to track the market/sector in one trade. ETFs give a basket of securities; single stocks give concentrated exposure and higher risk." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -291,6 +299,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "The S&P 500 includes about 500 large US companies across sectors—the broad US large-cap market. The Nasdaq 100 has about 100 of the largest non-financial companies listed on Nasdaq—heavy on tech (Apple, Microsoft, Amazon, etc.). So Nasdaq 100 is more tech-focused and can be more volatile. Many long-term investors use an S&P 500 index fund as a core holding.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How does the Nasdaq 100 differ from the S&P 500?", component: "ConceptCheck", props: { question: "How does the Nasdaq 100 differ from the S&P 500?", reveal: "S&P 500 = ~500 large US companies across sectors. Nasdaq 100 = ~100 largest non-financial Nasdaq names, tech-heavy and often more volatile." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -319,6 +328,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Splits are often done to lower the share price so it feels more accessible to small investors. They don't change the company's value. When you're trading or analyzing, use adjusted prices (most platforms do this automatically) so historical charts are comparable before and after the split.",
       },
+      { type: "interactive", heading: "Think It Through", content: "Does a 2-for-1 stock split change your total position value?", component: "ConceptCheck", props: { question: "Does a 2-for-1 stock split change your total position value?", reveal: "No. You get twice the shares at half the price; total value stays the same. Use adjusted prices when looking at historical charts." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -347,6 +357,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "Lower liquidity means your order might not fill or might fill at a worse price. Limit orders are especially important. Some retail platforms don't allow extended-hours trading or restrict it. If you trade around earnings, be aware that the bulk of the move can happen outside regular hours.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What are the main risks of pre-market or after-hours trading?", component: "ConceptCheck", props: { question: "What are the main risks of pre-market or after-hours trading?", reveal: "Lower liquidity and wider spreads—orders may not fill or may fill at worse prices. Use limit orders and understand the extra risk." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -403,6 +414,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "If you're day trading US stocks, you need to be available during these hours. If you're in a different time zone, convert carefully. Major news (Fed, employment, CPI) is often released at 8:30 AM ET, so the open can gap or trend on that news.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What are US regular stock market hours (Eastern)?", component: "ConceptCheck", props: { question: "What are US regular stock market hours (Eastern)?", reveal: "9:30 AM to 4:00 PM Eastern, Monday–Friday (excluding holidays). Plan your strategy around when liquidity and volatility are highest." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -431,6 +443,7 @@ export const stocksDeepDiveLessons: Lesson[] = [
         content:
           "You want enough movement to learn and potentially profit, but not so much that one bad trade blows the account. Mid volatility means the stock moves meaningfully but isn't a roller coaster. Combine that with 1% risk per trade and a clear plan.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What should beginners look for in stocks?", component: "ConceptCheck", props: { question: "What should beginners look for in stocks?", reveal: "High volume, mid-to-large cap, and mid volatility—enough movement to learn and trade, but not so much that one bad trade blows the account." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",

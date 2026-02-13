@@ -41,6 +41,13 @@ export const level1Lessons: Lesson[] = [
           "Long ago, people bartered - trading things directly. If you had extra apples and wanted bread, you needed to find someone with extra bread who wanted apples. Money changed everything: now you sell your apples for money, then use that money to buy bread from anyone.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why might a society switch from barter to money?",
+        component: "ConceptCheck",
+        props: { question: "Why might a society switch from barter to money?", reveal: "Because barter requires a 'double coincidence of wants'—you must find someone who has what you want and wants what you have. Money lets everyone trade with everyone else through one common medium." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -75,6 +82,13 @@ export const level1Lessons: Lesson[] = [
         heading: "Supply, Demand, and Trust",
         content:
           "Money holds value because people accept it in exchange for goods and services (demand) and because its supply isn't infinite (supply). If a government printed trillions of new units, each unit would be worth less—that's inflation. Trust matters too: if people lost faith in a currency, they'd dump it and its value would fall.",
+      },
+      {
+        type: "interactive",
+        heading: "Try It: Supply & Demand",
+        content: "See how supply and demand affect price level.",
+        component: "SupplyDemandSimulator",
+        props: { description: "Move the sliders. More demand than supply pushes price up; more supply than demand pushes price down. This is the same idea that drives currency and asset prices." },
       },
       {
         type: "key-takeaway",
@@ -119,6 +133,12 @@ export const level1Lessons: Lesson[] = [
           "In markets, prices constantly move as new information arrives. If a company announces great news, more people want to buy - price goes up. If bad news hits, people want to sell - price goes down. The price is always searching for the point where buyers and sellers agree.",
       },
       {
+        type: "interactive",
+        heading: "Try It: Supply & Demand Simulator",
+        content: "Adjust demand and supply to see how the equilibrium price level changes.",
+        component: "SupplyDemandSimulator",
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -155,6 +175,13 @@ export const level1Lessons: Lesson[] = [
           "In financial markets, people trade assets: stocks, currencies, commodities, crypto. These markets can be physical (like a trading floor) or electronic. Prices move as buyers and sellers agree on new levels. When you trade, you're participating in that global marketplace.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What do a farmers' market and a stock exchange have in common?",
+        component: "ConceptCheck",
+        props: { question: "What do a farmers' market and a stock exchange have in common?", reveal: "Both are markets: buyers and sellers meet, something is traded, and a price is agreed. The stock exchange just trades shares instead of vegetables—the same supply/demand and agreement ideas apply." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -189,6 +216,13 @@ export const level1Lessons: Lesson[] = [
         heading: "Why This Matters for You",
         content:
           "As a trader, you'll often focus on price action and market value—what the crowd is doing. As you learn more, you can combine that with ideas about intrinsic value. For now, remember: the price on the screen is market value; it can stay above or below what seems 'fair' for a long time.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Can a stock's price stay above its intrinsic value for a long time?",
+        component: "ConceptCheck",
+        props: { question: "Can a stock's price stay above its intrinsic value for a long time?", reveal: "Yes. Market value is set by supply and demand right now. Sentiment and momentum can keep price above or below intrinsic value for months or years. That's why 'overvalued' doesn't mean the price will drop tomorrow." },
       },
       {
         type: "key-takeaway",

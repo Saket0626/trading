@@ -36,6 +36,13 @@ export const riskRewardLessons: Lesson[] = [
           "You buy $1,000 of a stock. If the stock drops 20%, you've lost $200. That $200 (or 20%) is the risk you took. If you'd set a stop loss at 10%, your risk would have been capped at $100. Risk management is about deciding in advance how much you're willing to lose.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why can't you avoid risk entirely when trading?",
+        component: "ConceptCheck",
+        props: { question: "Why can't you avoid risk entirely when trading?", reveal: "Because you don't control the outcome. Price can move against you no matter how good your analysis. The only way to have zero risk is not to trade—so the goal is to manage risk, not eliminate it." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -70,6 +77,13 @@ export const riskRewardLessons: Lesson[] = [
         heading: "Why Reward Isn't Guaranteed",
         content:
           "Markets can reverse at any time. A trade that looks like it's heading for your target can turn around and hit your stop loss instead. Professional traders think in probabilities: they aim for a reward that's large enough that they can be wrong more often than right and still make money—that's the risk-reward ratio.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why do pros want reward larger than risk?",
+        component: "ConceptCheck",
+        props: { question: "Why do pros want the potential reward larger than the risk on each trade?", reveal: "So that you can be wrong more than half the time and still profit. If you risk $1 to make $2 (1:2), you only need to win 34% of trades to break even. That's the power of positive risk-reward." },
       },
       {
         type: "key-takeaway",
@@ -108,6 +122,12 @@ export const riskRewardLessons: Lesson[] = [
           "If you risk $100 per trade and your average reward is $200 (1:2), you need to win only 34% of trades to break even. If you win 50%, you're making money. If you risk $100 and only make $50 when right (1:0.5), you need to win 67% just to break even—much harder.",
       },
       {
+        type: "interactive",
+        heading: "Try It: Risk-Reward Calculator",
+        content: "Enter entry, stop loss, and a risk:reward ratio to see your take-profit level.",
+        component: "RiskRewardCalculator",
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -144,6 +164,13 @@ export const riskRewardLessons: Lesson[] = [
           "Think of losses like a shop owner thinks of rent or inventory cost—they're part of the business. You're paying to play. The goal isn't to never lose; it's to keep losses small and let winners be larger so that over many trades you're net positive.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why is a 60% win rate considered strong?",
+        component: "ConceptCheck",
+        props: { question: "Why is a 60% win rate considered strong for a trader?", reveal: "Because markets are uncertain—no one gets every trade right. Winning 6 out of 10 trades is already above average. With good risk-reward (e.g. 1:2), you can be profitable even below 50% win rate." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -172,6 +199,13 @@ export const riskRewardLessons: Lesson[] = [
         heading: "What is a Stop Loss?",
         content:
           "A stop loss is a predetermined price at which you will exit a trade to limit your loss. If you buy at $50 and set a stop at $48, you're saying: 'If the price hits $48, I'm wrong and I'm out.' You don't wait to 'see if it comes back'—you exit. That caps your loss at $2 per share.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Where should you decide your stop loss?",
+        component: "ConceptCheck",
+        props: { question: "When should you decide where to place your stop loss?", reveal: "Before you enter the trade. If you decide after entry, emotions (hope, fear) can push you to move the stop or remove it. Pre-defined stops keep you disciplined." },
       },
       {
         type: "warning",
@@ -222,6 +256,13 @@ export const riskRewardLessons: Lesson[] = [
           "They risk a small percentage per trade (e.g. 1%). They use stop losses and stick to them. They have a plan and follow it. They treat trading as a business, not gambling. They keep learning and keep records. You're here learning—that already puts you ahead of many who never bother.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What is the single biggest reason most retail traders lose?",
+        component: "ConceptCheck",
+        props: { question: "What is the single biggest reason most retail traders lose?", reveal: "There isn't one—but the main culprits are risking too much per trade, no stop loss or moving it when wrong, and emotional trading. Fix risk and discipline first." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -262,6 +303,13 @@ export const gettingStartedLessons: Lesson[] = [
           "When real money is on the line, emotions kick in. You might close winners too early or hold losers too long. Paper trading lets you learn the platform, test your strategy, and build habits without the stress of losing real money. Most educators and pros recommend at least 1–3 months of consistent paper trading before going live.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "How long should you paper trade before going live?",
+        component: "ConceptCheck",
+        props: { question: "How long should you paper trade before going live?", reveal: "Most educators recommend at least 1–3 months of consistent paper trading—and only when you're profitable and disciplined in simulation. There's no rush." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -296,6 +344,12 @@ export const gettingStartedLessons: Lesson[] = [
         heading: "Critical Rule",
         content:
           "Only use money you can afford to lose completely. Trading is speculative. If losing this money would affect your rent, food, or family, don't trade it. Save up an emergency fund first, then allocate a separate 'trading' portion you're willing to lose.",
+      },
+      {
+        type: "interactive",
+        heading: "Try It: Position Size Calculator",
+        content: "See how account size, risk %, and stop distance determine how many shares you can buy.",
+        component: "PositionSizeCalculator",
       },
       {
         type: "key-takeaway",
@@ -334,6 +388,13 @@ export const gettingStartedLessons: Lesson[] = [
           "Many educators suggest starting with stocks or forex because of the abundance of learning material, regulated brokers, and clear market structure. Crypto is volatile and exciting but riskier and less regulated. Pick one market, learn it deeply, and only add others once you're consistent.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why master one market before adding others?",
+        component: "ConceptCheck",
+        props: { question: "Why master one market before adding others?", reveal: "Because each market has its own hours, rules, and behavior. Spreading attention too thin slows learning and leads to shallow execution. Deep skill in one market beats mediocre skill in several." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -368,6 +429,13 @@ export const gettingStartedLessons: Lesson[] = [
         heading: "What to Practice",
         content:
           "Learn the platform: placing orders, setting stop losses, reading charts. Test your strategy: do you take trades that fit your plan? Track your results: win rate, average win/loss, drawdowns. If you can't be profitable in demo over 1–3 months, don't go live yet—keep learning and adjusting.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What should you prove in demo before going live?",
+        component: "ConceptCheck",
+        props: { question: "What should you prove in demo before going live?", reveal: "That you can follow your plan, use stops, and be profitable (or at least not blow up) over 1–3 months. If you can't do it with fake money, real money will be harder." },
       },
       {
         type: "key-takeaway",
@@ -406,6 +474,13 @@ export const gettingStartedLessons: Lesson[] = [
           "Level 1 = foundations. Level 2 = charts and markets in depth. Level 3 = indicators, risk management, psychology, and day trading strategies. Level 4 = options and advanced topics. Level 5 = quantitative and algorithmic trading. Complete each level before relying on the next for real-money decisions.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why not skip to strategies first?",
+        component: "ConceptCheck",
+        props: { question: "Why not skip to strategies first?", reveal: "Because without foundations (risk, charts, discipline), any strategy becomes random trading. You need to know how to size positions, read price, and manage psychology—then strategies make sense." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -440,6 +515,13 @@ export const gettingStartedLessons: Lesson[] = [
         heading: "The One That Hurts Most",
         content:
           "The single most destructive habit is adding to a losing position ('averaging down') hoping it will come back. Sometimes it does; often it doesn't. When it doesn't, you've doubled or tripled your loss. Cut losses quickly; let winners run.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What is 'averaging down' and why is it dangerous?",
+        component: "ConceptCheck",
+        props: { question: "What is 'averaging down' and why is it dangerous?", reveal: "Averaging down = adding to a losing position to lower your average entry. It's dangerous because you're increasing risk on a trade that's already wrong. One big loser can wipe out many small gains." },
       },
       {
         type: "key-takeaway",

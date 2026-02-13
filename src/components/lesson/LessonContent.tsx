@@ -3,10 +3,20 @@ import type { LessonContent as LessonContentType } from "../../types";
 import { Lightbulb, AlertTriangle, Target, BookOpen } from "lucide-react";
 import { CandlestickBuilder } from "../charts/CandlestickBuilder";
 import { WhichMarketQuiz } from "../quiz/WhichMarketQuiz";
+import { SupplyDemandSimulator } from "./SupplyDemandSimulator";
+import { ConceptCheck } from "./ConceptCheck";
+import { RiskRewardCalculator } from "../tools/RiskRewardCalculator";
+import { PositionSizeCalculator } from "../tools/PositionSizeCalculator";
+import { PipCalculator } from "../tools/PipCalculator";
 
 const COMPONENTS: Record<string, ComponentType<Record<string, unknown>>> = {
   CandlestickBuilder,
   WhichMarketQuiz,
+  SupplyDemandSimulator,
+  ConceptCheck,
+  RiskRewardCalculator,
+  PositionSizeCalculator,
+  PipCalculator,
 };
 
 const typeConfig = {

@@ -37,6 +37,13 @@ export const understandingChartsLessons: Lesson[] = [
           "Think of a chart like a GPS route. Instead of streets, you have time (horizontal) and price (vertical). The line or candles show the route price took. Just as you'd use a map to decide where to turn next, traders use charts to decide when to enter or exit a trade.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why do traders prefer charts over tables of numbers?",
+        component: "ConceptCheck",
+        props: { question: "Why do traders prefer charts over tables of numbers?", reveal: "Charts let the brain see trends, reversals, and levels at a glance. A picture of price over time is faster to read than rows of numbers and makes supply/demand visible." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -77,6 +84,13 @@ export const understandingChartsLessons: Lesson[] = [
         heading: "Why It Matters",
         content:
           "Misreading the axes leads to wrong conclusions. For example, a 'big' move on a 1-minute chart might be tiny on a daily chart. The axes tell you the scale of both time and price, so you know what you're actually looking at.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "On a standard price chart, what does the X-axis show?",
+        component: "ConceptCheck",
+        props: { question: "On a standard price chart, what does the X-axis show?", reveal: "Time. The horizontal axis is almost always time—left is past, right is present. The Y-axis is price." },
       },
       {
         type: "key-takeaway",
@@ -121,6 +135,13 @@ export const understandingChartsLessons: Lesson[] = [
           "Because they show only the close, you miss information: Did price spike up and then collapse? Did it open high and drift lower? For trading decisions that depend on range, support/resistance, or candlestick patterns, you need bar or candlestick charts. Line charts are for clarity of trend, not for detailed entry/exit analysis.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "When is a line chart better than a candlestick chart?",
+        component: "ConceptCheck",
+        props: { question: "When is a line chart better than a candlestick chart?", reveal: "When you want a clean view of the overall trend without the noise of each period's range. Line charts are good for big-picture direction; use candlesticks when you need OHLC and pattern detail." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -161,6 +182,13 @@ export const understandingChartsLessons: Lesson[] = [
         heading: "Why Bars Are Useful",
         content:
           "Bars give you more information than a line chart. You can see volatility (tall bar = big range), gaps (when the next bar's open is far from the previous close), and whether buyers or sellers won the period (close vs open). Many professional traders still use bar charts; others prefer candlesticks, which show the same OHLC data in a different visual form.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What does OHLC stand for?",
+        component: "ConceptCheck",
+        props: { question: "What does OHLC stand for?", reveal: "Open, High, Low, Close—the four prices that define each bar or candle. They show where price started, how far it went up and down, and where it ended." },
       },
       {
         type: "key-takeaway",
@@ -205,6 +233,13 @@ export const understandingChartsLessons: Lesson[] = [
           "Candlesticks make it easier to spot patterns (doji, hammer, engulfing, etc.) and to judge momentum and rejection at a glance. The next module goes deep into candlestick patterns; here, the point is that candlesticks are the same OHLC in a form that many find more readable for trading.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What do the body and wicks of a candle represent?",
+        component: "ConceptCheck",
+        props: { question: "What do the body and wicks of a candle represent?", reveal: "The body = range between open and close. The wicks = how far price went to the high and low. So body shows who won the period; wicks show rejection at the extremes." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -233,6 +268,13 @@ export const understandingChartsLessons: Lesson[] = [
         heading: "What Is Volume?",
         content:
           "Volume is the number of shares (or contracts, or lots) traded during a given period. For a daily chart, it's how many shares traded that day. For a 5-minute bar, it's the volume in those 5 minutes. Volume answers: 'How much actually changed hands?' High volume means many participants; low volume means fewer. It's usually shown as a histogram under the price chart—each bar's height is the volume for that period.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why is a breakout with high volume more reliable?",
+        component: "ConceptCheck",
+        props: { question: "Why is a breakout with high volume more reliable than one with low volume?", reveal: "High volume means many participants agreed on the move—strong conviction. Low volume breakouts often fail because few were involved; the move may reverse quickly." },
       },
       {
         type: "text",
@@ -289,6 +331,13 @@ export const understandingChartsLessons: Lesson[] = [
           "On a 1-minute chart, small, random fluctuations can look like signals. On a daily chart, those same moves disappear into a single candle. So shorter timeframes have more noise; longer ones emphasize the main trend. Many traders use multiple timeframes: a higher one for trend direction and a lower one for entry timing.",
       },
       {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "Why do day traders use short timeframes and investors use long ones?",
+        component: "ConceptCheck",
+        props: { question: "Why do day traders use short timeframes and investors use long ones?", reveal: "Day traders hold for minutes or hours, so they need 1m–15m detail. Investors hold for months or years, so daily/weekly shows the trend that matters. Timeframe should match holding period." },
+      },
+      {
         type: "key-takeaway",
         heading: "Key Takeaway",
         content:
@@ -329,6 +378,13 @@ export const understandingChartsLessons: Lesson[] = [
         heading: "Common Mistake",
         content:
           "Beginners often look at a 5-minute chart and think they've found a 'sure' reversal, then get run over because the daily trend is still strong. Always be aware of the next higher timeframe. What looks like a reversal on 5m might just be a small pullback in a larger move.",
+      },
+      {
+        type: "interactive",
+        heading: "Think It Through",
+        content: "What is multi-timeframe analysis?",
+        component: "ConceptCheck",
+        props: { question: "What is multi-timeframe analysis?", reveal: "Using a higher timeframe (e.g. daily) for trend and key levels, and a lower timeframe (e.g. 1h or 15m) for entry. You trade with the big trend but enter on a scale that gives clear stops and targets." },
       },
       {
         type: "key-takeaway",

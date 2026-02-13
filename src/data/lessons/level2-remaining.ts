@@ -52,6 +52,7 @@ export const level2RemainingLessons: Lesson[] = [
         content:
           "Resistance is a price level where selling interest tends to emerge. When price rises to resistance, sellers step in and price often bounces down. It acts like a ceiling. Resistance forms at previous highs, round numbers, or where sellers have previously defended.",
       },
+      { type: "interactive", heading: "Think It Through", content: "What is the difference between support and resistance?", component: "ConceptCheck", props: { question: "What is the difference between support and resistance?", reveal: "Support = floor where buying tends to emerge. Resistance = ceiling where selling tends to emerge. Price respects them until they break." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
@@ -81,6 +82,7 @@ export const level2RemainingLessons: Lesson[] = [
         content:
           "Most strategies work better when you trade in the direction of the trend. 'Trend is your friend'—fighting the trend increases the chance of getting run over. Identifying trend is one of the first steps in any technical analysis.",
       },
+      { type: "interactive", heading: "Think It Through", content: "How do you define an uptrend?", component: "ConceptCheck", props: { question: "How do you define an uptrend?", reveal: "Higher highs and higher lows—buyers in control. Trade with the trend when you can." } },
       {
         type: "key-takeaway",
         heading: "Key Takeaway",
