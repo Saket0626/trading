@@ -24,6 +24,7 @@ const ProgressPage = lazy(() => import("./pages/ProgressPage").then((m) => ({ de
 const GlossaryPage = lazy(() => import("./pages/GlossaryPage").then((m) => ({ default: m.GlossaryPage })));
 const SearchPage = lazy(() => import("./pages/SearchPage").then((m) => ({ default: m.SearchPage })));
 const DonationsPage = lazy(() => import("./pages/DonationsPage").then((m) => ({ default: m.DonationsPage })));
+const TradePage = lazy(() => import("./pages/TradePage").then((m) => ({ default: m.TradePage })));
 const ApiSetupPage = lazy(() => import("./pages/ApiSetupPage").then((m) => ({ default: m.ApiSetupPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })));
 const AdminDashboardPage = lazy(() => import("./pages/AdminDashboardPage").then((m) => ({ default: m.AdminDashboardPage })));
@@ -63,6 +64,7 @@ function AppLayoutInner() {
             <Route path="/simulator" element={<SimulatorPage />} />
             <Route path="/tools" element={<ToolsPage />} />
             <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/trade" element={<TradePage />} />
             <Route path="/glossary" element={<GlossaryPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/donations" element={<DonationsPage />} />

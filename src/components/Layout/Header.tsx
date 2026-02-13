@@ -9,9 +9,8 @@ const navLinks = [
   { to: "/", label: "Home" },
   { to: "/learn", label: "Learn" },
   { to: "/simulator", label: "Practice" },
-  { to: "/simulator", label: "Trade" },
+  { to: "/trade", label: "Trade" },
   { to: "/tools", label: "Tools" },
-  { to: "/progress", label: "Progress" },
   { to: "/progress", label: "Profile" },
   { to: "/donations", label: "Donations" },
 ];

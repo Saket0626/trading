@@ -216,14 +216,18 @@ export function getAnalyticsSummary(): {
   let returningVisitors = 0;
   const todayStart = new Date(now);
   todayStart.setHours(0, 0, 0, 0);
-  Object.entries(data.firstVisitByVisitor).forEach(([, firstTs]) => {
+  const firstVisit = data.firstVisitByVisitor && typeof data.firstVisitByVisitor === "object" ? data.firstVisitByVisitor : {};
+  const lastVisit = data.lastVisitByVisitor && typeof data.lastVisitByVisitor === "object" ? data.lastVisitByVisitor : {};
+  const pageViewsData = data.pageViews && typeof data.pageViews === "object" ? data.pageViews : {};
+  const quizScoresData = data.quizScores && typeof data.quizScores === "object" ? data.quizScores : {};
+  Object.entries(firstVisit).forEach(([, firstTs]) => {
     if (firstTs >= todayStart.getTime()) {
       newVisitors++;
     } else {
       returningVisitors++;
     }
   });
-  Object.entries(data.lastVisitByVisitor).forEach(([, ts]) => {
+  Object.entries(lastVisit).forEach(([, ts]) => {
     const d = new Date(ts);
     const ds = getDateStr(d);
     if (ds === today) visitorsToday++;
@@ -233,7 +237,7 @@ export function getAnalyticsSummary(): {
 
   let totalPageViews = 0;
   const pageViewsByUrl: Array<{ url: string; count: number }> = [];
-  Object.entries(data.pageViews).forEach(([url, timestamps]) => {
+  Object.entries(pageViewsData).forEach(([url, timestamps]) => {
     totalPageViews += timestamps.length;
     pageViewsByUrl.push({ url, count: timestamps.length });
   });
@@ -246,7 +250,7 @@ export function getAnalyticsSummary(): {
 
   const quizAverages: Record<string, number> = {};
   const quizPassRates: Record<string, number> = {};
-  Object.entries(data.quizScores).forEach(([id, scores]) => {
+  Object.entries(quizScoresData).forEach(([id, scores]) => {
     if (scores.length > 0) {
       quizAverages[id] =
         Math.round(
@@ -269,8 +273,15 @@ export function getAnalyticsSummary(): {
   const bounceSessions = pageCounts.filter((c) => c === 1).length;
   const bounceRate = Math.round((bounceSessions / totalSessions) * 1000) / 10;
 
+  const safeUserProgressByLevel = data.userProgressByLevel && typeof data.userProgressByLevel === "object"
+    ? { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, ...data.userProgressByLevel }
+    : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+  const safeVisitsByDate = data.visitsByDate && typeof data.visitsByDate === "object" ? data.visitsByDate : {};
+  const safeQuizAttemptCounts = data.quizAttemptCounts && typeof data.quizAttemptCounts === "object" ? data.quizAttemptCounts : {};
+  const safeModuleCompletions = data.moduleCompletions && typeof data.moduleCompletions === "object" ? data.moduleCompletions : {};
+
   return {
-    totalVisitors: data.totalVisitors,
+    totalVisitors: data.totalVisitors ?? 0,
     visitorsToday,
     visitorsThisWeek,
     visitorsThisMonth,
@@ -280,14 +291,14 @@ export function getAnalyticsSummary(): {
     totalPageViews,
     pageViewsByUrl,
     topLessons,
-    userProgressByLevel: data.userProgressByLevel || { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-    moduleCompletions: data.moduleCompletions || {},
+    userProgressByLevel: safeUserProgressByLevel,
+    moduleCompletions: safeModuleCompletions,
     quizAverages,
-    quizAttemptCounts: data.quizAttemptCounts,
+    quizAttemptCounts: safeQuizAttemptCounts,
     quizPassRates,
     averageSessionDurationSeconds,
     bounceRate,
-    visitsByDate: data.visitsByDate,
+    visitsByDate: safeVisitsByDate,
   };
 }
 

@@ -219,8 +219,8 @@ export function AdminDashboardPage() {
             })}
           </div>
           <div className="mt-2 flex justify-between text-xs text-surface-500 dark:text-surface-400">
-            <span>{last30Days[0]}</span>
-            <span>{last30Days[last30Days.length - 1]}</span>
+            <span>{last30Days[0] ?? "—"}</span>
+            <span>{last30Days.length > 0 ? last30Days[last30Days.length - 1] : "—"}</span>
           </div>
         </div>
       </section>
