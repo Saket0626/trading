@@ -75,6 +75,7 @@ export function ProgressPage() {
   const [usernameInput, setUsernameInput] = useState(username ?? "");
   const [usernameSaved, setUsernameSaved] = useState(false);
   const [usernameError, setUsernameError] = useState<string | null>(null);
+  const [isEditingUsername, setIsEditingUsername] = useState(false);
   const [lessonsLeaderboard, setLessonsLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [pnlLeaderboard, setPnlLeaderboard] = useState<LeaderboardEntry[]>([]);
   const leaderboardEnabled = isLeaderboardEnabled();
@@ -122,7 +123,14 @@ export function ProgressPage() {
     }
     setUsername(trimmed);
     setUsernameSaved(true);
+    setIsEditingUsername(false);
     setTimeout(() => setUsernameSaved(false), 2000);
+  };
+
+  const handleStartEditingUsername = () => {
+    setUsernameInput(username ?? "");
+    setUsernameError(null);
+    setIsEditingUsername(true);
   };
 
   const progressPercent = getProgressPercentage(completedLessons);
@@ -145,12 +153,12 @@ export function ProgressPage() {
           <div className="flex items-start gap-3">
             <User className="h-5 w-5 text-surface-500 mt-0.5 shrink-0" />
             <div className="flex-1 min-w-0">
-              {hasUsername ? (
+              {hasUsername && !isEditingUsername ? (
                 <p className="text-sm text-surface-700 dark:text-surface-300">
                   You&apos;re on the leaderboard as <strong>{username}</strong>.{" "}
                   <button
                     type="button"
-                    onClick={() => setUsernameInput(username ?? "")}
+                    onClick={handleStartEditingUsername}
                     className="text-primary-600 dark:text-primary-400 hover:underline"
                   >
                     Change
@@ -159,10 +167,12 @@ export function ProgressPage() {
               ) : (
                 <>
                   <p className="text-sm font-medium text-surface-900 dark:text-surface-100 mb-1">
-                    Compete with others in real time
+                    {hasUsername ? "Change your username" : "Compete with others in real time"}
                   </p>
                   <p className="text-xs text-surface-500 dark:text-surface-400 mb-3">
-                    Enter a username to join the live leaderboard. You&apos;ll show up once you complete at least one lesson.
+                    {hasUsername
+                      ? "Pick a new username (must be unique)."
+                      : "Enter a username to join the live leaderboard. You'll show up once you complete at least one lesson."}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <input
@@ -187,6 +197,15 @@ export function ProgressPage() {
                       <Save className="h-4 w-4" />
                       {usernameSaved ? "Saved!" : "Save"}
                     </button>
+                    {hasUsername && (
+                      <button
+                        type="button"
+                        onClick={() => setIsEditingUsername(false)}
+                        className="px-3 py-2 rounded border border-surface-200 dark:border-surface-600 text-surface-700 dark:text-surface-300 text-sm font-medium hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                    )}
                   </div>
                   {usernameError && (
                     <p className="mt-2 text-sm text-red-600 dark:text-red-400">
