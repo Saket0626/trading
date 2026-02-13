@@ -26,5 +26,5 @@ create policy "Allow public update"
   using (true)
   with check (true);
 
--- Unique usernames: no two users can have the same username
-alter table leaderboard add constraint leaderboard_username_unique unique (username);
+-- Unique usernames (case-insensitive): aarav, Aarav, AARav are considered the same; aarav2 is different
+create unique index if not exists leaderboard_username_lower_unique on leaderboard (lower(username));

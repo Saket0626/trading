@@ -42,7 +42,12 @@ export async function fetchPnlLeaderboard(limit = 20): Promise<LeaderboardEntry[
   return (data ?? []) as LeaderboardEntry[];
 }
 
-/** Check if a username is available (not taken by another user). Current user can keep their own username. */
+/** Escape % _ \ for ILIKE exact match (case-insensitive) */
+function escapeForIlike(s: string): string {
+  return s.replace(/[\\%_]/g, (c) => "\\" + c);
+}
+
+/** Check if a username is available (not taken by another user). Case-insensitive: aarav, Aarav, AARav are the same. */
 export async function checkUsernameAvailable(
   username: string,
   currentUserId: string
@@ -52,8 +57,8 @@ export async function checkUsernameAvailable(
   if (!trimmed) return { available: false, error: "Username is required" };
   const { data, error } = await supabase
     .from("leaderboard")
-    .select("user_id")
-    .eq("username", trimmed)
+    .select("user_id, username")
+    .ilike("username", escapeForIlike(trimmed))
     .maybeSingle();
   if (error) return { available: false, error: "Could not check username" };
   if (data && data.user_id !== currentUserId) return { available: false, error: "Username already taken" };

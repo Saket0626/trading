@@ -1,5 +1,3 @@
--- ChartWise: Add unique username constraint
+-- ChartWise: Add unique username constraint (case-insensitive)
 -- Run this in Supabase SQL Editor if you already created the leaderboard table
--- If you get "duplicate key value" error, remove duplicate usernames first
-
-alter table leaderboard add constraint leaderboard_username_unique unique (username);
+-- See supabase-leaderboard-case-insensitive.sql for case-insensitive migration
