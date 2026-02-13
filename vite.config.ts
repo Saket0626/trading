@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico"],
       manifest: {
-        name: "Trading Edu — Learn Trading From Zero to Quant",
-        short_name: "Trading Edu",
+        name: "ChartWise — Learn Trading From Zero to Quant",
+        short_name: "ChartWise",
         description: "Interactive trading education platform",
         theme_color: "#0ea5e9",
         icons: [

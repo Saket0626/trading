@@ -47,10 +47,10 @@ export function Header() {
         <Link
           to="/"
           className="flex items-center gap-2 font-semibold text-base shrink-0"
-          aria-label="Trading Edu - Home"
+          aria-label="ChartWise - Home"
         >
           <GraduationCap className="h-6 w-6 text-primary-600 dark:text-primary-400" aria-hidden />
-          <span className="hidden sm:inline">Trading Edu</span>
+          <span className="hidden sm:inline">ChartWise</span>
         </Link>
 
         <form

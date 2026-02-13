@@ -1,4 +1,4 @@
-# Trading Edu — Interactive Trading Education Platform
+# ChartWise — Interactive Trading Education Platform
 
 A world-class, interactive web-based trading education platform that takes complete beginners (10-year-old level understanding) all the way to quantitative trading expertise.
 

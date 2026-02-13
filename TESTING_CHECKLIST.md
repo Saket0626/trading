@@ -1,4 +1,4 @@
-# Trading Education Platform – Testing Checklist
+# ChartWise – Testing Checklist
 
 Use this checklist before deployment. Items marked [x] are implemented; [ ] require verification.
 

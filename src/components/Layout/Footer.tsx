@@ -15,7 +15,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="md:col-span-2">
             <h3 className="font-semibold text-surface-900 dark:text-surface-100 text-sm mb-2">
-              Trading Education Platform
+              ChartWise
             </h3>
             <p className="text-sm text-surface-600 dark:text-surface-400 max-w-md">
               Learn trading from scratch to quantitative expertise. Built with honesty about risks
