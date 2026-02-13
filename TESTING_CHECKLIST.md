@@ -90,7 +90,7 @@ Use this checklist before deployment. Items marked [x] are implemented; [ ] requ
 
 ## API & Data
 - [x] Crypto data loads (Binance, no key) – 50+ symbols, WebSocket for live updates
-- [ ] Stocks need VITE_FINNHUB_API_KEY – 50+ symbols (add key for stocks)
+- [x] Stocks (Finnhub) – 50+ symbols (VITE_FINNHUB_API_KEY in .env)
 - [x] 50 stocks, 28 forex pairs, 50 crypto, 4 commodities, 7 futures
 - [x] API Setup page at /settings/api
 
@@ -113,7 +113,7 @@ Use this checklist before deployment. Items marked [x] are implemented; [ ] requ
 Before production deploy, verify:
 
 1. **Mobile responsive** – Test on iPhone, Android, iPad
-2. **API key for stocks** – Add `VITE_FINNHUB_API_KEY` in Railway/env for stock quotes
+2. **API key for stocks** – If deploying, add `VITE_FINNHUB_API_KEY` to deployment env (or use .env if committed to private repo)
 3. **Lighthouse score** – Run `npx lighthouse https://your-url --view` – target 90+
 4. **Cross-browser** – Test in Chrome, Firefox, Safari, Edge
 5. **End-to-end flow** – Homepage → Learn → Complete lesson → Pass quiz → Progress → Simulator → Place trade

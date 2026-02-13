@@ -62,14 +62,25 @@ export function SimulatorProvider({ children }: { children: ReactNode }) {
       if (stored) {
         const parsed = JSON.parse(stored);
         if (parsed.accounts) {
-          const accs = parsed.accounts as Record<AccountType, SimulatorAccount>;
+          const accs = parsed.accounts as Record<string, SimulatorAccount>;
+          const result: Record<AccountType, SimulatorAccount> = {
+            stocks: createAccount("stocks"),
+            forex: createAccount("forex"),
+            crypto: createAccount("crypto"),
+            commodities: createAccount("commodities"),
+            futures: createAccount("futures"),
+          };
           for (const t of ["stocks", "forex", "crypto", "commodities", "futures"] as AccountType[]) {
-            if (accs[t]) {
-              if (!accs[t].pendingOrders) accs[t].pendingOrders = [];
-              if (t === "forex" && accs[t].leverage == null) accs[t].leverage = 1;
+            if (accs[t] && typeof accs[t] === "object") {
+              const stored = accs[t] as SimulatorAccount;
+              result[t] = {
+                ...stored,
+                pendingOrders: stored.pendingOrders ?? [],
+                leverage: t === "forex" ? (stored.leverage ?? 1) : stored.leverage,
+              };
             }
           }
-          return accs;
+          return result;
         }
       }
     } catch {
