@@ -42,6 +42,24 @@ export async function fetchPnlLeaderboard(limit = 20): Promise<LeaderboardEntry[
   return (data ?? []) as LeaderboardEntry[];
 }
 
+/** Check if a username is available (not taken by another user). Current user can keep their own username. */
+export async function checkUsernameAvailable(
+  username: string,
+  currentUserId: string
+): Promise<{ available: boolean; error?: string }> {
+  if (!supabase) return { available: false, error: "Leaderboard not configured" };
+  const trimmed = username.trim().slice(0, 32);
+  if (!trimmed) return { available: false, error: "Username is required" };
+  const { data, error } = await supabase
+    .from("leaderboard")
+    .select("user_id")
+    .eq("username", trimmed)
+    .maybeSingle();
+  if (error) return { available: false, error: "Could not check username" };
+  if (data && data.user_id !== currentUserId) return { available: false, error: "Username already taken" };
+  return { available: true };
+}
+
 export async function upsertLeaderboardEntry(
   userId: string,
   username: string,

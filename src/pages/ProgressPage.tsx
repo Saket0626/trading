@@ -9,6 +9,7 @@ import {
   fetchLessonsLeaderboard,
   fetchPnlLeaderboard,
   upsertLeaderboardEntry,
+  checkUsernameAvailable,
   getLeaderboardUserId,
   type LeaderboardEntry,
 } from "../services/leaderboard";
@@ -73,6 +74,7 @@ export function ProgressPage() {
   const { paperTradingPnl, paperTradingPnlPercent } = useSimulatorStats();
   const [usernameInput, setUsernameInput] = useState(username ?? "");
   const [usernameSaved, setUsernameSaved] = useState(false);
+  const [usernameError, setUsernameError] = useState<string | null>(null);
   const [lessonsLeaderboard, setLessonsLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [pnlLeaderboard, setPnlLeaderboard] = useState<LeaderboardEntry[]>([]);
   const leaderboardEnabled = isLeaderboardEnabled();
@@ -109,13 +111,18 @@ export function ProgressPage() {
     return () => clearInterval(interval);
   }, [loadLeaderboards]);
 
-  const handleSaveUsername = () => {
+  const handleSaveUsername = async () => {
     const trimmed = usernameInput.trim().slice(0, 32);
-    if (trimmed) {
-      setUsername(trimmed);
-      setUsernameSaved(true);
-      setTimeout(() => setUsernameSaved(false), 2000);
+    setUsernameError(null);
+    if (!trimmed) return;
+    const { available, error } = await checkUsernameAvailable(trimmed, userId);
+    if (!available) {
+      setUsernameError(error ?? "Username already taken");
+      return;
     }
+    setUsername(trimmed);
+    setUsernameSaved(true);
+    setTimeout(() => setUsernameSaved(false), 2000);
   };
 
   const progressPercent = getProgressPercentage(completedLessons);
@@ -161,10 +168,15 @@ export function ProgressPage() {
                     <input
                       type="text"
                       value={usernameInput}
-                      onChange={(e) => setUsernameInput(e.target.value)}
+                      onChange={(e) => {
+                        setUsernameInput(e.target.value);
+                        setUsernameError(null);
+                      }}
                       placeholder="Enter your username"
                       maxLength={32}
-                      className="px-3 py-2 rounded border border-surface-200 dark:border-surface-600 bg-surface-50 dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                      className={`px-3 py-2 rounded border bg-surface-50 dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 ${
+                        usernameError ? "border-red-500 dark:border-red-600" : "border-surface-200 dark:border-surface-600"
+                      }`}
                     />
                     <button
                       type="button"
@@ -176,6 +188,11 @@ export function ProgressPage() {
                       {usernameSaved ? "Saved!" : "Save"}
                     </button>
                   </div>
+                  {usernameError && (
+                    <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                      {usernameError}
+                    </p>
+                  )}
                 </>
               )}
             </div>

@@ -25,3 +25,6 @@ create policy "Allow public update"
   on leaderboard for update
   using (true)
   with check (true);
+
+-- Unique usernames: no two users can have the same username
+alter table leaderboard add constraint leaderboard_username_unique unique (username);
