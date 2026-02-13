@@ -139,7 +139,7 @@ export function Header() {
 
       {mobileMenuOpen && (
         <nav
-          className="md:hidden border-t border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-950 py-4 px-4 animate-fade-in"
+          className="md:hidden border-t border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-950 py-4 px-4 animate-fade-in overflow-y-auto max-h-[calc(100vh-5rem)]"
           role="navigation"
         >
           <div className="flex flex-col gap-1">
