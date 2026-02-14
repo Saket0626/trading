@@ -4,6 +4,43 @@ This guide walks you through enabling the footer newsletter signup, which stores
 
 ---
 
+## QUICK SETUP — No Terminal (Dashboard Only)
+
+You can add your API keys and deploy the function entirely from the Supabase Dashboard. No CLI needed.
+
+### Step A — Add your API key (Secrets)
+
+1. Go to [Supabase Dashboard](https://supabase.com/dashboard) → your project
+2. In the left sidebar: **Edge Functions** → **Secrets**
+3. Click **Add secret** (or **New secret**)
+4. Add one of these (choose **Resend** OR **Brevo**):
+
+   **Option 1 — Resend:**
+   - **Name:** `RESEND_API_KEY`
+   - **Value:** your Resend API key (starts with `re_`)
+
+   **Option 2 — Brevo:**
+   - **Name:** `BREVO_API_KEY`
+   - **Value:** your Brevo API key (starts with `xkeysib-`)
+   - (Optional) Add another secret:
+     - **Name:** `BREVO_FROM`
+     - **Value:** `ChartWise <hello@yourdomain.com>` (use a verified sender from your Brevo account)
+
+5. (Optional) Add **SITE_URL** = `https://yoursite.com` if you want links in the email to point to your site
+6. Click **Save**
+
+### Step B — Deploy or update the Edge Function
+
+1. In Supabase Dashboard: **Edge Functions** → **Functions**
+2. If `send-newsletter-welcome` already exists: click it → **Code** tab
+3. If it doesn’t exist: click **Deploy a new function** → **Via Editor** → name it `send-newsletter-welcome`
+4. Replace the code with the contents of `supabase/functions/send-newsletter-welcome/index.ts` in this project
+5. Click **Deploy** (or **Save and deploy**)
+
+The function supports both Resend and Brevo. Whichever API key you added will be used automatically.
+
+---
+
 ## Part 1: Database Table
 
 ### Step 1.1 — Run the SQL script
@@ -52,9 +89,18 @@ For production, you should send from your own domain (e.g. `hello@yourdomain.com
 
 Until then, you can use `onboarding@resend.dev` for testing (Resend’s test sender).
 
+### Alternative: Brevo (instead of Resend)
+
+If you prefer Brevo:
+
+1. Go to [brevo.com](https://www.brevo.com) and create an account
+2. **SMTP & API** → **API Keys** → Create an API key
+3. Add and verify a sender: **Senders** → Add your domain/email (Brevo requires a verified sender)
+4. Add `BREVO_API_KEY` and optionally `BREVO_FROM` in Supabase Edge Functions → Secrets (see Quick Setup above)
+
 ---
 
-## Part 3: Supabase CLI and Edge Function
+## Part 3: Supabase CLI and Edge Function (Alternative to Quick Setup)
 
 ### Step 3.1 — Install Supabase CLI
 
@@ -189,7 +235,7 @@ Function send-newsletter-welcome deployed successfully.
 | Problem | What to try |
 |--------|-------------|
 | "Newsletter not configured" | Ensure `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are in `.env` and the app was restarted |
-| "RESEND_API_KEY not configured" | Run `supabase secrets set RESEND_API_KEY=re_xxx` and redeploy the function |
+| "RESEND_API_KEY not configured" / "No email provider configured" | Add `RESEND_API_KEY` or `BREVO_API_KEY` in Edge Functions → Secrets (Dashboard), then redeploy |
 | Email not received | Check Resend → Emails for delivery status and errors |
 | "Failed to invoke function" | Confirm the function is deployed and that Supabase credentials in `.env` match the linked project |
 | Duplicate key / "already subscribed" | This is expected if the email is already in `newsletter_subscribers` |
