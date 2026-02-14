@@ -17,13 +17,13 @@ export function MarketTicker() {
   const { quotes, loading } = useTickerData(30000);
 
   return (
-    <div className="overflow-hidden border-b border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-900 py-2.5">
-      <div className="ticker-scroll flex gap-x-8 gap-y-2 whitespace-nowrap animate-marquee">
+    <div className="overflow-hidden border-b border-[var(--border-subtle)] bg-[var(--bg-secondary)] py-2.5">
+      <div className="ticker-scroll flex gap-x-8 gap-y-2 whitespace-nowrap animate-marquee font-mono text-[14px]">
         {TICKER_ITEMS.map((item) => {
           const quote = quotes[item.symbol];
           if (!quote && !loading) {
             return (
-              <span key={item.symbol} className="inline-flex items-center gap-2 text-surface-500">
+              <span key={item.symbol} className="inline-flex items-center gap-2 text-[var(--text-muted)]">
                 <span className="font-semibold">{item.symbol}</span>—
               </span>
             );
@@ -46,50 +46,35 @@ export function MarketTicker() {
           return (
             <span
               key={item.symbol}
-              className="inline-flex items-center gap-2 text-surface-700 dark:text-surface-300"
+              className="inline-flex items-center gap-2 text-[var(--text-primary)]"
             >
               <span className="font-semibold">{item.symbol}</span>
               <span>${priceStr}</span>
-              <span className={isUp ? "text-bull font-medium" : "text-bear font-medium"}>
+              <span className={isUp ? "text-[var(--accent-primary)] font-medium" : "text-[var(--accent-danger)] font-medium"}>
                 {isUp ? "+" : ""}
                 {(quote.changePercent ?? 0).toFixed(2)}%
               </span>
             </span>
           );
         })}
-        {/* Duplicate for seamless loop */}
         {TICKER_ITEMS.map((item) => {
           const quote = quotes[item.symbol];
           if (!quote) return null;
           const isUp = (quote.changePercent ?? 0) >= 0;
           const priceStr = quote.price < 1 ? quote.price.toFixed(4) : quote.price < 100 ? quote.price.toFixed(2) : quote.price.toFixed(0);
           return (
-            <span key={`${item.symbol}-2`} className="inline-flex items-center gap-2 text-surface-700 dark:text-surface-300 shrink-0">
+            <span key={`${item.symbol}-2`} className="inline-flex items-center gap-2 text-[var(--text-primary)] shrink-0">
               <span className="font-semibold">{item.symbol}</span>
               <span>${priceStr}</span>
-              <span className={isUp ? "text-bull font-medium" : "text-bear font-medium"}>
-                {isUp ? "+" : ""}{(quote.changePercent ?? 0).toFixed(2)}%
-              </span>
-            </span>
-          );
-        })}
-        {!loading && TICKER_ITEMS.filter((i) => quotes[i.symbol]).map((item) => {
-          const quote = quotes[item.symbol]!;
-          const isUp = (quote.changePercent ?? 0) >= 0;
-          const priceStr = quote.price < 1 ? quote.price.toFixed(4) : quote.price < 100 ? quote.price.toFixed(2) : quote.price.toFixed(0);
-          return (
-            <span key={`${item.symbol}-2`} className="inline-flex items-center gap-2 text-surface-700 dark:text-surface-300 shrink-0">
-              <span className="font-semibold">{item.symbol}</span>
-              <span>${priceStr}</span>
-              <span className={isUp ? "text-bull font-medium" : "text-bear font-medium"}>
+              <span className={isUp ? "text-[var(--accent-primary)] font-medium" : "text-[var(--accent-danger)] font-medium"}>
                 {isUp ? "+" : ""}{(quote.changePercent ?? 0).toFixed(2)}%
               </span>
             </span>
           );
         })}
       </div>
-      <p className="text-[10px] text-surface-500 text-center mt-1.5">
-        Live data • Crypto: Binance • Stocks: Finnhub (add VITE_FINNHUB_API_KEY for stocks)
+      <p className="text-[11px] text-[var(--text-muted)] text-center mt-1.5">
+        Live data · Crypto: Binance · Stocks: Finnhub (add VITE_FINNHUB_API_KEY for stocks)
       </p>
     </div>
   );

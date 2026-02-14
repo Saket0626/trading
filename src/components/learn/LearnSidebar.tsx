@@ -21,22 +21,21 @@ export function LearnSidebar() {
     setExpandedLevel((prev) => (prev === id ? null : id));
   };
 
-  // Collapsed: show narrow strip with expand button
   if (!curriculumOpen) {
     return (
       <aside
-        className="flex-shrink-0 hidden lg:flex flex-col items-center py-4"
+        className="w-[52px] flex-shrink-0 hidden lg:flex flex-col items-center py-4 border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
         aria-label="Curriculum navigation collapsed"
       >
         <button
           onClick={toggleCurriculum}
-          className="flex flex-col items-center gap-2 p-3 rounded-r-lg border border-l-0 border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 hover:bg-surface-50 dark:hover:bg-surface-700/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          className="flex flex-col items-center gap-2 p-3 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]"
           aria-expanded="false"
           aria-label="Show curriculum"
           title="Show curriculum"
         >
-          <PanelLeft className="h-5 w-5 text-surface-600 dark:text-surface-400" aria-hidden />
-          <span className="text-xs font-medium text-surface-600 dark:text-surface-400 whitespace-nowrap [writing-mode:vertical] [text-orientation:mixed] rotate-180">
+          <PanelLeft className="h-5 w-5" aria-hidden />
+          <span className="text-[11px] font-semibold uppercase tracking-wider whitespace-nowrap [writing-mode:vertical] [text-orientation:mixed] rotate-180">
             Curriculum
           </span>
         </button>
@@ -46,17 +45,17 @@ export function LearnSidebar() {
 
   return (
     <aside
-      className="w-64 flex-shrink-0 hidden lg:block"
+      className="w-[260px] flex-shrink-0 hidden lg:block border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
       aria-label="Curriculum navigation"
     >
-      <div className="sticky top-24 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 overflow-hidden">
-        <div className="flex items-center justify-between p-3 border-b border-surface-200 dark:border-surface-700">
-          <h2 className="font-medium text-surface-900 dark:text-surface-100 text-sm">
+      <div className="sticky top-24 h-[calc(100vh-7rem)] flex flex-col overflow-hidden">
+        <div className="flex items-center justify-between p-4 border-b border-[var(--border-subtle)]">
+          <h2 className="font-display font-semibold text-[var(--text-primary)] text-sm">
             Curriculum
           </h2>
           <button
             onClick={toggleCurriculum}
-            className="p-1.5 rounded-md text-surface-500 hover:text-surface-700 hover:bg-surface-100 dark:hover:text-surface-400 dark:hover:bg-surface-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            className="p-1.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
             aria-expanded="true"
             aria-label="Hide curriculum"
             title="Hide curriculum"
@@ -64,7 +63,7 @@ export function LearnSidebar() {
             <PanelLeftClose className="h-4 w-4" aria-hidden />
           </button>
         </div>
-        <nav className="max-h-[calc(100vh-12rem)] overflow-y-auto" aria-label="Course curriculum">
+        <nav className="flex-1 overflow-y-auto py-2" aria-label="Course curriculum">
           {LEVELS.map((level) => {
             const modules = level.moduleIds
               .map((id) => MODULES.find((m) => m.id === id))
@@ -84,25 +83,27 @@ export function LearnSidebar() {
               (level.id === 5 && level5Unlocked);
 
             return (
-              <div key={level.id} className="border-b border-surface-100 dark:border-surface-700 last:border-0">
+              <div key={level.id} className="border-b border-[var(--border-subtle)] last:border-0">
                 <button
                   onClick={() => toggleLevel(level.id)}
-                  className={`w-full flex items-center gap-2 px-3 py-2.5 text-left text-sm ${
-                    isCurrentLevel ? "bg-surface-100 dark:bg-surface-700/50" : "hover:bg-surface-50 dark:hover:bg-surface-800/50"
-                  } ${!unlocked ? "opacity-60" : ""} focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset`}
+                  className={`w-full flex items-center gap-2 px-3 py-2.5 text-left text-sm transition-all duration-200 ${
+                    isCurrentLevel
+                      ? "bg-[var(--bg-secondary)] border-l-2 border-[var(--accent-primary)] pl-[10px]"
+                      : "border-l-2 border-transparent hover:bg-[var(--bg-secondary)] hover:border-[var(--accent-primary)]/40"
+                  } ${!unlocked ? "opacity-60" : ""} focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-inset`}
                   aria-expanded={isExpanded}
                   aria-controls={`level-${level.id}-modules`}
                 >
                   {isExpanded ? (
-                    <ChevronDown className="h-4 w-4 text-surface-500 shrink-0" aria-hidden />
+                    <ChevronDown className="h-4 w-4 text-[var(--text-secondary)] shrink-0" aria-hidden />
                   ) : (
-                    <ChevronRight className="h-4 w-4 text-surface-500 shrink-0" aria-hidden />
+                    <ChevronRight className="h-4 w-4 text-[var(--text-secondary)] shrink-0" aria-hidden />
                   )}
-                  <span className="font-medium text-surface-900 dark:text-surface-100">
+                  <span className="font-medium text-[var(--text-primary)]">
                     Level {level.id}
                   </span>
                   {!unlocked && (
-                    <Lock className="h-4 w-4 text-surface-400 dark:text-surface-500 shrink-0 ml-auto" aria-hidden />
+                    <Lock className="h-4 w-4 text-[var(--text-muted)] shrink-0 ml-auto" aria-hidden />
                   )}
                 </button>
                 {isExpanded && (
@@ -117,12 +118,12 @@ export function LearnSidebar() {
                         return (
                           <div
                             key={mod.id}
-                            className="flex items-center justify-between gap-2 px-4 py-2 pl-10 text-sm text-surface-500 dark:text-surface-400 cursor-not-allowed"
+                            className="flex items-center justify-between gap-2 px-4 py-2 pl-10 text-sm text-[var(--text-muted)] cursor-not-allowed"
                             aria-disabled="true"
                             title="Complete previous levels to unlock"
                           >
                             <span className="truncate">{mod.title}</span>
-                            <Lock className="h-4 w-4 shrink-0 text-surface-400 dark:text-surface-500" aria-hidden />
+                            <Lock className="h-4 w-4 shrink-0" aria-hidden />
                           </div>
                         );
                       }
@@ -130,14 +131,16 @@ export function LearnSidebar() {
                         <Link
                           key={mod.id}
                           to={`/learn/${level.id}/${mod.slug}`}
-                          className={`block px-4 py-2 pl-10 text-sm ${
-                            isCurrentModule ? "text-primary-600 dark:text-primary-400 font-medium" : "text-surface-600 dark:text-surface-400"
-                          } hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset rounded`}
+                          className={`block px-4 py-2 pl-10 text-sm transition-colors duration-200 ${
+                            isCurrentModule
+                              ? "text-[var(--accent-primary)] font-medium border-l-2 border-[var(--accent-primary)] pl-[10px] -ml-[2px]"
+                              : "text-[var(--text-secondary)] hover:text-[var(--accent-primary)]"
+                          } focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-inset rounded-r`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             <span className="truncate">{mod.title}</span>
                             {total > 0 && (
-                              <span className="text-xs shrink-0">
+                              <span className="text-xs shrink-0 text-[var(--text-muted)]">
                                 {completed}/{total}
                               </span>
                             )}

@@ -48,9 +48,9 @@ export function LessonPage() {
 
   if (!lesson) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <p>Lesson not found.</p>
-        <Link to="/learn" className="text-primary-500 hover:underline">
+      <div className="max-w-[1200px] mx-auto px-8 py-12">
+        <p className="text-[var(--text-primary)]">Lesson not found.</p>
+        <Link to="/learn" className="text-[var(--accent-primary)] hover:underline">
           Back to Learn
         </Link>
       </div>
@@ -113,45 +113,45 @@ export function LessonPage() {
       {/* Skip link for accessibility */}
       <a
         href="#lesson-main"
-        className="sr-only focus:not-sr-only focus-visible:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary-500 focus:text-white focus:rounded-lg"
+        className="sr-only focus:not-sr-only focus-visible:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--accent-primary)] focus:text-[var(--bg-primary)] focus:rounded-lg"
       >
         Skip to lesson content
       </a>
       {/* Scroll progress bar */}
       <div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary-500/20 z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-[var(--accent-primary)]/20 z-50"
         role="progressbar"
         aria-valuenow={Math.round(scrollProgress)}
         aria-valuemin={0}
         aria-valuemax={100}
       >
         <div
-          className="h-full bg-primary-500 transition-all duration-150 motion-reduce:transition-none"
+          className="h-full bg-[var(--accent-primary)] transition-all duration-150 motion-reduce:transition-none"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-    <div className="container mx-auto px-4 py-8 max-w-[1600px]">
+    <div className="max-w-[1600px] mx-auto px-8 py-10">
       <div className="flex gap-6">
         <LearnSidebar />
         <div className="flex-1 min-w-0">
-      <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400" aria-label="Breadcrumb">
-        <Link to="/" className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">Home</Link>
+      <nav className="mb-8 text-[14px] text-[var(--text-secondary)]" aria-label="Breadcrumb">
+        <Link to="/" className="hover:text-[var(--accent-primary)] rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2">Home</Link>
         <span className="mx-2" aria-hidden="true">/</span>
-        <Link to="/learn" className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">Learn</Link>
+        <Link to="/learn" className="hover:text-[var(--accent-primary)] rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2">Learn</Link>
         <span className="mx-2" aria-hidden="true">/</span>
-        <Link to={`/learn/${levelId}`} className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+        <Link to={`/learn/${levelId}`} className="hover:text-[var(--accent-primary)] rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2">
           Level {levelId}
         </Link>
         <span className="mx-2" aria-hidden="true">/</span>
         <Link
           to={`/learn/${levelId}/${moduleSlug}`}
-          className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          className="hover:text-[var(--accent-primary)] rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2"
         >
           {module_?.title}
         </Link>
         <span className="mx-2" aria-hidden="true">/</span>
-        <span className="text-surface-900 dark:text-surface-100" aria-current="page">{lesson.title}</span>
+        <span className="text-[var(--text-primary)]" aria-current="page">{lesson.title}</span>
       </nav>
 
       <div className="flex flex-col lg:flex-row gap-8">
@@ -161,17 +161,17 @@ export function LessonPage() {
           className={`flex-1 min-w-0 text-lg leading-relaxed ${tocOpen && (tocItems.length > 0 || nextLesson) ? "lg:max-w-3xl xl:max-w-4xl" : "max-w-4xl lg:max-w-5xl"}`}
         >
         <header className="mb-8">
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-surface-900 dark:text-surface-100">
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
             {lesson.title}
           </h1>
-          <p className="mt-2 text-surface-600 dark:text-surface-400">
+          <p className="mt-2 text-[var(--text-secondary)]">
             {lesson.duration} • {lesson.objectives.length} objectives
           </p>
           <div className="mt-4">
-            <h3 className="text-sm font-semibold text-surface-700 dark:text-surface-300 mb-2">
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
               What you'll learn
             </h3>
-            <ul className="list-disc list-inside space-y-1 text-sm text-surface-600 dark:text-surface-400">
+            <ul className="list-disc list-inside space-y-1 text-sm text-[var(--text-secondary)]">
               {lesson.objectives.map((obj, i) => (
                 <li key={i}>{obj}</li>
               ))}
@@ -189,7 +189,7 @@ export function LessonPage() {
 
         {hasQuiz && (
           <section className="mt-12" key={lesson.id}>
-            <h2 className="font-display text-xl font-semibold text-surface-900 dark:text-surface-100 mb-4">
+            <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-4">
               Knowledge Check
             </h2>
             <QuizErrorBoundary>
@@ -213,12 +213,12 @@ export function LessonPage() {
           </section>
         )}
 
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-end gap-4 pt-8 border-t border-surface-200 dark:border-surface-700">
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-end gap-4 pt-8 border-t border-[var(--border-subtle)]">
           <div className="flex gap-2">
             {prevLesson ? (
               <Link
                 to={`/learn/${levelId}/${moduleSlug}/${prevLesson.slug}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-surface-600 dark:text-surface-400 hover:text-primary-600 dark:hover:text-primary-400 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2"
               >
                 <ChevronLeft className="h-5 w-5" />
                 Previous
@@ -227,7 +227,7 @@ export function LessonPage() {
             {nextLesson ? (
               <Link
                 to={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-tertiary)] hover:bg-[var(--accent-primary)] hover:text-[var(--bg-primary)] font-semibold rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2"
               >
                 Next: {nextLesson.title}
                 <ChevronRight className="h-5 w-5" />
@@ -235,7 +235,7 @@ export function LessonPage() {
             ) : (
               <Link
                 to={`/learn/${levelId}`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-tertiary)] hover:bg-[var(--accent-primary)] hover:text-[var(--bg-primary)] font-semibold rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2"
               >
                 Back to Level {levelId}
                 <ChevronRight className="h-5 w-5" />
@@ -255,12 +255,12 @@ export function LessonPage() {
               {tocOpen ? (
                 <div className="space-y-6">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase text-surface-500 dark:text-surface-400">
+                    <span className="text-xs font-semibold uppercase text-[var(--text-muted)]">
                       On this page
                     </span>
                     <button
                       onClick={() => setTocOpen(false)}
-                      className="p-1.5 rounded-md text-surface-500 hover:bg-surface-100 dark:hover:bg-surface-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      className="p-1.5 rounded-md text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
                       aria-label="Hide sidebar"
                       title="Hide sidebar for wider content"
                     >
@@ -278,7 +278,7 @@ export function LessonPage() {
               ) : (
                 <button
                   onClick={() => setTocOpen(true)}
-                  className="flex items-center gap-2 p-3 rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/50 hover:bg-surface-100 dark:hover:bg-surface-700/50 text-surface-600 dark:text-surface-400 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
                   aria-label="Show sidebar"
                   title="Show table of contents"
                 >

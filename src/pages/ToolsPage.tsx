@@ -73,11 +73,11 @@ export function ToolsPage() {
         const t = tools.find((x) => x.id === activeTool);
         const href = t?.link || "/learn";
         return (
-          <div className="p-8 rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/50 text-center">
-            <p className="text-surface-600 dark:text-surface-400 mb-4">
+          <div className="p-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] text-center">
+            <p className="text-[var(--text-secondary)] mb-4">
               {t?.title} is integrated into lessons and the Paper Trading simulator.
             </p>
-            <Link to={href} className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600">
+            <Link to={href} className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent-primary)] text-[var(--bg-primary)] font-semibold rounded-lg hover:brightness-110 transition-all duration-200">
               Open {href.startsWith("/learn") ? "Lesson" : "Simulator"}
               <BookOpen className="h-4 w-4" />
             </Link>
@@ -90,13 +90,13 @@ export function ToolsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="font-display text-3xl font-bold text-surface-900 dark:text-surface-100 mb-2">
+    <div className="max-w-[1200px] mx-auto px-8 py-12">
+      <h1 className="font-display text-3xl font-bold text-[var(--text-primary)] mb-2">
         Trading Tools & Calculators
       </h1>
-      <p className="text-surface-600 dark:text-surface-400 mb-8">
+      <p className="text-[var(--text-secondary)] mb-8">
         Practical tools to support your trading decisions. Use the{" "}
-        <a href="/learn/2/candlestick-mastery/candlestick-anatomy" className="text-primary-500 hover:underline">
+        <a href="/learn/2/candlestick-mastery/candlestick-anatomy" className="text-[var(--accent-primary)] hover:underline">
           Candlestick Mastery
         </a>{" "}
         lesson for context on the builder.
@@ -107,10 +107,10 @@ export function ToolsPage() {
           <button
             key={t.id}
             onClick={() => setActiveTool(t.id)}
-            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-colors text-left ${
+            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-all duration-200 text-left ${
               activeTool === t.id
-                ? "bg-primary-500 text-white"
-                : "bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600"
+                ? "bg-[var(--accent-primary)] text-[var(--bg-primary)]"
+                : "bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]"
             }`}
           >
             <t.icon className="h-4 w-4 flex-shrink-0" />

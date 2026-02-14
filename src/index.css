@@ -1,4 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ChartWise Design System - Dark-first fintech */
+  --bg-primary: #0A0D12;
+  --bg-secondary: #111620;
+  --bg-tertiary: #1A2035;
+  --accent-primary: #00D4AA;
+  --accent-secondary: #F59E0B;
+  --accent-danger: #EF4444;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #475569;
+  --border-subtle: #1E293B;
+  --border-active: #00D4AA40;
+  --glow-teal: 0 0 20px #00D4AA30;
+}
 
 @tailwind base;
 @tailwind components;
@@ -9,12 +25,47 @@
     @apply scroll-smooth;
   }
   body {
-    @apply bg-surface-100 dark:bg-surface-950 text-surface-900 dark:text-surface-100 antialiased;
+    @apply antialiased;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'DM Sans', system-ui, sans-serif;
   }
   .lesson-content {
     font-size: 1rem;
-    line-height: 1.625;
+    line-height: 1.65;
   }
+}
+
+/* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-subtle) var(--bg-primary);
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Selection */
+::selection {
+  background: #00D4AA30;
+  color: #F1F5F9;
+}
+
+/* Focus visible - teal glow */
+*:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -27,39 +78,57 @@
   }
 }
 
+/* Animated gradient mesh for hero */
+@keyframes gradientMesh {
+  0%, 100% { opacity: 1; transform: scale(1) translate(0, 0); }
+  50% { opacity: 0.9; transform: scale(1.05) translate(2%, 2%); }
+}
+
+.hero-gradient-bg {
+  background: 
+    radial-gradient(ellipse 80% 60% at 80% 10%, #00D4AA15 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 20%, #F59E0B10 0%, transparent 40%),
+    var(--bg-primary);
+  animation: gradientMesh 20s ease-in-out infinite;
+}
+
+/* Staggered fade-up for above-the-fold */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+/* Card transitions */
+.card-transition {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Button transitions */
+.btn-transition {
+  transition: all 0.2s ease;
+}
+
 /* Color blind friendly candlestick alternative */
 .colorblind-bull {
-  background: #2563eb !important;
+  background: #00D4AA !important;
 }
 .colorblind-bear {
-  background: #dc2626 !important;
+  background: #EF4444 !important;
 }
 
-/* Focus visible for accessibility */
-*:focus-visible {
-  @apply outline-2 outline-offset-2 outline-primary-500;
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
-
-/* Minimal card hover - subtle border change only */
-.card-hover {
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-.card-hover:hover {
-  @apply border-surface-300 dark:border-surface-600;
-}
-
-/* Page fade-in */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.animate-fade-in {
-  animation: fadeIn 0.15s ease-out;
-}
-
-/* Subtle link/button hover - no scale */
-.hover-lift {
-  transition: opacity 0.15s ease, background-color 0.15s ease;
+.skeleton {
+  background: linear-gradient(90deg, var(--border-subtle) 25%, var(--bg-tertiary) 50%, var(--border-subtle) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
 /* Marquee ticker scroll */
@@ -72,19 +141,4 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee { animation: none; }
-}
-
-/* Skeleton shimmer */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.skeleton {
-  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-.dark .skeleton {
-  background: linear-gradient(90deg, #374151 25%, #1f2937 50%, #374151 75%);
-  background-size: 200% 100%;
 }

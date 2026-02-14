@@ -14,9 +14,9 @@ export function LearnPage() {
 
   if (!level) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <p>Level not found.</p>
-        <Link to="/learn/1" className="text-primary-500 hover:underline">
+      <div className="max-w-[1200px] mx-auto px-8 py-12">
+        <p className="text-[var(--text-primary)]">Level not found.</p>
+        <Link to="/learn/1" className="text-[var(--accent-primary)] hover:underline">
           Go to Level 1
         </Link>
       </div>
@@ -37,46 +37,46 @@ export function LearnPage() {
     .filter(Boolean);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex gap-8">
+    <div className="max-w-[1200px] mx-auto px-8 py-10">
+      <div className="flex gap-6">
         <LearnSidebar />
         <div className="flex-1 min-w-0">
-      <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
-        <Link to="/" className="hover:text-primary-500">Home</Link>
-        <span className="mx-2">/</span>
-        <Link to="/learn" className="hover:text-primary-500">Learn</Link>
-        <span className="mx-2">/</span>
-        <span className="text-surface-900 dark:text-surface-100">Level {level.id}</span>
-      </nav>
+          <nav className="mb-8 text-[14px] text-[var(--text-secondary)]">
+            <Link to="/" className="hover:text-[var(--accent-primary)]">Home</Link>
+            <span className="mx-2">/</span>
+            <Link to="/learn" className="hover:text-[var(--accent-primary)]">Learn</Link>
+            <span className="mx-2">/</span>
+            <span className="text-[var(--text-primary)]">Level {level.id}</span>
+          </nav>
 
-      <header className="mb-8">
-        <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100">
-          Level {level.id}: {level.title}
-        </h1>
-        <p className="mt-1 text-surface-500 dark:text-surface-400 text-sm">
-          {level.description}
-        </p>
-      </header>
+          <header className="mb-10">
+            <h1 className="font-display text-3xl font-bold text-[var(--text-primary)]">
+              Level {level.id}: {level.title}
+            </h1>
+            <p className="mt-2 text-[var(--text-secondary)] text-[15px]">
+              {level.description}
+            </p>
+          </header>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {modules.map((module) => (
-          <Link
-            key={module!.id}
-            to={`/learn/${level.id}/${module!.slug}`}
-            className="block p-4 rounded border border-surface-200 dark:border-surface-700 hover:border-surface-300 dark:hover:border-surface-600 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-colors"
-          >
-            <h2 className="font-medium text-surface-900 dark:text-surface-100 text-sm">
-              {module!.title}
-            </h2>
-            <p className="mt-1 text-xs text-surface-500 dark:text-surface-400 line-clamp-2">
-              {module!.description}
-            </p>
-            <p className="mt-3 text-xs text-primary-600 dark:text-primary-400 font-medium">
-              {module!.lessonIds.length} lessons →
-            </p>
-          </Link>
-        ))}
-      </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {modules.map((module) => (
+              <Link
+                key={module!.id}
+                to={`/learn/${level.id}/${module!.slug}`}
+                className="block p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:-translate-y-1 hover:border-[#00D4AA40] hover:shadow-[var(--glow-teal)] transition-all duration-250"
+              >
+                <h2 className="font-display font-semibold text-[var(--text-primary)]">
+                  {module!.title}
+                </h2>
+                <p className="mt-2 text-[14px] text-[var(--text-secondary)] line-clamp-2">
+                  {module!.description}
+                </p>
+                <p className="mt-4 text-[14px] text-[var(--accent-primary)] font-semibold">
+                  {module!.lessonIds.length} lessons →
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

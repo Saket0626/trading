@@ -34,16 +34,14 @@ export function MarketOverviewWidget() {
     return (
       <div
         key={item.symbol}
-        className="flex justify-between items-center py-2 border-b border-surface-100 dark:border-surface-700 last:border-0"
+        className="flex justify-between items-center py-2 border-b border-[var(--border-subtle)] last:border-0 font-mono"
       >
-        <span className="font-medium text-surface-900 dark:text-surface-100">{item.name}</span>
+        <span className="font-medium text-[var(--text-primary)]">{item.name}</span>
         <div className="text-right">
-          <span className="tabular-nums">{priceStr}</span>
+          <span className="tabular-nums text-[var(--text-primary)]">{priceStr}</span>
           {q?.changePercent != null && (
             <span
-              className={`ml-2 text-sm tabular-nums ${
-                isUp ? "text-bull" : "text-bear"
-              }`}
+              className={`ml-2 text-sm tabular-nums ${isUp ? "text-[var(--accent-primary)]" : "text-[var(--accent-danger)]"}`}
             >
               {isUp ? "+" : ""}
               {q.changePercent.toFixed(2)}%
@@ -55,35 +53,35 @@ export function MarketOverviewWidget() {
   };
 
   return (
-    <section className="py-6 border-b border-surface-200 dark:border-surface-800">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-semibold text-surface-900 dark:text-surface-100 flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-surface-500" />
+    <section className="py-10 border-b border-[var(--border-subtle)]">
+      <div className="max-w-[1200px] mx-auto px-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-[var(--accent-primary)]" />
             Market Overview
           </h2>
           <Link
             to="/simulator"
-            className="text-sm text-primary-500 hover:text-primary-600 font-medium"
+            className="text-[15px] text-[var(--accent-primary)] hover:underline font-medium"
           >
             Trade →
           </Link>
         </div>
-        <div className="grid sm:grid-cols-3 gap-4">
-          <div className="rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
-            <h3 className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-2">
+        <div className="grid sm:grid-cols-3 gap-6">
+          <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+            <h3 className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-3">
               Indices & Stocks
             </h3>
             {INDICES.map(renderRow)}
           </div>
-          <div className="rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
-            <h3 className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-2">
+          <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+            <h3 className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-3">
               Forex
             </h3>
             {FOREX.map(renderRow)}
           </div>
-          <div className="rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-4">
-            <h3 className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-2">
+          <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+            <h3 className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-3">
               Crypto
             </h3>
             {CRYPTO.map(renderRow)}

@@ -17,9 +17,9 @@ export function ModulePage() {
 
   if (!module_) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <p>Module not found.</p>
-        <Link to="/learn" className="text-primary-500 hover:underline">
+      <div className="max-w-[1200px] mx-auto px-8 py-12">
+        <p className="text-[var(--text-primary)]">Module not found.</p>
+        <Link to="/learn" className="text-[var(--accent-primary)] hover:underline">
           Back to Learn
         </Link>
       </div>
@@ -29,62 +29,62 @@ export function ModulePage() {
   const lessons = getLessonsByModule(module_.id);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex gap-8">
+    <div className="max-w-[1200px] mx-auto px-8 py-10">
+      <div className="flex gap-6">
         <LearnSidebar />
         <div className="flex-1 min-w-0">
-      <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
-        <Link to="/" className="hover:text-primary-500">Home</Link>
-        <span className="mx-2">/</span>
-        <Link to="/learn" className="hover:text-primary-500">Learn</Link>
-        <span className="mx-2">/</span>
-        <Link to={`/learn/${levelId}`} className="hover:text-primary-500">
-          Level {levelId}
-        </Link>
-        <span className="mx-2">/</span>
-        <span className="text-surface-900 dark:text-surface-100">{module_.title}</span>
-      </nav>
+          <nav className="mb-8 text-[14px] text-[var(--text-secondary)]">
+            <Link to="/" className="hover:text-[var(--accent-primary)]">Home</Link>
+            <span className="mx-2">/</span>
+            <Link to="/learn" className="hover:text-[var(--accent-primary)]">Learn</Link>
+            <span className="mx-2">/</span>
+            <Link to={`/learn/${levelId}`} className="hover:text-[var(--accent-primary)]">
+              Level {levelId}
+            </Link>
+            <span className="mx-2">/</span>
+            <span className="text-[var(--text-primary)]">{module_.title}</span>
+          </nav>
 
-      <header className="mb-12">
-        <h1 className="font-display text-3xl md:text-4xl font-bold text-surface-900 dark:text-surface-100">
-          {module_.title}
-        </h1>
-        <p className="mt-2 text-surface-600 dark:text-surface-400 text-lg">
-          {module_.description}
-        </p>
-      </header>
+          <header className="mb-10">
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
+              {module_.title}
+            </h1>
+            <p className="mt-2 text-[var(--text-secondary)] text-lg">
+              {module_.description}
+            </p>
+          </header>
 
-      <div className="space-y-3 max-w-3xl">
-        {lessons.length === 0 ? (
-          <div className="p-8 rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/50 text-center text-surface-600 dark:text-surface-400">
-            <p>Lessons for this module are coming soon. Check back as we expand the curriculum!</p>
-          </div>
-        ) : (
-        lessons.map((lesson) => {
+          <div className="space-y-3 max-w-3xl">
+            {lessons.length === 0 ? (
+              <div className="p-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] text-center text-[var(--text-secondary)]">
+                <p>Lessons for this module are coming soon. Check back as we expand the curriculum!</p>
+              </div>
+            ) : (
+            lessons.map((lesson) => {
           const complete = isLessonComplete(lesson.id);
           const isExpanded = expandedLessonId === lesson.id;
           return (
             <div
               key={lesson.id}
-              className="rounded-lg border border-surface-200 dark:border-surface-700"
+              className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-hidden"
             >
-              <div className="flex items-center gap-4 p-4 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all">
+              <div className="flex items-center gap-4 p-4 hover:bg-[var(--bg-tertiary)] transition-all duration-200">
                 <Link
                   to={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
                   className="flex items-center gap-4 flex-1 min-w-0 group"
                 >
                   <div className="flex-shrink-0">
                     {complete ? (
-                      <Check className="h-6 w-6 text-emerald-500" />
+                      <Check className="h-6 w-6 text-[var(--accent-primary)]" />
                     ) : (
-                      <Circle className="h-6 w-6 text-surface-400" />
+                      <Circle className="h-6 w-6 text-[var(--text-muted)]" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h2 className="font-semibold text-surface-900 dark:text-surface-100 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                    <h2 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-primary)]">
                       {lesson.title}
                     </h2>
-                    <p className="text-sm text-surface-600 dark:text-surface-400">
+                    <p className="text-sm text-[var(--text-secondary)]">
                       {lesson.duration} • {lesson.objectives.length} objectives
                     </p>
                   </div>
@@ -92,7 +92,7 @@ export function ModulePage() {
                 <button
                   type="button"
                   onClick={() => setExpandedLessonId(isExpanded ? null : lesson.id)}
-                  className="shrink-0 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border-2 border-primary-500/50 dark:border-primary-400/50 bg-primary-50/50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors cursor-pointer font-medium"
+                  className="shrink-0 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-[#00D4AA40] bg-[#00D4AA15] text-[var(--accent-primary)] hover:bg-[#00D4AA20] transition-all duration-200 cursor-pointer font-medium"
                   aria-expanded={isExpanded}
                   aria-label={isExpanded ? "Hide summary" : "Show summary"}
                 >
@@ -102,7 +102,7 @@ export function ModulePage() {
               </div>
               {isExpanded && (
                 <div className="pb-4 pt-0 pl-4 pr-4 ml-14">
-                  <p className="text-sm text-surface-600 dark:text-surface-400 leading-relaxed">
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                     {getLessonSummary(lesson)}
                   </p>
                 </div>
@@ -115,8 +115,8 @@ export function ModulePage() {
 
           {/* Chapter Flashcards */}
           {lessons.length > 0 && (
-            <section className="mt-12 pt-8 border-t border-surface-200 dark:border-surface-700">
-              <h2 className="font-display text-xl font-semibold text-surface-900 dark:text-surface-100 mb-4">
+            <section className="mt-12 pt-8 border-t border-[var(--border-subtle)]">
+              <h2 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-4">
                 Chapter Flashcards
               </h2>
               <Flashcards

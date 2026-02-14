@@ -28,17 +28,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const base =
-      "inline-flex items-center justify-center font-medium rounded transition-colors duration-150 focus:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
+      "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] disabled:opacity-50 disabled:cursor-not-allowed";
     const variants = {
-      primary: "bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800",
-      secondary: "border border-surface-300 dark:border-surface-600 text-surface-900 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-800",
-      tertiary: "text-primary-600 dark:text-primary-400 hover:bg-surface-100 dark:hover:bg-surface-800",
-      danger: "bg-red-600 text-white hover:bg-red-700",
+      primary: "bg-[var(--accent-primary)] text-[var(--bg-primary)] hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[var(--glow-teal)]",
+      secondary: "border border-[var(--border-subtle)] text-[var(--text-primary)] hover:border-[#00D4AA40] hover:bg-[var(--bg-tertiary)]",
+      tertiary: "text-[var(--accent-primary)] hover:bg-[var(--bg-tertiary)]",
+      danger: "bg-[var(--accent-danger)] text-white hover:brightness-110",
     };
     const sizes = {
       sm: "px-3 py-1.5 text-sm gap-1.5",
-      md: "px-4 py-2 text-sm gap-2",
-      lg: "px-5 py-2.5 text-base gap-2",
+      md: "px-5 py-2.5 text-[15px] gap-2",
+      lg: "px-7 py-3.5 text-base gap-2",
     };
 
     return (

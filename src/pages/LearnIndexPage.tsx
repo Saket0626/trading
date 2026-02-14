@@ -1,17 +1,9 @@
 import { Link } from "react-router-dom";
 import { LEVELS } from "../data/curriculum";
-import { ChevronRight, Lock, Crown } from "lucide-react";
+import { Lock, Crown, BarChart3 } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
 import { useAdmin } from "../contexts/AdminContext";
 import { canAccessLevel } from "../lib/access";
-
-const levelColors: Record<string, string> = {
-  emerald: "from-emerald-500 to-teal-600",
-  blue: "from-blue-500 to-cyan-600",
-  violet: "from-violet-500 to-purple-600",
-  amber: "from-amber-500 to-orange-600",
-  rose: "from-rose-500 to-pink-600",
-};
 
 export function LearnIndexPage() {
   const { getQuizScore } = useProgress();
@@ -22,104 +14,108 @@ export function LearnIndexPage() {
   const level5Unlocked = canAccessLevel(5, getQuizScore, isAdmin);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="max-w-[1200px] mx-auto px-8 py-12">
       <header className="mb-12">
-        <h1 className="font-display text-3xl md:text-4xl font-bold text-surface-900 dark:text-surface-100">
+        <h1 className="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
           Learning Path
         </h1>
-        <p className="mt-2 text-surface-600 dark:text-surface-400 text-lg">
+        <p className="mt-2 text-[var(--text-secondary)] text-lg">
           Choose a level to start or continue your journey.
         </p>
       </header>
 
-      <div className="space-y-6 max-w-3xl">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {LEVELS.map((level) => {
           const locked =
             (level.id === 2 && !level2Unlocked) ||
             (level.id === 3 && !level3Unlocked) ||
             (level.id === 4 && !level4Unlocked) ||
             (level.id === 5 && !level5Unlocked);
+          const difficulty =
+            level.id === 1 ? "BEGINNER" : level.id <= 3 ? "INTERMEDIATE" : "ADVANCED";
+          const badgeColor =
+            level.id === 1
+              ? "bg-[#00D4AA20] text-[var(--accent-primary)]"
+              : level.id <= 3
+                ? "bg-[#F59E0B20] text-[var(--accent-secondary)]"
+                : "bg-[#EF444420] text-[var(--accent-danger)]";
+
           const cardContent = (
             <div
-              className={`flex items-start gap-4 p-6 rounded-xl border transition-all ${
+              className={`rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-hidden transition-all duration-250 ${
                 locked
-                  ? "border-surface-200 dark:border-surface-700 bg-surface-50/50 dark:bg-surface-800/30 opacity-90 cursor-not-allowed"
-                  : "border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-surface-50 dark:hover:bg-surface-800/50"
+                  ? "opacity-75 cursor-not-allowed"
+                  : "hover:-translate-y-1.5 hover:border-[#00D4AA40] hover:shadow-[var(--glow-teal)] cursor-pointer"
               }`}
             >
-              <div
-                className={`flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br ${levelColors[level.color] || "from-primary-500 to-primary-600"} flex items-center justify-center text-white font-bold`}
-              >
-                {level.id}
+              <div className="h-40 bg-[var(--bg-tertiary)] flex items-center justify-center">
+                <BarChart3 className="h-14 w-14 text-[var(--accent-primary)] opacity-70" />
               </div>
-              <div className="flex-1 min-w-0">
-                <h2 className="font-display font-semibold text-lg text-surface-900 dark:text-surface-100 flex items-center gap-2">
-                  {level.title}
+              <div className="p-5">
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className={`inline-block px-2.5 py-1 rounded text-[12px] font-semibold uppercase ${badgeColor}`}>
+                    {difficulty}
+                  </span>
                   {locked && !isAdmin && (
-                    <span className="inline-flex items-center gap-1 text-sm font-normal text-amber-600 dark:text-amber-400">
+                    <span className="inline-flex items-center gap-1 text-[13px] text-[var(--accent-secondary)]">
                       <Lock className="h-4 w-4" />
                       Locked
                     </span>
                   )}
                   {isAdmin && (
-                    <span className="inline-flex items-center gap-1 text-sm font-normal text-amber-600 dark:text-amber-400" title="Admin unlocked">
-                      <Crown className="h-4 w-4" />
+                    <span className="inline-flex items-center gap-1" title="Admin unlocked">
+                      <Crown className="h-4 w-4 text-[var(--accent-secondary)]" />
                     </span>
                   )}
+                </div>
+                <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
+                  {level.title}
                 </h2>
-                <p className="text-sm text-surface-600 dark:text-surface-400 mt-1">
+                <p className="text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-4">
                   {level.description}
                 </p>
+                <div className="h-1.5 rounded-full bg-[var(--bg-tertiary)] overflow-hidden mb-3">
+                  <div className="h-full bg-[var(--accent-primary)] rounded-full" style={{ width: "0%" }} />
+                </div>
+                <p className="text-[13px] text-[var(--text-muted)]">
+                  {level.moduleIds.length} lessons · Free
+                </p>
                 {locked && level.id === 2 && (
-                  <p className="mt-2 text-sm text-surface-600 dark:text-surface-400">
-                    Pass the Level 1 Final Exam with 80% or higher to unlock.{" "}
-                    <Link
-                      to="/learn/1/level-1-exam/level-1-exam"
-                      className="text-primary-600 dark:text-primary-400 hover:underline font-medium"
-                    >
-                      Take Level 1 Final Exam →
+                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
+                    Pass the Level 1 Final Exam with 80%+ to unlock.{" "}
+                    <Link to="/learn/1/level-1-exam/level-1-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
+                      Take Exam →
                     </Link>
                   </p>
                 )}
                 {locked && level.id === 3 && (
-                  <p className="mt-2 text-sm text-surface-600 dark:text-surface-400">
-                    Pass the Level 2 Final Exam with 80% or higher to unlock.{" "}
-                    <Link
-                      to="/learn/2/level-2-exam/level-2-exam"
-                      className="text-primary-600 dark:text-primary-400 hover:underline font-medium"
-                    >
-                      Take Level 2 Final Exam →
+                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
+                    Pass the Level 2 Final Exam with 80%+ to unlock.{" "}
+                    <Link to="/learn/2/level-2-exam/level-2-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
+                      Take Exam →
                     </Link>
                   </p>
                 )}
                 {locked && level.id === 4 && (
-                  <p className="mt-2 text-sm text-surface-600 dark:text-surface-400">
-                    Pass the Level 3 Final Exam with 80% or higher to unlock.{" "}
-                    <Link
-                      to="/learn/3/level-3-exam/level-3-exam"
-                      className="text-primary-600 dark:text-primary-400 hover:underline font-medium"
-                    >
-                      Take Level 3 Final Exam →
+                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
+                    Pass the Level 3 Final Exam with 80%+ to unlock.{" "}
+                    <Link to="/learn/3/level-3-exam/level-3-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
+                      Take Exam →
                     </Link>
                   </p>
                 )}
                 {locked && level.id === 5 && (
-                  <p className="mt-2 text-sm text-surface-600 dark:text-surface-400">
-                    Pass the Level 4 Final Exam with 80% or higher to unlock.{" "}
-                    <Link
-                      to="/learn/4/level-4-exam/level-4-exam"
-                      className="text-primary-600 dark:text-primary-400 hover:underline font-medium"
-                    >
-                      Take Level 4 Final Exam →
+                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
+                    Pass the Level 4 Final Exam with 80%+ to unlock.{" "}
+                    <Link to="/learn/4/level-4-exam/level-4-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
+                      Take Exam →
                     </Link>
                   </p>
                 )}
               </div>
-              {!locked && (
-                <ChevronRight className="flex-shrink-0 h-5 w-5 text-surface-400 group-hover:text-primary-500 group-hover:translate-x-1 transition-all" />
-              )}
             </div>
           );
+
           return (
             <div key={level.id}>
               {locked && !isAdmin ? (
