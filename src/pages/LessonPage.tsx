@@ -135,9 +135,6 @@ export function LessonPage() {
       </div>
 
     <div className="max-w-[1600px] mx-auto px-8 py-10">
-      <div className="flex gap-6">
-        <LearnSidebar />
-        <div className="flex-1 min-w-0">
       <nav className="mb-8 text-[14px] text-[var(--text-secondary)]" aria-label="Breadcrumb">
         <Link to="/" className="hover:text-[var(--accent-primary)] rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2">Home</Link>
         <span className="mx-2" aria-hidden="true">/</span>
@@ -157,11 +154,13 @@ export function LessonPage() {
         <span className="text-[var(--text-primary)]" aria-current="page">{lesson.title}</span>
       </nav>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Main content - expands to full width when both sidebars are closed */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        <LearnSidebar />
+        {/* Main content - centered between sidebars */}
+        <div className="flex-1 min-w-0 flex justify-center">
         <article
           id="lesson-main"
-          className={`flex-1 min-w-0 text-lg leading-relaxed ${
+          className={`w-full text-lg leading-relaxed ${
             !curriculumOpen && !tocOpen
               ? "max-w-none lg:max-w-none"
               : tocOpen && (tocItems.length > 0 || nextLesson)
@@ -253,11 +252,12 @@ export function LessonPage() {
           </div>
         </div>
       </article>
+        </div>
 
         {/* TOC + Quick Ref - collapsible right sidebar; Show button in portal at top-right when closed */}
         {(tocItems.length > 0 || nextLesson) && (
           <aside
-            className={`flex-shrink-0 order-2 ${!tocOpen ? "lg:w-0 lg:min-w-0 lg:overflow-visible" : "lg:w-52 xl:w-56"}`}
+            className={`flex-shrink-0 order-2 ${!tocOpen ? "lg:w-0 lg:min-w-0 lg:overflow-visible" : "lg:w-[260px]"}`}
             aria-label="Lesson navigation"
           >
             {tocOpen ? (
@@ -301,9 +301,7 @@ export function LessonPage() {
           </aside>
         )}
       </div>
-        </div>
-      </div>
     </div>
-    </div>
+  </div>
   );
 }

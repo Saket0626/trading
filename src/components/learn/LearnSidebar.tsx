@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ChevronDown, ChevronRight, Lock, PanelLeftClose, PanelLeft } from "lucide-react";
+import { ChevronDown, ChevronRight, Lock, LockOpen, PanelLeftClose, PanelLeft } from "lucide-react";
 import { LEVELS, MODULES } from "../../data/curriculum";
 import { getLessonsByModule } from "../../data/lessons";
 import { useProgress } from "../../contexts/ProgressContext";
@@ -58,17 +58,13 @@ export function LearnSidebar() {
     );
   }
 
-  const sidebarTop = scrolledPastTicker ? "top-16" : "top-[7.5rem]";
-  const innerTop = scrolledPastTicker ? "top-16" : "top-[7.5rem]";
-  const innerHeight = scrolledPastTicker ? "h-[calc(100vh-4rem)]" : "h-[calc(100vh-7.5rem)]";
-
   return (
-    <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
+    <div className="hidden lg:block flex-shrink-0 w-[260px]" aria-hidden>
     <aside
-      className={`fixed left-8 bottom-0 z-40 w-[260px] transition-[top] duration-200 ${sidebarTop}`}
+      className="sticky top-24 z-40 w-full flex flex-col overflow-hidden max-h-[calc(100vh-6rem)]"
       aria-label="Curriculum navigation"
     >
-      <div className={`sticky flex flex-col overflow-hidden transition-all duration-200 ${innerTop} ${innerHeight}`}>
+      <div className="flex flex-col overflow-y-auto flex-1 min-h-0">
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-4 mb-4">
           <div className="flex items-center justify-between gap-2">
             <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
@@ -122,8 +118,10 @@ export function LearnSidebar() {
                     <ChevronRight className="h-4 w-4 text-current shrink-0" aria-hidden />
                   )}
                   <span>Level {level.id}</span>
-                  {!unlocked && (
-                    <Lock className="h-4 w-4 text-[var(--text-secondary)] shrink-0 ml-auto" aria-hidden />
+                  {unlocked ? (
+                    <LockOpen className="h-4 w-4 text-[var(--accent-primary)] shrink-0 ml-auto" aria-hidden title="Unlocked" />
+                  ) : (
+                    <Lock className="h-4 w-4 text-[var(--text-secondary)] shrink-0 ml-auto" aria-hidden title="Locked" />
                   )}
                 </button>
                 {isExpanded && (
