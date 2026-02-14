@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 
-const TRADINGVIEW_URL = "https://www.tradingview.com/";
+const TRADINGVIEW_URL = "https://www.tradingview.com/?aff_id=163337&aff_sub=304234&source=8192434";
 
 export function TradePage() {
   return (
