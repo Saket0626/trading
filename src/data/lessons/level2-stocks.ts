@@ -80,9 +80,21 @@ export const stocksDeepDiveLessons: Lesson[] = [
       },
       {
         type: "text",
-        heading: "Voting Rights",
+        heading: "Common Stock and Voting Rights",
         content:
-          "Most common stock carries one vote per share. Some companies have dual-class structures (e.g. founders have shares with more votes)—Google (Alphabet) and Facebook (Meta) have this. As a small shareholder you rarely affect outcomes, but the right exists. Preferred stock often has no or limited voting rights but may have priority for dividends—more like a bond. Common stock = full ownership rights; preferred = priority on dividends, less voting.",
+          "Common stock is the standard equity—one share equals one unit of ownership with typical voting rights (one vote per share). You share in profits via dividends and price appreciation; in bankruptcy, common shareholders get what's left after creditors and preferred. Some companies have dual-class structures (e.g. founders have shares with more votes)—Google (Alphabet) and Facebook (Meta) have this. As a small shareholder you rarely affect outcomes, but the right exists. Common stock offers the most upside and full participation in the company's growth, but also carries the most risk if the company fails.",
+      },
+      {
+        type: "text",
+        heading: "Preferred Stock",
+        content:
+          "Preferred stock is a hybrid between common stock and bonds. Preferred shareholders usually have priority over common for dividends and assets in bankruptcy—but typically no voting rights. Dividends are often fixed (e.g. 6% of par) and paid before common. Price is sensitive to interest rates: when rates rise, preferred prices tend to fall. Companies like banks and utilities often issue preferred. Preferred suits income investors who want dividend priority over growth.",
+      },
+      {
+        type: "text",
+        heading: "Fractional Shares",
+        content:
+          "Fractional shares let you buy a portion of a share—e.g. 0.25 shares of AAPL if you only have $50. Many brokers offer fractional trading for stocks and ETFs. You get proportional exposure: 0.5 shares means half the dollar move of 1 share. Useful for dollar-cost averaging (invest a fixed amount every month) or for expensive stocks. Settlement and dividends are handled proportionally. Fractional shares make investing accessible with small amounts.",
       },
       {
         type: "analogy",
@@ -165,6 +177,18 @@ export const stocksDeepDiveLessons: Lesson[] = [
         heading: "The Restaurant Menu Analogy",
         content:
           "Think of the market like a restaurant menu. Sectors are the categories: appetizers (staples), mains (tech, industrials), desserts (discretionary). When the economy is hungry for growth, people order more mains. When they're nervous, they stick to appetizers. You don't want to order only one category—diversify. And if you're a trader, watch which part of the menu is selling best today.",
+      },
+      {
+        type: "text",
+        heading: "ADRs (American Depositary Receipts)",
+        content:
+          "ADRs are US-traded securities that represent shares of foreign companies. A US bank holds the underlying foreign shares and issues ADRs that trade on NYSE or Nasdaq. One ADR can represent one, multiple, or a fraction of a foreign share. ADRs let US investors buy companies like Toyota, Nestlé, or Samsung without opening a foreign brokerage account. Dividends are converted to dollars (minus fees). Currency risk remains: if the dollar strengthens, your ADR may lag the local-currency return. ADRs are the main way US retail investors access international equities.",
+      },
+      {
+        type: "text",
+        heading: "GDRs (Global Depositary Receipts)",
+        content:
+          "GDRs are similar to ADRs but trade on exchanges outside the issuer's home country—often London or Luxembourg. They represent shares of a company (often emerging market) and are marketed to international investors. GDRs expand a company's investor base without multiple listings. Liquidity can be lower than ADRs; some GDRs trade on less liquid venues. Investors use GDRs to access companies from India, Brazil, and others that don't have US ADRs. Same concept as ADRs: a depositary bank holds the underlying shares and issues receipts. Currency and geopolitical risks apply.",
       },
       { type: "pro-tip", heading: "Pro Tip", content: "Use sector performance tables (e.g. S&P 500 sector returns YTD) to see what's working. When tech leads for months, rotation into financials or energy can signal a shift. Sector relative strength is a useful filter." },
       { type: "interactive", heading: "Think It Through", content: "Why does sector matter?", component: "ConceptCheck", props: { question: "Why does sector matter?", reveal: "Different sectors perform differently across the economic cycle. Defensive sectors may hold up in recessions; cyclicals may lead in growth. Diversifying across sectors can smooth returns." } },
@@ -321,6 +345,24 @@ export const stocksDeepDiveLessons: Lesson[] = [
           "A single stock is like putting all your eggs in one basket—if that basket drops, you lose a lot. An ETF is like buying a pre-made basket of eggs from many farms. One bad egg (one bad company) doesn't ruin the basket. You give up the chance that one egg becomes golden (one stock 10x), but you sleep better. Most people should have a basket (ETF core) and maybe a few eggs they really like (stock picks).",
       },
       {
+        type: "text",
+        heading: "Leveraged and Inverse ETFs",
+        content:
+          "Leveraged ETFs aim to deliver a multiple of the daily return of an index—e.g. 2x or 3x the S&P 500. They use swaps and futures to achieve this. Critically, the leverage resets daily. Over time, volatility causes path dependency: 2x daily moves don't compound to 2x long-term returns. In choppy markets, leveraged ETFs can lose value even if the index ends flat. Inverse ETFs aim to deliver the opposite of an index's daily return; -1x, -2x, -3x exist. Same daily-reset caveat: they're not meant for long-term hedging. Both are for short-term tactical trades only—never hold as permanent positions.",
+      },
+      {
+        type: "text",
+        heading: "Bond ETFs and Sector ETFs",
+        content:
+          "Bond ETFs hold fixed-income securities—Treasuries, corporate bonds, municipals, high-yield—and trade like stocks. You get diversified bond exposure without buying individual bonds. Prices move with interest rates: when rates rise, bond ETF prices fall. Duration tells you how sensitive the ETF is. Popular examples: BND (total bond), TLT (long Treasuries), LQD (investment-grade corporates). Sector ETFs track a single sector—technology (XLK), healthcare (XLV), financials (XLF), energy (XLE). You get concentrated exposure to one part of the economy without picking individual stocks. Sector rotation strategies shift between sectors based on economic cycles. Sector ETFs can be more volatile than broad-market ETFs because they're less diversified.",
+      },
+      {
+        type: "text",
+        heading: "Commodity ETFs and Crypto ETFs",
+        content:
+          "Commodity ETFs give exposure to raw materials—gold, silver, oil, natural gas, agriculture. Some hold physical commodities (e.g. GLD for gold); others use futures. Physical-backed ETFs track spot prices closely. Futures-based ETFs can suffer from contango (rolling futures costs) and may diverge from spot over time. Commodities add diversification and can hedge inflation. Crypto ETFs hold Bitcoin, Ethereum, or baskets of cryptocurrencies. US spot Bitcoin ETFs (e.g. IBIT, FBTC) hold actual BTC. You get crypto exposure through a regulated, brokerage-accessible product—no wallet or exchange account needed. Crypto ETFs are highly volatile and speculative; fees are higher than traditional ETFs.",
+      },
+      {
         type: "pro-tip",
         heading: "Pro Tip",
         content:
@@ -332,35 +374,6 @@ export const stocksDeepDiveLessons: Lesson[] = [
         heading: "Key Takeaway",
         content:
           "Stocks = single company, higher concentration risk. ETFs = basket, diversification in one trade. Core (ETFs) + satellite (stocks) is a common approach.",
-      },
-    ]
-  ),
-  createLesson(
-    "stocks-index-funds",
-    9,
-    "Index Funds: S&P 500, Nasdaq 100",
-    "stocks-index-funds",
-    "10 min",
-    ["What index funds track", "S&P 500 vs Nasdaq 100"],
-    [
-      {
-        type: "text",
-        heading: "What Is an Index Fund?",
-        content:
-          "An index fund (or index ETF) aims to match the performance of a market index by holding the same (or a representative sample of) securities. You don't try to beat the market—you get the market return minus a small fee. The S&P 500 and Nasdaq 100 are two of the most common US equity indexes.",
-      },
-      {
-        type: "text",
-        heading: "S&P 500 vs Nasdaq 100",
-        content:
-          "The S&P 500 includes about 500 large US companies across sectors—the broad US large-cap market. The Nasdaq 100 has about 100 of the largest non-financial companies listed on Nasdaq—heavy on tech (Apple, Microsoft, Amazon, etc.). So Nasdaq 100 is more tech-focused and can be more volatile. Many long-term investors use an S&P 500 index fund as a core holding.",
-      },
-      { type: "interactive", heading: "Think It Through", content: "How does the Nasdaq 100 differ from the S&P 500?", component: "ConceptCheck", props: { question: "How does the Nasdaq 100 differ from the S&P 500?", reveal: "S&P 500 = ~500 large US companies across sectors. Nasdaq 100 = ~100 largest non-financial Nasdaq names, tech-heavy and often more volatile." } },
-      {
-        type: "key-takeaway",
-        heading: "Key Takeaway",
-        content:
-          "Index funds track an index (e.g. S&P 500, Nasdaq 100). S&P 500 = broad large cap; Nasdaq 100 = tech-heavy. Low cost, diversified exposure.",
       },
     ]
   ),
@@ -383,6 +396,24 @@ export const stocksDeepDiveLessons: Lesson[] = [
         heading: "Why Companies Split / Adjusted Prices",
         content:
           "Splits are often done to lower the share price so it feels more accessible to small investors. They don't change the company's value. When you're trading or analyzing, use adjusted prices (most platforms do this automatically) so historical charts are comparable before and after the split.\n\nIf you look at a 10-year AAPL chart without adjustment, you'd see a fake 'crash' on every split date. Adjusted prices back out splits so the chart shows true percentage moves. Always use 'adjusted' or 'split-adjusted' when doing technical analysis.",
+      },
+      {
+        type: "text",
+        heading: "SPAC Shares",
+        content:
+          "A SPAC (Special Purpose Acquisition Company) is a shell company that raises money via an IPO to acquire a private company and take it public. SPAC shares typically trade at $10 at IPO; if a merger (de-SPAC) is announced, the price may jump or drop based on the target. If no deal is found within 18–24 months, the SPAC liquidates and redeems shares at about $10. SPACs surged in 2020–2021; many merged companies fell sharply post-deal. Risks: dilution from warrants and promoter shares, poor target quality, and hype-driven volatility. Treat SPACs as speculative—only invest if you understand the target and deal structure.",
+      },
+      {
+        type: "text",
+        heading: "Rights",
+        content:
+          "Rights are short-term options that give existing shareholders the right to buy more shares at a set price, usually at a discount. Companies issue rights in rights offerings to raise capital—e.g. one right per share, exercisable for 30 days. Rights trade separately on the exchange; if you don't exercise, they expire worthless. They're often used in distressed situations or to give current shareholders first dibs on new shares. If the rights are in-the-money (share price above exercise price), they have value; out-of-the-money rights may trade for pennies. Understand the ratio and expiration before participating.",
+      },
+      {
+        type: "text",
+        heading: "Warrants",
+        content:
+          "Warrants are long-dated call options issued by the company itself (not an options exchange). They give the holder the right to buy the company's stock at a set strike price until expiration—often 5–10 years. Warrants are sometimes attached to bonds or preferred stock (units) or issued by SPACs. Unlike listed options, warrants are dilutive: when exercised, the company issues new shares. They can be very volatile; a small move in the stock can cause a large move in the warrant. They offer leverage but also risk of expiring worthless if the stock doesn't reach the strike.",
       },
       {
         type: "analogy",
@@ -418,6 +449,24 @@ export const stocksDeepDiveLessons: Lesson[] = [
         heading: "S&P 500 vs Nasdaq 100",
         content:
           "The S&P 500 includes about 500 large US companies across sectors—the broad US large-cap market. The Nasdaq 100 has about 100 of the largest non-financial companies listed on Nasdaq—heavy on tech (Apple, Microsoft, Amazon, etc.). So Nasdaq 100 is more tech-focused and can be more volatile. Many long-term investors use an S&P 500 index fund as a core holding.\n\nQQQ tracks the Nasdaq 100. When tech leads, QQQ outperforms SPY. When tech corrects, QQQ falls more. Choose based on whether you want broad US market (SPY) or tech tilt (QQQ).",
+      },
+      {
+        type: "text",
+        heading: "Mutual Funds and Index Funds",
+        content:
+          "Mutual funds pool money from many investors and invest in stocks, bonds, or both. Shares are bought and sold at end-of-day NAV, not intraday. Actively managed funds have a manager picking securities; index mutual funds track an index. Fees can be higher than ETFs—especially load funds or those with high expense ratios. Mutual funds are common in 401(k)s and IRAs. Index funds (mutual or ETF) aim to match an index at low cost; they've beaten most active managers over long periods and are the default for long-term, diversified investing.",
+      },
+      {
+        type: "text",
+        heading: "Target-Date Funds and Closed-End Funds",
+        content:
+          "Target-date funds (TDFs) automatically shift from stocks to bonds as you approach a target retirement year (e.g. 2050). They're all-in-one, set-it-and-forget-it products for retirement accounts. Younger investors get more equity; as the target nears, the fund glides to more bonds. Fees vary—some are cheap, others expensive. TDFs simplify asset allocation but you give up control over the exact mix. Closed-end funds (CEFs) have a fixed number of shares that trade on an exchange like stocks. Unlike open-end funds, you buy and sell CEF shares from other investors—the price can trade at a premium or discount to NAV. CEFs often use leverage and can pay high yields. The discount/premium adds complexity; understand the fee structure before buying.",
+      },
+      {
+        type: "text",
+        heading: "ETNs (Exchange Traded Notes)",
+        content:
+          "ETNs are unsecured debt instruments that track an index or strategy—they're not funds. The issuer (usually a bank) promises to pay the return of the index minus fees. You have credit risk: if the issuer goes bankrupt, you could lose principal. ETNs don't hold underlying assets; they're linked by formula. Some ETNs track commodities, volatility (e.g. VXX), or esoteric strategies. They can trade at large premiums or discounts to indicative value. Understand that ETNs are notes, not funds—credit risk and liquidity matter. Use only if you understand the structure and accept issuer risk.",
       },
       {
         type: "analogy",
@@ -459,6 +508,24 @@ export const stocksDeepDiveLessons: Lesson[] = [
         heading: "The Metal Detector Analogy",
         content:
           "Screeners are like setting your metal detector to 'gold'—you filter out the junk and get a list of candidates. Scanners are like the detector beeping in real time when something passes by. You still have to dig and check if it's really gold (a valid setup) or a bottle cap (noise). The tool finds candidates; you decide which to trade.",
+      },
+      {
+        type: "text",
+        heading: "IPO Shares",
+        content:
+          "An IPO (Initial Public Offering) is when a company first sells shares to the public. Before an IPO, the stock is private; after, it trades on an exchange. Retail investors can buy IPO shares through their broker—allocation depends on broker participation and demand. IPO pricing is set by underwriters; the first-day pop (or drop) reflects supply and demand. IPOs can be volatile: lockups expire (insiders can sell), and hype can drive prices above fundamental value. Historically, IPOs underperform the market over the long run. Treat IPOs as speculative—only invest if you'd hold the stock regardless of the IPO narrative.",
+      },
+      {
+        type: "text",
+        heading: "Secondary Offerings and Private Placements",
+        content:
+          "A secondary offering is when a company sells additional shares after the IPO—dilution of existing shareholders. The company raises capital; new shares hit the market. Secondary offerings often cause short-term price pressure: more supply, potential selling. Companies use secondaries for growth, debt repayment, or acquisitions. Private placements are sales of securities to a limited number of accredited investors without a public offering. They're not listed; liquidity is low or nonexistent. Some brokers offer access to private placements. Risk is high: no secondary market, long lockups, company-specific risk. Private placements are broker-dependent.",
+      },
+      {
+        type: "text",
+        heading: "Short Selling",
+        content:
+          "Short selling is betting that a stock will fall: you borrow shares, sell them, and hope to buy them back cheaper. If the stock drops, you profit; if it rises, you lose—and losses can be unlimited (a stock can rise forever). Shorts must pay borrow fees and dividends to the lender. Squeezes happen when many shorts are forced to cover as the stock rises. Not all stocks are shortable—hard-to-borrow names have high fees. Short selling requires a margin account; margin requirements are stricter for short positions. Use only when you understand the risks and have a defined exit plan.",
       },
       {
         type: "warning",

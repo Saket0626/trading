@@ -77,6 +77,42 @@ export const level4PortfolioLessons: Lesson[] = [
         "Think of diversification like owning shares in different restaurants. If you own only a steakhouse and people stop eating meat, you're in trouble. Own a steakhouse, a salad bar, and a bakery—different customer bases and trends—and one bad sector hurts less. Correlation is how often the restaurants have good or bad months together. Low correlation = they don't all suffer at once. But in a recession, everyone cuts dining—correlation rises. Diversification helps, but it's not a magic shield.",
     },
     {
+      type: "text",
+      heading: "Treasury Bills, Notes, and Bonds",
+      content:
+        "Treasury Bills (T-Bills) are short-term US government debt with maturities of 4, 8, 13, 26, or 52 weeks. They're sold at a discount to face value—you pay less than $100, receive $100 at maturity. The difference is your interest. No coupon payments; considered risk-free. Treasury Notes (T-Notes) have maturities of 2, 3, 5, 7, or 10 years; Treasury Bonds (T-Bonds) have 20 or 30 years. They pay a fixed coupon every six months and return face value at maturity. Prices move inversely to interest rates: when rates rise, bond prices fall. Longer maturities are more sensitive. All are backed by the US government.",
+    },
+    {
+      type: "text",
+      heading: "TIPS (Treasury Inflation-Protected Securities)",
+      content:
+        "TIPS adjust their principal for inflation (CPI). If inflation rises, your principal increases; at maturity you get the greater of adjusted principal or original. TIPS pay a fixed coupon on the adjusted principal—so your interest payments rise with inflation. They protect purchasing power when inflation surprises to the upside. When inflation expectations rise, TIPS outperform nominal Treasuries. Yields on TIPS are often lower than nominal Treasuries because of the inflation adjustment—the difference (breakeven inflation) reflects market inflation expectations. Useful for retirement portfolios and inflation hedging.",
+    },
+    {
+      type: "text",
+      heading: "Corporate Bonds and Municipal Bonds",
+      content:
+        "Corporate bonds are issued by companies to raise debt capital. They pay a coupon and return principal at maturity. Investment-grade bonds (rated BBB or higher) have lower default risk and lower yields; high-yield (junk) bonds offer higher yields but higher default risk. Corporate bond prices are sensitive to interest rates and the issuer's credit quality. Municipal bonds are issued by state and local governments for schools, roads, utilities. Interest is often exempt from federal income tax—and from state tax if you live in the issuing state. General obligation bonds are backed by taxing power; revenue bonds by project revenue. Munis appeal to high-income investors in high tax brackets.",
+    },
+    {
+      type: "text",
+      heading: "Zero-Coupon Bonds, Convertible Bonds, and Commercial Paper",
+      content:
+        "Zero-coupon bonds pay no interest—they're sold at a discount and mature at face value. The difference is your return. Zeros have high duration (price sensitivity to rates) because all cash flow is at maturity. Treasuries can be stripped into zeros (STRIPS). Convertible bonds can be converted into the issuer's stock at a set ratio. They offer bond-like income with equity upside—if the stock rises, the convertible gains; if it falls, you still have the bond floor. Commercial paper is short-term unsecured debt (typically 1–270 days) issued by corporations and financial institutions for working capital. Very short maturity; low default risk for top issuers. Retail access is usually through money market funds that hold CP.",
+    },
+    {
+      type: "text",
+      heading: "Equity REITs and Mortgage REITs",
+      content:
+        "Equity REITs own and operate income-producing real estate—offices, malls, apartments, warehouses, hospitals. They earn rent from tenants and pass most of it to shareholders as dividends. REITs must distribute at least 90% of taxable income to qualify for favorable tax treatment. Equity REITs are the most common type; performance depends on property type, location, and interest rates. Mortgage REITs (mREITs) don't own property—they invest in mortgages and mortgage-backed securities. They borrow at short-term rates and lend or invest at longer-term rates, earning the spread. mREITs are highly sensitive to interest rates: when rates rise, their cost of funding can increase faster than asset yields. mREITs typically offer higher yields but with more volatility and rate risk.",
+    },
+    {
+      type: "text",
+      heading: "Hybrid REITs",
+      content:
+        "Hybrid REITs combine equity and mortgage strategies—they own some properties and also invest in mortgages or MBS. This diversifies revenue: rental income from owned real estate plus interest income from mortgage investments. Hybrid REITs aim to balance the stability of equity REITs with the yield potential of mortgage REITs. They're less common than pure equity or mortgage REITs. Risk and return profile falls between the two. If you want mixed exposure, hybrids offer it—but understand the allocation (how much equity vs mortgage) and how that affects sensitivity to rates and real estate cycles.",
+    },
+    {
       type: "warning",
       heading: "Critical Warning",
       content:
@@ -131,6 +167,18 @@ export const level4PortfolioLessons: Lesson[] = [
       heading: "Recap",
       content:
         "MPT frames portfolios in risk and return; the efficient frontier is the best return per risk. Diversification across uncorrelated assets reduces volatility—across asset classes and geographies. Rebalancing keeps weights and risk on target; use frequency or threshold, and mind taxes and costs.\n\nUse these ideas for long-term allocation—not for day trading, but for building and maintaining a portfolio. A simple 60/40 or 70/30 stocks/bonds, rebalanced annually, beats most complex strategies for most investors. Consistency and discipline matter more than perfection.",
+    },
+    {
+      type: "text",
+      heading: "Structured Notes",
+      content:
+        "Structured notes are debt instruments whose payoffs are linked to the performance of an underlying asset—a stock, index, commodity, or basket. The issuer (usually a bank) promises a return based on a formula. Example: you get 100% of the S&P 500 return up to a cap, and principal back if the index doesn't fall more than 20%. You have credit risk: if the issuer fails, you can lose principal. Complexity is high—read the prospectus. Fees and spreads are often embedded. Structured notes can offer principal protection, participation in upside, or exotic payoffs. Only suitable for sophisticated investors who understand the payoff and issuer risk.",
+    },
+    {
+      type: "text",
+      heading: "Capital-Protected Notes and Reverse Convertibles",
+      content:
+        "Capital-protected notes (principal-protected notes) guarantee return of principal at maturity while offering participation in an underlying's upside. The structure typically combines a zero-coupon bond with an option or derivative. The catch: protection depends on the issuer's credit. Reverse convertibles pay a high coupon but at maturity may convert into the underlying stock—typically when the stock has fallen. If you're converted into stock, you could receive shares worth less than your initial investment. Reverse convertibles are effectively a bond plus a short put. Often marketed to retirees seeking income—but the structure is complex and risky. Only for investors who fully understand conversion scenarios and credit risk.",
     },
     {
       type: "preview",

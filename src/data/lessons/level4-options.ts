@@ -49,6 +49,24 @@ export const level4OptionsLessons: Lesson[] = [
         "Buying a call: bullish. Max loss = premium. Max gain = theoretically unlimited (stock can rise forever). Break-even at expiration = strike + premium. Example: buy a $100 strike call for $5; break-even is $105. Buying a put: bearish. Max loss = premium. Max gain = strike minus zero (stock can't go below zero)—so for a $100 strike put bought at $4, max gain ≈ $96. Break-even = strike − premium = $96.\n\nAmerican options can be exercised anytime before expiration; European only at expiration. Most index options (SPX, VIX) are European; many equity options are American. For long-dated holdings, the difference rarely matters; for short-dated, American gives the holder more flexibility.",
     },
     {
+      type: "text",
+      heading: "Weekly, Monthly, and LEAPS Options",
+      content:
+        "Weekly options expire every Friday (or Thursday for some indices). They're shorter-dated than standard monthly options—typical monthly expirations are the third Friday of each month. Weeklys give traders precision for event-driven trades (earnings, Fed meetings), but time decay is brutal. Monthly options have the most liquidity and tightest spreads; they're the default choice for most retail. LEAPS (Long-Term Equity Anticipation Securities) have 1–3 years to expiration. Time decay is slower; you have more time to be right. LEAPS are used for long-term bullish or bearish views and synthetic stock positions. They're more expensive in absolute dollars but offer defined-risk leverage over years.",
+    },
+    {
+      type: "text",
+      heading: "Index Options and ETF Options",
+      content:
+        "Index options are on broad market indices—S&P 500 (SPX), Nasdaq 100 (NDX), Russell 2000 (RUT), VIX. They're usually cash-settled: at expiration you receive the difference between the index value and the strike; no shares change hands. Index options are European-style (exercise only at expiration) for SPX and many others. Benefits: no single-stock risk, tax advantages (SPX can qualify for 60/40 treatment in the US). ETF options (SPY, QQQ, IWM) are American-style and physically settled—100 shares of the ETF per contract. They're more accessible for retail: smaller notional, high liquidity, tight spreads. SPY options are among the most traded in the world. You can replicate many index strategies with ETF options.",
+    },
+    {
+      type: "text",
+      heading: "FLEX Options",
+      content:
+        "FLEX (Flexible Exchange) options allow custom terms: strike, expiration, and exercise style. They're traded on CBOE and other exchanges, primarily for institutional and large retail. Use FLEX when standardized options don't fit—e.g. you need a specific expiration date or strike not in the monthly cycle. Liquidity is lower; you often negotiate with market makers. FLEX options exist on indices (e.g. SPX FLEX) and some ETFs. They're useful for tailored hedging or structured strategies. Most retail traders never use FLEX; they're for customized institutional needs.",
+    },
+    {
       type: "warning",
       heading: "Critical Warning",
       content:
@@ -118,9 +136,27 @@ export const level4OptionsLessons: Lesson[] = [
     },
     {
       type: "text",
-      heading: "Spreads",
+      heading: "Credit Spreads and Debit Spreads",
       content:
-        "Bull call spread: buy a lower strike call, sell a higher strike call. Lower cost than a naked call; profit capped at the spread width minus cost. Example: buy $100 call for $5, sell $110 call for $2; net cost $3. Max gain = $7 ($10 width minus $3 cost) if stock finishes above $110. Max loss = $3. Defined risk on both sides.\n\nCredit spreads: sell an OTM option and buy a further OTM option (e.g. bull put spread—sell $95 put, buy $90 put). You collect premium; max loss = width minus premium. Iron condor: sell OTM call spread + OTM put spread; profit if stock stays in a range. Straddle: buy call + put same strike—profit from a big move either way; expensive and needs a large move to work.",
+        "A credit spread: you sell an OTM option and buy a further OTM option. You collect premium; max loss = spread width minus premium. Example: bull put spread—sell $95 put, buy $90 put; you're paid to take the risk of buying at $95 if assigned. A debit spread: you buy an option and sell a further OTM one; you pay premium; max gain = width minus debit. Example: bull call spread—buy $100 call, sell $110 call; lower cost than a naked call, profit capped at $10 minus what you paid. Both give defined risk on both sides. Credit spreads profit from time decay and range-bound price action; debit spreads profit from directional moves.",
+    },
+    {
+      type: "text",
+      heading: "Iron Condors and Butterflies",
+      content:
+        "An iron condor combines a bear call spread (sell OTM call, buy further OTM call) and a bull put spread (sell OTM put, buy further OTM put). You profit if the stock stays within a range between the two short strikes. Max profit = net credit received; max loss = width of wider spread minus credit. Iron condors are used when you expect low volatility and range-bound price action. A butterfly: buy one OTM, sell two ATM, buy one ITM at the same expiration. Profit is maximized if the stock lands at the middle strike. Butterflies are cheaper but have a narrower profit zone. Both are premium-selling, range-bound strategies with defined risk.",
+    },
+    {
+      type: "text",
+      heading: "Straddles and Strangles",
+      content:
+        "A straddle: buy a call and put at the same strike (usually ATM). You profit from a large move in either direction—you don't care which way. Used around binary events (earnings, FDA approval) when you expect a big move but are unsure of direction. Max loss = total premium (both options); break-evens = strike ± total premium. A strangle: buy OTM call and OTM put (different strikes). Cheaper than a straddle; you need a larger move to profit. Profit zone is outside the two strikes minus premium. Both are long volatility—you want implied vol to rise or the underlying to move a lot. Risk: if the stock doesn't move, you lose the full premium.",
+    },
+    {
+      type: "text",
+      heading: "Calendar Spreads, Diagonal Spreads, and Ratio Spreads",
+      content:
+        "A calendar spread: sell a short-dated option and buy a longer-dated option at the same strike. You profit from the faster time decay of the short option while the long retains value. Best when the stock stays near the strike; you're betting that time decay of the short works in your favor. A diagonal spread: same idea but different strikes—e.g. sell a near-term OTM call and buy a longer-dated call at a different strike. Used for income, rolling, or directional bias with reduced cost. A ratio spread: sell more options than you buy—e.g. buy one call, sell two higher strike calls. You collect premium and have a bearish bias above the short strikes. Ratio spreads have undefined risk on one side (the extra short option) and require careful management.",
     },
     {
       type: "analogy",

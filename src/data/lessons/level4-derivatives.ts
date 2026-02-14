@@ -49,6 +49,36 @@ export const level4DerivativesLessons: Lesson[] = [
         "Leverage: margin is a fraction of notional value. E-mini S&P might require $10,000 margin for a $250,000 notional position—so a 4% move in your favor can double your margin, but a 4% move against you can wipe you out. Liquidity: major contracts (ES, CL, GC) have huge volume. 24-hour trading: many products trade nearly around the clock. Tax treatment in the US: 60/40 rule can benefit certain gains. Diversification: commodities and indices add uncorrelated exposure.\n\nRisk: you can lose more than your initial margin. Margin calls require adding funds or being closed out. Never use more leverage than you can afford.",
     },
     {
+      type: "text",
+      heading: "Index Futures and Micro Futures",
+      content:
+        "Index futures track stock indices—S&P 500 (ES, E-mini), Nasdaq 100 (NQ), Russell 2000 (RTY), Dow (YM). They're cash-settled: at expiration you receive the difference between the index value and your entry. E-mini S&P 500 (ES) is one of the most traded futures in the world—$50 per index point, high liquidity, nearly 24-hour trading. Micro futures (MES, MNQ) are smaller versions—1/10 the size of E-mini. One point = $5 instead of $50. Micros lower the barrier to entry: less capital required, smaller P&L per point. Useful for learning, small accounts, and precise position sizing.",
+    },
+    {
+      type: "text",
+      heading: "Commodity Futures and Currency Futures",
+      content:
+        "Commodity futures cover raw materials: energy (crude oil CL, natural gas NG), metals (gold GC, silver SI, copper HG), agriculture (corn C, wheat W, soybeans S). Producers hedge; speculators bet on direction. Contract sizes vary: crude = 1,000 barrels, gold = 100 oz. Commodity futures can be volatile—weather, geopolitics, supply shocks move prices. Contango and backwardation affect roll costs for those holding long-term. Currency futures (6E for EUR/USD, 6J for USD/JPY, 6B for GBP/USD) are on forex pairs. They trade on CME and settle in USD. Standard sizes: 125,000 EUR for 6E. Micro FX futures (M6E, M6J) offer smaller size. Used for hedging FX exposure and speculating on exchange rates.",
+    },
+    {
+      type: "text",
+      heading: "Treasury Futures, Crypto Futures, and Volatility Futures",
+      content:
+        "Treasury futures are on US government debt: 10-year notes (ZN), 30-year bonds (ZB), 2-year notes (ZT). They're used for hedging interest rate risk and speculating on rates. When interest rates rise, Treasury futures fall (bond prices and rates move inversely). Contract sizes are large: ZN = $100,000 face value. Crypto futures (BTC, ETH) trade on CME and other exchanges; they're cash-settled in USD. They offer leverage and shorting without holding the asset; highly volatile. Volatility futures (VX) track expected S&P 500 volatility. When fear rises, VIX futures spike. Contango in the VIX term structure means longer-dated futures often trade above spot; rolling can be costly. Used to trade or hedge vol—institutions and active traders use them for volatility exposure.",
+    },
+    {
+      type: "text",
+      heading: "Call Options on Futures",
+      content:
+        "A call option on a futures contract gives you the right to assume a long futures position at the strike price. When you exercise, you receive a long futures position (or its cash equivalent). Example: buy a call on crude oil futures with strike $70. If crude is at $75 at expiration, you exercise and get the long position. Futures options are often American-style—exercise anytime. They're used for hedging commodity or rate exposure and for leveraged speculation with defined risk. Premium is paid in cash; margin rules apply when you exercise. Liquidity varies by contract—major products like ES, CL have active options markets. Traders use calls on index futures for bullish exposure.",
+    },
+    {
+      type: "text",
+      heading: "Put Options on Futures",
+      content:
+        "A put option on futures gives you the right to assume a short futures position at the strike. Exercise delivers a short position. Used when you're bearish on the underlying—crude, gold, indices. Puts can protect a long futures position: if you're long gold futures and buy a put, a crash limits your loss. Farmers often buy puts on corn or wheat futures to lock in a floor price. Futures puts are also used for yield enhancement—e.g. selling puts when you want to go long at a lower price. Same structure as equity puts: premium, strike, expiration. Understand the futures contract specs and margining before trading futures options.",
+    },
+    {
       type: "warning",
       heading: "Critical Warning",
       content:
@@ -109,6 +139,12 @@ export const level4DerivativesLessons: Lesson[] = [
       heading: "Recap",
       content:
         "Futures are standardized contracts for future delivery or cash settlement. Margin allows leverage but requires discipline—margin calls and close-outs are real. Use position sizing and risk rules; understand contract specs before trading.\n\nFutures are powerful tools for hedging (producers, institutions) and speculation (traders). They offer liquidity, 24-hour access in many products, and tax benefits in some jurisdictions. But they're not for everyone—leverage can destroy accounts. Start with paper trading or micro contracts (e.g. MES instead of ES) to learn before scaling.",
+    },
+    {
+      type: "text",
+      heading: "CFDs (Non-US Brokers)",
+      content:
+        "CFDs (Contracts for Difference) are over-the-counter derivatives that let you speculate on price moves without owning the underlying. You agree to exchange the difference between the entry and exit price. CFDs offer leverage and the ability to go short easily—used widely outside the US. In the US, CFDs are largely restricted; most CFD brokers are non-US. CFDs have no expiration and can track stocks, indices, forex, and commodities. Risks: leverage can amplify losses, counterparty risk (you're dealing with the broker), and swap costs for overnight positions. CFDs are not suitable for beginners. If using a non-US broker, understand regulation and risk. Prefer regulated, exchange-traded products when available.",
     },
     {
       type: "preview",
