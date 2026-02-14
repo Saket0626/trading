@@ -87,7 +87,7 @@ export function HomePage() {
                 </Link>
               </div>
               <p className="text-[13px] text-[var(--text-secondary)] animate-fade-up" style={{ animationDelay: "400ms" }}>
-                ★★★★★ Rated 4.9/5 by 2,400+ learners · ✓ 60+ lessons · ✓ Free to start
+                ★★★★★ Rated 4.9/5 by 2,400+ learners · ✓ 60+ lessons · ✓ Absolutely Free!
               </p>
             </div>
             <div className="hidden lg:block animate-fade-up" style={{ animationDelay: "200ms" }}>
@@ -135,8 +135,7 @@ export function HomePage() {
             </div>
             <div className="hidden md:block w-px h-8 bg-[var(--border-subtle)]" />
             <div className="flex flex-col items-center md:flex-row md:items-center gap-2 md:gap-4">
-              <span className="font-display text-2xl md:text-3xl font-bold text-[var(--accent-primary)] tabular-nums">$0</span>
-              <span className="text-[var(--text-secondary)] text-[15px]">To Start</span>
+              <span className="font-display text-2xl md:text-3xl font-bold text-[var(--accent-primary)] tabular-nums">Absolutely Free!</span>
             </div>
           </div>
         </div>
@@ -319,7 +318,7 @@ export function HomePage() {
                   rel="noopener noreferrer"
                   className="flex gap-4 p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] relative hover:border-[var(--accent-primary)] hover:shadow-[var(--glow-teal)] transition-all duration-200 group block"
                 >
-                  <div className="absolute top-4 right-4 flex items-center gap-2">
+                  <div className="absolute bottom-4 right-4 flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-danger)] opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-danger)]" />
@@ -343,22 +342,21 @@ export function HomePage() {
         <div className="max-w-[1200px] mx-auto px-8">
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { num: "01", icon: BookOpen, title: "Structured Curriculum", desc: "Five levels from absolute beginner to quantitative strategies. No fluff, no shortcuts.", to: "/learn" },
-              { num: "02", icon: BarChart3, title: "Real Market Data", desc: "Learn with live prices from Binance, Finnhub. Stocks, forex, crypto, commodities.", to: "/simulator" },
-              { num: "03", icon: Star, title: "Interactive Practice", desc: "Candlestick builder, pattern recognition, paper trading. Learn by doing.", to: "/tools" },
+              { num: "01", icon: BookOpen, title: "Structured Curriculum", desc: "Five levels from absolute beginner to quantitative strategies. No fluff, no shortcuts." },
+              { num: "02", icon: BarChart3, title: "Real Market Data", desc: "Learn with live prices from Binance, Finnhub. Stocks, forex, crypto, commodities." },
+              { num: "03", icon: Star, title: "Interactive Practice", desc: "Candlestick builder, pattern recognition, paper trading. Learn by doing." },
             ].map((item) => (
-              <Link
+              <div
                 key={item.num}
-                to={item.to}
-                className="block relative pt-2 hover:border-t-2 hover:border-[var(--accent-primary)] transition-colors duration-200 group"
+                className="relative pt-2"
               >
-                <span className="font-display text-[48px] text-[var(--border-subtle)] absolute -top-2 left-0 group-hover:text-[var(--accent-primary)]/30 transition-colors">{item.num}</span>
+                <span className="font-display text-[48px] text-[var(--border-subtle)] absolute -top-2 left-0">{item.num}</span>
                 <div className="pl-16">
                   <item.icon className="h-12 w-12 text-[var(--accent-primary)] mb-4" />
-                  <h3 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors">{item.title}</h3>
+                  <h3 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-2">{item.title}</h3>
                   <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">{item.desc}</p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
