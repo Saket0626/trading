@@ -70,7 +70,7 @@ export function ModulePage() {
             >
               <div className="flex items-center gap-4 p-4 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all">
                 <Link
-                  href={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
+                  to={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
                   className="flex items-center gap-4 flex-1 min-w-0 group"
                 >
                   <div className="flex-shrink-0">
