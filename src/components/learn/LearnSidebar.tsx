@@ -13,17 +13,12 @@ export function LearnSidebar() {
   const { isLessonComplete, getQuizScore } = useProgress();
   const { isAdmin } = useAdmin();
   const { curriculumOpen, toggleCurriculum } = useSidebar();
-  const [expandedLevels, setExpandedLevels] = useState<Set<number>>(
-    () => new Set(levelId ? [parseInt(levelId)] : [1])
+  const [expandedLevel, setExpandedLevel] = useState<number | null>(
+    () => (levelId ? parseInt(levelId) : 1)
   );
 
   const toggleLevel = (id: number) => {
-    setExpandedLevels((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+    setExpandedLevel((prev) => (prev === id ? null : id));
   };
 
   // Collapsed: show narrow strip with expand button
@@ -74,7 +69,7 @@ export function LearnSidebar() {
             const modules = level.moduleIds
               .map((id) => MODULES.find((m) => m.id === id))
               .filter(Boolean);
-            const isExpanded = expandedLevels.has(level.id);
+            const isExpanded = expandedLevel === level.id;
             const isCurrentLevel = levelId === String(level.id);
             const level2Unlocked = canAccessLevel(2, getQuizScore, isAdmin);
             const level3Unlocked = canAccessLevel(3, getQuizScore, isAdmin);
