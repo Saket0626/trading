@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { PanelRightClose, PanelRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { getLessonBySlug, getLessonsByModule } from "../data/lessons";
 import { level1Quizzes } from "../data/quizzes/level1";
@@ -253,48 +254,50 @@ export function LessonPage() {
         </div>
       </article>
 
-        {/* TOC + Quick Ref - collapsible right sidebar; Show button moves to far right when closed */}
+        {/* TOC + Quick Ref - collapsible right sidebar; Show button in portal at top-right when closed */}
         {(tocItems.length > 0 || nextLesson) && (
           <aside
-            className={`flex-shrink-0 order-2 ${!tocOpen ? "lg:w-auto lg:ml-auto" : "lg:w-52 xl:w-56"}`}
+            className={`flex-shrink-0 order-2 ${!tocOpen ? "lg:w-0 lg:min-w-0 lg:overflow-visible" : "lg:w-52 xl:w-56"}`}
             aria-label="Lesson navigation"
           >
-            <div className={`lg:sticky lg:top-24 ${!tocOpen ? "lg:fixed lg:right-4 lg:top-[7.5rem] lg:z-30" : ""}`}>
-              {tocOpen ? (
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase text-[var(--text-secondary)]">
-                      On this page
-                    </span>
-                    <button
-                      onClick={() => setTocOpen(false)}
-                      className="p-1.5 rounded-md text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
-                      aria-label="Hide sidebar"
-                      title="Hide sidebar for wider content"
-                    >
-                      <PanelRightClose className="h-4 w-4" />
-                    </button>
-                  </div>
-                  <LessonQuickRef
-                    lesson={lesson}
-                    levelId={levelId || "1"}
-                    moduleSlug={moduleSlug || ""}
-                    nextLesson={nextLesson}
-                  />
-                  {tocItems.length > 0 && <LessonTOC items={tocItems} />}
+            {tocOpen ? (
+              <div className="lg:sticky lg:top-24 space-y-6">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-semibold uppercase text-[var(--text-secondary)]">
+                    On this page
+                  </span>
+                  <button
+                    onClick={() => setTocOpen(false)}
+                    className="p-1.5 rounded-md text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+                    aria-label="Hide sidebar"
+                    title="Hide sidebar for wider content"
+                  >
+                    <PanelRightClose className="h-4 w-4" />
+                  </button>
                 </div>
-              ) : (
+                <LessonQuickRef
+                  lesson={lesson}
+                  levelId={levelId || "1"}
+                  moduleSlug={moduleSlug || ""}
+                  nextLesson={nextLesson}
+                />
+                {tocItems.length > 0 && <LessonTOC items={tocItems} />}
+              </div>
+            ) : (
+              typeof document !== "undefined" &&
+              createPortal(
                 <button
                   onClick={() => setTocOpen(true)}
-                  className="flex items-center gap-2 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] shadow-sm"
+                  className="fixed right-4 top-[7.5rem] z-50 flex items-center gap-2 px-3 py-2 rounded-l-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] shadow-sm"
                   aria-label="Show sidebar"
                   title="Show table of contents"
                 >
                   <PanelRight className="h-4 w-4" />
                   <span>Show</span>
-                </button>
-              )}
-            </div>
+                </button>,
+                document.body
+              )
+            )}
           </aside>
         )}
       </div>

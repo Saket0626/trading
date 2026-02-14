@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ChevronDown, ChevronRight, Lock, PanelLeftClose, PanelLeft } from "lucide-react";
 import { LEVELS, MODULES } from "../../data/curriculum";
@@ -16,6 +16,18 @@ export function LearnSidebar() {
   const [expandedLevel, setExpandedLevel] = useState<number | null>(
     () => (levelId ? parseInt(levelId) : 1)
   );
+  const [scrolledPastTicker, setScrolledPastTicker] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      setScrolledPastTicker(pct >= 10);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const toggleLevel = (id: number) => {
     setExpandedLevel((prev) => (prev === id ? null : id));
@@ -46,13 +58,17 @@ export function LearnSidebar() {
     );
   }
 
+  const sidebarTop = scrolledPastTicker ? "top-16" : "top-[7.5rem]";
+  const innerTop = scrolledPastTicker ? "top-16" : "top-[7.5rem]";
+  const innerHeight = scrolledPastTicker ? "h-[calc(100vh-4rem)]" : "h-[calc(100vh-7.5rem)]";
+
   return (
     <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
     <aside
-      className="fixed left-0 top-[7.5rem] bottom-0 z-40 w-[260px] border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
+      className={`fixed left-0 bottom-0 z-40 w-[260px] border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)] transition-[top] duration-200 ${sidebarTop}`}
       aria-label="Curriculum navigation"
     >
-      <div className="sticky top-[7.5rem] h-[calc(100vh-7.5rem)] flex flex-col overflow-hidden">
+      <div className={`sticky flex flex-col overflow-hidden transition-all duration-200 ${innerTop} ${innerHeight}`}
         <div className="flex items-center justify-between p-4 border-b border-[var(--border-subtle)]">
           <h2 className="font-display font-semibold text-[var(--text-primary)] text-sm">
             Curriculum
