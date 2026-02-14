@@ -183,7 +183,65 @@ export const choosingMarketLessons: Lesson[] = [
     { type: "interactive", heading: "Think It Through", content: "When should you add more than one market?", component: "ConceptCheck", props: { question: "When should you add more than one market?", reveal: "After you're comfortable in one market. Master one first, then add others with clear rules and risk limits. Don't spread yourself too thin early on." } },
     { type: "key-takeaway", heading: "Key Takeaway", content: "Multi-market exposure can diversify risk. Master one market first, then add others with clear rules and risk limits." },
   ], true),
-  createLesson("which-market-quiz", 11, "Which Market Should You Start With?", "which-market-quiz", "5 min", ["Take the interactive quiz"], [
+  createLesson("market-best-instruments", 11, "Best Instruments by Category", "market-best-instruments", "16 min", ["Top picks per market", "Where to start in each category", "Liquidity-first approach"], [
+    {
+      type: "warning",
+      heading: "Disclaimer",
+      content:
+        "These are commonly traded, liquid instruments—not buy recommendations. Past performance does not guarantee future results. Do your own research; consider your capital, risk tolerance, and goals. This is education, not financial advice.",
+    },
+    {
+      type: "text",
+      heading: "Stocks and ETFs",
+      content:
+        "For long-term growth: NVIDIA (NVDA) has delivered exceptional returns driven by AI and data centers. Apple (AAPL), Microsoft (MSFT), and Amazon (AMZN) are statistically strong mega-caps with durable competitive advantages. For diversification: SPY (S&P 500) and QQQ (Nasdaq 100) capture broad market exposure and have historically outperformed most active managers. For day trading and learning: AAPL, MSFT, SPY, QQQ—high volume, tight spreads, predictable behavior. Start with names and ETFs you understand.",
+    },
+    {
+      type: "text",
+      heading: "Forex",
+      content:
+        "Best pairs to start with: EUR/USD and GBP/USD—tightest spreads, highest liquidity, and the most research and analysis available. USD/JPY is excellent for Asia-session overlap and carry-trade dynamics. These majors move on Fed, ECB, BOE, and BOJ news—learn the central bank calendar. Avoid exotics (USD/TRY, USD/ZAR) until experienced; wider spreads and volatility can eat profits. Stick to majors; they're liquid and well-researched.",
+    },
+    {
+      type: "text",
+      heading: "Futures",
+      content:
+        "Index futures: E-mini S&P 500 (ES) and Micro E-mini (MES)—most liquid, nearly 24-hour trading, ideal for learning and small accounts. E-mini Nasdaq (NQ) and Micro Nasdaq (MNQ) for tech exposure. Commodity futures: Gold (GC) and crude oil (CL) are highly liquid; gold for safe-haven and inflation plays, oil for energy and macro. Treasury futures (ZN, ZB) for interest-rate views. Start with micro contracts (MES, MNQ) if capital is limited; they offer the same mechanics with smaller notional size.",
+    },
+    {
+      type: "text",
+      heading: "Options",
+      content:
+        "Best underlyings: SPY and QQQ options are among the most liquid in the world—tight spreads, high open interest, and plentiful strikes and expirations. Trade options on stocks you'd hold: AAPL, NVDA, MSFT. Index options (SPX) offer 60/40 tax treatment but require larger capital. Avoid illiquid single-stock options; wide spreads and low volume make entry and exit costly. Start with monthly expirations; weekly options decay quickly. Only trade options after understanding the Greeks and assignment risk.",
+    },
+    {
+      type: "text",
+      heading: "Commodities",
+      content:
+        "Gold (GLD, GC futures) and silver (SLV, SI futures) are the most accessible—liquidity, clear drivers (rates, dollar, inflation). Crude oil (USO, CL futures) for energy exposure; watch OPEC+ and EIA reports. Copper (HG) is a growth barometer. For agriculture: corn, wheat, and soybean ETFs or futures—follow USDA reports. Commodity ETFs (GLD, SLV, USO) let you avoid futures mechanics; futures give direct exposure and leverage. Choose based on whether you want simplicity (ETFs) or leverage (futures).",
+    },
+    {
+      type: "text",
+      heading: "Crypto",
+      content:
+        "Bitcoin (BTC) and Ethereum (ETH) dominate liquidity and volume—they're where most retail and institutional activity lives. Start with these if you trade crypto; avoid illiquid altcoins until you understand volatility and 24/7 risk. Crypto exchanges differ in fees, security, and availability by region. Understand custody: not your keys, not your coins. Crypto is highly volatile; size accordingly and never risk more than you can afford to lose. Treat it as a speculative allocation, not a core holding.",
+    },
+    {
+      type: "analogy",
+      heading: "The Restaurant Menu Analogy",
+      content:
+        "Each trading category is like a section of a menu. Stocks and ETFs are the main courses—familiar, well-served. Forex is the international section—different flavors, 24/5 service. Futures are the chef's specials—more complex, larger portions. Options are the à la carte add-ons—powerful but easy to over-order. Commodities are the basics—gold, oil, wheat. Crypto is the experimental dish—exciting but unpredictable. Start with what you understand. Don't order everything at once.",
+    },
+    {
+      type: "pro-tip",
+      heading: "Pro Tip",
+      content:
+        "Stick to the most liquid instrument in each category. Liquidity means tight spreads, fair fills, and the ability to exit when you need to. Illiquid markets are where retail gets hurt—slippage and wide spreads eat into edges. Quality over novelty. Master one category before spreading across several.",
+    },
+    { type: "interactive", heading: "Think It Through", content: "Why should beginners stick to the most liquid instruments in each category?", component: "ConceptCheck", props: { question: "Why should beginners stick to the most liquid instruments in each category?", reveal: "Liquid markets give tight spreads, fair fills, and the ability to exit when needed. Illiquid instruments mean wider spreads, slippage, and higher execution risk—edges get eaten before you start." } },
+    { type: "key-takeaway", heading: "Key Takeaway", content: "Stocks: NVDA, AAPL, MSFT, SPY, QQQ. Forex: EUR/USD, GBP/USD, USD/JPY. Futures: ES, MES, GC, CL. Options: SPY, QQQ. Commodities: Gold, silver, oil. Crypto: BTC, ETH. Start liquid; add complexity only when experienced. This is not financial advice." },
+  ]),
+  createLesson("which-market-quiz", 12, "Which Market Should You Start With?", "which-market-quiz", "5 min", ["Take the interactive quiz"], [
     { type: "interactive", heading: "Find Your Market", content: "Take the quiz below to get a recommendation based on your capital, time, and risk tolerance.", component: "WhichMarketQuiz" },
   ], false),
 ];

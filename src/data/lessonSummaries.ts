@@ -275,6 +275,8 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "Your personality—patient vs reactive, risk-tolerant vs conservative—fits some markets better. The lesson helps you match your style to a market. You'll trade where you're comfortable.",
   "market-multi":
     "You can trade multiple markets—but start with one and master it first. The lesson explains when and how to diversify across markets. You'll build focus before spreading thin.",
+  "market-best-instruments":
+    "Recommended liquid instruments by category: stocks (NVDA, AAPL, SPY, QQQ), forex (EUR/USD, GBP/USD, USD/JPY), futures (ES, MES, GC, CL), options (SPY, QQQ), commodities (gold, silver, oil), and crypto (BTC, ETH). Includes disclaimer—not financial advice.",
   "which-market-quiz":
     "A quiz helps you identify which market fits your capital, time, and personality. The lesson offers a structured way to decide. You'll make an informed choice instead of guessing.",
 

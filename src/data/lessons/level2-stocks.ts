@@ -597,6 +597,12 @@ export const stocksDeepDiveLessons: Lesson[] = [
           "You want enough movement to learn and potentially profit, but not so much that one bad trade blows the account. Mid volatility means the stock moves meaningfully but isn't a roller coaster. Combine that with 1% risk per trade and a clear plan.\n\nAAPL might move 1–2% on a normal day—enough to matter. A meme stock might move 30%—too much for a beginner's risk control. Start with names that move but don't explode. Build confidence and size before stepping into wilder names.",
       },
       {
+        type: "text",
+        heading: "Statistically Strong Long-Term Tickers",
+        content:
+          "When building a long-term portfolio, historical data shows certain names have delivered outsized returns over multi-year periods. NVIDIA (NVDA) stands out as one of the strongest performers—driven by AI, data centers, and gaming, it has delivered exceptional growth over the past decade. Other statistically strong long-term tickers include Apple (AAPL), Microsoft (MSFT), and Amazon (AMZN)—mega-cap leaders with durable competitive advantages and consistent revenue growth. Broad index ETFs like SPY and QQQ capture many of these names in one trade and have historically outperformed most active managers. Past performance does not guarantee future results; valuations and sector cycles change. Use this as a starting point for research, not a buy list.",
+      },
+      {
         type: "analogy",
         heading: "The Training Wheels Analogy",
         content:

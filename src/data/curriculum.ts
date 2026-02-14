@@ -340,6 +340,7 @@ export const MODULES: Module[] = [
       "market-tax",
       "market-personality",
       "market-multi",
+      "market-best-instruments",
       "which-market-quiz",
     ],
     icon: "Target",

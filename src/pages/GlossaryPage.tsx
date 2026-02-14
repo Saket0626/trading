@@ -1,17 +1,25 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { GLOSSARY } from "../data/glossary";
 
+const TERMS_PER_PAGE = 50;
+
 export function GlossaryPage() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const qFromUrl = searchParams.get("q") || "";
+  const pageFromUrl = parseInt(searchParams.get("page") || "1", 10);
   const [search, setSearch] = useState(qFromUrl);
   const [filter, setFilter] = useState<string>("all");
+  const [page, setPage] = useState(Math.max(1, pageFromUrl));
 
   useEffect(() => {
     if (qFromUrl) setSearch(qFromUrl);
   }, [qFromUrl]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [search, filter]);
 
   const terms = useMemo(() => {
     let list = GLOSSARY;
@@ -32,6 +40,25 @@ export function GlossaryPage() {
     const cats = new Set(GLOSSARY.map((t) => t.category));
     return ["all", ...Array.from(cats).sort()];
   }, []);
+
+  const totalPages = Math.ceil(terms.length / TERMS_PER_PAGE) || 1;
+  const currentPage = Math.min(Math.max(1, page), totalPages);
+  const paginatedTerms = terms.slice(
+    (currentPage - 1) * TERMS_PER_PAGE,
+    currentPage * TERMS_PER_PAGE
+  );
+
+  const goToPage = (p: number) => {
+    const next = Math.max(1, Math.min(p, totalPages));
+    setPage(next);
+    setSearchParams((prev) => {
+      const nextParams = new URLSearchParams(prev);
+      if (next === 1) nextParams.delete("page");
+      else nextParams.set("page", String(next));
+      return nextParams;
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -73,7 +100,7 @@ export function GlossaryPage() {
       </div>
 
       <div className="grid gap-4 max-w-3xl">
-        {terms.map((t) => (
+        {paginatedTerms.map((t) => (
           <div
             key={t.term}
             className="p-4 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800"
@@ -97,6 +124,30 @@ export function GlossaryPage() {
 
       {terms.length === 0 && (
         <p className="text-[var(--text-secondary)] text-center py-12">No terms found.</p>
+      )}
+
+      {terms.length > 0 && totalPages > 1 && (
+        <nav className="flex items-center justify-center gap-2 mt-8" aria-label="Glossary pagination">
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage <= 1}
+            className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] disabled:opacity-40 disabled:cursor-not-allowed"
+            aria-label="Previous page"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <span className="px-4 py-2 text-sm text-[var(--text-secondary)]">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+            className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] disabled:opacity-40 disabled:cursor-not-allowed"
+            aria-label="Next page"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </nav>
       )}
     </div>
   );
