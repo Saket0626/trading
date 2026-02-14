@@ -10,6 +10,61 @@ const q = (
 
 /** Level 3 Final Exam: 40 questions (expand to full set as content is completed) */
 export const level3Quizzes: Record<string, QuizQuestion[]> = {
+  "ma-intro": [
+    q("mai1", "A moving average:", ["Replaces volume", "Smooths price data and shows trend direction", "Only predicts reversals", "Only for forex"], 1, "MAs smooth price and help identify trend direction."),
+    q("mai2", "Price above the MA typically means:", ["Sellers in control", "Buyers in control on average over the period", "No trend", "Only volume matters"], 1, "Above MA = buyers in control on average; below = sellers."),
+    q("mai3", "MAs are lagging indicators because:", ["They predict the future", "They're based on past prices only", "They use volume", "Only for stocks"], 1, "MAs use past data; they tell you what has happened, not what will."),
+  ],
+  "ma-sma": [
+    q("mas1", "The SMA gives:", ["More weight to recent prices", "Equal weight to each period in the window", "Only high prices", "Only close of first day"], 1, "SMA = sum of last N closes ÷ N; equal weight."),
+    q("mas2", "SMA lags on sharp moves because:", ["It's wrong", "One new price is averaged with many older prices", "Volume is low", "Only for forex"], 1, "One new data point is diluted by the rest of the window."),
+    q("mas3", "A 20-period SMA on daily chart roughly represents:", ["One day", "About one month of trading days", "One year", "One week"], 1, "20 trading days ≈ one month."),
+  ],
+  "ma-ema": [
+    q("mae1", "The EMA gives:", ["Equal weight to all periods", "More weight to recent prices", "Only volume", "Only high prices"], 1, "EMA weights recent prices more; reacts faster than SMA."),
+    q("mae2", "EMA typically reacts:", ["Slower than SMA", "Faster than SMA to new price", "Same as SMA", "Only at close"], 1, "EMA turns sooner; more responsive to new data."),
+    q("mae3", "EMA works best in:", ["Choppy ranges only", "Trending markets; add trend filter for ranges", "Only 1m charts", "Only for forex"], 1, "EMA shines in trends; whipsaws in chop—add trend filter."),
+  ],
+  "ma-periods": [
+    q("map1", "A 200-period MA on daily chart roughly represents:", ["One month", "One quarter", "About one year of trading days", "One day"], 2, "200 trading days ≈ one year."),
+    q("map2", "The 50 and 200 MA are widely watched because:", ["They're random", "Many institutions and algos use them; act as S/R", "Only for forex", "Only for scalping"], 1, "Institutions watch these; they often act as support/resistance."),
+    q("map3", "Match period to timeframe means:", ["Use same number always", "20 on daily ≈ 1 month; on 4H different meaning", "Only use 200", "Only for stocks"], 1, "Same period number means different things on different timeframes."),
+  ],
+  "ma-fast-slow": [
+    q("maf1", "When fast MA is above slow MA:", ["Downtrend", "Short-term uptrend (bullish)", "No trend", "Sell signal"], 1, "Fast above slow = short-term trend is up."),
+    q("maf2", "Convergence of fast and slow MAs often means:", ["Strong trend", "Trend weakening or consolidation", "Buy signal", "Only volume drop"], 1, "Convergence = momentum fading or range."),
+    q("maf3", "Wide separation between fast and slow MA indicates:", ["No trend", "Strong trend", "Sell only", "Only at open"], 1, "Wide gap = strong trend; narrow = weak or turning."),
+  ],
+  "ma-sr": [
+    q("masr1", "MA acts as dynamic support in an uptrend because:", ["It's fixed", "It moves with price; price often bounces off it", "Only resistance", "Only on 1m"], 1, "MA moves with price; dynamic level that adapts."),
+    q("masr2", "First touch of MA after strong move often:", ["Fails", "Holds (buyers step in)", "Only for shorts", "Only at close"], 1, "First touch often holds; second/third touch riskier."),
+    q("masr3", "200 MA is often used as:", ["Entry only", "Long-term trend filter (above = bullish, below = bearish)", "Only for scalping", "Only for forex"], 1, "200 MA = major trend filter for many traders."),
+  ],
+  "ma-golden": [
+    q("mag1", "A Golden Cross is when:", ["50 MA crosses below 200 MA", "50 MA crosses above 200 MA", "RSI crosses 50", "Volume crosses average"], 1, "Golden Cross = 50 above 200; bullish signal."),
+    q("mag2", "Golden Cross in sideways market:", ["Always works", "Often a trap; MAs cross back and forth", "Only for stocks", "Only at open"], 1, "In chop, Golden/Death Crosses whipsaw—use with context."),
+    q("mag3", "By the time Golden Cross appears, price has often:", ["Not moved", "Already rallied for weeks—it's confirmation", "Only dropped", "Only at support"], 1, "Golden Cross often confirms existing uptrend; can lag."),
+  ],
+  "ma-death": [
+    q("mad1", "A Death Cross is when:", ["50 MA crosses above 200 MA", "50 MA crosses below 200 MA", "Price crosses MA", "Volume drops"], 1, "Death Cross = 50 below 200; bearish signal."),
+    q("mad2", "Death Cross is the bearish counterpart of:", ["RSI", "Golden Cross", "Volume", "MACD"], 1, "Golden Cross = bullish; Death Cross = bearish."),
+    q("mad3", "On major indices, Death Cross often:", ["Means nothing", "Gets headlines; can create short-term bounces", "Only for stocks", "Only at open"], 1, "Don't short the headline; use as trend filter."),
+  ],
+  "ma-crossover": [
+    q("mac1", "Crossover strategy: buy when:", ["Fast crosses below slow", "Fast crosses above slow", "Price crosses MA", "Volume spikes"], 1, "Buy when fast crosses above slow; sell when below."),
+    q("mac2", "Whipsaws occur when:", ["Trend is strong", "Market is choppy; MAs cross back and forth", "Volume is high", "Using 200 MA only"], 1, "Ranging markets cause repeated false crosses."),
+    q("mac3", "To reduce whipsaws, add:", ["More MAs only", "Trend filter (e.g. only long when price > 200 MA)", "Shorter period", "Only volume"], 1, "Trend filter keeps you out of worst chop."),
+  ],
+  "ma-triple": [
+    q("mat1", "In a 3 MA system, the longest MA defines:", ["Entry only", "Big trend—only trade in its direction", "Volume", "Only for scalping"], 1, "Longest MA = trend filter; trade with it."),
+    q("mat2", "Stacked MAs in uptrend means:", ["All crossed", "Shortest on top, then middle, then longest", "Only 2 MAs", "Only for shorts"], 1, "Stack = shortest > middle > longest; clear uptrend."),
+    q("mat3", "If 9 crosses above 21 but price is below 200 MA:", ["Strong long signal", "Potential bounce only—not a reason to go long", "Only for stocks", "Only at open"], 1, "Wait for price above 200 and stack to form."),
+  ],
+  "ma-works": [
+    q("maw1", "MAs work best in:", ["Ranging markets", "Trending markets", "Only at open", "Only for forex"], 1, "MAs shine in trends; whipsaw in ranges."),
+    q("maw2", "When 50 MA is flat and price weaves around it:", ["Strong trend", "Range—consider sitting out or mean reversion", "Buy signal", "Only for stocks"], 1, "Flat MA = range; match strategy to market state."),
+    q("maw3", "MAs can define 'trending' vs 'ranging' by:", ["Volume only", "Slope and price position relative to MA", "Only RSI", "Only at close"], 1, "Slope + price position = trend vs range."),
+  ],
   "ma-fails": [
     q("ma1", "A moving average is used to:", ["Replace volume", "Smooth price data and show trend direction", "Only predict reversals", "Only for forex"], 1, "MAs smooth price and help identify trend and dynamic S/R."),
     q("ma2", "The Simple Moving Average (SMA):", ["Weights recent prices more", "Gives equal weight to each period in the window", "Uses only the high", "Uses only the close of the first day"], 1, "SMA = sum of last N closes ÷ N; every price has equal weight."),
@@ -26,6 +81,51 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("ma13", "To reduce whipsaws when using MAs, traders often:", ["Use only one MA", "Add a trend filter (e.g. only trade in direction of 200 MA)", "Ignore the 200 MA", "Trade only on 1m"], 1, "A longer MA as trend filter can reduce bad crossover trades."),
     q("ma14", "The 200 MA is widely watched because:", ["It has no significance", "Many institutions use it; it often acts as major support/resistance", "Only for forex", "Only for scalping"], 1, "200 MA is a common long-term trend and S/R reference."),
     q("ma15", "EMA vs SMA: the EMA typically:", ["Lags more than SMA", "Reacts faster to new price than SMA", "Is used only for weekly charts", "Is always more reliable"], 1, "EMA weights recent prices more, so it turns sooner than SMA."),
+  ],
+  "mom-intro": [
+    q("momi1", "Momentum in trading measures:", ["Direction only", "Rate of price change (how fast price moves)", "Volume only", "Support only"], 1, "Momentum = rate of change; how fast price is moving."),
+    q("momi2", "In a strong uptrend, RSI can:", ["Only stay at 50", "Stay overbought (above 70) for extended periods", "Never exceed 70", "Never be used"], 1, "Don't short just because RSI is overbought in strong trends."),
+    q("momi3", "Use momentum indicators:", ["Alone for entries", "With trend and support/resistance for confirmation", "Only on 1m charts", "Only for forex"], 1, "Momentum confirms; never use alone for reversal entries."),
+  ],
+  "mom-rsi": [
+    q("momr1", "RSI above 70 is often:", ["Oversold", "Overbought", "Neutral", "Strong support"], 1, "RSI > 70 = overbought; < 30 = oversold."),
+    q("momr2", "RSI below 30 is often:", ["Overbought", "Oversold", "Neutral", "Strong resistance"], 1, "RSI < 30 = oversold; may bounce."),
+    q("momr3", "In uptrends, a better pullback zone than RSI 30 can be:", ["90", "40–50 (RSI bounces above 50)", "10", "Only 70"], 1, "RSI 40–50 in uptrends often offers higher-probability entries."),
+  ],
+  "mom-rsi-divergence": [
+    q("momrd1", "Bearish divergence is when:", ["Price and RSI both make higher highs", "Price makes higher high but RSI makes lower high", "RSI is above 70 only", "Volume is low"], 1, "Bearish divergence = price higher high, RSI lower high."),
+    q("momrd2", "Bullish divergence is when:", ["Price and RSI both make lower lows", "Price makes lower low but RSI makes higher low", "RSI is below 30 only", "Volume is high"], 1, "Bullish divergence = price lower low, RSI higher low."),
+    q("momrd3", "Should you reverse position on divergence alone?", ["Yes", "No—confirm with price action first", "Only for forex", "Only at open"], 1, "Divergence warns; wait for price confirmation before entering."),
+  ],
+  "mom-macd": [
+    q("mommd1", "The MACD line equals:", ["Fast EMA + slow EMA", "Fast EMA minus slow EMA", "Volume", "Close"], 1, "MACD line = fast EMA − slow EMA (e.g. 12 − 26)."),
+    q("mommd2", "The MACD histogram shows:", ["Volume", "MACD line minus signal line (momentum strength)", "Price only", "Open only"], 1, "Histogram = MACD − signal; shows momentum strength."),
+    q("mommd3", "Shrinking histogram bars often mean:", ["Strong momentum", "Momentum weakening; crossover or pullback possible", "Buy signal only", "Volume drop"], 1, "Shrinking bars = momentum fading; watch for turn."),
+  ],
+  "mom-macd-crossovers": [
+    q("momc1", "Bullish MACD crossover is when:", ["MACD crosses below signal", "MACD crosses above signal", "Histogram is red", "Volume drops"], 1, "MACD above signal = bullish crossover."),
+    q("momc2", "To reduce MACD whipsaws:", ["Use only MACD", "Add trend filter (e.g. only long when price > 200 MA)", "Ignore signal line", "Only trade 1m"], 1, "Trend filter keeps you out of chop."),
+    q("momc3", "MACD crossover can lag because:", ["It's wrong", "By the time it crosses, move may be underway", "Volume is low", "Only for stocks"], 1, "MACD lags; consider histogram or pullback entries."),
+  ],
+  "mom-macd-divergence": [
+    q("momdd1", "MACD divergence indicates:", ["No signal", "Momentum not confirming price; possible reversal or pause", "Only volume change", "Only for weekly charts"], 1, "Divergence = price and MACD disagree; setup, not entry."),
+    q("momdd2", "Before acting on MACD divergence:", ["Reverse immediately", "Wait for price break or reversal candle confirmation", "Ignore it", "Only for forex"], 1, "Confirm with price action before entering."),
+    q("momdd3", "You can look at MACD line or _____ for divergence.", ["Volume only", "Histogram—often easier to spot", "RSI only", "Open only"], 1, "Histogram divergence is often easier to see."),
+  ],
+  "mom-stochastic": [
+    q("moms1", "Stochastic above 80 typically means:", ["Oversold", "Overbought", "Neutral", "No signal"], 1, "Stochastic > 80 = overbought; < 20 = oversold."),
+    q("moms2", "Buy signal in Stochastic often when:", ["%K crosses below %D in overbought", "%K crosses above %D in oversold zone", "Both above 80", "Both below 20"], 1, "Buy when %K crosses above %D in oversold (< 20)."),
+    q("moms3", "Stochastic uses:", ["Only volume", "High-low range relative to close", "Only the close", "Only open"], 1, "Stochastic compares close to high-low range over period."),
+  ],
+  "mom-cci-williams": [
+    q("momcw1", "CCI above +100 often suggests:", ["Oversold", "Overbought", "Neutral", "Only commodities"], 1, "CCI > +100 overbought; < -100 oversold."),
+    q("momcw2", "Williams %R is plotted from:", ["0 to 100", "-100 to 0", "0 to 50", "Only positive"], 1, "Williams %R: -100 to 0; -20 overbought, -80 oversold."),
+    q("momcw3", "Using too many momentum indicators at once:", ["Improves accuracy", "Can create conflicting signals and confusion", "Only for pros", "Required"], 1, "Pick one or two; use with price and trend."),
+  ],
+  "mom-roc": [
+    q("momrc1", "ROC (Rate of Change) measures:", ["Volume only", "Percentage change in price over N periods", "High-low range only", "Close only"], 1, "ROC = % change in price over N periods."),
+    q("momrc2", "ROC above zero typically means:", ["Price down over period", "Price up over period", "Neutral", "No signal"], 1, "ROC > 0 = price higher than N periods ago."),
+    q("momrc3", "Momentum indicators work best when:", ["Used alone", "Combined with trend and S/R", "Only on 1m", "Only for forex"], 1, "Use momentum with trend and key levels."),
   ],
   "mom-summary": [
     q("mo1", "Momentum in trading typically measures:", ["Only volume", "The rate of price change", "Only support levels", "Only the open"], 1, "Momentum = how fast price is moving; rate of change."),
@@ -47,6 +147,46 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("mo17", "Using too many momentum indicators at once can lead to:", ["Faster signals", "Conflicting signals and confusion", "Only better accuracy", "Only on daily charts"], 1, "Too many indicators can conflict; pick one or two and use with price."),
     q("mo18", "A shrinking MACD histogram in an uptrend often suggests:", ["Momentum strengthening", "Momentum weakening; possible pullback or reversal", "Only buy signal", "Only volume drop"], 1, "Shrinking histogram = momentum fading; watch for pullback or turn."),
   ],
+  "vol-intro": [
+    q("voli1", "Volatility measures:", ["Direction of price", "Magnitude of price movement (size of swings)", "Volume only", "Open only"], 1, "Volatility = how much price moves, not direction."),
+    q("voli2", "High volatility means:", ["No movement", "Large price swings", "Low volume", "Only stocks"], 1, "High volatility = big swings up and down."),
+    q("voli3", "Volatility indicators help with:", ["Direction only", "Stop placement and position sizing", "Volume only", "Only forex"], 1, "ATR, Bollinger, etc. help set stops and size."),
+  ],
+  "vol-bollinger": [
+    q("volb1", "Bollinger Bands consist of:", ["Only one line", "Middle band (e.g. 20 SMA) and upper/lower (e.g. ±2 std dev)", "Volume only", "ATR only"], 1, "Middle = 20 SMA; upper/lower = 2 std dev."),
+    q("volb2", "A Bollinger 'squeeze' means:", ["High volatility", "Low volatility; often precedes a breakout", "Sell signal only", "Only forex"], 1, "Squeeze = narrow bands = low vol; often followed by expansion."),
+    q("volb3", "Standard deviation in Bollinger reflects:", ["Volume only", "Spread of price from average (volatility)", "Open only", "Close only"], 1, "Std dev = dispersion; high std dev = high vol."),
+  ],
+  "vol-bollinger-trading": [
+    q("volbt1", "When price walks the lower band in a downtrend:", ["Always buy", "Bounces often fail; don't blindly buy the band", "Volume zero", "Bands don't apply"], 1, "In strong trends price can ride the band; don't reverse blindly."),
+    q("volbt2", "Touching the upper Bollinger Band:", ["Always sell", "Can mean strength; context and trend matter", "No signal", "Only for forex"], 1, "In uptrends price can ride upper band; don't short blindly."),
+    q("volbt3", "Bollinger Band width indicates:", ["Direction only", "Volatility (narrow = low, wide = high)", "Volume only", "Only open"], 1, "Narrow bands = squeeze; wide bands = high vol."),
+  ],
+  "vol-atr": [
+    q("vola1", "ATR measures:", ["Direction of price", "Average price movement (true range) over N periods", "Volume only", "Close only"], 1, "ATR = average true range; typical movement per bar."),
+    q("vola2", "ATR adapts to:", ["Nothing", "Recent volatility (wider when volatile)", "Volume only", "Open only"], 1, "ATR reflects recent vol; adapts to market conditions."),
+    q("vola3", "ATR is especially useful for:", ["Predicting direction", "Stop losses and position sizing", "Volume confirmation only", "Weekly charts only"], 1, "ATR sets stop distance; with risk % defines size."),
+  ],
+  "vol-atr-stops": [
+    q("volas1", "Using 2× ATR for stop means:", ["Stop is 2 pips", "Stop distance = 2 times ATR value", "Only stocks", "Only at open"], 1, "Stop = multiplier × ATR; 2× adapts to vol."),
+    q("volas2", "ATR-based stops:", ["Ignore volatility", "Adapt to recent volatility (wider when volatile)", "Always 1 pip", "Only forex"], 1, "ATR stops adapt to current market vol."),
+    q("volas3", "Pros use ATR to:", ["Predict reversals", "Set consistent dollar risk (stop distance + size)", "Only for options", "Only crypto"], 1, "ATR for stop; with risk % that sets position size."),
+  ],
+  "vol-keltner": [
+    q("volk1", "Keltner Channels use _____ for band width.", ["Standard deviation only", "ATR (Average True Range)", "Volume only", "High-low only"], 1, "Keltner = EMA ± multiple of ATR; Bollinger uses std dev."),
+    q("volk2", "Keltner vs Bollinger: Keltner uses:", ["Std dev only", "ATR; Bollinger uses std dev", "Volume only", "Close only"], 1, "Keltner = ATR; Bollinger = standard deviation."),
+    q("volk3", "Keltner squeeze indicates:", ["High vol", "Low vol; potential breakout", "Sell only", "Only forex"], 1, "Squeeze = narrow channels; often precedes expansion."),
+  ],
+  "vol-donchian": [
+    q("vold1", "Donchian Channels show:", ["Only close", "Highest high and lowest low over N periods", "Volume only", "Open only"], 1, "Donchian = upper (highest high), lower (lowest low)."),
+    q("vold2", "Close above upper Donchian often used as:", ["Mean reversion sell", "Breakout long (new N-period high)", "Scalp only", "Only 1m"], 1, "Break above upper Donchian = classic trend-follow long."),
+    q("vold3", "Donchian breakouts work best in:", ["Ranges only", "Trending markets", "1m only", "Forex only"], 1, "Breakouts shine in trends; can whipsaw in ranges."),
+  ],
+  "vol-stdev": [
+    q("vols1", "Standard deviation in trading reflects:", ["Volume only", "Spread of price from average (volatility)", "Open only", "Close only"], 1, "Std dev = dispersion; high = high volatility."),
+    q("vols2", "Bollinger Bands use std dev for:", ["Middle band only", "Upper and lower band distance from middle", "Volume only", "ATR only"], 1, "Upper/lower = middle ± (multiplier × std dev)."),
+    q("vols3", "Narrow Bollinger Bands (squeeze) often precede:", ["No move", "A strong directional move (expansion)", "Only sell", "Only forex"], 1, "Low vol often followed by expansion and breakout."),
+  ],
   "vol-summary": [
     q("vol1", "Volatility in trading measures:", ["Direction of price", "Magnitude of price movement (size of swings)", "Only volume", "Only the open"], 1, "Volatility = how much price moves, not whether it goes up or down."),
     q("vol2", "Bollinger Bands consist of:", ["Only one line", "A middle band (e.g. 20 SMA) and upper/lower bands (e.g. ±2 std dev)", "Only volume", "Only ATR"], 1, "Middle = 20 SMA; upper/lower = typically 2 standard deviations from middle."),
@@ -60,6 +200,21 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("vol10", "A close above the upper Donchian Channel is often used as:", ["A mean reversion sell", "A breakout long signal (new N-period high)", "Only for scalping", "Only on 1m charts"], 1, "Break above upper Donchian = new high; classic trend-following long entry."),
     q("vol11", "Standard deviation in Bollinger Bands reflects:", ["Only volume", "Spread of price from the average (volatility)", "Only the open", "Only the close"], 1, "Std dev measures dispersion; high std dev = high volatility."),
     q("vol12", "Professionals often use ATR to:", ["Predict reversals", "Set consistent dollar risk per trade (stop distance and position size)", "Only for options", "Only for crypto"], 1, "ATR sets stop distance; with fixed risk %, that determines position size."),
+  ],
+  "position-sizing": [
+    q("ps1", "The 1% rule means:", ["Earn 1% per trade", "Risk no more than 1% of account per trade", "Use 1% leverage", "Trade 1% of day"], 1, "Risk no more than 1% per trade."),
+    q("ps2", "Position size = (Account × Risk %) / ?", ["Entry price", "Distance to stop loss", "Volume", "ATR only"], 1, "Position size = risk $ / (entry - stop)."),
+    q("ps3", "If you risk $200 and stop is $4 away, max shares:", ["200", "50", "800", "4"], 1, "Position size = $200 / $4 = 50 shares."),
+  ],
+  "stop-losses": [
+    q("sl1", "Technical stop for longs often placed:", ["Random price", "Below support (or above resistance for shorts)", "Round numbers only", "Only at open"], 1, "Stops respect structure: below support for longs."),
+    q("sl2", "ATR-based stop:", ["Ignores volatility", "Adapts to recent volatility (wider when volatile)", "Always 1 pip", "Only forex"], 1, "ATR reflects recent vol; stops adapt."),
+    q("sl3", "Never:", ["Use a stop", "Move stop further away hoping to avoid loss", "Use 1% risk", "Calculate size"], 1, "Moving stop away destroys risk plan."),
+  ],
+  "risk-mistakes": [
+    q("rm1", "Averaging down means:", ["Taking profits gradually", "Adding to a losing position to lower avg price", "Using avg volume", "Using 200 MA"], 1, "Adding to losers; often amplifies losses. Avoid."),
+    q("rm2", "Revenge trading is:", ["Recommended after loss", "Trading to win back losses quickly—emotional, dangerous", "A strategy", "For pros only"], 1, "Take a break after bad loss instead."),
+    q("rm3", "After 50% drawdown, you need ___ gain to recover.", ["50%", "75%", "100%", "25%"], 2, "$10k→$5k=50% down; $5k→$10k=100% gain needed."),
   ],
   "risk-summary": [
     q("rs1", "The 1% rule means you should:", ["Earn 1% per trade", "Risk no more than 1% of your account per trade", "Use 1% leverage only", "Trade 1% of the day"], 1, "Risk no more than 1% of your account on any single trade."),
@@ -83,6 +238,21 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("rs19", "Setting a maximum drawdown (e.g. 10%) helps:", ["Increase leverage", "Force you to pause and review if hit", "Only in backtesting", "Only for crypto"], 1, "Max drawdown forces a pause and review instead of digging a deeper hole."),
     q("rs20", "What separates many consistent traders from those who blow up?", ["More indicators", "Strict risk management: position sizing and stops", "Faster execution", "Only trading stocks"], 1, "Risk management is often the main differentiator for long-term survival."),
   ],
+  "financial-statements": [
+    q("fs1", "Income statement shows:", ["Only assets", "Revenue, expenses, profit over a period", "Only cash flow", "Only equity"], 1, "Income statement = revenue − expenses = profit."),
+    q("fs2", "Balance sheet equation:", ["Revenue = Profit", "Assets = Liabilities + Equity", "Cash = Earnings", "P/E = Price/Book"], 1, "Assets = Liabilities + Equity; snapshot in time."),
+    q("fs3", "Cash flow statement shows:", ["Only profit", "Actual cash in and out", "Only dividends", "Only forex"], 1, "Cash flow = real cash; profit can be non-cash."),
+  ],
+  "key-ratios": [
+    q("kr1", "P/E ratio is:", ["Earnings / Price", "Price / Earnings per share", "Profit only", "Volume"], 1, "P/E = price ÷ EPS; what you pay per $1 earnings."),
+    q("kr2", "ROE measures:", ["Only revenue", "How well company uses equity to generate profit", "Only debt", "Only cash"], 1, "ROE = net income ÷ shareholders' equity."),
+    q("kr3", "Low P/E might mean:", ["Always buy", "Value or expected trouble; compare to peers", "High growth only", "Tech only"], 1, "Low P/E = value or decline; context matters."),
+  ],
+  "earnings-trading": [
+    q("et1", "'Beat earnings' means:", ["Revenue only beat", "EPS was higher than analysts expected", "Cash flow beat", "P/E increased"], 1, "Beat = actual EPS above consensus."),
+    q("et2", "Trading through earnings is risky because:", ["Volume is low", "Stock can gap 5–20%+; stops may not fill", "Only stocks", "P/E changes"], 1, "Earnings cause large fast moves; slippage and gaps."),
+    q("et3", "For day traders, fundamentals are mainly:", ["Every entry", "Context: earnings dates, avoiding bad names", "Replace technicals", "P/E only"], 1, "Fundamentals for context and filters; technicals for execution."),
+  ],
   "fundamentals-summary": [
     q("fa1", "The income statement shows:", ["Only assets", "Revenue, expenses, and profit over a period", "Only cash flow", "Only equity"], 1, "Income statement = revenue − expenses = profit over a period (quarter or year)."),
     q("fa2", "The balance sheet equation is:", ["Revenue = Profit", "Assets = Liabilities + Equity", "Cash = Earnings", "P/E = Price/Book"], 1, "Assets = Liabilities + Equity; it's a snapshot at a point in time."),
@@ -103,6 +273,21 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("fa17", "For a day trader, fundamentals are mainly used to:", ["Time every entry", "Context: earnings dates, avoiding bad names", "Replace technicals", "Only P/E"], 1, "Day trading = technicals and execution; fundamentals for context and filters."),
     q("fa18", "A company can report profit but have weak cash flow if:", ["It never happens", "Revenue is booked but not collected; or heavy capex", "Only in forex", "P/E is low"], 1, "Profit can include non-cash items; cash flow shows real cash generation."),
   ],
+  "psychology-basics": [
+    q("psyb1", "Trading is often mostly:", ["Technical", "Mental: discipline and emotional control", "Indicators", "Speed"], 1, "Discipline and execution often matter more than one more indicator."),
+    q("psyb2", "FOMO often leads to:", ["Better entries", "Chasing; poor risk/reward entries", "Profits only", "Stocks only"], 1, "FOMO = fear of missing out; causes chasing."),
+    q("psyb3", "Discipline means:", ["Trade every day", "Following your plan even when you don't want to", "One indicator only", "Backtesting only"], 1, "Discipline = stick to rules: stops, size, setup criteria."),
+  ],
+  "cognitive-biases": [
+    q("cb1", "Confirmation bias is:", ["Always good", "Seeking info that agrees with what you believe", "Fundamentals only", "A strategy"], 1, "Confirmation bias = you see what you want; dangerous."),
+    q("cb2", "Anchoring often causes:", ["Exit too early", "Holding losers (anchored to entry price)", "Limit orders only", "Forex only"], 1, "Anchoring = first number influences decisions."),
+    q("cb3", "Loss aversion means:", ["You never lose", "Losses hurt more than equivalent gains feel good", "Pro only", "Backtest only"], 1, "Losses feel worse than gains feel good; holds losers, cuts winners early."),
+  ],
+  "trading-journal": [
+    q("tj1", "Journal should include:", ["Only P&L", "Setup, reasoning, emotions, plan adherence", "Entry price only", "Tax only"], 1, "Journal = what, why, how you felt, plan adherence."),
+    q("tj2", "Main benefit of journal:", ["Prove you're right", "Spot patterns in behavior and improve process", "Taxes only", "Backtest only"], 1, "Journal reveals behavioral patterns to fix with rules."),
+    q("tj3", "After big loss, best move:", ["Trade immediately", "Take a break; avoid revenge trading", "Double size", "Change strategy only"], 1, "Step away to avoid emotional decisions."),
+  ],
   "psychology-summary": [
     q("psy1", "Many pros say trading is mostly:", ["Technical", "Mental: discipline and emotional control", "About indicators", "About speed"], 1, "Execution and psychology often matter more than one more indicator."),
     q("psy2", "FOMO in trading usually leads to:", ["Better entries", "Entering too late or chasing; poor risk/reward", "Only profits", "Only in stocks"], 1, "FOMO = fear of missing out; often causes chasing and bad entries."),
@@ -120,6 +305,16 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("psy14", "Recency bias means:", ["You forget the past", "Recent events (last trade, last week) feel more important than they are", "Only for fundamentals", "Only for backtesting"], 1, "Recency = overweighting latest experience; can cause overconfidence or overcaution."),
     q("psy15", "The main benefit of a journal is:", ["To prove you're right", "To spot patterns in behavior and improve process", "Only for taxes", "Only for backtesting"], 1, "Journal reveals behavioral and emotional patterns so you can fix them with rules."),
   ],
+  "day-trading-intro": [
+    q("dti1", "Day trading means:", ["Swing trading", "Open and close all positions same day", "Forex only", "One trade per day"], 1, "All positions closed by end of day; no overnight."),
+    q("dti2", "Key benefit of not holding overnight:", ["Higher returns", "Avoid overnight gap risk (news, events)", "Options only", "Lower taxes"], 1, "No exposure to gaps from earnings, news, etc."),
+    q("dti3", "PDT rules in US typically require:", ["No minimum", "$25,000 minimum for unlimited day trades", "Forex only", "Crypto only"], 1, "$25K equity for more than 3 day trades in 5 days."),
+  ],
+  "day-trader-mindset": [
+    q("dtm1", "Day trader mindset emphasizes:", ["Take every trade", "Discipline, focus, emotional control", "Technicals only", "Fundamentals only"], 1, "Discipline and execution separate consistent from blow-up."),
+    q("dtm2", "Daily loss limit helps:", ["Increase trades", "Stop when down set %; avoid revenge trading", "Backtest only", "Swing only"], 1, "Cap daily loss protects capital, forces review."),
+    q("dtm3", "Day trading requires:", ["Minimal time", "Screen time during market hours and quick decisions", "Weekends only", "Fundamentals only"], 1, "Focus during session and fast execution are required."),
+  ],
   "day-trading-summary": [
     q("dt1", "Day trading means:", ["Swing trading", "Opening and closing all positions within the same trading day", "Only forex", "Only 1 trade per day"], 1, "All positions closed by end of day—no overnight exposure."),
     q("dt2", "A key benefit of not holding overnight is:", ["Higher returns", "Avoiding overnight gap risk from news or events", "Only for options", "Lower taxes"], 1, "No exposure to gaps from earnings, news, or global events."),
@@ -131,6 +326,16 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("dt8", "Pre-market routine often includes:", ["Ignoring the market", "Reviewing watchlist, alerts, and news", "Only closing positions", "Only options"], 1, "Preparation supports focus and reduces impulsive trades."),
     q("dt9", "Physical health (sleep, exercise) affects:", ["Only long-term investing", "Decision quality and discipline in trading", "Only backtesting", "Only taxes"], 1, "Fatigue and stress hurt judgment; health supports consistent execution."),
     q("dt10", "Day trading is best treated as:", ["A side hobby", "A profession requiring time, capital, and process", "Only for retirees", "Only with crypto"], 1, "Serious approach: education, plan, capital, and routine."),
+  ],
+  "trading-plan-intro": [
+    q("tpi1", "Trading plan should include:", ["Only entry rules", "Goals, entry/exit, risk rules, review process", "Only exit rules", "Indicators only"], 1, "Full plan: goals, rules, risk, review."),
+    q("tpi2", "Without written plan, traders often:", ["Trade better", "React to emotion; inconsistent execution", "Use limits only", "Forex only"], 1, "Plan removes discretion at moment of decision."),
+    q("tpi3", "Entry checklist helps:", ["Trade more", "Avoid impulsive trades; confirm setup and risk", "Options only", "Backtest only"], 1, "Checklist ensures every trade meets criteria."),
+  ],
+  "plan-template": [
+    q("pt1", "When to change plan:", ["After one loss", "After meaningful sample and structured review", "Every day", "Only when profitable"], 1, "Change based on evidence (e.g. 50+ trades), not one outcome."),
+    q("pt2", "Risk rules typically include:", ["No stops", "Max % per trade, max total risk, max trades/day", "Take profit only", "Forex only"], 1, "Define position size, stop, daily limits."),
+    q("pt3", "Paper trading plan helps:", ["Guarantee profits", "Test strategy and build discipline before real money", "Options only", "Taxes only"], 1, "Validate plan and execution without capital at risk."),
   ],
   "plan-summary": [
     q("pl1", "A trading plan should include:", ["Only entry rules", "Goals, entry/exit, risk rules, and review process", "Only exit rules", "Only indicators"], 1, "Full plan: goals, rules, risk, and review."),
@@ -145,6 +350,21 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("pl10", "Following the plan 'every time' means:", ["Only when winning", "Same rules regardless of emotion or outcome", "Only for entries", "Only for options"], 1, "Consistency is following the plan in all conditions."),
     q("pl11", "A time stop (e.g. exit by 3:30 PM) is common for:", ["Swing traders only", "Day traders to avoid overnight exposure", "Only forex", "Only crypto"], 1, "Day traders flatten by close; time stop enforces it."),
     q("pl12", "Backtesting or paper trading before live should last:", ["One day", "At least 1–3 months and 50+ trades", "Only for options", "Only when losing"], 1, "Enough sample to validate plan and execution."),
+  ],
+  "orb-strategy": [
+    q("orb1", "ORB (Opening Range Breakout) trades:", ["Random time", "Breakout of first 15–30 min range", "Close only", "Volume only"], 1, "ORB = breakout of opening range; first bar(s) of day."),
+    q("orb2", "ORB works best when:", ["Low volatility", "High volatility and clear range", "Choppy", "1m only"], 1, "Clear range and volatility support breakouts."),
+    q("orb3", "ORB stop often placed:", ["Random", "Other side of opening range", "200 MA", "Volume only"], 1, "Stop below range for longs; above for shorts."),
+  ],
+  "vwap-strategy": [
+    q("vw1", "VWAP stands for:", ["Volume Weighted Average Price", "Value Weighted Average Position", "Volume Without Average Price", "Value Without Average"], 0, "VWAP = Volume Weighted Average Price."),
+    q("vw2", "Price above VWAP often means:", ["Sellers in control", "Buyers paid more than average; bullish bias", "No signal", "Volume only"], 1, "Above VWAP = buyers paying above avg; below = sellers."),
+    q("vw3", "Institutions often use VWAP to:", ["Ignore execution", "Benchmark execution quality (match or beat VWAP)", "Only for forex", "Only 1m"], 1, "VWAP = benchmark for execution; institutions target it."),
+  ],
+  "breakout-strategy": [
+    q("bo1", "Breakout strategy enters when:", ["Inside range", "Price breaks above resistance or below support", "Volume drops", "RSI only"], 1, "Breakout = price clears key level; enter on confirmation."),
+    q("bo2", "False breakout (fakeout) occurs when:", ["Never", "Price breaks level then reverses back inside", "Volume high", "Only stocks"], 1, "Fakeout = break then reversal; use stops and confirmation."),
+    q("bo3", "Breakout confirmation often includes:", ["Nothing", "Volume increase and/or close beyond level", "RSI only", "Open only"], 1, "Volume and close beyond level confirm breakout."),
   ],
   "strategies-summary": [
     q("st1", "ORB stands for:", ["Order Rate Book", "Opening Range Breakout", "Only Random Buy", "Option Risk Balance"], 1, "Opening Range Breakout—trading the break of the first 15–30 min range."),
@@ -168,6 +388,16 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("st19", "Adding to a breakout before confirmation often:", ["Increases profit", "Increases risk of false breakout; wait for close/volume", "Only in forex", "Only at open"], 1, "First tick can be fake-out; confirm first."),
     q("st20", "Pick one strategy, paper trade it, then:", ["Trade maximum size", "Go live with small size and same rules", "Only change rules", "Only trade forex"], 1, "Master one approach before adding others; size small at first."),
   ],
+  "broker-criteria": [
+    q("bc1", "Key broker criteria include:", ["Only commission", "Fees, execution, platform, customer service", "Volume only", "P/E only"], 1, "Consider fees, execution quality, platform, support."),
+    q("bc2", "ECN/STP brokers typically:", ["Worse execution", "Direct market access; often tighter spreads", "Higher fees only", "Forex only"], 1, "ECN/STP = direct access; often better execution."),
+    q("bc3", "Regulation matters because:", ["It doesn't", "Protects against fraud; segregated funds", "Volume only", "Tax only"], 1, "Regulated brokers protect client funds and integrity."),
+  ],
+  "demo-practice": [
+    q("dp1", "Demo trading helps:", ["Guarantee profits", "Practice without risk; validate plan", "Options only", "Tax only"], 1, "Demo = practice and validate before real money."),
+    q("dp2", "Before going live, demo should:", ["One day", "At least 1–3 months and 50+ trades", "Options only", "When losing"], 1, "Enough sample to validate plan and execution."),
+    q("dp3", "Demo vs live difference often:", ["None", "Emotions; real money changes behavior", "Volume only", "P/E only"], 1, "Real money triggers emotions; demo can't fully replicate."),
+  ],
   "broker-summary": [
     q("br1", "When choosing a broker, prioritize first:", ["Lowest commission", "Regulation and safety of funds", "Only mobile app", "Only research"], 1, "Regulation and client fund protection are non-negotiable."),
     q("br2", "Red flags for a broker include:", ["Regulated in multiple countries", "Unregulated, guaranteed profits, pressure to deposit", "Good reviews", "Low spread"], 1, "Avoid unregulated, guarantees, and pressure."),
@@ -181,6 +411,16 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("br10", "Before depositing, you should:", ["Deposit immediately", "Verify regulation, read reviews, and understand fees", "Only check spread", "Only check leverage"], 1, "Verify regulation and terms before funding."),
     q("br11", "A broker that guarantees profits is:", ["Trustworthy", "A red flag; no one can guarantee returns", "Only for pros", "Only for forex"], 1, "Guaranteed profits are a scam indicator."),
     q("br12", "Building consistency on demo means:", ["Trading once", "Following your plan for 1–3 months and 50+ trades", "Only backtesting", "Only for options"], 1, "Enough sample to build discipline and validate plan."),
+  ],
+  "order-types": [
+    q("ot1", "Market order:", ["Guarantees price", "Executes immediately at best available price", "Only limit", "Only forex"], 1, "Market = immediate fill at current price; may slip."),
+    q("ot2", "Limit order:", ["Executes immediately", "Executes only at specified price or better", "Only market", "Only stocks"], 1, "Limit = fill at your price or better; may not fill."),
+    q("ot3", "Stop-loss order becomes market order when:", ["Never", "Price hits stop level", "Volume drops", "Open only"], 1, "Stop triggers market order when price hits stop."),
+  ],
+  "order-execution": [
+    q("oe1", "Bid-ask spread is:", ["Commission", "Difference between best bid and best ask", "Volume only", "P/E only"], 1, "Spread = ask − bid; cost of immediate execution."),
+    q("oe2", "Slippage occurs when:", ["Never", "Fill price differs from expected (e.g. in fast markets)", "Volume high", "Limit only"], 1, "Slippage = actual fill differs from expected; common in volatile markets."),
+    q("oe3", "Limit orders avoid:", ["All costs", "Slippage (you set max buy or min sell price)", "Spread", "Volume"], 1, "Limit sets your max/min; avoids adverse slippage."),
   ],
   "mechanics-summary": [
     q("me1", "A market order:", ["Executes at your limit price only", "Executes immediately at best available price (may slip)", "Never fills", "Only for closing"], 1, "Market = immediate fill; possible slippage in fast or thin markets."),
@@ -198,6 +438,21 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("me13", "Stop-limit order:", ["Always fills", "Triggers a limit order at stop price; may not fill in fast move", "Only for forex", "Only at open"], 1, "Stop-limit = limit at trigger; more control, fill risk."),
     q("me14", "Bracket order typically includes:", ["Only entry", "Entry + stop loss + take profit together", "Only for forex", "Only for options"], 1, "Bracket = entry with stop and target in one order."),
     q("me15", "Liquidity refers to:", ["Only volatility", "Ease of entering/exiting at desired price", "Only for crypto", "Only at close"], 1, "Liquidity = how easily you can trade at fair price."),
+  ],
+  "costs-overview": [
+    q("co1", "Trading costs include:", ["Only commission", "Commission, spread, slippage, financing", "Volume only", "P/E only"], 1, "Costs: commission, spread, slippage, overnight fees."),
+    q("co2", "Overtrading increases:", ["Profits", "Costs and emotional mistakes", "Discipline", "Risk management"], 1, "Too many trades = more fees and emotional decisions."),
+    q("co3", "Break-even analysis considers:", ["Only entry", "Entry + costs; need move to cover fees", "Volume only", "Open only"], 1, "Break-even = entry + all costs; trade must move enough."),
+  ],
+  "tax-implications": [
+    q("ti1", "Day trading profits in US are typically:", ["Long-term capital gains", "Short-term capital gains (ordinary income rates)", "Tax-free", "Only forex"], 1, "Short-term = ordinary income; higher rate than long-term."),
+    q("ti2", "Wash sale rule:", ["Never applies", "Disallows loss if you buy same/similar within 30 days", "Only for stocks", "Only forex"], 1, "Wash sale = can't claim loss if repurchase within 30 days."),
+    q("ti3", "Keep records for:", ["One month", "Tax purposes; IRS may audit", "Volume only", "P/E only"], 1, "Records for tax filing and potential audit."),
+  ],
+  "profitability": [
+    q("pr1", "To be profitable, gross gains must:", ["Match costs", "Exceed costs (commission, spread, slippage)", "Equal volume", "Match P/E"], 1, "Gross gains > all costs = net profit."),
+    q("pr2", "Small accounts face:", ["No challenges", "Higher relative costs; harder to diversify", "Only benefits", "Only forex"], 1, "Small account = costs eat %; less room for error."),
+    q("pr3", "Break-even trades (after costs):", ["Profitable", "Net zero; costs consumed the move", "Better than loss", "Only for pros"], 1, "Break-even after costs = no profit; consider opportunity cost."),
   ],
   "costs-summary": [
     q("co1", "Break-even win rate for 1:2 risk-reward is about:", ["50%", "33.3%", "25%", "100%"], 1, "1/(1+R) = 1/3 ≈ 33.3%."),
@@ -246,6 +501,24 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
 
 /** Level 4 module quizzes */
 const level4ModuleQuizzes: Record<string, QuizQuestion[]> = {
+  "options-basics": [
+    q("ob1", "A call option gives the holder:", ["Obligation to buy", "Right to buy at the strike price by expiration", "Obligation to sell", "Right to sell only"], 1, "Call = right to buy; put = right to sell."),
+    q("ob2", "Out-of-the-money (OTM) means:", ["Stock equals strike", "For a call: stock < strike; for a put: stock > strike", "Stock far above strike", "Option has no value"], 1, "OTM = wouldn't be worth exercising if expired now."),
+    q("ob3", "Max loss when buying an option is:", ["Unlimited", "The premium paid", "Strike price", "100 shares"], 1, "Buyer can lose only the premium; not obligated to exercise."),
+    q("ob4", "Intrinsic value of a call (stock $105, strike $100) is:", ["$0", "$5", "$105", "$100"], 1, "Intrinsic = stock − strike when in the money."),
+  ],
+  "options-greeks": [
+    q("og1", "Delta measures:", ["Time decay", "How much option price changes when stock moves $1", "Volatility sensitivity", "Interest rate sensitivity"], 1, "Delta = price sensitivity to underlying."),
+    q("og2", "Theta represents:", ["Directional move", "Time decay—option loses value each day", "Volatility", "Delta change"], 1, "Theta = daily time decay; sellers collect it."),
+    q("og3", "An ATM call typically has delta near:", ["0", "0.5", "1", "-0.5"], 1, "ATM calls ≈ 0.5 delta; ITM higher, OTM lower."),
+    q("og4", "Vega measures sensitivity to:", ["Time", "Stock price", "Implied volatility", "Interest rates"], 2, "Vega = option price change per 1% IV change."),
+  ],
+  "options-strategies": [
+    q("os1", "A covered call is:", ["Long stock + long call", "Long stock + short call", "Short stock + short call", "Only options"], 1, "Covered call = own stock and sell a call."),
+    q("os2", "Cash-secured put means:", ["Selling a put with no collateral", "Selling a put with cash to buy if assigned", "Buying a put only", "Only for stocks"], 1, "Cash-secured = have funds to buy stock if assigned."),
+    q("os3", "A bull call spread:", ["Has unlimited risk", "Has defined risk—max loss = width minus premium", "Is only for bears", "Requires no capital"], 1, "Spread = defined risk on both sides."),
+    q("os4", "You should never sell naked calls because:", ["They're illegal", "Loss can be unlimited if stock moons", "Only puts are risky", "Brokers don't allow it"], 1, "Naked call = unlimited loss; stock can rise forever."),
+  ],
   "options-summary": [
     q("op1", "A call option gives the holder the:", ["Obligation to buy", "Right to buy at the strike price", "Obligation to sell", "Right to sell only at expiry"], 1, "Call = right to buy at strike."),
     q("op2", "Delta of an ATM call is approximately:", ["0", "0.5", "1", "-0.5"], 1, "ATM call delta ≈ 0.5."),
@@ -253,11 +526,36 @@ const level4ModuleQuizzes: Record<string, QuizQuestion[]> = {
     q("op4", "A covered call is:", ["Long stock + long call", "Long stock + short call", "Short stock + long call", "Only options"], 1, "Covered call = own stock + sell call."),
     q("op5", "Max loss when buying a call is:", ["Unlimited", "The premium paid", "Strike price", "Stock price"], 1, "Buyer can lose only the premium."),
   ],
+  "futures-basics": [
+    q("fb1", "A futures contract is:", ["A spot purchase today", "An agreement to buy/sell at a set price on a future date", "An option", "Only for stocks"], 1, "Futures = agreement for future delivery or cash settlement."),
+    q("fb2", "Tick value for E-mini S&P 500 is:", ["$1 per point", "$50 per point", "$10 per point", "$100 per point"], 1, "ES: $50 per full point; 0.25 tick = $12.50."),
+    q("fb3", "Cash-settled futures:", ["Require physical delivery", "Settle in cash at expiration—no delivery", "Are only for commodities", "Don't exist"], 1, "Index futures (ES, NQ) are cash-settled."),
+  ],
+  "leverage-margin": [
+    q("lm1", "Initial margin is:", ["The full notional value", "The deposit required to open a futures position", "Profit from the trade", "Only for options"], 1, "Initial margin = deposit to open; fraction of notional."),
+    q("lm2", "A margin call means:", ["You made a profit", "Add funds or reduce position; equity below maintenance", "Trade is closed automatically", "Only for stocks"], 1, "Margin call = add funds or broker may close you out."),
+    q("lm3", "Leverage in futures:", ["Reduces risk", "Amplifies both gains and losses", "Only helps", "Only for hedgers"], 1, "Leverage = small move in price = large P&L impact."),
+  ],
   "derivatives-summary": [
     q("dr1", "A futures contract is:", ["A spot purchase", "An agreement to buy/sell at a future date at a set price", "An option", "Only for stocks"], 1, "Futures = agreement for future delivery/settlement."),
     q("dr2", "Initial margin is:", ["The full notional value", "The deposit required to open a futures position", "Only for options", "Only for stocks"], 1, "Initial margin = deposit to open position."),
     q("dr3", "Margin call occurs when:", ["Price goes in your favor", "Equity falls below maintenance margin", "You close the trade", "Only at expiry"], 1, "Margin call = add funds or get closed out."),
     q("dr4", "Leverage in futures:", ["Reduces risk", "Amplifies both gains and losses", "Only for hedging", "Only for options"], 1, "Leverage amplifies P&L."),
+  ],
+  "mpt-basics": [
+    q("mp1", "The efficient frontier shows:", ["Only returns", "Best expected return for each level of risk", "Only bonds", "Only one portfolio"], 1, "Efficient frontier = best return per risk level."),
+    q("mp2", "MPT measures risk as:", ["Only drawdown", "Standard deviation of returns (volatility)", "Only beta", "Only loss"], 1, "Risk in MPT = volatility of returns."),
+    q("mp3", "Adding a risk-free asset to the portfolio:", ["Increases risk only", "Creates a capital allocation line; mix risk-free with tangency portfolio", "Does nothing", "Only for bonds"], 1, "Risk-free + tangency = any point on the line."),
+  ],
+  "diversification": [
+    q("dv1", "Diversification helps most when assets are:", ["Perfectly correlated", "Uncorrelated or low correlation", "Identical", "Only stocks"], 1, "Low/negative correlation reduces portfolio volatility."),
+    q("dv2", "Correlation of +1 means:", ["No relationship", "Assets move in opposite directions", "Assets move in lockstep", "Random"], 2, "+1 = perfect positive correlation; -1 = perfect negative."),
+    q("dv3", "In a market crash, correlation often:", ["Falls", "Rises—many assets fall together", "Stays zero", "Only for bonds"], 1, "Correlation rises in stress; diversification can fail."),
+  ],
+  "rebalancing": [
+    q("rb1", "Rebalancing means:", ["Never trading", "Restoring portfolio weights to target", "Only selling", "Only buying bonds"], 1, "Rebalancing = bring weights back to target."),
+    q("rb2", "Why rebalance?", ["To time the market", "Weights drift; rebalancing controls risk and can enforce buy-low/sell-high", "Only for taxes", "Only annually"], 1, "Drift = unintended risk; rebalancing restores plan."),
+    q("rb3", "In taxable accounts, rebalancing with new contributions:", ["Increases taxes", "Can avoid selling and triggering gains", "Is impossible", "Only for IRAs"], 1, "Add to underweight assets instead of selling overweight."),
   ],
   "portfolio-summary": [
     q("pt1", "The efficient frontier shows:", ["Only returns", "Best expected return for each level of risk", "Only bonds", "Only stocks"], 1, "Efficient frontier = best return per risk level."),
@@ -265,10 +563,35 @@ const level4ModuleQuizzes: Record<string, QuizQuestion[]> = {
     q("pt3", "Rebalancing means:", ["Never trading", "Restoring portfolio to target weights", "Only selling", "Only buying"], 1, "Rebalancing = bring weights back to target."),
     q("pt4", "MPT assumes:", ["No diversification", "Rational investors and risk/return trade-off", "Only bonds", "Only crypto"], 1, "MPT = risk/return and diversification."),
   ],
+  "fibonacci": [
+    q("fi1", "Most-used Fibonacci retracement levels are:", ["Only 100%", "38.2%, 50%, 61.8%", "Only 0%", "Only 23.6%"], 1, "38.2%, 50%, 61.8% are the key levels."),
+    q("fi2", "Fibonacci retracements work best:", ["Alone with no confirmation", "With trend, support/resistance, and volume", "Only on 1m charts", "Only for stocks"], 1, "Combine with other tools; never trade Fib alone."),
+    q("fi3", "A 50% retracement in an uptrend means:", ["Trend is over", "Price has pulled back halfway of the prior move; potential support", "Sell signal only", "No significance"], 1, "50% is a common pullback level in trends."),
+  ],
+  "elliott-wave": [
+    q("ew1", "Elliott Wave impulse has:", ["3 waves", "5 waves in trend direction", "Only 1 wave", "Only 2 waves"], 1, "Impulse = 5 waves; correction = 3 waves."),
+    q("ew2", "Elliott Wave is:", ["A guaranteed predictor", "Subjective—different analysts count differently; use for context", "Only for daily charts", "Only for stocks"], 1, "Use as context; don't trade on wave count alone."),
+    q("ew3", "Wave 3 in Elliott is often:", ["The shortest", "The strongest—never the shortest of the three impulse waves", "Always a correction", "Only for bears"], 1, "Wave 3 is typically the most powerful."),
+  ],
+  "wyckoff": [
+    q("wy1", "The four Wyckoff phases are:", ["Only markup", "Accumulation, markup, distribution, markdown", "Only volume", "Only price"], 1, "Four phases: accumulation → markup → distribution → markdown."),
+    q("wy2", "A spring in Wyckoff is:", ["High volume only", "Brief break below support that fails—often end of accumulation", "Only for stocks", "A sell signal"], 1, "Spring = fake breakdown; trap for bears."),
+    q("wy3", "Wyckoff emphasizes:", ["Only price", "Volume and price structure—who is in control", "Only support", "Only resistance"], 1, "Volume + structure = supply vs demand."),
+  ],
   "advanced-technical-summary": [
     q("at1", "Common Fibonacci retracement levels include:", ["Only 100%", "38.2%, 50%, 61.8%", "Only 0%", "Only volume"], 1, "38.2%, 50%, 61.8% are most used."),
     q("at2", "Elliott Wave impulse has:", ["3 waves", "5 waves in trend direction", "Only 1 wave", "Only 2 waves"], 1, "Impulse = 5 waves; correction = 3."),
     q("at3", "Wyckoff phases include:", ["Only markup", "Accumulation, markup, distribution, markdown", "Only volume", "Only price"], 1, "Four phases: accumulation, markup, distribution, markdown."),
+  ],
+  "intermarket-basics": [
+    q("ib1", "Rising bond yields often:", ["Help stocks", "Hurt stock valuations—higher discount rate", "Have no effect", "Only affect bonds"], 1, "Yields up = higher discount rate = lower stock valuations."),
+    q("ib2", "Risk-off sentiment typically sends money to:", ["Stocks and crypto", "Treasuries, yen, Swiss franc", "Only commodities", "Only EM"], 1, "Flight to safety = bonds, yen, CHF."),
+    q("ib3", "A strong dollar often pressures:", ["US stocks only", "Commodities (priced in USD) and emerging markets", "Only bonds", "Only gold"], 1, "Strong dollar = commodities and EM often suffer."),
+  ],
+  "vix-fear": [
+    q("vx1", "The VIX measures:", ["Stock returns", "Implied volatility of S&P 500 options", "Volume only", "Only bonds"], 1, "VIX = 30-day implied vol of S&P options."),
+    q("vx2", "When VIX spikes, it usually means:", ["Low fear", "Elevated fear; options expensive", "Only low vol", "Buy signal"], 1, "High VIX = fear gauge; options get expensive."),
+    q("vx3", "VIX and S&P 500 are typically:", ["Positively correlated", "Negatively correlated", "Uncorrelated", "Only at open"], 1, "Stocks down → VIX up; stocks up → VIX down."),
   ],
   "intermarket-summary": [
     q("im1", "Bonds and stocks often move inversely because:", ["They are the same", "Rising yields can hurt stock valuations; flight to safety", "Only in recessions", "Only in expansions"], 1, "Yields up can hurt stocks; flight to safety to bonds."),
@@ -302,6 +625,106 @@ export const level4Quizzes: Record<string, QuizQuestion[]> = {
 
 /** Level 5 module quizzes */
 const level5ModuleQuizzes: Record<string, QuizQuestion[]> = {
+  "python-basics": [
+    q("pb1", "Python is widely used in quant finance for:", ["Only plotting", "Data, backtesting, and automation (pandas, numpy)", "Only options", "Only forex"], 1, "Python + pandas/numpy = standard stack."),
+    q("pb2", "pandas is used for:", ["Only plotting", "Tabular data, DataFrames, and time series", "Only loops", "Only APIs"], 1, "pandas = DataFrames and Series for data."),
+    q("pb3", "Jupyter notebooks are useful for:", ["Only production code", "Interactive exploration—run code cell by cell", "Only deployment", "Only testing"], 1, "Jupyter = lab notebook for exploration."),
+  ],
+  "python-data": [
+    q("pd1", "yfinance is used to:", ["Execute trades", "Download historical price data from Yahoo Finance", "Only for crypto", "Only for options"], 1, "yfinance = free historical data."),
+    q("pd2", "For stocks, you should use:", ["Raw close price", "Adjusted close (Adj Close) for splits and dividends", "Only volume", "Only open"], 1, "Adj Close accounts for splits and dividends."),
+    q("pd3", "Resampling daily data to weekly uses:", ["Only numpy", "pandas .resample() method", "Only matplotlib", "Only loops"], 1, "df.resample('W') for weekly."),
+  ],
+  "first-strategy": [
+    q("fs1", "A backtest runs:", ["Live data only", "Strategy logic on historical data to measure past performance", "Only options", "Only forex"], 1, "Backtest = historical simulation; past ≠ future."),
+    q("fs2", "Look-ahead bias means:", ["Using only past data", "Using future data in the past—ruins backtests", "Only in live", "Only for options"], 1, "Never use data you wouldn't have had at decision time."),
+    q("fs3", "To avoid look-ahead in pandas, use:", ["Current bar data", "shift(1) for lagged inputs—prior bar only", "Only forward fill", "Only dropna"], 1, "shift(1) = previous row; no future data."),
+  ],
+  "data-sources": [
+    q("ds1", "Common free data sources include:", ["Only Bloomberg", "Yahoo Finance (yfinance), Alpha Vantage, FRED", "Only paid", "Only crypto"], 1, "yfinance, Alpha Vantage, FRED are common free sources."),
+    q("ds2", "API keys should be stored:", ["In code and committed to git", "In environment variables—never in code", "Only in config files", "Only in comments"], 1, "Use os.environ; never commit keys."),
+    q("ds3", "Rate limits on free APIs:", ["Don't exist", "Can get you blocked—use sleep and respect terms", "Only for paid", "Only for crypto"], 1, "Respect rate limits; sleep between requests."),
+  ],
+  "data-cleaning": [
+    q("dc1", "Why clean data?", ["To make it longer", "Missing values and errors distort backtests; garbage in, garbage out", "Only for live", "Only for options"], 1, "Garbage in, garbage out; use adjusted close."),
+    q("dc2", "For stocks, use adjusted close because:", ["It's faster", "Splits and dividends change raw price—Adj Close is comparable", "Only for volume", "Only for intraday"], 1, "Splits halve price; Adj Close keeps history comparable."),
+    q("dc3", "Forward-filling missing data can:", ["Always fix gaps", "Hide delistings—stock may have stopped trading", "Only help", "Only for crypto"], 1, "Forward fill can mask delistings; validate."),
+  ],
+  "backtest-basics": [
+    q("bb1", "Look-ahead bias ruins backtests by:", ["Using only past data", "Using future information not available at decision time", "Only in live", "Only for options"], 1, "Look-ahead = cheating; use only lagged data."),
+    q("bb2", "In pandas, shift(1) gives:", ["Current row", "Previous row—use for lagged inputs", "Next row", "Random row"], 1, "shift(1) = prior bar; no future data."),
+    q("bb3", "Past backtest performance:", ["Guarantees future results", "Does not guarantee future results; validate and be conservative", "Only for live", "Only for options"], 1, "Past ≠ future; regime and conditions change."),
+  ],
+  "backtest-pitfalls": [
+    q("bp1", "Overfitting means:", ["Model too simple", "Fitting noise; strategy fails out-of-sample", "Only in live", "Only for stocks"], 1, "Overfitting = curve-fitting past; fails future."),
+    q("bp2", "Survivorship bias:", ["Helps backtests", "Excludes delisted names; results look better than reality", "Only for options", "Only for crypto"], 1, "Use survivorship-bias-free data when possible."),
+    q("bp3", "Walk-forward analysis:", ["Uses one period only", "Trains on one period, tests on next; rolls forward—more robust", "Only for live", "Only for options"], 1, "Multiple OOS tests = more credible."),
+  ],
+  "walk-forward": [
+    q("wf1", "Walk-forward analysis:", ["Uses only in-sample data", "Trains on one period, tests on next; roll forward", "Only for live", "Only for options"], 1, "Train → test → roll forward; repeat."),
+    q("wf2", "The test period in walk-forward:", ["Can be used for tuning", "Must never be used for training or parameter choice", "Only for validation", "Only for features"], 1, "Test set = sacred; no peeking."),
+    q("wf3", "Consistent performance across walk-forward rolls:", ["Doesn't matter", "Suggests more robust strategy than single lucky period", "Only for in-sample", "Only for options"], 1, "Consistency across rolls = credibility."),
+  ],
+  "mean-reversion": [
+    q("mr1", "Mean reversion assumes:", ["Trends never end", "Price tends to return to average", "Volume is constant", "No volatility"], 1, "Mean reversion = return to mean."),
+    q("mr2", "Mean reversion tends to fail in:", ["Ranging markets", "Strong trends—price can stay extended", "Low volatility", "High volume"], 1, "Use trend filter; don't fight strong trends."),
+    q("mr3", "Z-score measures:", ["Volume only", "How many standard deviations price is from the mean", "Only momentum", "Only RSI"], 1, "Z-score = (price - mean) / std; beyond ±2 = stretched."),
+  ],
+  "momentum-strategies": [
+    q("ms1", "Momentum in quant is:", ["Mean reversion", "Trend-following—past winners tend to continue", "Only volume", "Only for options"], 1, "Momentum = trend continuation."),
+    q("ms2", "MA crossover (50 above 200) typically signals:", ["Downtrend", "Uptrend (bullish)", "No trend", "Only for stocks"], 1, "Fast above slow = bullish; Golden Cross."),
+    q("ms3", "Volatility scaling means:", ["Fixed size only", "Sizing inversely to recent volatility—reduce when vol high", "Only for options", "Only for crypto"], 1, "Size down when vol is high; adapt to conditions."),
+  ],
+  "pairs-trading": [
+    q("pt1", "Pairs trading involves:", ["Only one asset", "Trading the spread between two cointegrated assets", "Only stocks", "Only forex"], 1, "Pairs = trade spread; need cointegration."),
+    q("pt2", "Cointegration means:", ["Only correlation", "Long-run relationship—spread is mean-reverting", "Only short-term", "Only for stocks"], 1, "Cointegration = spread reverts; correlation ≠ cointegration."),
+    q("pt3", "Pairs trading is typically:", ["Directional", "Market-neutral—long one, short the other", "Only for momentum", "Only for stocks"], 1, "Long one asset, short the other; hedge market."),
+  ],
+  "ml-overview": [
+    q("mo1", "ML can help in trading for:", ["Guaranteed profits", "Feature-rich problems and regime detection; validate strictly", "Only live", "Only options"], 1, "ML for features/regimes; avoid overfitting."),
+    q("mo2", "Overfitting in ML means:", ["Model too simple", "Model fits training noise; fails out-of-sample", "Model never fits", "Only in neural nets"], 1, "Overfitting = memorizing; poor generalization."),
+    q("mo3", "Simple models often beat complex ML because:", ["Complex is always worse", "Complex overfits; simple generalizes better", "Only for stocks", "Only for backtest"], 1, "Simpler = less overfitting; validate rigorously."),
+  ],
+  "feature-engineering": [
+    q("fe1", "Feature engineering is:", ["Only using price", "Creating inputs from data; no look-ahead", "Only for neural nets", "Only for backtest"], 1, "Features = inputs; must be known at prediction time."),
+    q("fe2", "Every feature must:", ["Use future data", "Be known at the time of prediction—use lagged values", "Only use volume", "Only use close"], 1, "No look-ahead; shift(1) for lagged."),
+    q("fe3", "Train/test split for time series must:", ["Shuffle randomly", "Be in time—train on past, test on future", "Only use one period", "Only for options"], 1, "Preserve temporal order; no shuffling."),
+  ],
+  "overfitting": [
+    q("of1", "Never tune on the:", ["Training set", "Test set—it becomes in-sample", "Validation set", "Only live data"], 1, "Test set = report only; never tune on it."),
+    q("of2", "To reduce overfitting, use:", ["More parameters", "Time-based splits, walk-forward, simpler models, fewer features", "Only more data", "Only live data"], 1, "Simplify; validate; hold out test set."),
+    q("of3", "If train accuracy is high but test is low:", ["Model is great", "Likely overfitting—simplify and validate", "Only for stocks", "Only for options"], 1, "Big train-test gap = overfitting."),
+  ],
+  "sharpe-sortino": [
+    q("ss1", "Sharpe ratio is:", ["Only return", "(Return - risk-free) / volatility", "Only drawdown", "Only win rate"], 1, "Sharpe = excess return per unit of volatility."),
+    q("ss2", "Sortino uses:", ["Total volatility", "Downside deviation—only negative returns", "Only upside", "Only volume"], 1, "Sortino = penalizes downside, not upside vol."),
+    q("ss3", "A Sharpe above 1 is typically:", ["Poor", "Good; above 2 is strong", "Only for options", "Only for stocks"], 1, "Sharpe > 1 good; > 2 strong; > 3 rare."),
+  ],
+  "drawdown-analysis": [
+    q("dd1", "Maximum drawdown is:", ["Average loss", "Largest peak-to-trough decline", "Only daily", "Only for options"], 1, "MDD = worst decline from a high."),
+    q("dd2", "Backtest MDD often:", ["Overestimates live risk", "Underestimates live MDD—be conservative", "Matches live exactly", "Only for options"], 1, "Assume live MDD could be 1.5x backtest."),
+    q("dd3", "Calmar ratio uses:", ["Only volatility", "Return / max drawdown", "Only Sharpe", "Only Sortino"], 1, "Calmar = return per unit of worst pain."),
+  ],
+  "monte-carlo": [
+    q("mc1", "Monte Carlo in trading:", ["Predicts one outcome", "Runs many random simulations for distribution of outcomes", "Only for options", "Only for stocks"], 1, "Monte Carlo = many trials; distribution of outcomes."),
+    q("mc2", "Monte Carlo can show:", ["Exact future return", "Range of plausible outcomes given assumptions", "Only past results", "Only for options"], 1, "Shows what could happen; not what will."),
+    q("mc3", "Report percentiles (e.g. 5th, 95th) to:", ["Ignore risk", "See tail outcomes—bad and good", "Only for mean", "Only for options"], 1, "Percentiles show worst/best case range."),
+  ],
+  "automation-workflow": [
+    q("aw1", "An automated system needs:", ["Only strategy", "Data, strategy, execution, risk controls, monitoring", "Only execution", "Only data"], 1, "Full system = data + strategy + execution + risk + monitoring."),
+    q("aw2", "Modular design helps:", ["Only deployment", "Test and fix each part; backtest without execution", "Only for options", "Only for stocks"], 1, "Separate modules = easier testing and debugging."),
+    q("aw3", "Log everything so:", ["Code runs faster", "You can replay what happened when something goes wrong", "Only for live", "Only for backtest"], 1, "Logs = black box; essential for debugging."),
+  ],
+  "paper-automation": [
+    q("pa1", "Why paper trade automation first?", ["To make money", "Find bugs and test with live data before risking capital", "Only for options", "Only for stocks"], 1, "Paper = test without capital at risk."),
+    q("pa2", "Sim fills are often:", ["Worse than live", "Perfect—no slippage; live won't be", "Same as live", "Only for options"], 1, "Sim ≠ live; expect worse execution live."),
+    q("pa3", "When going live, start with:", ["Maximum size", "Minimum size—1 share or 1 contract", "Only options", "Only stocks"], 1, "Start small; scale only after consistency."),
+  ],
+  "live-deployment": [
+    q("ld1", "A kill switch is:", ["Only for options", "Single action to stop all orders or flatten positions", "Only for backtest", "Only for data"], 1, "Kill switch = emergency stop; test it."),
+    q("ld2", "Before going live, verify:", ["Only strategy", "Risk limits, kill switch, data feed, execution path, alerts", "Only backtest", "Only options"], 1, "Checklist: risk, kill switch, data, execution, alerts."),
+    q("ld3", "A runbook documents:", ["Only P&L", "What to do if the system misbehaves—step by step", "Only for options", "Only for backtest"], 1, "Runbook = emergency procedures for when things go wrong."),
+  ],
   "python-summary": [
     q("py1", "Python is widely used in quant finance for:", ["Only plotting", "Data, backtesting, and automation (pandas, numpy)", "Only options", "Only forex"], 1, "Python + pandas/numpy = standard stack."),
     q("py2", "yfinance is used to:", ["Execute trades", "Download historical price data from Yahoo Finance", "Only for crypto", "Only for options"], 1, "yfinance = free historical data."),

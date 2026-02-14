@@ -9,6 +9,7 @@ import { useAdmin } from "../contexts/AdminContext";
 import { trackQuizAttempt } from "../lib/analytics";
 import { LessonContentBlock } from "../components/lesson/LessonContent";
 import { LessonTOC } from "../components/lesson/LessonTOC";
+import { LessonQuickRef } from "../components/lesson/LessonQuickRef";
 import { Quiz } from "../components/quiz/Quiz";
 import { QuizResults } from "../components/quiz/QuizResults";
 import { QuizErrorBoundary } from "../components/quiz/QuizErrorBoundary";
@@ -147,10 +148,16 @@ export function LessonPage() {
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* TOC sidebar - 20% on desktop */}
-        {tocItems.length > 0 && (
+        {(tocItems.length > 0 || lesson) && (
           <aside className="lg:w-56 flex-shrink-0 order-2 lg:order-1">
-            <div className="lg:sticky lg:top-24">
-              <LessonTOC items={tocItems} />
+            <div className="lg:sticky lg:top-24 space-y-6">
+              <LessonQuickRef
+                lesson={lesson}
+                levelId={levelId || "1"}
+                moduleSlug={moduleSlug || ""}
+                nextLesson={nextLesson}
+              />
+              {tocItems.length > 0 && <LessonTOC items={tocItems} />}
             </div>
           </aside>
         )}
@@ -251,12 +258,25 @@ export function LessonPage() {
             <p className="text-sm text-surface-600 dark:text-surface-400">
               {lesson.duration} • {lesson.objectives.length} objectives
             </p>
+            {lesson.prerequisites && lesson.prerequisites.length > 0 && (
+              <p className="mt-3 text-xs text-surface-500 dark:text-surface-400">
+                Prerequisites: {lesson.prerequisites.join(", ")}
+              </p>
+            )}
             <Link
               to={`/learn/${levelId}/${moduleSlug}`}
               className="mt-4 block text-sm text-primary-500 hover:text-primary-600"
             >
               ← Back to {module_?.title}
             </Link>
+            {nextLesson && (
+              <Link
+                to={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
+                className="mt-2 block text-sm text-primary-500 hover:text-primary-600"
+              >
+                Next: {nextLesson.title} →
+              </Link>
+            )}
           </div>
         </aside>
       </div>

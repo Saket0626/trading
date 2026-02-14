@@ -186,6 +186,18 @@ export const level2Quizzes: Record<string, QuizQuestion[]> = {
     { id: "s14", question: "For beginners, which is generally better to start with?", options: ["Illiquid penny stocks", "High-volume, mid-to-large cap names with moderate volatility", "Only leveraged products", "Only after-hours"], correctIndex: 1, explanation: "Liquid, established names with mid volatility are safer to learn with." },
     { id: "s15", question: "Dividend yield is:", options: ["Share price only", "Annual dividends per share ÷ share price", "Volume metric", "Only for growth stocks"], correctIndex: 1, explanation: "Yield = annual dividends / share price (e.g. $4/$100 = 4%)." },
   ],
+  "support-resistance": [
+    { id: "sres1", question: "Support is a price level where:", options: ["Selling increases", "Buying tends to emerge and price bounces up", "Volume drops", "Only institutions trade"], correctIndex: 1, explanation: "Support is where buying interest emerges; price often bounces up." },
+    { id: "sres2", question: "Resistance is a price level where:", options: ["Buying increases", "Selling tends to emerge and price bounces down", "Volume is zero", "Trend always reverses"], correctIndex: 1, explanation: "Resistance is where selling emerges; price often bounces down." },
+    { id: "sres3", question: "When support is broken, it often becomes:", options: ["Irrelevant", "New support", "Resistance (role reversal)", "A trendline"], correctIndex: 2, explanation: "Broken support often acts as resistance on the way back up (role reversal)." },
+    { id: "sres4", question: "At support or resistance you should:", options: ["Assume every touch will hold", "Use a stop and treat levels as zones", "Ignore the level", "Only trade the first touch"], correctIndex: 1, explanation: "Always use a stop; treat levels as zones, not exact prices." },
+  ],
+  "trends": [
+    { id: "tr1", question: "An uptrend is characterized by:", options: ["Lower highs and lower lows", "Higher highs and higher lows", "Flat price", "Only volume"], correctIndex: 1, explanation: "Uptrend = series of higher highs and higher lows." },
+    { id: "tr2", question: "A downtrend is characterized by:", options: ["Higher highs and higher lows", "Lower highs and lower lows", "Flat price", "Only volume"], correctIndex: 1, explanation: "Downtrend = series of lower highs and lower lows." },
+    { id: "tr3", question: "'Trend is your friend' means:", options: ["Ignore the trend", "Trade in the direction of the prevailing trend", "Only trade reversals", "Only use 1m charts"], correctIndex: 1, explanation: "Align trades with the trend for better probability." },
+    { id: "tr4", question: "In an uptrend, look to:", options: ["Short rallies", "Buy dips (pullbacks)", "Ignore support", "Use only resistance"], correctIndex: 1, explanation: "In an uptrend, buy pullbacks to support or the rising trendline." },
+  ],
   "sr-summary": [
     { id: "sr1", question: "Support is a price level where:", options: ["Selling increases", "Buying tends to emerge and price bounces up", "Volume drops", "Only institutions trade"], correctIndex: 1, explanation: "Support is where buying interest emerges; price often bounces up." },
     { id: "sr2", question: "Resistance is a price level where:", options: ["Buying increases", "Selling tends to emerge and price bounces down", "Volume is zero", "Trend always reverses"], correctIndex: 1, explanation: "Resistance is where selling emerges; price often bounces down." },
