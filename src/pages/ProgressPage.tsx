@@ -139,37 +139,37 @@ export function ProgressPage() {
   const showLeaderboardPrompt = leaderboardEnabled && !hasUsername;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100 mb-1">
+    <div className="max-w-[1200px] mx-auto px-8 py-10">
+      <h1 className="font-display text-3xl font-bold text-[var(--text-primary)] mb-2">
         Your Progress
       </h1>
-      <p className="text-sm text-surface-500 dark:text-surface-400 mb-6">
+      <p className="text-[15px] text-[var(--text-primary)] mb-6">
         Track your learning journey and earned achievements.
       </p>
 
       {/* Username / Profile - required for live leaderboards */}
       {leaderboardEnabled && (
-        <div className="mb-6 p-4 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+        <div className="mb-6 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
           <div className="flex items-start gap-3">
-            <User className="h-5 w-5 text-surface-500 mt-0.5 shrink-0" />
+            <User className="h-5 w-5 text-[var(--accent-primary)] mt-0.5 shrink-0" />
             <div className="flex-1 min-w-0">
               {hasUsername && !isEditingUsername ? (
-                <p className="text-sm text-surface-700 dark:text-surface-300">
+                <p className="text-[15px] text-[var(--text-primary)]">
                   You&apos;re on the leaderboard as <strong>{username}</strong>.{" "}
                   <button
                     type="button"
                     onClick={handleStartEditingUsername}
-                    className="text-primary-600 dark:text-primary-400 hover:underline"
+                    className="text-[var(--accent-primary)] hover:underline"
                   >
                     Change
                   </button>
                 </p>
               ) : (
                 <>
-                  <p className="text-sm font-medium text-surface-900 dark:text-surface-100 mb-1">
+                  <p className="text-[15px] font-semibold text-[var(--text-primary)] mb-1">
                     {hasUsername ? "Change your username" : "Compete with others in real time"}
                   </p>
-                  <p className="text-xs text-surface-500 dark:text-surface-400 mb-3">
+                  <p className="text-[14px] text-[var(--text-primary)] mb-3">
                     {hasUsername
                       ? "Pick a new username (must be unique)."
                       : "Enter a username to join the live leaderboard. You'll show up once you complete at least one lesson."}
@@ -184,15 +184,15 @@ export function ProgressPage() {
                       }}
                       placeholder="Enter your username"
                       maxLength={32}
-                      className={`px-3 py-2 rounded border bg-surface-50 dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 ${
-                        usernameError ? "border-red-500 dark:border-red-600" : "border-surface-200 dark:border-surface-600"
+                      className={`px-3 py-2 rounded-lg border bg-[var(--bg-tertiary)] text-[var(--text-primary)] text-[15px] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] ${
+                        usernameError ? "border-red-500" : "border-[var(--border-subtle)]"
                       }`}
                     />
                     <button
                       type="button"
                       onClick={handleSaveUsername}
                       disabled={!usernameInput.trim()}
-                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-primary-600 hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium transition-colors"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[var(--accent-primary)] hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed text-[var(--bg-primary)] font-semibold text-[15px] transition-all duration-200"
                     >
                       <Save className="h-4 w-4" />
                       {usernameSaved ? "Saved!" : "Save"}
@@ -201,14 +201,14 @@ export function ProgressPage() {
                       <button
                         type="button"
                         onClick={() => setIsEditingUsername(false)}
-                        className="px-3 py-2 rounded border border-surface-200 dark:border-surface-600 text-surface-700 dark:text-surface-300 text-sm font-medium hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
+                        className="px-3 py-2 rounded-lg border border-[var(--border-subtle)] text-[var(--text-primary)] text-[15px] font-medium hover:bg-[var(--bg-tertiary)] transition-colors"
                       >
                         Cancel
                       </button>
                     )}
                   </div>
                   {usernameError && (
-                    <p className="mt-2 text-sm text-red-600 dark:text-red-400">
+                    <p className="mt-2 text-sm text-[var(--accent-danger)]">
                       {usernameError}
                     </p>
                   )}
@@ -219,23 +219,23 @@ export function ProgressPage() {
         </div>
       )}
 
-      <div className="mb-6 p-4 rounded border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900">
+      <div className="mb-6 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded border border-surface-200 dark:border-surface-700 flex items-center justify-center">
-            <Award className="h-6 w-6 text-surface-600 dark:text-surface-400" />
+          <div className="w-12 h-12 rounded-lg border border-[var(--border-subtle)] flex items-center justify-center">
+            <Award className="h-6 w-6 text-[var(--accent-primary)]" />
           </div>
           <div className="flex-1">
-            <p className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide">Your Level</p>
-            <p className="text-lg font-semibold text-surface-900 dark:text-surface-100 tabular-nums">{tier}</p>
+            <p className="text-[13px] font-semibold text-[var(--text-primary)] uppercase tracking-wide">Your Level</p>
+            <p className="text-xl font-bold text-[var(--text-primary)] tabular-nums">{tier}</p>
             {nextTier && (
               <div className="mt-2">
-                <div className="flex justify-between text-xs text-surface-500 mb-1">
+                <div className="flex justify-between text-[14px] text-[var(--text-primary)] mb-1">
                   <span>Progress to {nextTier}</span>
                   <span>{Math.round(progressToNext)}%</span>
                 </div>
-                <div className="h-2 rounded-full bg-surface-200 dark:bg-surface-700 overflow-hidden">
+                <div className="h-2 rounded-full bg-[var(--bg-tertiary)] overflow-hidden">
                   <div
-                    className="h-full bg-primary-500 rounded-full transition-all duration-500"
+                    className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-500"
                     style={{ width: `${progressToNext}%` }}
                   />
                 </div>
@@ -246,65 +246,65 @@ export function ProgressPage() {
       </div>
 
       <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
-        <div className="p-4 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+        <div className="p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded border border-surface-200 dark:border-surface-700 flex items-center justify-center">
-              <Trophy className="h-5 w-5 text-surface-500" />
+            <div className="w-10 h-10 rounded-lg border border-[var(--border-subtle)] flex items-center justify-center">
+              <Trophy className="h-5 w-5 text-[var(--accent-primary)]" />
             </div>
             <div>
-              <p className="text-lg font-semibold text-surface-900 dark:text-surface-100 tabular-nums">{xp}</p>
-              <p className="text-xs text-surface-500 dark:text-surface-400">XP</p>
+              <p className="text-lg font-semibold text-[var(--text-primary)] tabular-nums">{xp}</p>
+              <p className="text-xs text-[var(--text-secondary)]">XP</p>
             </div>
           </div>
         </div>
-        <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+        <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
-              <BookOpen className="h-7 w-7 text-primary-600 dark:text-primary-400" />
+            <div className="w-14 h-14 rounded-full bg-[#00D4AA20] flex items-center justify-center">
+              <BookOpen className="h-7 w-7 text-[var(--accent-primary)]" />
             </div>
             <div>
-              <p className="text-3xl font-bold text-surface-900 dark:text-surface-100">
+              <p className="text-3xl font-bold text-[var(--text-primary)]">
                 {completedLessons.length}
               </p>
-              <p className="text-sm text-surface-600 dark:text-surface-400">Lessons Completed</p>
+              <p className="text-sm text-[var(--text-secondary)]">Lessons Completed</p>
             </div>
           </div>
         </div>
-        <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+        <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-              <Target className="h-7 w-7 text-emerald-600 dark:text-emerald-400" />
+            <div className="w-14 h-14 rounded-full bg-[#00D4AA20] flex items-center justify-center">
+              <Target className="h-7 w-7 text-[var(--accent-primary)]" />
             </div>
             <div>
-              <p className="text-3xl font-bold text-surface-900 dark:text-surface-100">
+              <p className="text-3xl font-bold text-[var(--text-primary)]">
                 {badges.length}
               </p>
-              <p className="text-sm text-surface-600 dark:text-surface-400">Badges Earned</p>
+              <p className="text-sm text-[var(--text-secondary)]">Badges Earned</p>
             </div>
           </div>
         </div>
-        <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+        <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
-              <Flame className="h-7 w-7 text-orange-600 dark:text-orange-400" />
+            <div className="w-14 h-14 rounded-full bg-[#F59E0B20] flex items-center justify-center">
+              <Flame className="h-7 w-7 text-[var(--accent-secondary)]" />
             </div>
             <div>
-              <p className="text-3xl font-bold text-surface-900 dark:text-surface-100">
+              <p className="text-3xl font-bold text-[var(--text-primary)]">
                 {streakDays}
               </p>
-              <p className="text-sm text-surface-600 dark:text-surface-400">Day Streak</p>
+              <p className="text-sm text-[var(--text-secondary)]">Day Streak</p>
             </div>
           </div>
         </div>
-        <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+        <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
           <div>
-            <p className="text-3xl font-bold text-surface-900 dark:text-surface-100">
+            <p className="text-3xl font-bold text-[var(--text-primary)]">
               {progressPercent}%
             </p>
-            <p className="text-sm text-surface-600 dark:text-surface-400">Overall Progress</p>
-            <div className="mt-2 h-2 w-full rounded-full bg-surface-200 dark:bg-surface-700 overflow-hidden">
-              <div
-                className="h-full bg-primary-500 rounded-full transition-all duration-500"
+            <p className="text-sm text-[var(--text-secondary)]">Overall Progress</p>
+            <div className="mt-2 h-2 w-full rounded-full bg-[var(--bg-tertiary)] overflow-hidden">
+<div
+                    className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-500"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -315,7 +315,7 @@ export function ProgressPage() {
       <div className="grid lg:grid-cols-3 gap-8 mb-12">
         <div className="lg:col-span-2">
           <section>
-            <h2 className="font-semibold text-lg text-surface-900 dark:text-surface-100 mb-4">
+            <h2 className="font-semibold text-lg text-[var(--text-primary)] mb-4">
               Badges
             </h2>
             <div className="flex flex-wrap gap-3">
@@ -336,13 +336,13 @@ export function ProgressPage() {
                     key={id}
                     className={`px-4 py-2 rounded-lg border ${
                       earned
-                        ? "bg-amber-50 dark:bg-amber-900/20 border-amber-300 dark:border-amber-700"
-                        : "bg-surface-100 dark:bg-surface-800 border-surface-200 dark:border-surface-700 opacity-60"
+                        ? "bg-[#F59E0B20] border-[var(--accent-secondary)]"
+                        : "bg-[var(--bg-tertiary)] border-[var(--border-subtle)] opacity-60"
                     }`}
                   >
-                    <span className="font-medium">{labels[id] || id}</span>
+                    <span className="font-medium text-[var(--text-primary)]">{labels[id] || id}</span>
                     {earned ? (
-                      <span className="ml-2 text-amber-600 dark:text-amber-400">✓</span>
+                      <span className="ml-2 text-[var(--accent-secondary)]">✓</span>
                     ) : null}
                   </div>
                 );
@@ -356,86 +356,86 @@ export function ProgressPage() {
       </div>
 
       <section className="mb-12">
-        <h2 className="font-semibold text-lg text-surface-900 dark:text-surface-100 mb-4">
+        <h2 className="font-semibold text-lg text-[var(--text-primary)] mb-4">
           Leaderboards
         </h2>
         {leaderboardEnabled ? (
           showLeaderboardPrompt ? (
-            <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 max-w-xl">
-              <p className="text-base font-medium text-surface-900 dark:text-surface-100 mb-2">
+            <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] max-w-xl">
+              <p className="text-base font-medium text-[var(--text-primary)] mb-2">
                 Compete with others in real time
               </p>
-              <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
+              <p className="text-sm text-[var(--text-secondary)] mb-4">
                 Every user who completes at least one lesson can appear on the leaderboard. Set your username above to join and see your rank alongside other learners.
               </p>
-              <p className="text-xs text-surface-500 dark:text-surface-400">
+              <p className="text-xs text-[var(--text-secondary)]">
                 Complete a lesson and add your username to get on the board!
               </p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+              <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
                 <div className="flex items-center gap-2 mb-4">
-                  <Medal className="h-5 w-5 text-amber-500" />
-                  <h3 className="font-medium text-surface-900 dark:text-surface-100">Lessons Completed</h3>
+                  <Medal className="h-5 w-5 text-[var(--accent-secondary)]" />
+                  <h3 className="font-medium text-[var(--text-primary)]">Lessons Completed</h3>
                 </div>
-                <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
+                <p className="text-sm text-[var(--text-secondary)] mb-4">
                   Top learners by lessons completed. Complete more lessons to climb the ranks!
                 </p>
                 <div className="space-y-2">
                   {lessonsLeaderboard.length === 0 ? (
-                    <p className="text-sm text-surface-500 py-2">No entries yet. Complete a lesson to appear!</p>
+                    <p className="text-sm text-[var(--text-secondary)] py-2">No entries yet. Complete a lesson to appear!</p>
                   ) : (
                     lessonsLeaderboard.map((entry, i) => (
                       <div
                         key={entry.user_id}
                         className={`flex items-center gap-3 py-2 px-3 rounded ${
                           entry.user_id === userId
-                            ? "bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800"
-                            : "bg-surface-50 dark:bg-surface-800 border border-surface-100 dark:border-surface-700"
+                            ? "bg-[#00D4AA20] border border-[#00D4AA40]"
+                            : "bg-[var(--bg-tertiary)] border border-[var(--border-subtle)]"
                         }`}
                       >
-                        <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                        <span className="w-6 h-6 rounded-full bg-[var(--accent-primary)] text-[var(--bg-primary)] flex items-center justify-center text-xs font-bold shrink-0">
                           {i + 1}
                         </span>
-                        <span className="font-medium text-surface-900 dark:text-surface-100 truncate">
+                        <span className="font-medium text-[var(--text-primary)] truncate">
                           {entry.username}
                           {entry.user_id === userId && " (you)"}
                         </span>
-                        <span className="ml-auto font-semibold text-primary-600 dark:text-primary-400 shrink-0 tabular-nums">
+                        <span className="ml-auto font-semibold text-[var(--accent-primary)] shrink-0 tabular-nums">
                           {entry.lessons_count} lessons
                         </span>
                       </div>
                     ))
                   )}
                 </div>
-                <p className="mt-4 text-xs text-surface-500">Live • Updates every 15s</p>
+                <p className="mt-4 text-xs text-[var(--text-secondary)]">Live • Updates every 15s</p>
               </div>
-              <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
+              <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
                 <div className="flex items-center gap-2 mb-4">
-                  <BarChart3 className="h-5 w-5 text-emerald-500" />
-                  <h3 className="font-medium text-surface-900 dark:text-surface-100">Paper Trading P&L</h3>
+                  <BarChart3 className="h-5 w-5 text-[var(--accent-primary)]" />
+                  <h3 className="font-medium text-[var(--text-primary)]">Paper Trading P&L</h3>
                 </div>
-                <p className="text-sm text-surface-600 dark:text-surface-400 mb-4">
+                <p className="text-sm text-[var(--text-secondary)] mb-4">
                   Top paper traders by profit. Practice in the simulator to compete!
                 </p>
                 <div className="space-y-2">
                   {pnlLeaderboard.length === 0 ? (
-                    <p className="text-sm text-surface-500 py-2">No entries yet. Practice in the simulator!</p>
+                    <p className="text-sm text-[var(--text-secondary)] py-2">No entries yet. Practice in the simulator!</p>
                   ) : (
                     pnlLeaderboard.map((entry, i) => (
                       <div
                         key={entry.user_id}
                         className={`flex items-center gap-3 py-2 px-3 rounded ${
                           entry.user_id === userId
-                            ? "bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800"
-                            : "bg-surface-50 dark:bg-surface-800 border border-surface-100 dark:border-surface-700"
+                            ? "bg-[#00D4AA20] border border-[#00D4AA40]"
+                            : "bg-[var(--bg-tertiary)] border border-[var(--border-subtle)]"
                         }`}
                       >
-                        <span className="w-6 h-6 rounded-full bg-primary-500 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                        <span className="w-6 h-6 rounded-full bg-[var(--accent-primary)] text-[var(--bg-primary)] flex items-center justify-center text-xs font-bold shrink-0">
                           {i + 1}
                         </span>
-                        <span className="font-medium text-surface-900 dark:text-surface-100 truncate">
+                        <span className="font-medium text-[var(--text-primary)] truncate">
                           {entry.username}
                           {entry.user_id === userId && " (you)"}
                         </span>
@@ -453,36 +453,36 @@ export function ProgressPage() {
                 </div>
                 <Link
                   to="/simulator"
-                  className="mt-4 inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 text-sm font-medium hover:underline"
+                  className="mt-4 inline-flex items-center gap-1 text-[var(--accent-primary)] text-sm font-medium hover:underline"
                 >
                   Go to Paper Trading →
                 </Link>
-                <p className="mt-2 text-xs text-surface-500">Live • Updates every 15s</p>
+                <p className="mt-2 text-xs text-[var(--text-secondary)]">Live • Updates every 15s</p>
               </div>
             </div>
           )
         ) : (
-          <div className="p-6 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 max-w-xl">
-            <p className="text-sm text-surface-600 dark:text-surface-400">
-              Live leaderboards require Supabase. Add <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">VITE_SUPABASE_URL</code> and{" "}
-              <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">VITE_SUPABASE_ANON_KEY</code> to your{" "}
-              <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">.env</code>, then run{" "}
-              <code className="text-xs bg-surface-100 dark:bg-surface-800 px-1 rounded">supabase-leaderboard.sql</code> in the Supabase SQL Editor.
+          <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] max-w-xl">
+            <p className="text-sm text-[var(--text-secondary)]">
+              Live leaderboards require Supabase. Add <code className="text-xs bg-[var(--bg-tertiary)] px-1 rounded text-[var(--text-primary)]">VITE_SUPABASE_URL</code> and{" "}
+              <code className="text-xs bg-[var(--bg-tertiary)] px-1 rounded text-[var(--text-primary)]">VITE_SUPABASE_ANON_KEY</code> to your{" "}
+              <code className="text-xs bg-[var(--bg-tertiary)] px-1 rounded text-[var(--text-primary)]">.env</code>, then run{" "}
+              <code className="text-xs bg-[var(--bg-tertiary)] px-1 rounded text-[var(--text-primary)]">supabase-leaderboard.sql</code> in the Supabase SQL Editor.
             </p>
           </div>
         )}
       </section>
 
       <section>
-        <h2 className="font-semibold text-lg text-surface-900 dark:text-surface-100 mb-4">
+        <h2 className="font-semibold text-lg text-[var(--text-primary)] mb-4">
           Recent Activity
         </h2>
         {completedLessons.length === 0 ? (
-          <p className="text-surface-600 dark:text-surface-400">
+          <p className="text-[var(--text-secondary)]">
             Complete your first lesson to see progress here!
           </p>
         ) : (
-          <p className="text-surface-600 dark:text-surface-400">
+          <p className="text-[var(--text-secondary)]">
             You've completed {completedLessons.length} lesson{completedLessons.length !== 1 ? "s" : ""}.
             Keep going!
           </p>

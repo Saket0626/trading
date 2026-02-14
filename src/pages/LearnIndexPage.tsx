@@ -77,7 +77,7 @@ export function LearnIndexPage() {
                 <div className="h-1.5 rounded-full bg-[var(--bg-tertiary)] overflow-hidden mb-3">
                   <div className="h-full bg-[var(--accent-primary)] rounded-full" style={{ width: "0%" }} />
                 </div>
-                <p className="text-[13px] text-[var(--text-muted)]">
+                <p className="text-[13px] text-[var(--text-secondary)]">
                   {level.moduleIds.length} lessons · Free
                 </p>
                 {locked && level.id === 2 && (

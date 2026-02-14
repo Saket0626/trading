@@ -4,10 +4,10 @@ import { Home, Search } from "lucide-react";
 export function NotFoundPage() {
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center px-4">
-      <h1 className="font-display text-6xl font-bold text-surface-300 dark:text-surface-600 mb-2">
+      <h1 className="font-display text-6xl font-bold text-[var(--text-primary)] mb-2">
         404
       </h1>
-      <p className="text-xl text-surface-600 dark:text-surface-400 mb-6 text-center">
+      <p className="text-xl text-[var(--text-secondary)] mb-6 text-center">
         Page not found. The page you're looking for doesn't exist or has been moved.
       </p>
       <div className="flex flex-wrap gap-4 justify-center">

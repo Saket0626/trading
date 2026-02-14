@@ -77,7 +77,7 @@ export function ModulePage() {
                     {complete ? (
                       <Check className="h-6 w-6 text-[var(--accent-primary)]" />
                     ) : (
-                      <Circle className="h-6 w-6 text-[var(--text-muted)]" />
+                      <Circle className="h-6 w-6 text-[var(--text-secondary)]" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">

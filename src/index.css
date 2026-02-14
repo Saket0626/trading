@@ -9,8 +9,8 @@
   --accent-secondary: #F59E0B;
   --accent-danger: #EF4444;
   --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
-  --text-muted: #475569;
+  --text-secondary: #B8C5D6;
+  --text-muted: #94A3B8;
   --border-subtle: #1E293B;
   --border-active: #00D4AA40;
   --glow-teal: 0 0 20px #00D4AA30;
@@ -141,4 +141,17 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee { animation: none; }
+}
+
+/* Ensure all Tailwind surface text colors are readable on dark backgrounds */
+.dark .text-surface-900,
+.dark .text-surface-800,
+.dark .text-surface-700,
+.dark .text-surface-600 {
+  color: var(--text-primary) !important;
+}
+.dark .text-surface-500,
+.dark .text-surface-400,
+.dark .text-surface-300 {
+  color: var(--text-secondary) !important;
 }

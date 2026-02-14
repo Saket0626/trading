@@ -103,7 +103,7 @@ export function LearnSidebar() {
                     Level {level.id}
                   </span>
                   {!unlocked && (
-                    <Lock className="h-4 w-4 text-[var(--text-muted)] shrink-0 ml-auto" aria-hidden />
+                    <Lock className="h-4 w-4 text-[var(--text-secondary)] shrink-0 ml-auto" aria-hidden />
                   )}
                 </button>
                 {isExpanded && (
@@ -118,7 +118,7 @@ export function LearnSidebar() {
                         return (
                           <div
                             key={mod.id}
-                            className="flex items-center justify-between gap-2 px-4 py-2 pl-10 text-sm text-[var(--text-muted)] cursor-not-allowed"
+                            className="flex items-center justify-between gap-2 px-4 py-2 pl-10 text-sm text-[var(--text-secondary)] cursor-not-allowed"
                             aria-disabled="true"
                             title="Complete previous levels to unlock"
                           >
@@ -140,7 +140,7 @@ export function LearnSidebar() {
                           <div className="flex items-center justify-between gap-2">
                             <span className="truncate">{mod.title}</span>
                             {total > 0 && (
-                              <span className="text-xs shrink-0 text-[var(--text-muted)]">
+                              <span className="text-xs shrink-0 text-[var(--text-secondary)]">
                                 {completed}/{total}
                               </span>
                             )}

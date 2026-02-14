@@ -73,13 +73,13 @@ export function UsernamePromptModal() {
             <div>
               <h2
                 id="username-prompt-title"
-                className="font-semibold text-lg text-surface-900 dark:text-surface-100"
+                className="font-semibold text-lg text-[var(--text-primary)]"
               >
                 You&apos;re making great progress!
               </h2>
               <p
                 id="username-prompt-desc"
-                className="mt-1 text-sm text-surface-600 dark:text-surface-400"
+                className="mt-1 text-sm text-[var(--text-secondary)]"
               >
                 You&apos;ve completed {completedLessons.length} lessons. Choose a username to join the leaderboard and compete with other learners.
               </p>
@@ -95,7 +95,7 @@ export function UsernamePromptModal() {
                     localStorage.setItem(DISMISSED_KEY, "1");
                   } catch {}
                 }}
-                className="text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300"
+                className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               >
                 Skip for now
               </button>
@@ -103,7 +103,7 @@ export function UsernamePromptModal() {
             <div className="space-y-3">
             <label
               htmlFor="username-prompt-input"
-              className="block text-sm font-medium text-surface-700 dark:text-surface-300"
+              className="block text-sm font-medium text-[var(--text-primary)]"
             >
               Username
             </label>
@@ -119,7 +119,7 @@ export function UsernamePromptModal() {
                 placeholder="Enter your username"
                 maxLength={32}
                 autoFocus
-                className={`flex-1 px-4 py-2 rounded-lg border bg-surface-50 dark:bg-surface-900 text-surface-900 dark:text-surface-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ${
+                className={`flex-1 px-4 py-2 rounded-lg border bg-[var(--bg-tertiary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] focus:border-[var(--accent-primary)] ${
                   usernameError
                     ? "border-red-500 dark:border-red-600"
                     : "border-surface-200 dark:border-surface-600"

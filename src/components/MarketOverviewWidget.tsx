@@ -69,19 +69,19 @@ export function MarketOverviewWidget() {
         </div>
         <div className="grid sm:grid-cols-3 gap-6">
           <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-            <h3 className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-3">
+            <h3 className="text-[13px] font-semibold text-[var(--text-secondary)] uppercase tracking-[0.08em] mb-3">
               Indices & Stocks
             </h3>
             {INDICES.map(renderRow)}
           </div>
           <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-            <h3 className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-3">
+            <h3 className="text-[13px] font-semibold text-[var(--text-secondary)] uppercase tracking-[0.08em] mb-3">
               Forex
             </h3>
             {FOREX.map(renderRow)}
           </div>
           <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-            <h3 className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em] mb-3">
+            <h3 className="text-[13px] font-semibold text-[var(--text-secondary)] uppercase tracking-[0.08em] mb-3">
               Crypto
             </h3>
             {CRYPTO.map(renderRow)}

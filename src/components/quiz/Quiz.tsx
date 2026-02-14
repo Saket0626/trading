@@ -39,7 +39,7 @@ export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
 
   if (!questions || questions.length === 0) {
     return (
-      <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-6 md:p-8 text-center text-surface-600 dark:text-surface-400">
+      <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 p-6 md:p-8 text-center text-[var(--text-secondary)]">
         No quiz available for this lesson.
       </div>
     );
@@ -96,7 +96,7 @@ export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
         </div>
       )}
       <div className="flex items-center justify-between mb-6">
-        <span className="text-sm font-medium text-surface-500 dark:text-surface-400">
+        <span className="text-sm font-medium text-[var(--text-secondary)]">
           Question {currentIndex + 1} of {questions.length}
         </span>
         <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
@@ -104,7 +104,7 @@ export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
         </span>
       </div>
 
-      <h3 className="text-xl font-semibold text-surface-900 dark:text-surface-100 mb-6">
+      <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-6">
         {question.question}
       </h3>
 

@@ -35,22 +35,22 @@ export function GlossaryPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
+      <nav className="mb-8 text-sm text-[var(--text-secondary)]">
         <Link to="/" className="hover:text-primary-500">Home</Link>
         <span className="mx-2">/</span>
-        <span className="text-surface-900 dark:text-surface-100">Glossary</span>
+        <span className="text-[var(--text-primary)]">Glossary</span>
       </nav>
 
-      <h1 className="font-display text-3xl font-bold text-surface-900 dark:text-surface-100 mb-2">
+      <h1 className="font-display text-3xl font-bold text-[var(--text-primary)] mb-2">
         Trading Glossary
       </h1>
-      <p className="text-surface-600 dark:text-surface-400 mb-8">
+      <p className="text-[var(--text-secondary)] mb-8">
         {GLOSSARY.length}+ trading terms with clear definitions.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-surface-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--text-secondary)]" />
           <input
             type="search"
             value={search}
@@ -80,10 +80,10 @@ export function GlossaryPage() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="font-semibold text-surface-900 dark:text-surface-100">
+                <h2 className="font-semibold text-[var(--text-primary)]">
                   {t.term}
                 </h2>
-                <p className="text-sm text-surface-600 dark:text-surface-400 mt-1">
+                <p className="text-sm text-[var(--text-secondary)] mt-1">
                   {t.definition}
                 </p>
                 <span className="inline-block mt-2 px-2 py-0.5 text-xs rounded bg-surface-200 dark:bg-surface-700">
@@ -96,7 +96,7 @@ export function GlossaryPage() {
       </div>
 
       {terms.length === 0 && (
-        <p className="text-surface-500 text-center py-12">No terms found.</p>
+        <p className="text-[var(--text-secondary)] text-center py-12">No terms found.</p>
       )}
     </div>
   );

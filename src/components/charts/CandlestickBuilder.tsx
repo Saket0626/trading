@@ -21,10 +21,10 @@ export function CandlestickBuilder() {
 
   return (
     <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 p-6">
-      <h3 className="font-semibold text-surface-900 dark:text-surface-100 mb-4">
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">
         Interactive Candlestick Builder
       </h3>
-      <p className="text-sm text-surface-600 dark:text-surface-400 mb-6">
+      <p className="text-sm text-[var(--text-secondary)] mb-6">
         Adjust the values below to see how OHLC (Open, High, Low, Close) creates different
         candlestick shapes. Green = bullish (close &gt; open). Red = bearish (close &lt; open).
       </p>
@@ -69,7 +69,7 @@ export function CandlestickBuilder() {
 
         <div className="flex-1 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1">
+            <label className="block text-sm font-medium text-[var(--text-primary)] mb-1">
               Open: {open}
             </label>
             <input
@@ -82,7 +82,7 @@ export function CandlestickBuilder() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1">
+            <label className="block text-sm font-medium text-[var(--text-primary)] mb-1">
               High: {high}
             </label>
             <input
@@ -95,7 +95,7 @@ export function CandlestickBuilder() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1">
+            <label className="block text-sm font-medium text-[var(--text-primary)] mb-1">
               Low: {low}
             </label>
             <input
@@ -108,7 +108,7 @@ export function CandlestickBuilder() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-surface-700 dark:text-surface-300 mb-1">
+            <label className="block text-sm font-medium text-[var(--text-primary)] mb-1">
               Close: {close}
             </label>
             <input
@@ -122,7 +122,7 @@ export function CandlestickBuilder() {
           </div>
 
           <div className="pt-4 border-t border-surface-200 dark:border-surface-700">
-            <p className="text-sm text-surface-600 dark:text-surface-400">
+            <p className="text-sm text-[var(--text-secondary)]">
               {isBullish ? (
                 <span className="text-bull dark:text-bull font-medium">Bullish candle</span>
               ) : (

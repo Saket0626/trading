@@ -23,7 +23,7 @@ export function MarketTicker() {
           const quote = quotes[item.symbol];
           if (!quote && !loading) {
             return (
-              <span key={item.symbol} className="inline-flex items-center gap-2 text-[var(--text-muted)]">
+              <span key={item.symbol} className="inline-flex items-center gap-2 text-[var(--text-secondary)]">
                 <span className="font-semibold">{item.symbol}</span>—
               </span>
             );
@@ -73,7 +73,7 @@ export function MarketTicker() {
           );
         })}
       </div>
-      <p className="text-[11px] text-[var(--text-muted)] text-center mt-1.5">
+      <p className="text-[11px] text-[var(--text-secondary)] text-center mt-1.5">
         Live data · Crypto: Binance · Stocks: Finnhub (add VITE_FINNHUB_API_KEY for stocks)
       </p>
     </div>

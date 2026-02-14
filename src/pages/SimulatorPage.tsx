@@ -166,10 +166,10 @@ function SimulatorContent() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="font-display text-3xl font-bold text-surface-900 dark:text-surface-100 mb-2">
+      <h1 className="font-display text-3xl font-bold text-[var(--text-primary)] mb-2">
         Paper Trading Simulator
       </h1>
-      <p className="text-surface-600 dark:text-surface-400 mb-8">
+      <p className="text-[var(--text-secondary)] mb-8">
         Real live market data. Stocks $25k, Forex $1k, Crypto $5k, Commodities $10k, Futures $10k. Add
         VITE_FINNHUB_API_KEY for stocks.
       </p>
@@ -186,11 +186,11 @@ function SimulatorContent() {
               onChange={(e) => setForexLeverage(Number(e.target.value))}
               className="flex-1 max-w-xs"
             />
-            <span className="text-sm text-surface-600 dark:text-surface-400">
+            <span className="text-sm text-[var(--text-secondary)]">
               Buying power: ${(acc.balance * (acc.leverage ?? 1)).toLocaleString(undefined, { maximumFractionDigits: 0 })}
             </span>
           </div>
-          <p className="text-xs text-surface-500 mt-1">Higher leverage = more risk. 1:50 is common for forex.</p>
+          <p className="text-xs text-[var(--text-secondary)] mt-1">Higher leverage = more risk. 1:50 is common for forex.</p>
         </div>
       )}
 
@@ -224,8 +224,8 @@ function SimulatorContent() {
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-surface-500 dark:text-surface-400">Balance</p>
-                <p className="text-2xl font-bold text-surface-900 dark:text-surface-100">
+                <p className="text-sm text-[var(--text-secondary)]">Balance</p>
+                <p className="text-2xl font-bold text-[var(--text-primary)]">
                   ${acc.balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </p>
                 {activeAccount === "stocks" && acc.equity < 25000 && (
@@ -235,7 +235,7 @@ function SimulatorContent() {
                 )}
               </div>
               <div>
-                <p className="text-sm text-surface-500 dark:text-surface-400">Equity</p>
+                <p className="text-sm text-[var(--text-secondary)]">Equity</p>
                 <p
                   className={`text-2xl font-bold ${
                     acc.equity >= acc.startingBalance
@@ -247,7 +247,7 @@ function SimulatorContent() {
                 </p>
               </div>
               <div>
-                <p className="text-sm text-surface-500 dark:text-surface-400">P&L</p>
+                <p className="text-sm text-[var(--text-secondary)]">P&L</p>
                 <p
                   className={`text-xl font-semibold ${
                     acc.equity >= acc.startingBalance
@@ -308,7 +308,7 @@ function SimulatorContent() {
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-1 items-center">
-                    <span className="text-xs text-surface-500">Indicators:</span>
+                    <span className="text-xs text-[var(--text-secondary)]">Indicators:</span>
                     {[
                       { key: "sma20", label: "SMA 20", active: chartIndicators.sma?.includes(20), set: () => setChartIndicators((p) => ({ ...p, sma: p.sma?.includes(20) ? (p.sma.length === 1 ? undefined : p.sma.filter((x) => x !== 20)) : [...(p.sma || []), 20] })) },
                       { key: "ema12", label: "EMA 12", active: chartIndicators.ema?.includes(12), set: () => setChartIndicators((p) => ({ ...p, ema: p.ema?.includes(12) ? (p.ema.length === 1 ? undefined : p.ema.filter((x) => x !== 12)) : [...(p.ema || []), 12] })) },
@@ -332,7 +332,7 @@ function SimulatorContent() {
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-2 items-center mt-2">
-                    <span className="text-xs text-surface-500">Add level:</span>
+                    <span className="text-xs text-[var(--text-secondary)]">Add level:</span>
                     <input
                       type="number"
                       value={newPriceLine}
@@ -352,8 +352,8 @@ function SimulatorContent() {
                     >
                       Add
                     </button>
-                    <span className="text-xs text-surface-400">|</span>
-                    <span className="text-xs text-surface-500">Fibonacci:</span>
+                    <span className="text-xs text-[var(--text-secondary)]">|</span>
+                    <span className="text-xs text-[var(--text-secondary)]">Fibonacci:</span>
                     <input
                       type="number"
                       value={fibHigh}
@@ -399,7 +399,7 @@ function SimulatorContent() {
                       Add Fib
                     </button>
                     {priceLines.length > 0 && (
-                      <span className="text-xs text-surface-500">{priceLines.length} level(s)</span>
+                      <span className="text-xs text-[var(--text-secondary)]">{priceLines.length} level(s)</span>
                     )}
                   </div>
                 </div>
@@ -407,7 +407,7 @@ function SimulatorContent() {
               <div className={chartLayout === "dual" ? "grid grid-cols-1 lg:grid-cols-2 gap-4" : ""}>
                 <div className={chartLayout === "dual" ? "space-y-2" : ""}>
                   {chartLayout === "dual" && (
-                    <label className="block text-xs text-surface-500">Chart 1: {selectedSymbol}</label>
+                    <label className="block text-xs text-[var(--text-secondary)]">Chart 1: {selectedSymbol}</label>
                   )}
                   <LiveChart
                     data={candles}
@@ -423,7 +423,7 @@ function SimulatorContent() {
                 {chartLayout === "dual" && (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <label className="block text-xs text-surface-500">Chart 2:</label>
+                      <label className="block text-xs text-[var(--text-secondary)]">Chart 2:</label>
                       <select
                         value={secondSymbol}
                         onChange={(e) => setSecondSymbol(e.target.value)}
@@ -497,7 +497,7 @@ function SimulatorContent() {
                       step="0.5"
                       className="w-full px-4 py-2 rounded-lg border border-surface-300 dark:border-surface-600 bg-white dark:bg-surface-900"
                     />
-                    <p className="text-xs text-surface-500 mt-1">Closes when price retraces this % from best</p>
+                    <p className="text-xs text-[var(--text-secondary)] mt-1">Closes when price retraces this % from best</p>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -523,7 +523,7 @@ function SimulatorContent() {
                       />
                     </div>
                   </div>
-                  <p className="text-xs text-surface-500">Bracket: auto-close at TP (profit) or SL (limit loss).</p>
+                  <p className="text-xs text-[var(--text-secondary)]">Bracket: auto-close at TP (profit) or SL (limit loss).</p>
                 </div>
               )}
               <div>
@@ -542,7 +542,7 @@ function SimulatorContent() {
               </div>
               {orderType === "oco" && (
                 <div className="space-y-3 p-4 rounded-lg bg-surface-100 dark:bg-surface-800/50 border border-surface-200 dark:border-surface-700">
-                  <p className="text-xs text-surface-500">Place two orders: when one fills, the other cancels. E.g. Take Profit (limit) + Stop Loss (stop).</p>
+                  <p className="text-xs text-[var(--text-secondary)]">Place two orders: when one fills, the other cancels. E.g. Take Profit (limit) + Stop Loss (stop).</p>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-1">Order 1</label>
@@ -654,7 +654,7 @@ function SimulatorContent() {
                           {ord.limitPrice != null && ` @ ${ord.limitPrice.toFixed(2)}`}
                           {ord.stopPrice != null && ` stop ${ord.stopPrice.toFixed(2)}`}
                         </p>
-                        <p className="text-xs text-surface-500">
+                        <p className="text-xs text-[var(--text-secondary)]">
                           {new Date(ord.createdAt).toLocaleString()}
                         </p>
                       </div>
@@ -689,7 +689,7 @@ function SimulatorContent() {
                           {pos.symbol} {pos.type === "long" ? "Long" : "Short"}{" "}
                           {pos.quantity}
                         </p>
-                        <p className="text-sm text-surface-500">
+                        <p className="text-sm text-[var(--text-secondary)]">
                           Entry: ${pos.entryPrice.toFixed(4)}
                           {pos.trailingStopPct != null && (
                             <span className="ml-2 text-amber-600 dark:text-amber-400">
@@ -812,7 +812,7 @@ function SimulatorContent() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-surface-500 mt-3">
+                <p className="text-xs text-[var(--text-secondary)] mt-3">
                   Trade journal tracks all closed positions. Export to CSV for analysis. Chart snapshots available when viewing the symbol chart at trade time.
                 </p>
               </div>
@@ -825,10 +825,10 @@ function SimulatorContent() {
           {loading && <div className="animate-pulse h-8 w-24 bg-surface-200 dark:bg-surface-700 rounded" />}
           {!loading && price > 0 && (
             <div>
-              <p className="text-2xl font-bold text-surface-900 dark:text-surface-100">
+              <p className="text-2xl font-bold text-[var(--text-primary)]">
                 ${price < 1 ? price.toFixed(4) : price.toLocaleString()}
               </p>
-              <p className="text-surface-500">{name}</p>
+              <p className="text-[var(--text-secondary)]">{name}</p>
               {quote?.changePercent != null && (
                 <p
                   className={`text-sm font-medium ${
@@ -844,7 +844,7 @@ function SimulatorContent() {
           {error && (
             <p className="text-sm text-amber-600 dark:text-amber-400">{error}</p>
           )}
-          <div className="mt-4 space-y-1 text-xs text-surface-400">
+          <div className="mt-4 space-y-1 text-xs text-[var(--text-secondary)]">
             <p>Real data from Binance (crypto), Finnhub (stocks).</p>
             <p>
               Commission: {activeAccount === "stocks" && "Zero (simulated)"}

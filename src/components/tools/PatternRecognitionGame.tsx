@@ -307,7 +307,7 @@ function CandleSvg({ candles, maxHeight = 120 }: { candles: Candle[]; maxHeight?
               y2={baseY}
               stroke="currentColor"
               strokeWidth="2"
-              className="text-surface-600 dark:text-surface-400"
+              className="text-[var(--text-secondary)]"
             />
             {/* Body */}
             <rect
@@ -444,7 +444,7 @@ export function PatternRecognitionGame() {
   if (!current) {
     return (
       <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 p-8 text-center">
-        <p className="text-surface-600 dark:text-surface-400">Loading questions...</p>
+        <p className="text-[var(--text-secondary)]">Loading questions...</p>
       </div>
     );
   }
@@ -452,14 +452,14 @@ export function PatternRecognitionGame() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="font-semibold text-surface-900 dark:text-surface-100 mb-1">
+        <h3 className="font-semibold text-[var(--text-primary)] mb-1">
           Candlestick Mastery Challenge
         </h3>
-        <p className="text-sm text-surface-600 dark:text-surface-400">
+        <p className="text-sm text-[var(--text-secondary)]">
           Test pattern names, buyer/seller dominance, likely direction, wicks, body, and OHLC.
         </p>
         <div className="flex gap-4 mt-2 text-sm">
-          <span className="font-medium text-surface-700 dark:text-surface-300">
+          <span className="font-medium text-[var(--text-primary)]">
             Score: {score} correct
           </span>
           {streak >= 2 && (
@@ -471,7 +471,7 @@ export function PatternRecognitionGame() {
       </div>
 
       <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/50 min-h-[180px] flex flex-col items-center justify-center overflow-hidden">
-        <p className="text-sm font-medium text-surface-700 dark:text-surface-300 mb-4">
+        <p className="text-sm font-medium text-[var(--text-primary)] mb-4">
           {questionText}
         </p>
         {current.candles.length > 0 && (
@@ -480,7 +480,7 @@ export function PatternRecognitionGame() {
           </div>
         )}
         {(current.q.type === "wick" || current.q.type === "body" || current.q.type === "ohlc") && (
-          <p className="text-xs text-surface-500 mt-2">(No candle shown—answer from knowledge)</p>
+          <p className="text-xs text-[var(--text-secondary)] mt-2">(No candle shown—answer from knowledge)</p>
         )}
       </div>
 
@@ -500,7 +500,7 @@ export function PatternRecognitionGame() {
                 : "border-surface-200 dark:border-surface-700 hover:border-primary-400 hover:bg-surface-100 dark:hover:bg-surface-800"
             }`}
           >
-            <span className="font-medium text-surface-900 dark:text-surface-100">{opt}</span>
+            <span className="font-medium text-[var(--text-primary)]">{opt}</span>
           </button>
         ))}
       </div>
@@ -511,7 +511,7 @@ export function PatternRecognitionGame() {
             <p className={`font-medium ${selected === correctIndex ? "text-bull" : "text-bear"}`}>
               {selected === correctIndex ? "Correct!" : "Incorrect"}
             </p>
-            <p className="text-sm text-surface-600 dark:text-surface-400 mt-2">
+            <p className="text-sm text-[var(--text-secondary)] mt-2">
               {getFeedback()}
             </p>
           </div>

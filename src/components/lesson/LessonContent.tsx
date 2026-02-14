@@ -31,7 +31,7 @@ const COMPONENTS: Record<string, ComponentType<Record<string, unknown>>> = {
 const typeConfig = {
   text: {
     icon: BookOpen,
-    className: "text-surface-700 dark:text-surface-300",
+    className: "text-[var(--text-secondary)]",
     wrapperClass: "",
   },
   analogy: {
@@ -51,7 +51,7 @@ const typeConfig = {
   },
   example: {
     icon: BookOpen,
-    className: "text-surface-700 dark:text-surface-300",
+    className: "text-[var(--text-secondary)]",
     wrapperClass: "bg-surface-100 dark:bg-surface-800/50",
   },
   "pro-tip": {
@@ -100,7 +100,7 @@ export function LessonContentBlock({ block, sectionId }: { block: LessonContentT
             </h3>
           )}
           {block.content && (
-            <p className="text-surface-700 dark:text-surface-300 leading-relaxed mb-4">
+            <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
               {block.content}
             </p>
           )}
@@ -124,7 +124,7 @@ export function LessonContentBlock({ block, sectionId }: { block: LessonContentT
                 .split(/\n\n+/)
                 .filter((p) => p.trim())
                 .map((para, i) => (
-                  <p key={i} className="text-surface-700 dark:text-surface-300 leading-relaxed mb-4 last:mb-0">
+                  <p key={i} className="text-[var(--text-secondary)] leading-relaxed mb-4 last:mb-0">
                     {para.trim()}
                   </p>
                 ))}

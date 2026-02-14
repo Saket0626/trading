@@ -255,12 +255,12 @@ export function LessonPage() {
               {tocOpen ? (
                 <div className="space-y-6">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-semibold uppercase text-[var(--text-muted)]">
+                    <span className="text-xs font-semibold uppercase text-[var(--text-secondary)]">
                       On this page
                     </span>
                     <button
                       onClick={() => setTocOpen(false)}
-                      className="p-1.5 rounded-md text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+                      className="p-1.5 rounded-md text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
                       aria-label="Hide sidebar"
                       title="Hide sidebar for wider content"
                     >

@@ -69,7 +69,7 @@ export function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email"
-                  className="flex-1 px-4 py-2.5 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors"
+                  className="flex-1 px-4 py-2.5 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors"
                 />
                 <button
                   type="submit"
@@ -81,15 +81,15 @@ export function Footer() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-[13px] text-[var(--text-muted)] order-2 sm:order-1">
+            <p className="text-[13px] text-[var(--text-secondary)] order-2 sm:order-1">
               © {new Date().getFullYear()} ChartWise. Privacy · Terms
             </p>
-            <p className="text-[13px] text-[var(--text-muted)] text-center sm:text-left order-1 sm:order-2 max-w-xl">
+            <p className="text-[13px] text-[var(--text-secondary)] text-center sm:text-left order-1 sm:order-2 max-w-xl">
               <strong>Important:</strong> Trading involves substantial risk of loss. Past performance does not guarantee future results. This platform is for educational purposes only.
             </p>
             <button
               onClick={() => setModalOpen(true)}
-              className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors order-3"
+              className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors order-3"
               aria-label="Admin settings"
             >
               <Settings className="h-4 w-4" />

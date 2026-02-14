@@ -33,8 +33,8 @@ export function Flashcards({ cards = [], title = "Chapter Flashcards" }: Flashca
   return (
     <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800 overflow-hidden">
       <div className="px-4 py-3 border-b border-surface-200 dark:border-surface-700 flex items-center justify-between">
-        <h3 className="font-semibold text-surface-900 dark:text-surface-100">{title}</h3>
-        <span className="text-sm text-surface-500">
+        <h3 className="font-semibold text-[var(--text-primary)]">{title}</h3>
+        <span className="text-sm text-[var(--text-secondary)]">
           {index + 1} / {cards.length}
         </span>
       </div>
@@ -44,13 +44,13 @@ export function Flashcards({ cards = [], title = "Chapter Flashcards" }: Flashca
           className="w-full min-h-[140px] rounded-lg border-2 border-dashed border-surface-300 dark:border-surface-600 bg-surface-50 dark:bg-surface-700/50 hover:border-primary-400 dark:hover:border-primary-500 transition-colors text-left p-6 group"
         >
           {flipped ? (
-            <p className="text-surface-900 dark:text-surface-100">{card.back}</p>
+            <p className="text-[var(--text-primary)]">{card.back}</p>
           ) : (
             <>
-              <p className="text-surface-900 dark:text-surface-100 font-medium">
+              <p className="text-[var(--text-primary)] font-medium">
                 {card.front}
               </p>
-              <p className="mt-2 text-sm text-surface-500">Click to flip</p>
+              <p className="mt-2 text-sm text-[var(--text-secondary)]">Click to flip</p>
             </>
           )}
         </button>
@@ -58,14 +58,14 @@ export function Flashcards({ cards = [], title = "Chapter Flashcards" }: Flashca
           <button
             onClick={handlePrev}
             disabled={!canPrev}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-[var(--text-secondary)] hover:bg-surface-100 dark:hover:bg-surface-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronLeft className="h-5 w-5" />
             Prev
           </button>
           <button
             onClick={() => setFlipped(false)}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-[var(--text-secondary)] hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors"
             title="Reset flip"
           >
             <RotateCcw className="h-4 w-4" />
@@ -74,7 +74,7 @@ export function Flashcards({ cards = [], title = "Chapter Flashcards" }: Flashca
           <button
             onClick={handleNext}
             disabled={!canNext}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-[var(--text-secondary)] hover:bg-surface-100 dark:hover:bg-surface-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             Next
             <ChevronRight className="h-5 w-5" />

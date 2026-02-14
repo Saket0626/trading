@@ -141,7 +141,7 @@ export function HomePage() {
                   <BookOpen className="h-6 w-6 text-[var(--accent-primary)]" />
                 </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-[0.08em]">
+                  <p className="text-[13px] font-semibold text-[var(--text-secondary)] uppercase tracking-[0.08em]">
                     Continue where you left off
                   </p>
                   <p className="font-display font-semibold text-lg text-[var(--text-primary)]">
@@ -265,7 +265,7 @@ export function HomePage() {
                     <p className="text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-4">
                       {level.description}
                     </p>
-                    <div className="flex items-center text-[13px] text-[var(--text-muted)]">
+                    <div className="flex items-center text-[13px] text-[var(--text-secondary)]">
                       {level.moduleIds.length} modules · Free
                     </div>
                   </div>
@@ -316,7 +316,7 @@ export function HomePage() {
                   <div className={`w-1 rounded-full flex-shrink-0 ${item.bar === "teal" ? "bg-[var(--accent-primary)]" : "bg-[var(--accent-danger)]"}`} />
                   <div>
                     <h4 className="font-semibold text-[var(--text-primary)] mb-1">{item.headline}</h4>
-                    <p className="text-[13px] text-[var(--text-muted)]">{item.source} · {item.time}</p>
+                    <p className="text-[13px] text-[var(--text-secondary)]">{item.source} · {item.time}</p>
                   </div>
                 </div>
               ))}

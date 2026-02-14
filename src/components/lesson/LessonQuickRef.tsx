@@ -10,22 +10,22 @@ interface LessonQuickRefProps {
 
 export function LessonQuickRef({ lesson, levelId, moduleSlug, nextLesson }: LessonQuickRefProps) {
   return (
-    <div className="rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/50 p-4 space-y-3 mb-6">
-      <p className="text-xs font-semibold uppercase text-surface-500 dark:text-surface-400">
+    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-4 space-y-3 mb-6">
+      <p className="text-xs font-semibold uppercase text-[var(--text-secondary)]">
         Quick Reference
       </p>
-      <ul className="text-sm text-surface-600 dark:text-surface-400 space-y-1.5">
+      <ul className="text-sm text-[var(--text-secondary)] space-y-1.5">
         <li>
-          <span className="font-medium text-surface-700 dark:text-surface-300">Reading time:</span>{" "}
+          <span className="font-medium text-[var(--text-primary)]">Reading time:</span>{" "}
           {lesson.duration}
         </li>
         <li>
-          <span className="font-medium text-surface-700 dark:text-surface-300">Objectives:</span>{" "}
+          <span className="font-medium text-[var(--text-primary)]">Objectives:</span>{" "}
           {lesson.objectives.length}
         </li>
         {lesson.prerequisites && lesson.prerequisites.length > 0 && (
           <li>
-            <span className="font-medium text-surface-700 dark:text-surface-300">
+            <span className="font-medium text-[var(--text-primary)]">
               Prerequisites:
             </span>{" "}
             Complete prior lessons in module
@@ -35,7 +35,7 @@ export function LessonQuickRef({ lesson, levelId, moduleSlug, nextLesson }: Less
           <li>
             <Link
               to={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
-              className="text-primary-600 dark:text-primary-400 hover:underline font-medium"
+              className="text-[var(--accent-primary)] hover:underline font-medium"
             >
               Next: {nextLesson.title}
             </Link>

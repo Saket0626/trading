@@ -34,11 +34,11 @@ const API_SOURCES = [
 export function ApiSetupPage() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-2xl">
-      <h1 className="font-display text-3xl font-bold text-surface-900 dark:text-surface-100 mb-2 flex items-center gap-2">
+      <h1 className="font-display text-3xl font-bold text-[var(--text-primary)] mb-2 flex items-center gap-2">
         <Key className="h-8 w-8 text-primary-500" />
         API Key Setup
       </h1>
-      <p className="text-surface-600 dark:text-surface-400 mb-8">
+      <p className="text-[var(--text-secondary)] mb-8">
         For full live data, add API keys to your environment. Crypto works without keys.
       </p>
 
@@ -50,7 +50,7 @@ export function ApiSetupPage() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="font-semibold text-surface-900 dark:text-surface-100 flex items-center gap-2">
+                <h2 className="font-semibold text-[var(--text-primary)] flex items-center gap-2">
                   {api.name}
                   {api.free && (
                     <span className="text-xs font-normal px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">
@@ -58,7 +58,7 @@ export function ApiSetupPage() {
                     </span>
                   )}
                 </h2>
-                <p className="text-sm text-surface-500 mt-1">{api.use}</p>
+                <p className="text-sm text-[var(--text-secondary)] mt-1">{api.use}</p>
                 {api.envVar && (
                   <code className="mt-2 block text-xs bg-surface-100 dark:bg-surface-900 px-2 py-1 rounded font-mono">
                     {api.envVar}
