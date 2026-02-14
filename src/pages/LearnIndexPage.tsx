@@ -24,7 +24,7 @@ export function LearnIndexPage() {
         </p>
       </header>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-6">
         {LEVELS.map((level) => {
           const locked =
             (level.id === 2 && !level2Unlocked) ||
@@ -116,9 +116,9 @@ export function LearnIndexPage() {
             </div>
           );
 
-          const colStart = level.id === 4 ? "lg:col-start-2" : level.id === 5 ? "lg:col-start-3" : "";
+          const gridClasses = level.id === 4 ? "lg:col-span-2 lg:col-start-2" : level.id === 5 ? "lg:col-span-2 lg:col-start-4" : "lg:col-span-2";
           return (
-            <div key={level.id} className={colStart}>
+            <div key={level.id} className={gridClasses}>
               {locked && !isAdmin ? (
                 <div className="block">{cardContent}</div>
               ) : (
