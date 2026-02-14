@@ -194,7 +194,7 @@ const MULTI_PATTERNS: Record<string, {
 type QuestionType =
   | { type: "pattern"; patternId: string; options: string[]; correctIndex: number }
   | { type: "buyerSeller"; patternId: string; candles: Candle[]; options: string[]; correctIndex: number; context?: string }
-  | { type: "likelyDir"; patternId: string; candles: Candle[]; options: string[]; correctIndex: number; context?: string }
+  | { type: "likelyDir"; patternId: string; candles: Candle[]; options: string[]; correctIndex: number; context?: string; explanation: string }
   | { type: "wick"; question: string; options: string[]; correctIndex: number }
   | { type: "body"; question: string; options: string[]; correctIndex: number }
   | { type: "ohlc"; question: string; options: string[]; correctIndex: number };
@@ -232,21 +232,23 @@ function buildQuestions(): QuestionType[] {
     q.push({ type: "buyerSeller", patternId: id, candles: p.candles, options, correctIndex: p.buyerSeller === "buyers" ? 0 : 1 });
   });
 
-  // Likely direction (single) — use extended 4–6 candles when available
+  // Likely direction (single) — use extended 4–6 candles and embed explanation
   singleIds.forEach((id) => {
     const p = SINGLE_PATTERNS[id];
     const options = ["Price likely to go up", "Price likely to go down", "Sideways / unclear"];
     const correctIdx = p.likelyDir === "up" ? 0 : p.likelyDir === "down" ? 1 : 2;
     const candles = p.likelyDirCandles ?? [p.candle];
-    q.push({ type: "likelyDir", patternId: id, candles, options, correctIndex: correctIdx, context: p.context });
+    const explanation = p.likelyDirExplanation ?? `The pattern suggests ${p.likelyDir === "up" ? "up" : p.likelyDir === "down" ? "down" : "sideways"} based on candle structure.`;
+    q.push({ type: "likelyDir", patternId: id, candles, options, correctIndex: correctIdx, context: p.context, explanation });
   });
 
-  // Likely direction (multi) — use extended 4–6 candles when available
+  // Likely direction (multi) — use extended 4–6 candles and embed explanation
   multiIds.forEach((id) => {
     const p = MULTI_PATTERNS[id];
     const options = ["Price likely to go up", "Price likely to go down"];
     const candles = p.likelyDirCandles ?? p.candles;
-    q.push({ type: "likelyDir", patternId: id, candles, options, correctIndex: p.likelyDir === "up" ? 0 : 1 });
+    const explanation = p.likelyDirExplanation ?? `The pattern suggests ${p.likelyDir === "up" ? "up" : "down"}.`;
+    q.push({ type: "likelyDir", patternId: id, candles, options, correctIndex: p.likelyDir === "up" ? 0 : 1, explanation });
   });
 
   // Wick interpretation
@@ -426,17 +428,9 @@ export function PatternRecognitionGame() {
     }
 
     if (q.type === "likelyDir") {
-      const explanation =
-        (SINGLE_PATTERNS[q.patternId] as { likelyDirExplanation?: string })?.likelyDirExplanation ??
-        (MULTI_PATTERNS[q.patternId] as { likelyDirExplanation?: string })?.likelyDirExplanation;
-      if (correct) {
-        return explanation
-          ? `Correct! ${explanation}`
-          : "Correct! Patterns suggest probability, not certainty—always use stops.";
-      }
-      return explanation
-        ? `The answer was "${q.options[correctIndex]}". ${explanation}`
-        : `The pattern suggested "${q.options[correctIndex]}". Patterns work best at support/resistance with confirmation.`;
+      const explanation = q.explanation;
+      if (correct) return `Correct! ${explanation}`;
+      return `The answer was "${q.options[correctIndex]}". ${explanation}`;
     }
 
     if (q.type === "wick" || q.type === "body" || q.type === "ohlc") {
