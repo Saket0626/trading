@@ -102,7 +102,7 @@ export function WarningsPage() {
           I Understand — Continue
         </Link>
         <Link
-          to="/learn/1"
+          to="/learn"
           className="px-6 py-3 border border-surface-300 dark:border-surface-600 hover:bg-surface-100 dark:hover:bg-surface-800 font-semibold rounded-lg transition-colors"
         >
           Start Learning
