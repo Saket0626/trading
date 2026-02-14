@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { shuffleIndices } from "../../lib/shuffle";
 
 export interface ConceptCheckProps {
   question?: string;
@@ -15,9 +16,14 @@ export function ConceptCheck({
 }: ConceptCheckProps & Record<string, unknown>) {
   const [revealed, setRevealed] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
+  const [order] = useState(() =>
+    options && options.length > 0 ? shuffleIndices(options.length) : []
+  );
 
   const hasOptions = options && options.length > 0;
-  const isCorrect = hasOptions && selected !== null && selected === correctIndex;
+  const displayOrder = order.length === (options?.length ?? 0) ? order : Array.from({ length: options?.length ?? 0 }, (_, i) => i);
+  const correctDisplayIdx = displayOrder.indexOf(correctIndex);
+  const isCorrect = hasOptions && selected !== null && selected === correctDisplayIdx;
 
   return (
     <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 p-6">
@@ -28,18 +34,18 @@ export function ConceptCheck({
 
       {hasOptions && (
         <div className="space-y-2 mb-4">
-          {options.map((opt, i) => (
+          {displayOrder.map((origIdx, displayIdx) => (
             <button
-              key={i}
+              key={origIdx}
               type="button"
-              onClick={() => setSelected(i)}
+              onClick={() => setSelected(displayIdx)}
               className={`block w-full text-left px-4 py-2 rounded-lg border text-sm transition-colors ${
-                selected === i
+                selected === displayIdx
                   ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20"
                   : "border-surface-200 dark:border-surface-600 hover:bg-surface-100 dark:hover:bg-surface-700"
               }`}
             >
-              {opt}
+              {options![origIdx]}
             </button>
           ))}
         </div>

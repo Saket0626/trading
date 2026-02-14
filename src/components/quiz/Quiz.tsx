@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import type { QuizQuestion } from "../../types";
 import { ChevronRight, Check, X, Zap, CheckCircle } from "lucide-react";
 import { clsx } from "clsx";
+import { shuffleIndices } from "../../lib/shuffle";
 
 function validateScore(score: number): number {
   if (typeof score !== "number" || Number.isNaN(score)) return 0;
@@ -23,6 +24,7 @@ export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
   const [showExplanation, setShowExplanation] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [optionOrders, setOptionOrders] = useState<number[][]>([]);
 
   const resetQuiz = useCallback(() => {
     setCurrentIndex(0);
@@ -30,12 +32,13 @@ export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
     setShowExplanation(false);
     setCorrectCount(0);
     setFinished(false);
-  }, []);
+    setOptionOrders(questions.map((q) => shuffleIndices(q.options.length)));
+  }, [questions]);
 
-  // Reset all state when questions change (e.g. new lesson)
+  // Reset all state and re-shuffle options when questions change (e.g. new lesson) or on mount (page refresh)
   useEffect(() => {
     resetQuiz();
-  }, [questions.length, resetQuiz]);
+  }, [questions, resetQuiz]);
 
   if (!questions || questions.length === 0) {
     return (
@@ -47,12 +50,17 @@ export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
 
   const question = questions[currentIndex];
   const hasAnswered = selectedIndex !== null;
+  const order =
+    optionOrders[currentIndex] ??
+    Array.from({ length: question.options.length }, (_, i) => i);
+  const correctDisplayIdx = order.indexOf(question.correctIndex);
 
-  const handleSelect = (index: number) => {
+  const handleSelect = (displayIdx: number) => {
     if (hasAnswered) return;
-    setSelectedIndex(index);
+    setSelectedIndex(displayIdx);
     setShowExplanation(true);
-    if (index === question.correctIndex) {
+    const originalIdx = order[displayIdx];
+    if (originalIdx === question.correctIndex) {
       setCorrectCount((c) => c + 1);
     }
   };
@@ -109,37 +117,37 @@ export function Quiz({ questions, onComplete, isAdmin }: QuizProps) {
       </h3>
 
       <div className="space-y-3">
-        {question.options.map((option, index) => (
+        {order.map((origIdx, displayIdx) => (
           <button
-            key={index}
-            onClick={() => handleSelect(index)}
+            key={origIdx}
+            onClick={() => handleSelect(displayIdx)}
             disabled={hasAnswered}
             className={clsx(
               "w-full text-left p-4 rounded-lg border-2 transition-all",
               !hasAnswered &&
                 "hover:border-primary-400 dark:hover:border-primary-500 hover:bg-surface-50 dark:hover:bg-surface-700/50",
               hasAnswered &&
-                index === question.correctIndex &&
+                displayIdx === correctDisplayIdx &&
                 "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20",
               hasAnswered &&
-                index === selectedIndex &&
-                index !== question.correctIndex &&
+                displayIdx === selectedIndex &&
+                displayIdx !== correctDisplayIdx &&
                 "border-red-500 bg-red-50 dark:bg-red-900/20",
               hasAnswered &&
-                index !== selectedIndex &&
-                index !== question.correctIndex &&
+                displayIdx !== selectedIndex &&
+                displayIdx !== correctDisplayIdx &&
                 "border-surface-200 dark:border-surface-600 opacity-60"
             )}
           >
             <div className="flex items-center gap-3">
               <span className="flex-shrink-0 w-8 h-8 rounded-full bg-surface-200 dark:bg-surface-600 flex items-center justify-center text-sm font-medium">
-                {String.fromCharCode(65 + index)}
+                {String.fromCharCode(65 + displayIdx)}
               </span>
-              <span>{option}</span>
-              {hasAnswered && index === question.correctIndex && (
+              <span>{question.options[origIdx]}</span>
+              {hasAnswered && displayIdx === correctDisplayIdx && (
                 <Check className="h-5 w-5 text-emerald-500 ml-auto" />
               )}
-              {hasAnswered && index === selectedIndex && index !== question.correctIndex && (
+              {hasAnswered && displayIdx === selectedIndex && displayIdx !== correctDisplayIdx && (
                 <X className="h-5 w-5 text-red-500 ml-auto" />
               )}
             </div>

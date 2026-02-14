@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { shuffleIndices } from "../../lib/shuffle";
 
 type Candle = { o: number; h: number; l: number; c: number };
 
@@ -378,13 +379,18 @@ export function PatternRecognitionGame() {
   }, [current]);
 
   const { options, correctIndex } = useMemo(() => {
-    const rawOptions = current?.q.options ?? [];
+    const rawOptions = (current?.q.options ?? []) as string[];
+    if (rawOptions.length === 0) return { options: [], correctIndex: 0 };
+    const order = shuffleIndices(rawOptions.length);
     if (current?.q.type === "pattern") {
-      const shuffled = (rawOptions as string[]).slice().sort(() => Math.random() - 0.5);
+      const shuffled = order.map((i) => rawOptions[i]);
       const correctName = current.correctName ?? "";
       return { options: shuffled, correctIndex: shuffled.indexOf(correctName) };
     }
-    return { options: rawOptions, correctIndex: current?.q.correctIndex ?? 0 };
+    const origCorrect = current?.q.correctIndex ?? 0;
+    const shuffled = order.map((i) => rawOptions[i]);
+    const newCorrectIndex = order.indexOf(origCorrect);
+    return { options: shuffled, correctIndex: newCorrectIndex };
   }, [round, current?.q.type, current?.correctName, current?.q.correctIndex, current?.q.options]);
 
   const handleSelect = useCallback(
@@ -423,19 +429,19 @@ export function PatternRecognitionGame() {
 
     if (q.type === "buyerSeller") {
       if (correct) return "Correct! Reading who won each period helps you gauge momentum and potential direction.";
-      const ans = q.options[correctIndex];
+      const ans = options[correctIndex];
       return `It was "${ans}". Green body = buyers won. Red body = sellers won. Doji = indecision.`;
     }
 
     if (q.type === "likelyDir") {
       const explanation = q.explanation;
       if (correct) return `Correct! ${explanation}`;
-      return `The answer was "${q.options[correctIndex]}". ${explanation}`;
+      return `The answer was "${options[correctIndex]}". ${explanation}`;
     }
 
     if (q.type === "wick" || q.type === "body" || q.type === "ohlc") {
       if (correct) return "Correct!";
-      return `The answer was: "${q.options[correctIndex]}".`;
+      return `The answer was: "${options[correctIndex]}".`;
     }
 
     return correct ? "Correct!" : "Try again!";

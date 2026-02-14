@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { shuffleIndices } from "../../lib/shuffle";
 
 type Answer = "a" | "b" | "c" | "d";
 
@@ -71,10 +72,15 @@ export function WhichMarketQuiz() {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [done, setDone] = useState(false);
   const [result, setResult] = useState<"stocks" | "forex" | "crypto" | "commodities">("stocks");
+  const [optionOrders] = useState(() =>
+    QUESTIONS.map((q) => shuffleIndices(q.options.length))
+  );
 
   const q = QUESTIONS[current];
+  const order = optionOrders[current] ?? Array.from({ length: q.options.length }, (_, i) => i);
 
-  const handleAnswer = (ans: Answer) => {
+  const handleAnswer = (origIdx: number) => {
+    const ans = String.fromCharCode(97 + origIdx) as Answer;
     const newAnswers = [...answers, ans];
     setAnswers(newAnswers);
     if (current + 1 >= QUESTIONS.length) {
@@ -129,13 +135,13 @@ export function WhichMarketQuiz() {
       </p>
       <h3 className="font-semibold text-lg mb-4">{q.q}</h3>
       <div className="space-y-2">
-        {q.options.map((opt, i) => (
+        {order.map((origIdx) => (
           <button
-            key={i}
-            onClick={() => handleAnswer(String.fromCharCode(97 + i) as Answer)}
+            key={origIdx}
+            onClick={() => handleAnswer(origIdx)}
             className="w-full text-left p-4 rounded-lg border border-surface-200 dark:border-surface-600 hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors"
           >
-            {opt}
+            {q.options[origIdx]}
           </button>
         ))}
       </div>

@@ -2,9 +2,13 @@ import { createContext, useContext, useState, useCallback, useEffect } from "rea
 
 const STORAGE_KEY = "chartwise-curriculum-open";
 
+const SIDEBAR_WIDTH_OPEN = 260;
+const SIDEBAR_WIDTH_COLLAPSED = 44; // Icon button only, no bar
+
 interface SidebarContextValue {
   curriculumOpen: boolean;
   toggleCurriculum: () => void;
+  sidebarWidth: number;
 }
 
 const SidebarContext = createContext<SidebarContextValue | null>(null);
@@ -33,8 +37,10 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const sidebarWidth = curriculumOpen ? SIDEBAR_WIDTH_OPEN : SIDEBAR_WIDTH_COLLAPSED;
+
   return (
-    <SidebarContext.Provider value={{ curriculumOpen, toggleCurriculum }}>
+    <SidebarContext.Provider value={{ curriculumOpen, toggleCurriculum, sidebarWidth }}>
       {children}
     </SidebarContext.Provider>
   );
@@ -42,5 +48,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
 
 export function useSidebar() {
   const ctx = useContext(SidebarContext);
-  return ctx ?? { curriculumOpen: true, toggleCurriculum: () => {} };
+  return ctx ?? { curriculumOpen: true, toggleCurriculum: () => {}, sidebarWidth: SIDEBAR_WIDTH_OPEN };
 }
+
+export { SIDEBAR_WIDTH_OPEN, SIDEBAR_WIDTH_COLLAPSED };

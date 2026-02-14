@@ -12,7 +12,7 @@ export function LearnSidebar() {
   const { levelId, moduleSlug } = useParams();
   const { isLessonComplete, getQuizScore } = useProgress();
   const { isAdmin } = useAdmin();
-  const { curriculumOpen, toggleCurriculum } = useSidebar();
+  const { curriculumOpen, toggleCurriculum, sidebarWidth } = useSidebar();
   const [expandedLevel, setExpandedLevel] = useState<number | null>(
     () => (levelId ? parseInt(levelId) : 1)
   );
@@ -23,29 +23,29 @@ export function LearnSidebar() {
 
   if (!curriculumOpen) {
     return (
-      <aside
-        className="w-[52px] flex-shrink-0 hidden lg:flex flex-col items-center py-4 border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
-        aria-label="Curriculum navigation collapsed"
-      >
-        <button
-          onClick={toggleCurriculum}
-          className="flex flex-col items-center gap-2 p-3 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]"
-          aria-expanded="false"
-          aria-label="Show curriculum"
-          title="Show curriculum"
+      <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
+        <aside
+          className="fixed left-0 top-16 z-40 flex items-start pt-4"
+          aria-label="Curriculum navigation collapsed"
         >
-          <PanelLeft className="h-5 w-5" aria-hidden />
-          <span className="text-[11px] font-semibold uppercase tracking-wider whitespace-nowrap [writing-mode:vertical] [text-orientation:mixed] rotate-180">
-            Curriculum
-          </span>
-        </button>
-      </aside>
+          <button
+            onClick={toggleCurriculum}
+            className="flex items-center justify-center w-11 h-11 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]"
+            aria-expanded="false"
+            aria-label="Show curriculum"
+            title="Show curriculum"
+          >
+            <PanelLeft className="h-5 w-5" aria-hidden />
+          </button>
+        </aside>
+      </div>
     );
   }
 
   return (
+    <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
     <aside
-      className="w-[260px] flex-shrink-0 hidden lg:block border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
+      className="fixed left-0 top-16 bottom-0 z-40 w-[260px] border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
       aria-label="Curriculum navigation"
     >
       <div className="sticky top-24 h-[calc(100vh-7rem)] flex flex-col overflow-hidden">
@@ -156,5 +156,6 @@ export function LearnSidebar() {
         </nav>
       </div>
     </aside>
+    </div>
   );
 }
