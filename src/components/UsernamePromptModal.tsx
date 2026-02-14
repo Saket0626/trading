@@ -6,8 +6,17 @@ import { checkUsernameAvailable, getLeaderboardUserId } from "../services/leader
 
 const LESSONS_THRESHOLD = 2;
 
+const DISMISSED_KEY = "chartwise-username-prompt-dismissed";
+
 export function UsernamePromptModal() {
   const { completedLessons, username, setUsername } = useProgress();
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return localStorage.getItem(DISMISSED_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
   const [usernameInput, setUsernameInput] = useState("");
   const [usernameSaved, setUsernameSaved] = useState(false);
   const [usernameError, setUsernameError] = useState<string | null>(null);
@@ -17,6 +26,7 @@ export function UsernamePromptModal() {
   const userId = getLeaderboardUserId();
 
   const shouldShow =
+    !dismissed &&
     leaderboardEnabled &&
     completedLessons.length >= LESSONS_THRESHOLD &&
     !username?.trim();
@@ -76,7 +86,21 @@ export function UsernamePromptModal() {
             </div>
           </div>
 
-          <div className="space-y-3">
+            <div className="flex justify-end mb-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setDismissed(true);
+                  try {
+                    localStorage.setItem(DISMISSED_KEY, "1");
+                  } catch {}
+                }}
+                className="text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300"
+              >
+                Skip for now
+              </button>
+            </div>
+            <div className="space-y-3">
             <label
               htmlFor="username-prompt-input"
               className="block text-sm font-medium text-surface-700 dark:text-surface-300"

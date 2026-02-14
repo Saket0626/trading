@@ -54,7 +54,7 @@ export function ModulePage() {
         </p>
       </header>
 
-      <div className="space-y-3 max-w-2xl">
+      <div className="space-y-3 max-w-3xl">
         {lessons.length === 0 ? (
           <div className="p-8 rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/50 text-center text-surface-600 dark:text-surface-400">
             <p>Lessons for this module are coming soon. Check back as we expand the curriculum!</p>
@@ -66,9 +66,9 @@ export function ModulePage() {
           return (
             <div
               key={lesson.id}
-              className="rounded-lg border border-surface-200 dark:border-surface-700 overflow-hidden"
+              className="rounded-lg border border-surface-200 dark:border-surface-700"
             >
-              <div className="flex items-center gap-4 p-4 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all flex-nowrap">
+              <div className="flex items-center gap-4 p-4 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all">
                 <Link
                   to={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
                   className="flex items-center gap-4 flex-1 min-w-0 group"
@@ -91,16 +91,12 @@ export function ModulePage() {
                 </Link>
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setExpandedLessonId(isExpanded ? null : lesson.id);
-                  }}
-                  className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-surface-300 dark:border-surface-600 text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 hover:border-primary-400 dark:hover:border-primary-500 transition-colors cursor-pointer"
+                  onClick={() => setExpandedLessonId(isExpanded ? null : lesson.id)}
+                  className="shrink-0 min-w-[100px] flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border-2 border-primary-500/50 dark:border-primary-400/50 bg-primary-50/50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors cursor-pointer font-medium"
                   aria-expanded={isExpanded}
                   aria-label={isExpanded ? "Hide summary" : "Show summary"}
                 >
-                  <span className="text-sm font-medium whitespace-nowrap">Summary</span>
+                  <span className="text-sm">Summary</span>
                   {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </button>
               </div>
