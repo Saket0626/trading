@@ -45,7 +45,7 @@ export function LearnSidebar() {
         >
           <button
             onClick={toggleCurriculum}
-            className="flex items-center gap-2 px-3 py-2 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] text-sm font-medium"
+            className="flex items-center gap-2 px-2 py-1.5 text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] text-sm font-medium"
             aria-expanded="false"
             aria-label="Show curriculum"
             title="Show curriculum"

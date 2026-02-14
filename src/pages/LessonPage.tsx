@@ -288,7 +288,7 @@ export function LessonPage() {
               createPortal(
                 <button
                   onClick={() => setTocOpen(true)}
-                  className={`fixed right-4 z-50 flex items-center gap-2 px-3 py-2 rounded-l-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] shadow-sm transition-[top] duration-200 ${scrollProgress >= 10 ? "top-16" : "top-[7.5rem]"}`}
+                  className={`fixed right-4 z-50 flex items-center gap-2 px-2 py-1.5 text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] text-sm font-medium ${scrollProgress >= 10 ? "top-16" : "top-[7.5rem]"}`}
                   aria-label="Show sidebar"
                   title="Show table of contents"
                 >
