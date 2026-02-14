@@ -259,7 +259,7 @@ export function LessonPage() {
             className={`flex-shrink-0 order-2 ${!tocOpen ? "lg:w-auto lg:ml-auto" : "lg:w-52 xl:w-56"}`}
             aria-label="Lesson navigation"
           >
-            <div className={`lg:sticky lg:top-24 ${!tocOpen && !curriculumOpen ? "lg:fixed lg:right-4 lg:top-[7.5rem] lg:z-30" : ""}`}>
+            <div className={`lg:sticky lg:top-24 ${!tocOpen ? "lg:fixed lg:right-4 lg:top-[7.5rem] lg:z-30" : ""}`}>
               {tocOpen ? (
                 <div className="space-y-6">
                   <div className="flex items-center justify-between gap-2">
