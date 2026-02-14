@@ -25,6 +25,8 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "People trade for income, capital growth, hedging, or simply the challenge. The lesson explores the real motivations behind trading—from professionals making a living to retail traders seeking supplemental income. You'll understand the spectrum of reasons and how to set realistic expectations for yourself.",
   "trader-types":
     "Day traders, swing traders, and position traders differ by holding period and time commitment. You learn how each style works: day traders close by day's end; swing traders hold days to weeks; position traders hold weeks to months. The lesson helps you see which style matches your schedule and personality.",
+  "risk-reward":
+    "Risk and reward are linked—higher potential profit usually means higher potential loss. The lesson explains the fundamental trade-off: you cannot have meaningful reward without accepting meaningful risk. You'll learn why professional traders risk only 1% per trade and why never risking money you need for living expenses is the first rule of survival in markets.",
   "time-commitment":
     "Trading demands real time—watching charts, placing orders, managing positions, and reviewing trades. The lesson breaks down what each style requires: day trading needs full focus during market hours; swing trading needs daily check-ins. You'll see why time availability is a major factor in choosing your approach.",
   "realistic-expectations":
@@ -45,6 +47,10 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "Each market has specific trading hours—US stocks 9:30–4:00 ET; forex 24/5; crypto 24/7. The lesson explains why hours matter: liquidity, volatility, and overlap between sessions. You'll learn when the best opportunities appear and how to plan your trading around market schedules.",
   "market-participants":
     "Markets include retail traders, institutional investors, market makers, and hedgers—each with different goals and size. The lesson explains who moves price, who provides liquidity, and why understanding participants helps you read the market. You'll see how the mix of players shapes order flow.",
+  "markets-overview":
+    "The four main markets are stocks, forex, commodities, and crypto—each with different hours, rules, and characteristics. The lesson gives you an overview of all four so you understand the basics before going deeper. You'll see how each market fits different goals, capital requirements, and schedules, and why most successful traders specialize in one or two.",
+  "other-markets":
+    "Supply and demand drive every market price—more buyers than sellers raises price, and vice versa. The lesson applies this to stocks, forex, commodities, and crypto, showing how news and sentiment shift the balance. You'll understand that your job as a trader is to anticipate these shifts while managing risk, because the market can misprice things for a long time.",
 
   // Level 1 - Risk & Reward
   "risk-what":
@@ -348,9 +354,9 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "ma-sr":
     "Moving averages can act as dynamic support and resistance—price bounces off them. The lesson teaches how to trade MA bounces. You'll use MAs for entries in trends.",
   "ma-golden":
-    "The Golden Cross—50 crosses above 200—is a classic bullish long-term signal. The lesson explains what it means and how to use it. You'll recognize this widely watched signal.",
+    "The Golden Cross occurs when the 50-period MA crosses above the 200-period MA—a classic bullish long-term signal watched by investors worldwide. The lesson explains what it means, why it matters for trend confirmation, and how to use it without over-relying on its lag. You'll recognize this widely followed indicator and understand when it adds value.",
   "ma-death":
-    "The Death Cross—50 crosses below 200—signals bearish momentum. The lesson covers interpretation and lag. You'll use it as confirmation, not timing.",
+    "The Death Cross occurs when the 50-period MA crosses below the 200-period MA—signaling potential bearish momentum for the longer term. The lesson covers interpretation, the lag inherent in such long-period crosses, and why you should use it as confirmation rather than precise timing. You'll avoid chasing the signal after the move has already happened.",
   "ma-crossover":
     "MA crossover strategies generate buy/sell signals—but lag and whipsaw. The lesson teaches how to improve them with filters. You'll trade crossovers with context.",
   "ma-triple":
@@ -376,7 +382,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "mom-stochastic":
     "Stochastic shows overbought/oversold with %K and %D. The lesson covers calculation and crossovers. You'll add Stochastic to your momentum suite.",
   "mom-cci-williams":
-    "CCI and Williams %R are lesser-known momentum oscillators—the lesson introduces them. You'll know when they add value.",
+    "CCI (Commodity Channel Index) and Williams %R are momentum oscillators that measure overbought/oversold differently than RSI. The lesson introduces their calculations and signals, and when each adds value. You'll expand your momentum toolkit and know when to use CCI or Williams %R instead of or alongside RSI.",
   "mom-roc":
     "Rate of Change measures price change over a period—simple momentum. The lesson covers ROC and divergence. You'll have another momentum option.",
   "mom-summary":
@@ -394,11 +400,11 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "vol-atr-stops":
     "ATR-based stops adapt to volatility—wider in volatile markets, tighter in calm. The lesson teaches the formula and application. You'll place stops that make sense.",
   "vol-keltner":
-    "Keltner Channels use ATR instead of standard deviation—similar to Bollinger. The lesson compares them. You'll know when to use Keltner.",
+    "Keltner Channels use ATR instead of standard deviation for the bands—giving a different volatility envelope than Bollinger Bands. The lesson compares their structure, when they squeeze or expand, and how to trade them. You'll know when Keltner adds value over Bollinger and when to use each tool.",
   "vol-donchian":
     "Donchian Channels use high-low range—basis of the Turtle Trading system. The lesson covers structure and breakout use. You'll add Donchian to your toolkit.",
   "vol-stdev":
-    "Standard deviation quantifies volatility—used in Bollinger and risk metrics. The lesson explains the concept. You'll understand volatility math.",
+    "Standard deviation quantifies how much price varies from its average—the math behind Bollinger Bands and many risk metrics. The lesson explains the concept in practical terms and how traders use it to measure volatility. You'll understand the volatility math that underpins your indicators and position sizing.",
   "vol-summary":
     "Volatility indicators—Bollinger, ATR, Keltner, Donchian—each have a role. The lesson recaps when to use each and combine with trend. You'll complete the volatility module.",
 
@@ -445,7 +451,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "plan-template":
     "A plan template covers goals, markets, style, entry/exit rules, and loss limits. The lesson walks through each section. You'll build your plan step by step.",
   "plan-summary":
-    "A written plan keeps you accountable—the lesson recaps why and how. You'll finish the trading plan module.",
+    "A written trading plan keeps you accountable and overrides emotion when the market tests you. The lesson recaps why a plan is non-negotiable, what it should include, and how to use it in daily practice. You'll finish the trading plan module with a clear framework for your own rules.",
 
   "orb-strategy":
     "Opening Range Breakout (ORB) trades the break of the first 15–30 minutes' range. The lesson covers setup, entry, stop, and target. You'll add ORB to your strategy toolkit.",
@@ -461,21 +467,21 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "demo-practice":
     "Demo practice builds skills without risk—treat it like live money. The lesson explains how to practice effectively. You'll transition from demo to live when ready.",
   "broker-summary":
-    "Broker choice and demo practice set you up for success. The lesson recaps criteria and practice. You'll complete the broker module.",
+    "Broker choice and demo practice set you up for success—regulation, fees, execution, and platform matter. The lesson recaps what to compare when selecting a broker and how to use demo accounts effectively before going live. You'll complete the broker module with a clear path to opening an account.",
 
   "order-types":
     "Market, limit, and stop orders each have a use—immediate fill vs price control. The lesson covers when to use each. You'll place orders correctly.",
   "order-execution":
     "Orders fill through market makers or ECNs—slippage and liquidity matter. The lesson explains execution and how to get fair fills. You'll understand the mechanics.",
   "mechanics-summary":
-    "Order types and execution are the plumbing of trading. The lesson recaps market, limit, stop, and execution. You'll complete the mechanics module.",
+    "Order types and execution are the plumbing of trading—market, limit, and stop orders each have a purpose. The lesson recaps when to use each type and how orders get filled through market makers or ECNs. You'll complete the mechanics module with a solid understanding of how trades reach the market.",
 
   "costs-overview":
     "Commissions, spreads, and fees add up—they reduce profitability. The lesson catalogs costs and how to minimize them. You'll factor costs into your edge.",
   "tax-implications":
     "Short-term gains are taxed as ordinary income; long-term get lower rates. The lesson covers basics and wash sale rule. You'll plan for taxes.",
   "profitability":
-    "Break-even win rate depends on risk-reward—the lesson teaches the math. You'll set realistic profit expectations.",
+    "Break-even win rate depends on your risk-reward ratio—the lesson teaches the math so you know what win rate you need to be profitable. You'll set realistic profit expectations and understand why costs and risk-reward matter more than raw win rate for long-term success.",
   "costs-summary":
     "Costs and taxes eat into returns—the lesson recaps how to manage them. You'll complete the costs module.",
 
@@ -489,7 +495,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "leverage-margin":
     "Leverage and margin allow controlling large positions with less capital—but amplify risk. The lesson explains how they work and the dangers. You'll use leverage responsibly.",
   "derivatives-summary":
-    "Futures and leverage open new strategies—the lesson recaps key concepts. You'll complete the derivatives module.",
+    "Futures, leverage, and margin open new strategies—but also new risks. The lesson recaps the key concepts: contract structure, margin requirements, and why understanding derivatives matters before you trade them. You'll complete the derivatives module with a clear picture of when and how to use them.",
 
   "mpt-basics":
     "Modern Portfolio Theory balances risk and return through diversification. The lesson introduces MPT and efficient frontiers. You'll think in portfolio terms.",
@@ -498,7 +504,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "rebalancing":
     "Rebalancing brings the portfolio back to target weights—disciplined selling high, buying low. The lesson teaches when and how. You'll maintain allocation over time.",
   "portfolio-summary":
-    "MPT, diversification, and rebalancing are pillars of portfolio management. The lesson recaps key ideas. You'll complete the portfolio module.",
+    "MPT, diversification, and rebalancing are pillars of portfolio management—balancing risk and return across assets. The lesson recaps the key ideas and how to apply them whether you're building a long-term portfolio or managing trading capital. You'll complete the portfolio module with a framework for allocation.",
 
   "fibonacci":
     "Fibonacci retracements (38.2%, 50%, 61.8%) identify potential pullback levels. The lesson teaches how to draw and use them. You'll add Fib as confluence.",
@@ -507,14 +513,14 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "wyckoff":
     "Wyckoff analysis focuses on accumulation, distribution, and institutional flow. The lesson covers the key phases. You'll add another lens for price action.",
   "advanced-technical-summary":
-    "Fibonacci, Elliott Wave, and Wyckoff are advanced tools—the lesson recaps when to use each. You'll complete the advanced technical module.",
+    "Fibonacci, Elliott Wave, and Wyckoff are advanced technical tools—each with strengths and subjectivity. The lesson recaps when to use each, how to avoid over-relying on them, and how they fit with price action and volume. You'll complete the advanced technical module with a broader toolkit.",
 
   "intermarket-basics":
     "Markets influence each other—stocks, bonds, commodities, and currencies are linked. The lesson introduces intermarket relationships. You'll see the big picture.",
   "vix-fear":
     "The VIX measures implied volatility—fear and complacency in the market. The lesson explains how to read and use it. You'll add VIX to your toolkit.",
   "intermarket-summary":
-    "Intermarket analysis and VIX provide context for your trades. The lesson recaps relationships and fear gauge. You'll complete the intermarket module.",
+    "Intermarket analysis and the VIX provide context for your trades—how stocks, bonds, commodities, and currencies influence each other. The lesson recaps the key relationships and how to use the fear gauge in your analysis. You'll complete the intermarket module with a bigger-picture view of markets.",
 
   // Level 4 Exam
   "level-4-exam":
@@ -528,14 +534,14 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "first-strategy":
     "Building your first algorithmic strategy in Python—from idea to backtest. The lesson ties data and logic together. You'll have a working strategy.",
   "python-summary":
-    "Python opens the door to systematic trading—the lesson recaps basics and next steps. You'll complete the Python module.",
+    "Python opens the door to systematic trading—data handling, backtesting, and automation. The lesson recaps the basics you've learned and the next steps toward building and testing strategies programmatically. You'll complete the Python module ready to move into data acquisition and backtesting.",
 
   "data-sources":
     "Market data comes from free and paid APIs—each with terms and limitations. The lesson compares sources. You'll choose data that fits your needs.",
   "data-cleaning":
     "Data needs cleaning—missing values, splits, dividends, alignment. The lesson covers common issues. You'll prepare data for backtesting.",
   "data-summary":
-    "Data acquisition and cleaning are foundational for quant—the lesson recaps. You'll complete the data module.",
+    "Data acquisition and cleaning are foundational for quantitative trading—garbage in, garbage out. The lesson recaps data sources, common cleaning tasks, and why getting the data right matters before backtesting. You'll complete the data module ready to feed clean data into your strategies.",
 
   "backtest-basics":
     "Backtesting tests a strategy on historical data—but bias can make results misleading. The lesson explains look-ahead bias and realistic simulation. You'll backtest correctly.",
@@ -544,7 +550,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "walk-forward":
     "Walk-forward analysis tests out-of-sample as you roll forward—reduces overfitting. The lesson teaches the method. You'll validate strategies properly.",
   "backtest-summary":
-    "Backtesting requires care—the lesson recaps best practices. You'll complete the backtesting module.",
+    "Backtesting requires care—bias, overfitting, and unrealistic assumptions can make results misleading. The lesson recaps best practices: walk-forward analysis, realistic costs, and treating backtest results with appropriate skepticism. You'll complete the backtesting module ready to validate strategies properly.",
 
   "mean-reversion":
     "Mean reversion strategies bet price returns to average—Bollinger, RSI, z-score. The lesson covers concept and implementation. You'll add mean reversion to your arsenal.",
@@ -553,7 +559,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "pairs-trading":
     "Pairs trading exploits the spread between correlated assets—cointegration and entry/exit. The lesson teaches the framework. You'll understand statistical arbitrage.",
   "quant-strategies-summary":
-    "Mean reversion, momentum, and pairs trading are core quant approaches—the lesson recaps. You'll complete the quant strategies module.",
+    "Mean reversion, momentum, and pairs trading are core quantitative approaches—each with different market conditions where they shine. The lesson recaps when to use each, how they differ, and what to watch for when implementing them. You'll complete the quant strategies module ready to explore machine learning.",
 
   "ml-overview":
     "Machine learning can help with prediction—but realistic expectations and validation matter. The lesson covers when ML adds value. You'll approach ML with caution.",
@@ -562,7 +568,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "overfitting":
     "Overfitting kills live performance—train/test, walk-forward, and simplicity. The lesson explains how to avoid it. You'll build robust models.",
   "ml-summary":
-    "ML for trading is powerful but risky—the lesson recaps caution and best practices. You'll complete the ML module.",
+    "ML for trading is powerful but risky—overfitting and unrealistic expectations can doom live performance. The lesson recaps the caution and best practices: feature engineering, validation, and when ML actually adds value. You'll complete the ML module with a sober view of its role in systematic trading.",
 
   "sharpe-sortino":
     "Sharpe and Sortino ratios measure risk-adjusted return—essential for comparing strategies. The lesson covers calculation and interpretation. You'll evaluate performance properly.",
@@ -571,7 +577,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "monte-carlo":
     "Monte Carlo simulation tests strategy robustness with random scenarios. The lesson introduces the method. You'll stress-test your strategies.",
   "risk-metrics-summary":
-    "Sharpe, drawdown, and Monte Carlo complete the risk toolkit—the lesson recaps. You'll complete the risk metrics module.",
+    "Sharpe, Sortino, drawdown, and Monte Carlo complete the risk toolkit—essential for evaluating and comparing strategies. The lesson recaps how each metric helps you size risk, stress-test systems, and make informed decisions. You'll complete the risk metrics module ready for automated systems.",
 
   "automation-workflow":
     "Automated trading requires data, strategy, execution, and monitoring—a full pipeline. The lesson outlines the architecture. You'll understand the workflow.",
@@ -580,11 +586,11 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "live-deployment":
     "Going live requires a checklist—kill switch, alerts, runbook. The lesson covers deployment best practices. You'll deploy safely.",
   "automated-summary":
-    "Automated systems complete the quant journey—the lesson recaps workflow and safety. You'll finish the course.",
+    "Automated systems complete the quant journey—from data and strategy to execution and monitoring. The lesson recaps the full workflow, paper-trading before live, and the safety checklist for deployment. You'll finish the course with a complete picture of building and running automated trading systems.",
 
   // Level 5 Exam
   "level-5-exam":
-    "The Level 5 exam plus coding assessment certifies your quant trading knowledge. Pass with 85% to earn certification. You'll demonstrate mastery of the full curriculum.",
+    "The Level 5 exam plus coding assessment certifies your quantitative trading knowledge—from Python and data through backtesting, strategies, ML, and automated systems. Pass with 85% to earn certification and demonstrate mastery of the full curriculum from beginner to quant trader.",
 };
 
 /**
