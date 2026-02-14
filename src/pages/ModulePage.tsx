@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MODULES } from "../data/curriculum";
 import { getLessonsByModule } from "../data/lessons";
+import { getLessonSummary } from "../data/lessonSummaries";
 import { useProgress } from "../contexts/ProgressContext";
-import { Check, Circle } from "lucide-react";
+import { Check, Circle, ChevronDown, ChevronUp } from "lucide-react";
 import { LearnSidebar } from "../components/learn/LearnSidebar";
 import { Flashcards } from "../components/learn/Flashcards";
 import { getFlashcardsForModule } from "../data/moduleFlashcards";
@@ -11,6 +13,7 @@ export function ModulePage() {
   const { levelId, moduleSlug } = useParams<{ levelId: string; moduleSlug: string }>();
   const module_ = MODULES.find((m) => m.slug === moduleSlug && m.level === parseInt(levelId || "1"));
   const { isLessonComplete } = useProgress();
+  const [expandedLessonId, setExpandedLessonId] = useState<string | null>(null);
 
   if (!module_) {
     return (
@@ -59,28 +62,51 @@ export function ModulePage() {
         ) : (
         lessons.map((lesson) => {
           const complete = isLessonComplete(lesson.id);
+          const isExpanded = expandedLessonId === lesson.id;
           return (
-            <a
+            <div
               key={lesson.id}
-              href={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
-              className="flex items-center gap-4 p-4 rounded-lg border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all"
+              className="rounded-lg border border-surface-200 dark:border-surface-700 overflow-hidden"
             >
-              <div className="flex-shrink-0">
-                {complete ? (
-                  <Check className="h-6 w-6 text-emerald-500" />
-                ) : (
-                  <Circle className="h-6 w-6 text-surface-400" />
-                )}
+              <div className="flex items-center gap-4 p-4 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all">
+                <Link
+                  href={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
+                  className="flex items-center gap-4 flex-1 min-w-0 group"
+                >
+                  <div className="flex-shrink-0">
+                    {complete ? (
+                      <Check className="h-6 w-6 text-emerald-500" />
+                    ) : (
+                      <Circle className="h-6 w-6 text-surface-400" />
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-semibold text-surface-900 dark:text-surface-100 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                      {lesson.title}
+                    </h2>
+                    <p className="text-sm text-surface-600 dark:text-surface-400">
+                      {lesson.duration} • {lesson.objectives.length} objectives
+                    </p>
+                  </div>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setExpandedLessonId(isExpanded ? null : lesson.id)}
+                  className="flex-shrink-0 p-2 rounded-lg text-surface-500 hover:text-surface-900 dark:hover:text-surface-100 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+                  aria-expanded={isExpanded}
+                  aria-label={isExpanded ? "Hide summary" : "Show summary"}
+                >
+                  {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                </button>
               </div>
-              <div className="flex-1 min-w-0">
-                <h2 className="font-semibold text-surface-900 dark:text-surface-100">
-                  {lesson.title}
-                </h2>
-                <p className="text-sm text-surface-600 dark:text-surface-400">
-                  {lesson.duration} • {lesson.objectives.length} objectives
-                </p>
-              </div>
-            </a>
+              {isExpanded && (
+                <div className="pb-4 pt-0 pl-4 pr-4 ml-14">
+                  <p className="text-sm text-surface-600 dark:text-surface-400 leading-relaxed">
+                    {getLessonSummary(lesson)}
+                  </p>
+                </div>
+              )}
+            </div>
           );
         })
         )}
