@@ -6,7 +6,7 @@ import { AdminAuthModal } from "../admin/AdminAuthModal";
 import { subscribeToNewsletter } from "../../services/newsletter";
 
 export function Footer() {
-  const { activate, attemptsRemaining } = useAdmin();
+  const { activate, attemptsRemaining, isAdmin } = useAdmin();
   const [modalOpen, setModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -66,7 +66,7 @@ export function Footer() {
                   { to: "/learn/1", label: "Level 1: Foundations" },
                   { to: "/warnings", label: "Risk Warnings" },
                   { to: "/glossary", label: "Glossary" },
-                  { to: "/settings/api", label: "API Setup" },
+                  ...(isAdmin ? [{ to: "/settings/api", label: "API Setup" }] : []),
                 ].map((item) => (
                   <li key={item.to}>
                     <Link to={item.to} className="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors duration-200">

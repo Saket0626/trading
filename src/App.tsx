@@ -70,7 +70,7 @@ function AppLayoutInner() {
             <Route path="/glossary" element={<GlossaryPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/donations" element={<DonationsPage />} />
-            <Route path="/settings/api" element={<ApiSetupPage />} />
+            <Route path="/settings/api" element={<AdminRoute><ApiSetupPage /></AdminRoute>} />
             <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboardPage /></AdminRoute>} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
