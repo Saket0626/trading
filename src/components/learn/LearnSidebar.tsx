@@ -69,21 +69,23 @@ export function LearnSidebar() {
       aria-label="Curriculum navigation"
     >
       <div className={`sticky flex flex-col overflow-hidden transition-all duration-200 ${innerTop} ${innerHeight}`}>
-        <div className="flex items-center justify-between p-4">
-          <h2 className="font-display font-semibold text-[var(--text-primary)] text-sm">
-            Curriculum
-          </h2>
-          <button
-            onClick={toggleCurriculum}
-            className="p-1.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
-            aria-expanded="true"
-            aria-label="Hide curriculum"
-            title="Hide curriculum"
-          >
-            <PanelLeftClose className="h-4 w-4" aria-hidden />
-          </button>
+        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-4 mb-4">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              Curriculum
+            </p>
+            <button
+              onClick={toggleCurriculum}
+              className="p-1.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+              aria-expanded="true"
+              aria-label="Hide curriculum"
+              title="Hide curriculum"
+            >
+              <PanelLeftClose className="h-4 w-4" aria-hidden />
+            </button>
+          </div>
         </div>
-        <nav className="flex-1 overflow-y-auto py-2" aria-label="Course curriculum">
+        <nav className="flex-1 overflow-y-auto space-y-1" aria-label="Course curriculum">
           {LEVELS.map((level) => {
             const modules = level.moduleIds
               .map((id) => MODULES.find((m) => m.id === id))
@@ -103,31 +105,29 @@ export function LearnSidebar() {
               (level.id === 5 && level5Unlocked);
 
             return (
-              <div key={level.id} className="last:border-0">
+              <div key={level.id} className="space-y-0.5">
                 <button
                   onClick={() => toggleLevel(level.id)}
-                  className={`w-full flex items-center gap-2 px-3 py-2.5 text-left text-sm transition-all duration-200 ${
+                  className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-sm transition-all duration-200 ${
                     isCurrentLevel
-                      ? "border-l-2 border-[var(--accent-primary)] pl-[10px]"
-                      : "border-l-2 border-transparent hover:border-[var(--accent-primary)]/40"
+                      ? "bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] font-medium"
+                      : "text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent-primary)]"
                   } ${!unlocked ? "opacity-60" : ""} focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-inset`}
                   aria-expanded={isExpanded}
                   aria-controls={`level-${level.id}-modules`}
                 >
                   {isExpanded ? (
-                    <ChevronDown className="h-4 w-4 text-[var(--text-secondary)] shrink-0" aria-hidden />
+                    <ChevronDown className="h-4 w-4 text-current shrink-0" aria-hidden />
                   ) : (
-                    <ChevronRight className="h-4 w-4 text-[var(--text-secondary)] shrink-0" aria-hidden />
+                    <ChevronRight className="h-4 w-4 text-current shrink-0" aria-hidden />
                   )}
-                  <span className="font-medium text-[var(--text-primary)]">
-                    Level {level.id}
-                  </span>
+                  <span>Level {level.id}</span>
                   {!unlocked && (
                     <Lock className="h-4 w-4 text-[var(--text-secondary)] shrink-0 ml-auto" aria-hidden />
                   )}
                 </button>
                 {isExpanded && (
-                  <div id={`level-${level.id}-modules`} className="pb-2">
+                  <div id={`level-${level.id}-modules`} className="pl-2 ml-2 border-l border-[var(--border-subtle)] space-y-0.5 py-1">
                     {modules.map((mod) => {
                       if (!mod) return null;
                       const lessons = getLessonsByModule(mod.id);
@@ -138,7 +138,7 @@ export function LearnSidebar() {
                         return (
                           <div
                             key={mod.id}
-                            className="flex items-center justify-between gap-2 px-4 py-2 pl-10 text-sm text-[var(--text-secondary)] cursor-not-allowed"
+                            className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-sm text-[var(--text-secondary)] cursor-not-allowed opacity-60"
                             aria-disabled="true"
                             title="Complete previous levels to unlock"
                           >
@@ -151,11 +151,11 @@ export function LearnSidebar() {
                         <Link
                           key={mod.id}
                           to={`/learn/${level.id}/${mod.slug}`}
-                          className={`block px-4 py-2 pl-10 text-sm transition-colors duration-200 ${
+                          className={`block px-3 py-2 rounded-lg text-sm transition-colors duration-200 ${
                             isCurrentModule
-                              ? "text-[var(--accent-primary)] font-medium border-l-2 border-[var(--accent-primary)] pl-[10px] -ml-[2px]"
-                              : "text-[var(--text-secondary)] hover:text-[var(--accent-primary)]"
-                          } focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-inset rounded-r`}
+                              ? "bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] font-medium"
+                              : "text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent-primary)]"
+                          } focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-inset`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             <span className="truncate">{mod.title}</span>

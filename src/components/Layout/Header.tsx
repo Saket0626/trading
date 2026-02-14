@@ -1,7 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Moon, Sun, Menu, X, Search, BarChart3, LogOut, CandlestickChart } from "lucide-react";
+import { Menu, X, Search, BarChart3, LogOut, CandlestickChart } from "lucide-react";
 import { useState, useCallback } from "react";
-import { useTheme } from "../../contexts/ThemeContext";
 import { useProgress } from "../../contexts/ProgressContext";
 import { useAdmin } from "../../contexts/AdminContext";
 
@@ -15,17 +14,12 @@ const navLinks = [
 ];
 
 export function Header() {
-  const { setTheme, resolvedTheme } = useTheme();
   const { xp } = useProgress();
   const { isAdmin, deactivate } = useAdmin();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-
-  const toggleTheme = () => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
-  };
 
   const handleSearch = useCallback(
     (e: React.FormEvent) => {
@@ -118,17 +112,6 @@ export function Header() {
           >
             {xp} XP
           </span>
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]"
-            aria-label={resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {resolvedTheme === "dark" ? (
-              <Sun className="h-5 w-5" aria-hidden />
-            ) : (
-              <Moon className="h-5 w-5" aria-hidden />
-            )}
-          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
