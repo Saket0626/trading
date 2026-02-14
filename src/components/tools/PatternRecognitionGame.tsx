@@ -2,14 +2,29 @@ import { useState, useCallback, useMemo } from "react";
 
 type Candle = { o: number; h: number; l: number; c: number };
 
-// Single-candle patterns with OHLC
-const SINGLE_PATTERNS: Record<string, { candle: Candle; name: string; buyerSeller: "buyers" | "sellers" | "indecision"; likelyDir: "up" | "down" | "sideways"; context?: string }> = {
+// Single-candle patterns with OHLC + extended candles for likelyDir (4–6 candles with trend context)
+const SINGLE_PATTERNS: Record<string, {
+  candle: Candle;
+  name: string;
+  buyerSeller: "buyers" | "sellers" | "indecision";
+  likelyDir: "up" | "down" | "sideways";
+  context?: string;
+  likelyDirCandles?: Candle[];
+  likelyDirExplanation?: string;
+}> = {
   hammer: {
     candle: { o: 100, h: 102, l: 85, c: 99 },
     name: "Hammer",
     buyerSeller: "buyers",
     likelyDir: "up",
     context: "at support",
+    likelyDirCandles: [
+      { o: 118, h: 120, l: 114, c: 115 },
+      { o: 115, h: 116, l: 108, c: 109 },
+      { o: 109, h: 111, l: 102, c: 103 },
+      { o: 100, h: 102, l: 85, c: 99 },
+    ],
+    likelyDirExplanation: "After three bearish candles showing a clear downtrend, the hammer appears. Its long lower wick shows sellers pushed price down sharply, but buyers stepped in and rejected lower prices, closing near the open. This rejection at support—where demand overwhelmed supply—often signals exhaustion of sellers and a likely bounce. Always confirm with the next candle.",
   },
   invertedHammer: {
     candle: { o: 100, h: 115, l: 98, c: 101 },
@@ -17,6 +32,13 @@ const SINGLE_PATTERNS: Record<string, { candle: Candle; name: string; buyerSelle
     buyerSeller: "buyers",
     likelyDir: "up",
     context: "after downtrend",
+    likelyDirCandles: [
+      { o: 125, h: 127, l: 120, c: 121 },
+      { o: 121, h: 122, l: 112, c: 113 },
+      { o: 113, h: 115, l: 105, c: 106 },
+      { o: 100, h: 115, l: 98, c: 101 },
+    ],
+    likelyDirExplanation: "Following a downtrend (three red candles), the inverted hammer shows a long upper wick—buyers tested higher prices but couldn't hold them. However, the close above open suggests buying pressure is building. At support after a selloff, this often precedes a reversal as buyers gain confidence. Confirm with a green follow-through candle.",
   },
   doji: {
     candle: { o: 100, h: 103, l: 97, c: 100 },
@@ -24,6 +46,13 @@ const SINGLE_PATTERNS: Record<string, { candle: Candle; name: string; buyerSelle
     buyerSeller: "indecision",
     likelyDir: "sideways",
     context: "after strong move",
+    likelyDirCandles: [
+      { o: 108, h: 110, l: 105, c: 106 },
+      { o: 106, h: 108, l: 102, c: 104 },
+      { o: 104, h: 106, l: 98, c: 100 },
+      { o: 100, h: 103, l: 97, c: 100 },
+    ],
+    likelyDirExplanation: "Three bearish candles lead into a doji—open and close are nearly equal, meaning buyers and sellers are balanced. After a strong move down, this indecision often signals exhaustion and a potential pause or reversal. Direction is unclear; wait for the next candle to confirm before acting.",
   },
   shootingStar: {
     candle: { o: 100, h: 118, l: 99, c: 99 },
@@ -31,23 +60,51 @@ const SINGLE_PATTERNS: Record<string, { candle: Candle; name: string; buyerSelle
     buyerSeller: "sellers",
     likelyDir: "down",
     context: "at resistance",
+    likelyDirCandles: [
+      { o: 88, h: 92, l: 85, c: 90 },
+      { o: 90, h: 96, l: 88, c: 94 },
+      { o: 94, h: 102, l: 92, c: 100 },
+      { o: 100, h: 118, l: 99, c: 99 },
+    ],
+    likelyDirExplanation: "After three bullish candles in an uptrend, the shooting star appears at the top. Its long upper wick shows buyers pushed price high, but sellers aggressively sold into that strength and closed the candle red near the open. This rejection at resistance suggests demand is weakening and price is likely to turn down. Look for confirmation with a red follow-through.",
   },
   marubozuBull: {
     candle: { o: 100, h: 112, l: 100, c: 112 },
     name: "Bullish Marubozu",
     buyerSeller: "buyers",
     likelyDir: "up",
+    likelyDirCandles: [
+      { o: 120, h: 122, l: 115, c: 116 },
+      { o: 116, h: 117, l: 108, c: 109 },
+      { o: 109, h: 111, l: 102, c: 103 },
+      { o: 100, h: 112, l: 100, c: 112 },
+    ],
+    likelyDirExplanation: "After a downtrend, the bullish marubozu has no wicks—it opens at the low and closes at the high. This means buyers controlled the entire period with no meaningful selloff. Strong buying pressure after a decline often leads to further upside. Use with trend or support for better odds.",
   },
   marubozuBear: {
     candle: { o: 110, h: 110, l: 98, c: 98 },
     name: "Bearish Marubozu",
     buyerSeller: "sellers",
     likelyDir: "down",
+    likelyDirCandles: [
+      { o: 85, h: 90, l: 82, c: 88 },
+      { o: 88, h: 95, l: 86, c: 93 },
+      { o: 93, h: 100, l: 90, c: 98 },
+      { o: 110, h: 110, l: 98, c: 98 },
+    ],
+    likelyDirExplanation: "Following an uptrend, the bearish marubozu opens at the high and closes at the low—sellers dominated without relief. No lower wick means no buying interest. After a rally, this suggests distribution and often leads to lower prices. Confirm at resistance or with the next candle.",
   },
 };
 
-// Multi-candle patterns: [candle1, candle2] or [candle1, candle2, candle3]
-const MULTI_PATTERNS: Record<string, { candles: Candle[]; name: string; buyerSeller: "buyers" | "sellers"; likelyDir: "up" | "down" }> = {
+// Multi-candle patterns with extended candles for likelyDir (4–6 candles with trend context)
+const MULTI_PATTERNS: Record<string, {
+  candles: Candle[];
+  name: string;
+  buyerSeller: "buyers" | "sellers";
+  likelyDir: "up" | "down";
+  likelyDirCandles?: Candle[];
+  likelyDirExplanation?: string;
+}> = {
   bullishEngulfing: {
     candles: [
       { o: 105, h: 106, l: 100, c: 101 },
@@ -56,6 +113,13 @@ const MULTI_PATTERNS: Record<string, { candles: Candle[]; name: string; buyerSel
     name: "Bullish Engulfing",
     buyerSeller: "buyers",
     likelyDir: "up",
+    likelyDirCandles: [
+      { o: 112, h: 114, l: 108, c: 109 },
+      { o: 109, h: 111, l: 104, c: 105 },
+      { o: 105, h: 106, l: 100, c: 101 },
+      { o: 99, h: 108, l: 98, c: 107 },
+    ],
+    likelyDirExplanation: "After a downtrend (three red candles), the bullish engulfing forms: the green candle's body fully engulfs the prior red body. This shows buyers overwhelmed sellers—the close above the prior open signals strong buying pressure after a selloff. The engulfing pattern often marks a reversal; price is likely to go up. Best used at support.",
   },
   bearishEngulfing: {
     candles: [
@@ -65,6 +129,13 @@ const MULTI_PATTERNS: Record<string, { candles: Candle[]; name: string; buyerSel
     name: "Bearish Engulfing",
     buyerSeller: "sellers",
     likelyDir: "down",
+    likelyDirCandles: [
+      { o: 92, h: 96, l: 88, c: 94 },
+      { o: 94, h: 100, l: 92, c: 98 },
+      { o: 99, h: 106, l: 98, c: 105 },
+      { o: 106, h: 107, l: 97, c: 96 },
+    ],
+    likelyDirExplanation: "Following an uptrend (three green candles), the bearish engulfing forms: the red candle's body fully engulfs the prior green body. Sellers overwhelmed buyers—the close below the prior open signals strong selling pressure after a rally. This often marks a reversal; price is likely to go down. Best used at resistance.",
   },
   morningStar: {
     candles: [
@@ -75,6 +146,14 @@ const MULTI_PATTERNS: Record<string, { candles: Candle[]; name: string; buyerSel
     name: "Morning Star",
     buyerSeller: "buyers",
     likelyDir: "up",
+    likelyDirCandles: [
+      { o: 118, h: 120, l: 114, c: 115 },
+      { o: 115, h: 116, l: 108, c: 109 },
+      { o: 108, h: 110, l: 105, c: 105 },
+      { o: 105, h: 106, l: 104, c: 105 },
+      { o: 104, h: 110, l: 103, c: 109 },
+    ],
+    likelyDirExplanation: "After a downtrend (two red candles), the Morning Star forms: (1) large red candle, (2) small indecision candle (doji-like), (3) large green candle closing into the first candle's body. The small middle candle shows sellers losing momentum; the green close confirms buyers taking control. A strong reversal pattern—price is likely to go up.",
   },
   eveningStar: {
     candles: [
@@ -85,6 +164,14 @@ const MULTI_PATTERNS: Record<string, { candles: Candle[]; name: string; buyerSel
     name: "Evening Star",
     buyerSeller: "sellers",
     likelyDir: "down",
+    likelyDirCandles: [
+      { o: 88, h: 92, l: 85, c: 90 },
+      { o: 90, h: 98, l: 88, c: 95 },
+      { o: 95, h: 102, l: 94, c: 101 },
+      { o: 102, h: 103, l: 101, c: 102 },
+      { o: 102, h: 103, l: 95, c: 96 },
+    ],
+    likelyDirExplanation: "After an uptrend (two green candles), the Evening Star forms: (1) large green candle, (2) small indecision candle, (3) large red candle closing into the first candle's body. The small middle candle shows buyers losing momentum; the red close confirms sellers taking control. A strong reversal pattern—price is likely to go down.",
   },
   haramiBull: {
     candles: [
@@ -94,6 +181,13 @@ const MULTI_PATTERNS: Record<string, { candles: Candle[]; name: string; buyerSel
     name: "Bullish Harami",
     buyerSeller: "buyers",
     likelyDir: "up",
+    likelyDirCandles: [
+      { o: 118, h: 120, l: 114, c: 115 },
+      { o: 115, h: 116, l: 108, c: 109 },
+      { o: 108, h: 110, l: 100, c: 101 },
+      { o: 100, h: 103, l: 99, c: 102 },
+    ],
+    likelyDirExplanation: "After a downtrend (two red candles), the Bullish Harami forms: a large red candle followed by a small green candle inside the prior body. The small green body shows sellers losing control and buyers stepping in. Less aggressive than engulfing but still signals a potential reversal—price is likely to go up. Confirm with follow-through.",
   },
 };
 
@@ -138,19 +232,21 @@ function buildQuestions(): QuestionType[] {
     q.push({ type: "buyerSeller", patternId: id, candles: p.candles, options, correctIndex: p.buyerSeller === "buyers" ? 0 : 1 });
   });
 
-  // Likely direction (single)
+  // Likely direction (single) — use extended 4–6 candles when available
   singleIds.forEach((id) => {
     const p = SINGLE_PATTERNS[id];
     const options = ["Price likely to go up", "Price likely to go down", "Sideways / unclear"];
     const correctIdx = p.likelyDir === "up" ? 0 : p.likelyDir === "down" ? 1 : 2;
-    q.push({ type: "likelyDir", patternId: id, candles: [p.candle], options, correctIndex: correctIdx, context: p.context });
+    const candles = p.likelyDirCandles ?? [p.candle];
+    q.push({ type: "likelyDir", patternId: id, candles, options, correctIndex: correctIdx, context: p.context });
   });
 
-  // Likely direction (multi)
+  // Likely direction (multi) — use extended 4–6 candles when available
   multiIds.forEach((id) => {
     const p = MULTI_PATTERNS[id];
     const options = ["Price likely to go up", "Price likely to go down"];
-    q.push({ type: "likelyDir", patternId: id, candles: p.candles, options, correctIndex: p.likelyDir === "up" ? 0 : 1 });
+    const candles = p.likelyDirCandles ?? p.candles;
+    q.push({ type: "likelyDir", patternId: id, candles, options, correctIndex: p.likelyDir === "up" ? 0 : 1 });
   });
 
   // Wick interpretation
@@ -176,15 +272,16 @@ function buildQuestions(): QuestionType[] {
   return q;
 }
 
-// Candle SVG - renders 1, 2, or 3 candles with proper scaling
+// Candle SVG - renders 1–6 candles with proper scaling
 function CandleSvg({ candles, maxHeight = 120 }: { candles: Candle[]; maxHeight?: number }) {
   const allH = candles.flatMap((c) => [c.h, c.l]);
   const globHigh = Math.max(...allH);
   const globLow = Math.min(...allH);
   const range = Math.max(globHigh - globLow, 1);
   const scale = maxHeight / range;
-  const candleWidth = candles.length === 1 ? 40 : candles.length === 2 ? 28 : 22;
-  const gap = 8;
+  const n = candles.length;
+  const candleWidth = n === 1 ? 40 : n === 2 ? 32 : n <= 4 ? 24 : 20;
+  const gap = n <= 2 ? 8 : 6;
   const totalW = candles.length * candleWidth + (candles.length - 1) * gap;
   const baseY = maxHeight + 10;
 
@@ -329,8 +426,17 @@ export function PatternRecognitionGame() {
     }
 
     if (q.type === "likelyDir") {
-      if (correct) return "Correct! Patterns suggest probability, not certainty—always use stops.";
-      return `The pattern suggested "${q.options[correctIndex]}". Patterns work best at support/resistance with confirmation.`;
+      const explanation =
+        (SINGLE_PATTERNS[q.patternId] as { likelyDirExplanation?: string })?.likelyDirExplanation ??
+        (MULTI_PATTERNS[q.patternId] as { likelyDirExplanation?: string })?.likelyDirExplanation;
+      if (correct) {
+        return explanation
+          ? `Correct! ${explanation}`
+          : "Correct! Patterns suggest probability, not certainty—always use stops.";
+      }
+      return explanation
+        ? `The answer was "${q.options[correctIndex]}". ${explanation}`
+        : `The pattern suggested "${q.options[correctIndex]}". Patterns work best at support/resistance with confirmation.`;
     }
 
     if (q.type === "wick" || q.type === "body" || q.type === "ohlc") {
