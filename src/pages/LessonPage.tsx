@@ -16,6 +16,7 @@ import { QuizResults } from "../components/quiz/QuizResults";
 import { QuizErrorBoundary } from "../components/quiz/QuizErrorBoundary";
 import { MODULES } from "../data/curriculum";
 import { LearnSidebar } from "../components/learn/LearnSidebar";
+import { useSidebar } from "../contexts/SidebarContext";
 
 function slugify(s: string): string {
   return s
@@ -32,6 +33,7 @@ export function LessonPage() {
   }>();
   const { completeLesson, completeQuiz } = useProgress();
   const { isAdmin } = useAdmin();
+  const { curriculumOpen } = useSidebar();
 
   const lesson = getLessonBySlug(lessonSlug || "");
 
@@ -155,10 +157,16 @@ export function LessonPage() {
       </nav>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Main content - wider for longer lines, ADA-friendly */}
+        {/* Main content - expands to full width when both sidebars are closed */}
         <article
           id="lesson-main"
-          className={`flex-1 min-w-0 text-lg leading-relaxed ${tocOpen && (tocItems.length > 0 || nextLesson) ? "lg:max-w-3xl xl:max-w-4xl" : "max-w-4xl lg:max-w-5xl"}`}
+          className={`flex-1 min-w-0 text-lg leading-relaxed ${
+            !curriculumOpen && !tocOpen
+              ? "max-w-none lg:max-w-none"
+              : tocOpen && (tocItems.length > 0 || nextLesson)
+                ? "lg:max-w-3xl xl:max-w-4xl"
+                : "max-w-4xl lg:max-w-5xl"
+          }`}
         >
         <header className="mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
@@ -245,13 +253,13 @@ export function LessonPage() {
         </div>
       </article>
 
-        {/* TOC + Quick Ref - collapsible right sidebar */}
+        {/* TOC + Quick Ref - collapsible right sidebar; Show button moves to far right when closed */}
         {(tocItems.length > 0 || nextLesson) && (
           <aside
-            className={`flex-shrink-0 lg:w-52 xl:w-56 order-2 ${!tocOpen ? "lg:w-auto" : ""}`}
+            className={`flex-shrink-0 order-2 ${!tocOpen ? "lg:w-auto lg:ml-auto" : "lg:w-52 xl:w-56"}`}
             aria-label="Lesson navigation"
           >
-            <div className="lg:sticky lg:top-24">
+            <div className={`lg:sticky lg:top-24 ${!tocOpen ? "lg:fixed lg:right-4 lg:top-[7.5rem] lg:z-30" : ""}`}>
               {tocOpen ? (
                 <div className="space-y-6">
                   <div className="flex items-center justify-between gap-2">
@@ -278,7 +286,7 @@ export function LessonPage() {
               ) : (
                 <button
                   onClick={() => setTocOpen(true)}
-                  className="flex items-center gap-2 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] text-[var(--text-secondary)] text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] shadow-sm"
                   aria-label="Show sidebar"
                   title="Show table of contents"
                 >

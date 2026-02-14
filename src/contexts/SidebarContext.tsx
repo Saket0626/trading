@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useCallback, useEffect } from "rea
 const STORAGE_KEY = "chartwise-curriculum-open";
 
 const SIDEBAR_WIDTH_OPEN = 260;
-const SIDEBAR_WIDTH_COLLAPSED = 44; // Icon button only, no bar
+const SIDEBAR_WIDTH_COLLAPSED = 36; // Compact icon button, below stock ticker
 
 interface SidebarContextValue {
   curriculumOpen: boolean;

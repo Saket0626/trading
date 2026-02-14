@@ -21,21 +21,24 @@ export function LearnSidebar() {
     setExpandedLevel((prev) => (prev === id ? null : id));
   };
 
+  // top-[7.5rem] = below header (64px) + stock ticker (~56px) so it doesn't block prices
+  const collapsedTop = "top-[7.5rem]";
+
   if (!curriculumOpen) {
     return (
       <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
         <aside
-          className="fixed left-0 top-16 z-40 flex items-start pt-4"
+          className={`fixed left-0 ${collapsedTop} z-40 flex items-start`}
           aria-label="Curriculum navigation collapsed"
         >
           <button
             onClick={toggleCurriculum}
-            className="flex items-center justify-center w-11 h-11 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]"
+            className="flex items-center justify-center w-9 h-9 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]"
             aria-expanded="false"
             aria-label="Show curriculum"
             title="Show curriculum"
           >
-            <PanelLeft className="h-5 w-5" aria-hidden />
+            <PanelLeft className="h-4 w-4" aria-hidden />
           </button>
         </aside>
       </div>
