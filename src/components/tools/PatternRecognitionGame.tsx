@@ -299,14 +299,14 @@ export function PatternRecognitionGame() {
       } else {
         setStreak(0);
       }
-      if (current.q.type === "pattern" || current.q.type === "buyerSeller" || current.q.type === "likelyDir") {
-        setLastPatternId((current.q as { patternId?: string }).patternId ?? null);
-      }
     },
     [showResult, current, correctIndex]
   );
 
   const next = () => {
+    if (current && (current.q.type === "pattern" || current.q.type === "buyerSeller" || current.q.type === "likelyDir")) {
+      setLastPatternId((current.q as { patternId?: string }).patternId ?? null);
+    }
     setRound((r) => r + 1);
     setSelected(null);
     setShowResult(false);
