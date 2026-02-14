@@ -118,11 +118,23 @@ export function LearnSidebar() {
                       const completed = lessons.filter((l) => isLessonComplete(l.id)).length;
                       const total = lessons.length;
                       const isCurrentModule = moduleSlug === mod.slug;
+                      if (!unlocked) {
+                        return (
+                          <div
+                            key={mod.id}
+                            className="flex items-center justify-between gap-2 px-4 py-2 pl-10 text-sm text-surface-500 dark:text-surface-400 cursor-not-allowed"
+                            aria-disabled="true"
+                            title="Complete previous levels to unlock"
+                          >
+                            <span className="truncate">{mod.title}</span>
+                            <Lock className="h-4 w-4 shrink-0 text-surface-400 dark:text-surface-500" aria-hidden />
+                          </div>
+                        );
+                      }
                       return (
                         <Link
                           key={mod.id}
-                          to={unlocked ? `/learn/${level.id}/${mod.slug}` : "#"}
-                          onClick={(e) => !unlocked && e.preventDefault()}
+                          to={`/learn/${level.id}/${mod.slug}`}
                           className={`block px-4 py-2 pl-10 text-sm ${
                             isCurrentModule ? "text-primary-600 dark:text-primary-400 font-medium" : "text-surface-600 dark:text-surface-400"
                           } hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset rounded`}
