@@ -65,17 +65,17 @@ export function LearnSidebar() {
   return (
     <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
     <aside
-      className={`fixed left-0 bottom-0 z-40 w-[260px] border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)] transition-[top] duration-200 ${sidebarTop}`}
+      className={`fixed left-0 bottom-0 z-40 w-[260px] transition-[top] duration-200 ${sidebarTop}`}
       aria-label="Curriculum navigation"
     >
       <div className={`sticky flex flex-col overflow-hidden transition-all duration-200 ${innerTop} ${innerHeight}`}>
-        <div className="flex items-center justify-between p-4 border-b border-[var(--border-subtle)]">
+        <div className="flex items-center justify-between p-4">
           <h2 className="font-display font-semibold text-[var(--text-primary)] text-sm">
             Curriculum
           </h2>
           <button
             onClick={toggleCurriculum}
-            className="p-1.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+            className="p-1.5 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
             aria-expanded="true"
             aria-label="Hide curriculum"
             title="Hide curriculum"
@@ -103,13 +103,13 @@ export function LearnSidebar() {
               (level.id === 5 && level5Unlocked);
 
             return (
-              <div key={level.id} className="border-b border-[var(--border-subtle)] last:border-0">
+              <div key={level.id} className="last:border-0">
                 <button
                   onClick={() => toggleLevel(level.id)}
                   className={`w-full flex items-center gap-2 px-3 py-2.5 text-left text-sm transition-all duration-200 ${
                     isCurrentLevel
-                      ? "bg-[var(--bg-secondary)] border-l-2 border-[var(--accent-primary)] pl-[10px]"
-                      : "border-l-2 border-transparent hover:bg-[var(--bg-secondary)] hover:border-[var(--accent-primary)]/40"
+                      ? "border-l-2 border-[var(--accent-primary)] pl-[10px]"
+                      : "border-l-2 border-transparent hover:border-[var(--accent-primary)]/40"
                   } ${!unlocked ? "opacity-60" : ""} focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-inset`}
                   aria-expanded={isExpanded}
                   aria-controls={`level-${level.id}-modules`}
