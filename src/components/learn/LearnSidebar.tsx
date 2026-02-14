@@ -65,7 +65,7 @@ export function LearnSidebar() {
   return (
     <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
     <aside
-      className={`fixed left-0 bottom-0 z-40 w-[260px] transition-[top] duration-200 ${sidebarTop}`}
+      className={`fixed left-8 bottom-0 z-40 w-[260px] transition-[top] duration-200 ${sidebarTop}`}
       aria-label="Curriculum navigation"
     >
       <div className={`sticky flex flex-col overflow-hidden transition-all duration-200 ${innerTop} ${innerHeight}`}>
