@@ -9,12 +9,15 @@ export function CandlestickBuilder() {
   const isBullish = close >= open;
   const bodyTop = Math.max(open, close);
   const bodyBottom = Math.min(open, close);
-  const range = high - low || 1;
-  const scale = 200 / range;
+  const trueHigh = Math.max(high, open, close, low);
+  const trueLow = Math.min(low, open, close, high);
+  const range = Math.max(trueHigh - trueLow, 1);
+  const maxCandleHeight = 180;
+  const scale = maxCandleHeight / range;
 
-  const bodyHeight = Math.abs(close - open) * scale || 2;
-  const upperWickHeight = (high - bodyTop) * scale;
-  const lowerWickHeight = (bodyBottom - low) * scale;
+  const bodyHeight = Math.max(Math.abs(close - open) * scale, 2);
+  const upperWickHeight = Math.max((trueHigh - bodyTop) * scale, 0);
+  const lowerWickHeight = Math.max((bodyBottom - trueLow) * scale, 0);
 
   return (
     <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 p-6">
@@ -27,9 +30,9 @@ export function CandlestickBuilder() {
       </p>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        <div className="flex-1">
+        <div className="flex-1 min-h-[220px] flex items-center justify-center">
           <div
-            className="relative mx-auto bg-surface-100 dark:bg-surface-900 rounded-lg"
+            className="relative mx-auto bg-surface-100 dark:bg-surface-900 rounded-lg overflow-hidden"
             style={{ width: 80, height: 220 }}
           >
             {/* Lower wick */}
