@@ -17,6 +17,14 @@ export async function subscribeToNewsletter(email: string): Promise<{ success: b
     }
     return { success: false, error: error.message };
   }
+
+  // Send welcome email via Edge Function (runs async; we don't block on it)
+  supabase.functions.invoke("send-newsletter-welcome", {
+    body: { email: trimmed },
+  }).then(({ error: fnError }) => {
+    if (fnError) console.warn("Welcome email failed:", fnError);
+  });
+
   return { success: true };
 }
 

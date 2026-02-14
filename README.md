@@ -118,10 +118,16 @@ Users must set a username in Profile to appear on the leaderboard. They appear a
 
 ## Newsletter (Optional)
 
-The footer newsletter signup stores emails in Supabase. To enable:
+The footer newsletter signup stores emails in Supabase and sends a welcome email to each subscriber.
 
-1. Ensure Supabase is configured (same credentials as leaderboards)
-2. In the Supabase SQL Editor, run `supabase-newsletter.sql`
+**Quick setup:** See **[NEWSLETTER_SETUP.md](./NEWSLETTER_SETUP.md)** for a full step-by-step guide.
+
+**Summary:**
+1. Run `supabase-newsletter.sql` in Supabase SQL Editor.
+2. Create a [Resend](https://resend.com) account and API key.
+3. Install Supabase CLI → `supabase login` → `supabase link --project-ref YOUR_REF`
+4. Set secret: `supabase secrets set RESEND_API_KEY=re_xxx`
+5. Deploy: `supabase functions deploy send-newsletter-welcome`
 
 Subscribers are stored in `newsletter_subscribers`. Export via Supabase dashboard or connect to Mailchimp/ConvertKit for campaigns.
 
