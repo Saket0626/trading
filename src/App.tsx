@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ProgressProvider } from "./contexts/ProgressContext";
+import { SidebarProvider } from "./contexts/SidebarContext";
 import { AdminProvider } from "./contexts/AdminContext";
 import { Header } from "./components/Layout/Header";
 import { Footer } from "./components/Layout/Footer";
@@ -87,12 +88,14 @@ function App() {
   return (
     <ThemeProvider>
       <ProgressProvider>
+        <SidebarProvider>
         <AdminProvider>
           <BrowserRouter>
             <AnalyticsTracker />
             <AppLayoutInner />
           </BrowserRouter>
         </AdminProvider>
+        </SidebarProvider>
       </ProgressProvider>
     </ThemeProvider>
   );

@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { PanelRightClose, PanelRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { getLessonBySlug, getLessonsByModule } from "../data/lessons";
 import { level1Quizzes } from "../data/quizzes/level1";
 import { level2Quizzes } from "../data/quizzes/level2";
@@ -13,7 +14,6 @@ import { LessonQuickRef } from "../components/lesson/LessonQuickRef";
 import { Quiz } from "../components/quiz/Quiz";
 import { QuizResults } from "../components/quiz/QuizResults";
 import { QuizErrorBoundary } from "../components/quiz/QuizErrorBoundary";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MODULES } from "../data/curriculum";
 import { LearnSidebar } from "../components/learn/LearnSidebar";
 
@@ -82,6 +82,7 @@ export function LessonPage() {
     if (score === 100) completeLesson(lesson.id);
   };
 
+  const [tocOpen, setTocOpen] = useState(true);
   const tocItems = lesson.content
     .map((block, i) => {
       const heading = block.heading;
@@ -109,6 +110,13 @@ export function LessonPage() {
 
   return (
     <div className="min-h-screen">
+      {/* Skip link for accessibility */}
+      <a
+        href="#lesson-main"
+        className="sr-only focus:not-sr-only focus-visible:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary-500 focus:text-white focus:rounded-lg"
+      >
+        Skip to lesson content
+      </a>
       {/* Scroll progress bar */}
       <div
         className="fixed top-0 left-0 right-0 h-1 bg-primary-500/20 z-50"
@@ -118,52 +126,40 @@ export function LessonPage() {
         aria-valuemax={100}
       >
         <div
-          className="h-full bg-primary-500 transition-all duration-150"
+          className="h-full bg-primary-500 transition-all duration-150 motion-reduce:transition-none"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex gap-8">
+    <div className="container mx-auto px-4 py-8 max-w-[1600px]">
+      <div className="flex gap-6">
         <LearnSidebar />
         <div className="flex-1 min-w-0">
-      <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
-        <Link to="/" className="hover:text-primary-500">Home</Link>
-        <span className="mx-2">/</span>
-        <Link to="/learn" className="hover:text-primary-500">Learn</Link>
-        <span className="mx-2">/</span>
-        <Link to={`/learn/${levelId}`} className="hover:text-primary-500">
+      <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400" aria-label="Breadcrumb">
+        <Link to="/" className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">Home</Link>
+        <span className="mx-2" aria-hidden="true">/</span>
+        <Link to="/learn" className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">Learn</Link>
+        <span className="mx-2" aria-hidden="true">/</span>
+        <Link to={`/learn/${levelId}`} className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
           Level {levelId}
         </Link>
-        <span className="mx-2">/</span>
+        <span className="mx-2" aria-hidden="true">/</span>
         <Link
           to={`/learn/${levelId}/${moduleSlug}`}
-          className="hover:text-primary-500"
+          className="hover:text-primary-500 rounded px-1 py-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
         >
           {module_?.title}
         </Link>
-        <span className="mx-2">/</span>
-        <span className="text-surface-900 dark:text-surface-100">{lesson.title}</span>
+        <span className="mx-2" aria-hidden="true">/</span>
+        <span className="text-surface-900 dark:text-surface-100" aria-current="page">{lesson.title}</span>
       </nav>
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* TOC sidebar - 20% on desktop */}
-        {(tocItems.length > 0 || lesson) && (
-          <aside className="lg:w-56 flex-shrink-0 order-2 lg:order-1">
-            <div className="lg:sticky lg:top-24 space-y-6">
-              <LessonQuickRef
-                lesson={lesson}
-                levelId={levelId || "1"}
-                moduleSlug={moduleSlug || ""}
-                nextLesson={nextLesson}
-              />
-              {tocItems.length > 0 && <LessonTOC items={tocItems} />}
-            </div>
-          </aside>
-        )}
-
-        {/* Main content - 60% - 18px min font, 1.6 line spacing for readability */}
-        <article className={`flex-1 min-w-0 text-lg leading-relaxed ${tocItems.length > 0 ? "lg:max-w-[60%]" : "max-w-3xl"}`}>
+        {/* Main content - wider for longer lines, ADA-friendly */}
+        <article
+          id="lesson-main"
+          className={`flex-1 min-w-0 text-lg leading-relaxed ${tocOpen && (tocItems.length > 0 || nextLesson) ? "lg:max-w-3xl xl:max-w-4xl" : "max-w-4xl lg:max-w-5xl"}`}
+        >
         <header className="mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-surface-900 dark:text-surface-100">
             {lesson.title}
@@ -222,7 +218,7 @@ export function LessonPage() {
             {prevLesson ? (
               <Link
                 to={`/learn/${levelId}/${moduleSlug}/${prevLesson.slug}`}
-                className="inline-flex items-center gap-2 px-4 py-2 text-surface-600 dark:text-surface-400 hover:text-primary-600 dark:hover:text-primary-400 font-medium"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-surface-600 dark:text-surface-400 hover:text-primary-600 dark:hover:text-primary-400 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               >
                 <ChevronLeft className="h-5 w-5" />
                 Previous
@@ -231,7 +227,7 @@ export function LessonPage() {
             {nextLesson ? (
               <Link
                 to={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               >
                 Next: {nextLesson.title}
                 <ChevronRight className="h-5 w-5" />
@@ -239,7 +235,7 @@ export function LessonPage() {
             ) : (
               <Link
                 to={`/learn/${levelId}`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-surface-200 dark:bg-surface-700 hover:bg-surface-300 dark:hover:bg-surface-600 font-semibold rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               >
                 Back to Level {levelId}
                 <ChevronRight className="h-5 w-5" />
@@ -249,36 +245,50 @@ export function LessonPage() {
         </div>
       </article>
 
-        {/* Quick reference - 20% on desktop */}
-        <aside className="lg:w-56 flex-shrink-0 order-3 hidden xl:block">
-          <div className="sticky top-24 p-4 rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/50">
-            <p className="text-xs font-semibold uppercase text-surface-500 dark:text-surface-400 mb-3">
-              Quick reference
-            </p>
-            <p className="text-sm text-surface-600 dark:text-surface-400">
-              {lesson.duration} • {lesson.objectives.length} objectives
-            </p>
-            {lesson.prerequisites && lesson.prerequisites.length > 0 && (
-              <p className="mt-3 text-xs text-surface-500 dark:text-surface-400">
-                Prerequisites: {lesson.prerequisites.join(", ")}
-              </p>
-            )}
-            <Link
-              to={`/learn/${levelId}/${moduleSlug}`}
-              className="mt-4 block text-sm text-primary-500 hover:text-primary-600"
-            >
-              ← Back to {module_?.title}
-            </Link>
-            {nextLesson && (
-              <Link
-                to={`/learn/${levelId}/${moduleSlug}/${nextLesson.slug}`}
-                className="mt-2 block text-sm text-primary-500 hover:text-primary-600"
-              >
-                Next: {nextLesson.title} →
-              </Link>
-            )}
-          </div>
-        </aside>
+        {/* TOC + Quick Ref - collapsible right sidebar */}
+        {(tocItems.length > 0 || nextLesson) && (
+          <aside
+            className={`flex-shrink-0 lg:w-52 xl:w-56 order-2 ${!tocOpen ? "lg:w-auto" : ""}`}
+            aria-label="Lesson navigation"
+          >
+            <div className="lg:sticky lg:top-24">
+              {tocOpen ? (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-semibold uppercase text-surface-500 dark:text-surface-400">
+                      On this page
+                    </span>
+                    <button
+                      onClick={() => setTocOpen(false)}
+                      className="p-1.5 rounded-md text-surface-500 hover:bg-surface-100 dark:hover:bg-surface-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      aria-label="Hide sidebar"
+                      title="Hide sidebar for wider content"
+                    >
+                      <PanelRightClose className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <LessonQuickRef
+                    lesson={lesson}
+                    levelId={levelId || "1"}
+                    moduleSlug={moduleSlug || ""}
+                    nextLesson={nextLesson}
+                  />
+                  {tocItems.length > 0 && <LessonTOC items={tocItems} />}
+                </div>
+              ) : (
+                <button
+                  onClick={() => setTocOpen(true)}
+                  className="flex items-center gap-2 p-3 rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/50 hover:bg-surface-100 dark:hover:bg-surface-700/50 text-surface-600 dark:text-surface-400 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  aria-label="Show sidebar"
+                  title="Show table of contents"
+                >
+                  <PanelRight className="h-4 w-4" />
+                  <span className="hidden xl:inline">Show</span>
+                </button>
+              )}
+            </div>
+          </aside>
+        )}
       </div>
         </div>
       </div>
