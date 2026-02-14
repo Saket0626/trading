@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Calculator,
@@ -15,6 +15,7 @@ import {
   Activity,
   Columns3,
 } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { PositionSizeCalculator } from "../components/tools/PositionSizeCalculator";
 import { RiskRewardCalculator } from "../components/tools/RiskRewardCalculator";
 import { PipCalculator } from "../components/tools/PipCalculator";
@@ -42,8 +43,25 @@ const tools = [
   { id: "strategy-simulator", title: "Strategy Simulator", icon: BookOpen, built: false, link: "/simulator" },
 ];
 
+const VALID_TOOL_IDS = [
+  "position-size", "risk-reward", "pip", "compound", "candlestick", "python",
+  "economic-calendar", "order-book", "pattern-game", "correlation-heatmap",
+  "indicator-playground", "sr-drawing", "strategy-simulator",
+];
+
 export function ToolsPage() {
-  const [activeTool, setActiveTool] = useState("position-size");
+  const [searchParams] = useSearchParams();
+  const toolFromUrl = searchParams.get("tool");
+  const initialTool =
+    toolFromUrl && VALID_TOOL_IDS.includes(toolFromUrl) ? toolFromUrl : "position-size";
+  const [activeTool, setActiveTool] = useState(initialTool);
+
+  // Sync URL ?tool= param to active tool when it changes (e.g. direct navigation)
+  useEffect(() => {
+    if (toolFromUrl && VALID_TOOL_IDS.includes(toolFromUrl) && toolFromUrl !== activeTool) {
+      setActiveTool(toolFromUrl);
+    }
+  }, [toolFromUrl]);
 
   const renderTool = () => {
     switch (activeTool) {

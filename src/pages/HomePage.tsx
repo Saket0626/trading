@@ -83,8 +83,11 @@ export function HomePage() {
               </p>
             </div>
             <div className="hidden lg:block animate-fade-up" style={{ animationDelay: "200ms" }}>
-              <div className="relative">
-                <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:border-[#00D4AA40] hover:shadow-[var(--glow-teal)] transition-all duration-300 transform hover:-translate-y-1 hover:rotate-[0.5deg]">
+              <Link
+                to="/tools?tool=pattern-game"
+                className="block relative group"
+              >
+                <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] p-6 shadow-[0_4px_24px_rgba(0,0,0,0.4)] group-hover:border-[#00D4AA40] group-hover:shadow-[var(--glow-teal)] transition-all duration-300 transform group-hover:-translate-y-1 group-hover:rotate-[0.5deg]">
                   <div className="h-[200px] rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center mb-4">
                     <BarChart3 className="h-16 w-16 text-[var(--accent-primary)] opacity-60" />
                   </div>
@@ -94,8 +97,11 @@ export function HomePage() {
                   <p className="text-[13px] text-[var(--text-secondary)]">
                     Master the language of price action
                   </p>
+                  <p className="mt-2 text-[13px] text-[var(--accent-primary)] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    Try the Candlestick Challenge →
+                  </p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
