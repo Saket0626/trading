@@ -41,9 +41,26 @@ export function LessonPage() {
     score: number;
   } | null>(null);
 
+  const [tocOpen, setTocOpen] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
   // Scroll to top when lesson changes (e.g. client-side nav) so quiz is in view
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [lesson?.id]);
+
+  // Update scroll progress bar (no auto-complete)
+  useEffect(() => {
+    if (!lesson) return;
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+      setScrollProgress(pct);
+    };
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, [lesson?.id]);
 
   if (!lesson) {
@@ -82,7 +99,6 @@ export function LessonPage() {
     if (score === 100) completeLesson(lesson.id);
   };
 
-  const [tocOpen, setTocOpen] = useState(true);
   const tocItems = lesson.content
     .map((block, i) => {
       const heading = block.heading;
@@ -91,22 +107,6 @@ export function LessonPage() {
       return { id, title: heading };
     })
     .filter((x): x is { id: string; title: string } => Boolean(x));
-
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  // Update scroll progress bar (no auto-complete)
-  useEffect(() => {
-    if (!lesson) return;
-    const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
-      setScrollProgress(pct);
-    };
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [lesson?.id]);
 
   return (
     <div className="min-h-screen">

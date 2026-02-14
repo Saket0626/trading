@@ -6,13 +6,6 @@ import { useAdmin } from "../contexts/AdminContext";
 import { canAccessLevel } from "../lib/access";
 import type { Level } from "../types";
 
-const LEVEL_EXAM_IDS: Record<number, string> = {
-  2: "level-1-exam",
-  3: "level-2-exam",
-  4: "level-3-exam",
-  5: "level-4-exam",
-};
-
 function getLevelCompletion(
   level: Level,
   completedLessons: string[],

@@ -15,7 +15,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const WELCOME_HTML = (siteUrl: string) => `
+const WELCOME_HTML = () => `
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Welcome to ChartWise</title></head>
@@ -44,7 +44,7 @@ async function sendViaResend(email: string): Promise<Response> {
       from: RESEND_FROM,
       to: [email],
       subject: "Welcome to ChartWise — Start Learning Trading",
-      html: WELCOME_HTML(SITE_URL),
+      html: WELCOME_HTML(),
     }),
   });
   const data = await res.json();
@@ -74,7 +74,7 @@ async function sendViaBrevo(email: string): Promise<Response> {
       sender: { name: sender.name, email: sender.email },
       to: [{ email }],
       subject: "Welcome to ChartWise — Start Learning Trading",
-      htmlContent: WELCOME_HTML(SITE_URL),
+      htmlContent: WELCOME_HTML(),
     }),
   });
   const data = await res.json();
