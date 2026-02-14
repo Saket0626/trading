@@ -91,12 +91,16 @@ export function ModulePage() {
                 </Link>
                 <button
                   type="button"
-                  onClick={() => setExpandedLessonId(isExpanded ? null : lesson.id)}
-                  className="flex-shrink-0 p-2 rounded-lg text-surface-500 hover:text-surface-900 dark:hover:text-surface-100 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setExpandedLessonId(isExpanded ? null : lesson.id);
+                  }}
+                  className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-surface-300 dark:border-surface-600 text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 hover:border-primary-400 dark:hover:border-primary-500 transition-colors"
                   aria-expanded={isExpanded}
                   aria-label={isExpanded ? "Hide summary" : "Show summary"}
                 >
-                  {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                  <span className="text-sm font-medium">Summary</span>
+                  {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </button>
               </div>
               {isExpanded && (
