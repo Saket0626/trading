@@ -5,6 +5,13 @@ import { useProgress } from "../contexts/ProgressContext";
 import { useAdmin } from "../contexts/AdminContext";
 import { canAccessLevel } from "../lib/access";
 
+const LEVEL_EXAM_IDS: Record<number, string> = {
+  2: "level-1-exam",
+  3: "level-2-exam",
+  4: "level-3-exam",
+  5: "level-4-exam",
+};
+
 export function LearnIndexPage() {
   const { getQuizScore } = useProgress();
   const { isAdmin } = useAdmin();
@@ -80,38 +87,23 @@ export function LearnIndexPage() {
                 <p className="text-[13px] text-[var(--text-secondary)]">
                   {level.moduleIds.length} lessons · Free
                 </p>
-                {locked && level.id === 2 && (
-                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
-                    Pass the Level 1 Final Exam with 80%+ to unlock.{" "}
-                    <Link to="/learn/1/level-1-exam/level-1-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
-                      Take Exam →
-                    </Link>
-                  </p>
-                )}
-                {locked && level.id === 3 && (
-                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
-                    Pass the Level 2 Final Exam with 80%+ to unlock.{" "}
-                    <Link to="/learn/2/level-2-exam/level-2-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
-                      Take Exam →
-                    </Link>
-                  </p>
-                )}
-                {locked && level.id === 4 && (
-                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
-                    Pass the Level 3 Final Exam with 80%+ to unlock.{" "}
-                    <Link to="/learn/3/level-3-exam/level-3-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
-                      Take Exam →
-                    </Link>
-                  </p>
-                )}
-                {locked && level.id === 5 && (
-                  <p className="mt-3 text-[13px] text-[var(--text-secondary)]">
-                    Pass the Level 4 Final Exam with 80%+ to unlock.{" "}
-                    <Link to="/learn/4/level-4-exam/level-4-exam" className="text-[var(--accent-primary)] hover:underline font-medium">
-                      Take Exam →
-                    </Link>
-                  </p>
-                )}
+                <div className="mt-3 min-h-[28px] flex items-center">
+                  {locked && level.id >= 2 && level.id <= 5 && (
+                    <p className="text-[13px] text-[var(--text-secondary)]">
+                      <Link
+                        to={`/learn/${level.id - 1}/level-${level.id - 1}-exam/level-${level.id - 1}-exam`}
+                        className="text-[var(--accent-primary)] hover:underline font-medium"
+                      >
+                        Take Exam →
+                      </Link>
+                    </p>
+                  )}
+                  {!locked && level.id >= 2 && (
+                    <p className="text-[13px] text-[var(--accent-primary)] font-medium">
+                      Completed - {getQuizScore(LEVEL_EXAM_IDS[level.id]) ?? "—"}%
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           );

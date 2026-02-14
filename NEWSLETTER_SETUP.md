@@ -230,6 +230,60 @@ Function send-newsletter-welcome deployed successfully.
 
 ---
 
+## Part 5: Daily Digest — “Come Back & Learn” Email
+
+Send one email per day to all subscribers reminding them to return and do lessons, with a note that market news has been updated. **Only sends when market news has updated** (once per 24 hours), **3 hours after** the update.
+
+### Step 5.1 — Run the daily sends table SQL
+
+1. In Supabase **SQL Editor**, run the contents of `supabase-newsletter-daily.sql`
+2. This creates `newsletter_daily_sends` to prevent duplicate sends per day
+
+### Step 5.2 — Add secrets for the daily function
+
+In **Edge Functions** → **Secrets**, add:
+
+- **FINNHUB_API_KEY** — Your Finnhub API key (to fetch headlines for the email). Same key as in your app’s `.env` for market news.
+- **CRON_SECRET** (optional) — A random string to secure the endpoint. If set, cron requests must send header `x-cron-secret: YOUR_SECRET`.
+
+Resend/Brevo keys from Part 2 are reused.
+
+### Step 5.3 — Deploy the daily function
+
+1. Deploy `send-daily-newsletter` (via Dashboard **Deploy new function** → paste code from `supabase/functions/send-daily-newsletter/index.ts`)
+2. Or via CLI: `supabase functions deploy send-daily-newsletter`
+
+### Step 5.4 — Set up a daily cron job
+
+Market news refreshes every 24 hours. Send the email **3 hours after** that refresh.
+
+**Example:** If news “updates” at midnight UTC, run the cron at **03:00 UTC** daily.
+
+**Options:**
+
+1. **Vercel Cron** — Add to `vercel.json`:
+   ```json
+   {
+     "crons": [{
+       "path": "/api/cron/daily-newsletter",
+       "schedule": "0 3 * * *"
+     }]
+   }
+   ```
+   Then create an API route that calls your Supabase Edge Function URL.
+
+2. **cron-job.org** (free) — Create a job that:
+   - URL: `https://YOUR_PROJECT_REF.supabase.co/functions/v1/send-daily-newsletter`
+   - Schedule: Daily at 03:00 UTC (or your chosen time)
+   - Method: POST
+   - Header: `x-cron-secret: YOUR_CRON_SECRET` (if you set `CRON_SECRET`)
+
+3. **Railway / other hosts** — Use their cron or a separate cron service to POST to the function URL once per day.
+
+The function will skip if it has already sent today.
+
+---
+
 ## Troubleshooting
 
 | Problem | What to try |
@@ -251,3 +305,4 @@ Function send-newsletter-welcome deployed successfully.
 - [ ] Ran `supabase secrets set RESEND_API_KEY=re_xxx`
 - [ ] Ran `supabase functions deploy send-newsletter-welcome`
 - [ ] Tested signup and received welcome email
+- [ ] (Optional) Ran `supabase-newsletter-daily.sql`, added FINNHUB_API_KEY, deployed `send-daily-newsletter`, set up cron for daily emails

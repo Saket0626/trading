@@ -12,7 +12,7 @@ export interface MarketNewsItem {
   sentiment?: "positive" | "negative" | "neutral";
 }
 
-const REFRESH_MS = 6 * 60 * 60 * 1000; // 6 hours
+const REFRESH_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 function timeAgo(ts: number): string {
   const diff = Math.floor((Date.now() / 1000 - ts) / 60);

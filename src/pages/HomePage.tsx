@@ -288,21 +288,34 @@ export function HomePage() {
           )}
 
           {featureTab === "tools" && (
-            <div className="grid md:grid-cols-3 gap-6 animate-fade-in">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
               {[
-                { icon: Calendar, title: "Economic Calendar", desc: "Track high-impact events and releases that move markets.", to: "/tools" },
-                { icon: Calculator, title: "Position Size Calculator", desc: "Calculate proper position sizes based on risk and account size.", to: "/tools" },
-                { icon: Target, title: "Market Watchlist", desc: "Monitor live prices across stocks, forex, and crypto.", to: "/simulator" },
+                { icon: Calendar, title: "Economic Calendar", desc: "Track high-impact events and releases that move markets.", to: "/tools", badge: "ESSENTIAL", badgeColor: "bg-[#00D4AA20] text-[var(--accent-primary)]" },
+                { icon: Calculator, title: "Position Size Calculator", desc: "Calculate proper position sizes based on risk and account size.", to: "/tools", badge: "CALCULATOR", badgeColor: "bg-[#F59E0B20] text-[var(--accent-secondary)]" },
+                { icon: Target, title: "Market Watchlist", desc: "Monitor live prices across stocks, forex, and crypto.", to: "/simulator", badge: "DATA", badgeColor: "bg-[#EF444420] text-[var(--accent-danger)]" },
               ].map((item) => (
                 <Link
                   key={item.title}
                   to={item.to}
-                  className="block p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] hover:-translate-y-1 hover:border-[var(--accent-primary)] hover:shadow-[var(--glow-teal)] transition-all duration-250"
+                  className="block rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-hidden hover:-translate-y-1.5 hover:border-[#00D4AA40] hover:shadow-[var(--glow-teal)] transition-all duration-250 cursor-pointer"
                 >
-                  <item.icon className="h-12 w-12 text-[var(--accent-primary)] mb-4" />
-                  <h3 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-2">{item.title}</h3>
-                  <p className="text-[15px] text-[var(--text-secondary)] mb-4 leading-relaxed">{item.desc}</p>
-                  <span className="text-[var(--accent-primary)] font-semibold text-[15px]">Try it →</span>
+                  <div className="h-40 bg-[var(--bg-tertiary)] flex items-center justify-center">
+                    <item.icon className="h-14 w-14 text-[var(--accent-primary)] opacity-70" />
+                  </div>
+                  <div className="p-5">
+                    <span className={`inline-block px-2.5 py-1 rounded text-[12px] font-semibold uppercase ${item.badgeColor} mb-2`}>
+                      {item.badge}
+                    </span>
+                    <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-4">
+                      {item.desc}
+                    </p>
+                    <div className="flex items-center text-[13px] text-[var(--text-secondary)]">
+                      Try it →
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
