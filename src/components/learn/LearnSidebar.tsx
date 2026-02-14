@@ -119,9 +119,9 @@ export function LearnSidebar() {
                   )}
                   <span>Level {level.id}</span>
                   {unlocked ? (
-                    <LockOpen className="h-4 w-4 text-[var(--accent-primary)] shrink-0 ml-auto" aria-hidden title="Unlocked" />
+                    <LockOpen className="h-4 w-4 text-[var(--accent-primary)] shrink-0 ml-auto" aria-hidden />
                   ) : (
-                    <Lock className="h-4 w-4 text-[var(--text-secondary)] shrink-0 ml-auto" aria-hidden title="Locked" />
+                    <Lock className="h-4 w-4 text-[var(--text-secondary)] shrink-0 ml-auto" aria-hidden />
                   )}
                 </button>
                 {isExpanded && (
