@@ -129,12 +129,6 @@ export function Header() {
               <Moon className="h-5 w-5" aria-hidden />
             )}
           </button>
-          <a
-            href="/learn"
-            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold text-[15px] hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[var(--glow-teal)] transition-all duration-200"
-          >
-            Start Free
-          </a>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
@@ -166,13 +160,6 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="/learn"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 py-3 px-4 rounded-lg bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold text-center"
-            >
-              Start Free
-            </a>
             {isAdmin && (
               <>
                 <a

@@ -5,35 +5,35 @@ const TRADINGVIEW_URL = "https://www.tradingview.com/?aff_id=163337&aff_sub=3042
 
 export function TradePage() {
   return (
-    <div className="container mx-auto px-4 py-12 max-w-2xl">
-      <nav className="mb-8 text-sm text-surface-600 dark:text-surface-400">
-        <Link to="/" className="hover:text-primary-500">
+    <div className="max-w-2xl mx-auto px-8 py-12">
+      <nav className="mb-8 text-[14px] text-[var(--text-secondary)]">
+        <Link to="/" className="hover:text-[var(--accent-primary)]">
           Home
         </Link>
         <span className="mx-2">/</span>
-        <span className="text-surface-900 dark:text-surface-100">
+        <span className="text-[var(--text-primary)]">
           Trade
         </span>
       </nav>
 
       <header className="mb-8">
-        <h1 className="text-xl font-semibold text-surface-900 dark:text-surface-100 mb-1">
+        <h1 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-2">
           Real Paper Trading
         </h1>
-        <p className="text-sm text-surface-500 dark:text-surface-400">
+        <p className="text-[15px] text-[var(--text-secondary)]">
           Ready to practice with real market data? Use a professional platform to start your paper trading experience.
         </p>
       </header>
 
       <div className="space-y-6">
-        <div className="p-4 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
-          <h2 className="font-medium text-surface-900 dark:text-surface-100 text-sm mb-2">
+        <div className="p-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+          <h2 className="font-display font-semibold text-[var(--text-primary)] text-lg mb-3">
             TradingView
           </h2>
-          <p className="text-surface-700 dark:text-surface-300 text-sm leading-relaxed">
+          <p className="text-[var(--text-secondary)] text-[15px] leading-relaxed">
             TradingView is one of the world&apos;s leading charting and analysis platforms. It offers real-time data for stocks, forex, crypto, futures, and more. You get powerful technical analysis tools, drawing tools, indicators, and alerts—all in a clean, intuitive interface. Their paper trading feature lets you practice with virtual money using live market prices, so you can test your strategies risk-free before going live.
           </p>
-          <ul className="mt-3 text-sm text-surface-600 dark:text-surface-400 space-y-1 list-disc list-inside">
+          <ul className="mt-4 text-[15px] text-[var(--text-secondary)] space-y-1.5 list-disc list-inside">
             <li>Real-time charts and market data</li>
             <li>100+ technical indicators and drawing tools</li>
             <li>Paper trading with virtual funds</li>
@@ -44,16 +44,16 @@ export function TradePage() {
             href={TRADINGVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded bg-primary-600 hover:bg-primary-700 text-white font-medium text-sm transition-colors"
+            className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[var(--accent-primary)] hover:brightness-110 text-[var(--bg-primary)] font-bold text-[15px] transition-all duration-200"
           >
             Create Account on TradingView
             <ExternalLink className="h-4 w-4" />
           </a>
         </div>
 
-        <p className="text-sm text-surface-500 dark:text-surface-500">
+        <p className="text-[15px] text-[var(--text-secondary)]">
           Want to keep practicing on this site? Use our{" "}
-          <Link to="/simulator" className="text-primary-600 dark:text-primary-400 hover:underline">
+          <Link to="/simulator" className="text-[var(--accent-primary)] hover:underline">
             Practice
           </Link>{" "}
           simulator for quick paper trades.
