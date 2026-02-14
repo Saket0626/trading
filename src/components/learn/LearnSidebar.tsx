@@ -33,14 +33,14 @@ export function LearnSidebar() {
     setExpandedLevel((prev) => (prev === id ? null : id));
   };
 
-  // top-[7.5rem] = below header (64px) + stock ticker (~56px) so it doesn't block prices
-  const collapsedTop = "top-[7.5rem]";
+  // Slide up when scrolled: top-16 = directly under header/line; top-[7.5rem] = below ticker
+  const collapsedTop = scrolledPastTicker ? "top-16" : "top-[7.5rem]";
 
   if (!curriculumOpen) {
     return (
       <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
         <aside
-          className={`fixed left-0 ${collapsedTop} z-40 flex items-start`}
+          className={`fixed left-0 ${collapsedTop} z-40 flex items-start transition-[top] duration-200`}
           aria-label="Curriculum navigation collapsed"
         >
           <button
