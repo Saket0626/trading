@@ -68,7 +68,7 @@ export function LearnSidebar() {
       className={`fixed left-0 bottom-0 z-40 w-[260px] border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)] transition-[top] duration-200 ${sidebarTop}`}
       aria-label="Curriculum navigation"
     >
-      <div className={`sticky flex flex-col overflow-hidden transition-all duration-200 ${innerTop} ${innerHeight}`}
+      <div className={`sticky flex flex-col overflow-hidden transition-all duration-200 ${innerTop} ${innerHeight}`}>
         <div className="flex items-center justify-between p-4 border-b border-[var(--border-subtle)]">
           <h2 className="font-display font-semibold text-[var(--text-primary)] text-sm">
             Curriculum
