@@ -33,12 +33,13 @@ export function LearnSidebar() {
         >
           <button
             onClick={toggleCurriculum}
-            className="flex items-center justify-center w-9 h-9 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)]"
+            className="flex items-center gap-2 px-3 py-2 rounded-r-lg text-[var(--text-secondary)] hover:text-[var(--accent-primary)] hover:bg-[var(--bg-secondary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] text-sm font-medium"
             aria-expanded="false"
             aria-label="Show curriculum"
             title="Show curriculum"
           >
-            <PanelLeft className="h-4 w-4" aria-hidden />
+            <PanelLeft className="h-4 w-4 shrink-0" aria-hidden />
+            <span>Show</span>
           </button>
         </aside>
       </div>
@@ -48,10 +49,10 @@ export function LearnSidebar() {
   return (
     <div className="hidden lg:block flex-shrink-0" style={{ width: sidebarWidth }} aria-hidden>
     <aside
-      className="fixed left-0 top-16 bottom-0 z-40 w-[260px] border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
+      className="fixed left-0 top-[7.5rem] bottom-0 z-40 w-[260px] border-r border-[var(--border-subtle)] bg-[var(--bg-tertiary)]"
       aria-label="Curriculum navigation"
     >
-      <div className="sticky top-24 h-[calc(100vh-7rem)] flex flex-col overflow-hidden">
+      <div className="sticky top-[7.5rem] h-[calc(100vh-7.5rem)] flex flex-col overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-[var(--border-subtle)]">
           <h2 className="font-display font-semibold text-[var(--text-primary)] text-sm">
             Curriculum
