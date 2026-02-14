@@ -116,8 +116,9 @@ export function LearnIndexPage() {
             </div>
           );
 
+          const colStart = level.id === 4 ? "lg:col-start-2" : level.id === 5 ? "lg:col-start-3" : "";
           return (
-            <div key={level.id}>
+            <div key={level.id} className={colStart}>
               {locked && !isAdmin ? (
                 <div className="block">{cardContent}</div>
               ) : (

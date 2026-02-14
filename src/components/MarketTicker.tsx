@@ -73,9 +73,6 @@ export function MarketTicker() {
           );
         })}
       </div>
-      <p className="text-[11px] text-[var(--text-secondary)] text-center mt-1.5">
-        Live data · Crypto: Binance · Stocks: Finnhub (add VITE_FINNHUB_API_KEY for stocks)
-      </p>
     </div>
   );
 }
