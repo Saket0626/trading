@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { LEVELS } from "../data/curriculum";
+import { LEVELS, MODULES } from "../data/curriculum";
 import { Lock, Crown, BarChart3 } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
 import { useAdmin } from "../contexts/AdminContext";
 import { canAccessLevel } from "../lib/access";
+import type { Level } from "../types";
 
 const LEVEL_EXAM_IDS: Record<number, string> = {
   2: "level-1-exam",
@@ -12,8 +13,26 @@ const LEVEL_EXAM_IDS: Record<number, string> = {
   5: "level-4-exam",
 };
 
+function getLevelCompletion(
+  level: Level,
+  completedLessons: string[],
+  getQuizScore: (id: string) => number | undefined
+): { percent: number; isFullyComplete: boolean } {
+  const levelModules = MODULES.filter((m) => level.moduleIds.includes(m.id));
+  const allLessonIds = levelModules.flatMap((m) => m.lessonIds);
+  const examId = `level-${level.id}-exam`;
+  const contentLessonIds = allLessonIds.filter((id) => id !== examId);
+  const totalItems = contentLessonIds.length + 1;
+  const contentDone = contentLessonIds.filter((id) => completedLessons.includes(id)).length;
+  const examPassed = (getQuizScore(examId) ?? 0) >= 80;
+  const completedItems = contentDone + (examPassed ? 1 : 0);
+  const percent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+  const isFullyComplete = completedItems === totalItems;
+  return { percent, isFullyComplete };
+}
+
 export function LearnIndexPage() {
-  const { getQuizScore } = useProgress();
+  const { getQuizScore, completedLessons } = useProgress();
   const { isAdmin } = useAdmin();
   const level2Unlocked = canAccessLevel(2, getQuizScore, isAdmin);
   const level3Unlocked = canAccessLevel(3, getQuizScore, isAdmin);
@@ -40,6 +59,7 @@ export function LearnIndexPage() {
             (level.id === 5 && !level5Unlocked);
           const difficulty =
             level.id === 1 ? "BEGINNER" : level.id <= 3 ? "INTERMEDIATE" : "ADVANCED";
+          const { percent: levelPercent, isFullyComplete } = getLevelCompletion(level, completedLessons, getQuizScore);
           const badgeColor =
             level.id === 1
               ? "bg-[#00D4AA20] text-[var(--accent-primary)]"
@@ -82,14 +102,15 @@ export function LearnIndexPage() {
                   {level.description}
                 </p>
                 <div className="h-1.5 rounded-full bg-[var(--bg-tertiary)] overflow-hidden mb-3">
-                  <div className="h-full bg-[var(--accent-primary)] rounded-full" style={{ width: "0%" }} />
+                  <div className="h-full bg-[var(--accent-primary)] rounded-full transition-all duration-300" style={{ width: `${levelPercent}%` }} />
                 </div>
                 <p className="text-[13px] text-[var(--text-secondary)]">
                   {level.moduleIds.length} lessons · Free
                 </p>
-                <div className="mt-3 min-h-[28px] flex items-center">
+                <div className="mt-3 min-h-[28px] flex flex-col gap-1">
                   {locked && level.id >= 2 && level.id <= 5 && (
                     <p className="text-[13px] text-[var(--text-secondary)]">
+                      Pass the Level {level.id - 1} Final Exam with 80%+ to unlock.{" "}
                       <Link
                         to={`/learn/${level.id - 1}/level-${level.id - 1}-exam/level-${level.id - 1}-exam`}
                         className="text-[var(--accent-primary)] hover:underline font-medium"
@@ -98,9 +119,9 @@ export function LearnIndexPage() {
                       </Link>
                     </p>
                   )}
-                  {!locked && level.id >= 2 && (
+                  {!locked && (
                     <p className="text-[13px] text-[var(--accent-primary)] font-medium">
-                      Completed - {getQuizScore(LEVEL_EXAM_IDS[level.id]) ?? "—"}%
+                      {isFullyComplete ? "Completed - 100%" : `${levelPercent}% complete`}
                     </p>
                   )}
                 </div>

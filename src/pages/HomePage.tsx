@@ -258,32 +258,42 @@ export function HomePage() {
           </div>
 
           {featureTab === "courses" && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-              {LEVELS.slice(0, 6).map((level) => (
-                <Link
-                  key={level.id}
-                  to={`/learn/${level.id}`}
-                  className="block rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-hidden hover:-translate-y-1.5 hover:border-[#00D4AA40] hover:shadow-[var(--glow-teal)] transition-all duration-250 cursor-pointer"
-                >
-                  <div className="h-40 bg-[var(--bg-tertiary)] flex items-center justify-center">
-                    <BarChart3 className="h-14 w-14 text-[var(--accent-primary)] opacity-70" />
-                  </div>
-                  <div className="p-5">
-                    <span className="inline-block px-2.5 py-1 rounded text-[12px] font-semibold bg-[#00D4AA20] text-[var(--accent-primary)] mb-2">
-                      {level.id === 1 ? "BEGINNER" : level.id <= 3 ? "INTERMEDIATE" : "ADVANCED"}
-                    </span>
-                    <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
-                      {level.title}
-                    </h3>
-                    <p className="text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-4">
-                      {level.description}
-                    </p>
-                    <div className="flex items-center text-[13px] text-[var(--text-secondary)]">
-                      {level.moduleIds.length} modules · Free
+            <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-6 animate-fade-in">
+              {LEVELS.slice(0, 6).map((level) => {
+                const difficulty = level.id === 1 ? "BEGINNER" : level.id <= 3 ? "INTERMEDIATE" : "ADVANCED";
+                const badgeColor =
+                  level.id === 1
+                    ? "bg-[#00D4AA20] text-[var(--accent-primary)]"
+                    : level.id <= 3
+                      ? "bg-[#F59E0B20] text-[var(--accent-secondary)]"
+                      : "bg-[#EF444420] text-[var(--accent-danger)]";
+                const gridClasses = level.id === 4 ? "lg:col-span-2 lg:col-start-2" : level.id === 5 ? "lg:col-span-2 lg:col-start-4" : "lg:col-span-2";
+                return (
+                  <Link
+                    key={level.id}
+                    to={`/learn/${level.id}`}
+                    className={`block rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] overflow-hidden hover:-translate-y-1.5 hover:border-[#00D4AA40] hover:shadow-[var(--glow-teal)] transition-all duration-250 cursor-pointer ${gridClasses}`}
+                  >
+                    <div className="h-40 bg-[var(--bg-tertiary)] flex items-center justify-center">
+                      <BarChart3 className="h-14 w-14 text-[var(--accent-primary)] opacity-70" />
                     </div>
-                  </div>
-                </Link>
-              ))}
+                    <div className="p-5">
+                      <span className={`inline-block px-2.5 py-1 rounded text-[12px] font-semibold uppercase ${badgeColor} mb-2`}>
+                        {difficulty}
+                      </span>
+                      <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-2">
+                        {level.title}
+                      </h3>
+                      <p className="text-[14px] text-[var(--text-secondary)] line-clamp-2 mb-4">
+                        {level.description}
+                      </p>
+                      <div className="flex items-center text-[13px] text-[var(--text-secondary)]">
+                        {level.moduleIds.length} modules · Free
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           )}
 
