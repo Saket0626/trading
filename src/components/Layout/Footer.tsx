@@ -1,13 +1,31 @@
 import { Link } from "react-router-dom";
-import { Settings, CandlestickChart } from "lucide-react";
+import { Settings, CandlestickChart, Check, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useAdmin } from "../../contexts/AdminContext";
 import { AdminAuthModal } from "../admin/AdminAuthModal";
+import { subscribeToNewsletter } from "../../services/newsletter";
 
 export function Footer() {
   const { activate, attemptsRemaining } = useAdmin();
   const [modalOpen, setModalOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsletterMessage, setNewsletterMessage] = useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNewsletterStatus("loading");
+    setNewsletterMessage("");
+    const result = await subscribeToNewsletter(email);
+    if (result.success) {
+      setNewsletterStatus("success");
+      setEmail("");
+      setNewsletterMessage("Thanks for subscribing!");
+    } else {
+      setNewsletterStatus("error");
+      setNewsletterMessage(result.error || "Something went wrong.");
+    }
+  };
 
   return (
     <>
@@ -61,22 +79,39 @@ export function Footer() {
             <div>
               <h4 className="font-display font-semibold text-[var(--text-primary)] text-sm uppercase tracking-[0.08em] mb-4">Newsletter</h4>
               <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex gap-2"
+                onSubmit={handleNewsletterSubmit}
+                className="flex flex-col gap-2"
               >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2.5 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-primary)] transition-colors"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-2.5 rounded-lg bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold hover:brightness-110 transition-all duration-200"
-                >
-                  Subscribe
-                </button>
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setNewsletterStatus("idle");
+                    }}
+                    placeholder="Your email"
+                    disabled={newsletterStatus === "loading"}
+                    className="flex-1 px-4 py-2.5 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-[var(--text-primary)] placeholder:opacity-60 focus:outline-none focus:border-[var(--accent-primary)] transition-colors disabled:opacity-60"
+                  />
+                  <button
+                    type="submit"
+                    disabled={newsletterStatus === "loading"}
+                    className="px-4 py-2.5 rounded-lg bg-[var(--accent-primary)] text-[var(--bg-primary)] font-bold hover:brightness-110 transition-all duration-200 disabled:opacity-60 shrink-0 inline-flex items-center justify-center gap-2"
+                  >
+                    {newsletterStatus === "loading" ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : newsletterStatus === "success" ? (
+                      <Check className="h-4 w-4" />
+                    ) : null}
+                    Subscribe
+                  </button>
+                </div>
+                {newsletterMessage && (
+                  <p className={`text-sm ${newsletterStatus === "success" ? "text-[var(--accent-primary)]" : "text-[var(--accent-danger)]"}`}>
+                    {newsletterMessage}
+                  </p>
+                )}
               </form>
             </div>
           </div>

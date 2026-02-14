@@ -116,6 +116,15 @@ To enable live leaderboards where users compete in real time:
 
 Users must set a username in Profile to appear on the leaderboard. They appear after completing at least one lesson.
 
+## Newsletter (Optional)
+
+The footer newsletter signup stores emails in Supabase. To enable:
+
+1. Ensure Supabase is configured (same credentials as leaderboards)
+2. In the Supabase SQL Editor, run `supabase-newsletter.sql`
+
+Subscribers are stored in `newsletter_subscribers`. Export via Supabase dashboard or connect to Mailchimp/ConvertKit for campaigns.
+
 ## Important Disclaimer
 
 This platform is for **educational purposes only**. Trading involves substantial risk of loss. 70-90% of retail traders lose money. Never trade with money you cannot afford to lose. The platform emphasizes risk management and realistic expectations throughout.
