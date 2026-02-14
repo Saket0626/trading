@@ -22,7 +22,7 @@ const WELCOME_HTML = (siteUrl: string) => `
 <body style="font-family: system-ui, sans-serif; line-height: 1.6; color: #111; max-width: 600px; margin: 0 auto; padding: 20px;">
   <h1 style="color: #0A0D12;">You're subscribed!</h1>
   <p>Thanks for signing up for the ChartWise newsletter. You'll get updates on new lessons, tips, and platform improvements.</p>
-  <p>In the meantime, <a href="${siteUrl}/learn" style="color: #00D4AA;">start learning</a> — everything is free.</p>
+  <p>In the meantime, start learning — everything is free.</p>
   <p style="color: #64748b; font-size: 14px;">ChartWise — Learn trading from zero to quant. Education first, trading second.</p>
 </body>
 </html>`;

@@ -16,6 +16,7 @@ import { LEVELS } from "../data/curriculum";
 import { useProgress } from "../contexts/ProgressContext";
 import { getNextLessonToContinue, getProgressPercentage } from "../lib/continue";
 import { MarketOverviewWidget } from "../components/MarketOverviewWidget";
+import { useMarketNews } from "../hooks/useMarketNews";
 
 const levelColors: Record<string, string> = {
   emerald: "from-emerald-500 to-teal-600",
@@ -27,11 +28,18 @@ const levelColors: Record<string, string> = {
 
 type FeatureTab = "courses" | "tools" | "news";
 
+const FALLBACK_NEWS: { id: number; headline: string; source: string; timeAgo: string; url: string }[] = [
+  { id: 1, headline: "Fed signals cautious stance on rates", source: "Reuters", timeAgo: "2h ago", url: "https://www.google.com/search?q=Fed+rates+news&tbm=nws" },
+  { id: 2, headline: "Tech stocks extend sell-off amid inflation concerns", source: "Bloomberg", timeAgo: "4h ago", url: "https://www.google.com/search?q=tech+stocks+inflation&tbm=nws" },
+  { id: 3, headline: "Crypto markets show resilience as Bitcoin holds key level", source: "CoinDesk", timeAgo: "5h ago", url: "https://www.google.com/search?q=Bitcoin+crypto+markets&tbm=nws" },
+];
+
 export function HomePage() {
   const { xp, completedLessons, streakDays } = useProgress();
   const nextLesson = getNextLessonToContinue(completedLessons);
   const progressPercent = getProgressPercentage(completedLessons);
   const [featureTab, setFeatureTab] = useState<FeatureTab>("courses");
+  const { items: newsItems, loading } = useMarketNews();
 
   return (
     <div className="min-h-screen">
@@ -303,14 +311,13 @@ export function HomePage() {
 
           {featureTab === "news" && (
             <div className="space-y-4 animate-fade-in max-w-2xl">
-              {[
-                { bar: "teal", headline: "Fed signals cautious stance on rates", source: "Reuters", time: "2h ago" },
-                { bar: "red", headline: "Tech stocks extend sell-off amid inflation concerns", source: "Bloomberg", time: "4h ago" },
-                { bar: "teal", headline: "Crypto markets show resilience as Bitcoin holds key level", source: "CoinDesk", time: "5h ago" },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex gap-4 p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] relative"
+              {(loading && newsItems.length === 0 ? FALLBACK_NEWS : newsItems.length > 0 ? newsItems : FALLBACK_NEWS).map((item, i) => (
+                <a
+                  key={item.id ?? i}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex gap-4 p-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] relative hover:border-[var(--accent-primary)] hover:shadow-[var(--glow-teal)] transition-all duration-200 group block"
                 >
                   <div className="absolute top-4 right-4 flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
@@ -319,12 +326,12 @@ export function HomePage() {
                     </span>
                     <span className="text-[11px] font-bold text-[var(--accent-danger)] uppercase">Live</span>
                   </div>
-                  <div className={`w-1 rounded-full flex-shrink-0 ${item.bar === "teal" ? "bg-[var(--accent-primary)]" : "bg-[var(--accent-danger)]"}`} />
-                  <div>
-                    <h4 className="font-semibold text-[var(--text-primary)] mb-1">{item.headline}</h4>
-                    <p className="text-[13px] text-[var(--text-secondary)]">{item.source} · {item.time}</p>
+                  <div className={`w-1 rounded-full flex-shrink-0 ${i % 3 === 1 ? "bg-[var(--accent-danger)]" : "bg-[var(--accent-primary)]"}`} />
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-[var(--text-primary)] mb-1 group-hover:text-[var(--accent-primary)] transition-colors">{item.headline}</h4>
+                    <p className="text-[13px] text-[var(--text-secondary)]">{item.source} · {item.timeAgo}</p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           )}
@@ -336,21 +343,22 @@ export function HomePage() {
         <div className="max-w-[1200px] mx-auto px-8">
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { num: "01", icon: BookOpen, title: "Structured Curriculum", desc: "Five levels from absolute beginner to quantitative strategies. No fluff, no shortcuts." },
-              { num: "02", icon: BarChart3, title: "Real Market Data", desc: "Learn with live prices from Binance, Finnhub. Stocks, forex, crypto, commodities." },
-              { num: "03", icon: Star, title: "Interactive Practice", desc: "Candlestick builder, pattern recognition, paper trading. Learn by doing." },
+              { num: "01", icon: BookOpen, title: "Structured Curriculum", desc: "Five levels from absolute beginner to quantitative strategies. No fluff, no shortcuts.", to: "/learn" },
+              { num: "02", icon: BarChart3, title: "Real Market Data", desc: "Learn with live prices from Binance, Finnhub. Stocks, forex, crypto, commodities.", to: "/simulator" },
+              { num: "03", icon: Star, title: "Interactive Practice", desc: "Candlestick builder, pattern recognition, paper trading. Learn by doing.", to: "/tools" },
             ].map((item) => (
-              <div
+              <Link
                 key={item.num}
-                className="relative pt-2 hover:border-t-2 hover:border-[var(--accent-primary)] transition-colors duration-200"
+                to={item.to}
+                className="block relative pt-2 hover:border-t-2 hover:border-[var(--accent-primary)] transition-colors duration-200 group"
               >
-                <span className="font-display text-[48px] text-[var(--border-subtle)] absolute -top-2 left-0">{item.num}</span>
+                <span className="font-display text-[48px] text-[var(--border-subtle)] absolute -top-2 left-0 group-hover:text-[var(--accent-primary)]/30 transition-colors">{item.num}</span>
                 <div className="pl-16">
                   <item.icon className="h-12 w-12 text-[var(--accent-primary)] mb-4" />
-                  <h3 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-2">{item.title}</h3>
+                  <h3 className="font-display text-xl font-semibold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-primary)] transition-colors">{item.title}</h3>
                   <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">{item.desc}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
