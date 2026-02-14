@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BookOpen,
   BarChart3,
@@ -23,6 +23,7 @@ const levelColors: Record<string, string> = {
 };
 
 export function HomePage() {
+  const navigate = useNavigate();
   const { xp, completedLessons, streakDays } = useProgress();
   const nextLesson = getNextLessonToContinue(completedLessons);
   const progressPercent = getProgressPercentage(completedLessons);
@@ -41,13 +42,14 @@ export function HomePage() {
               Interactive lessons, real simulations, and no "get rich quick" promises.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                to="/learn"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded transition-colors"
+              <button
+                type="button"
+                onClick={() => navigate("/learn")}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded transition-colors cursor-pointer"
               >
                 Start Learning
                 <ChevronRight className="h-4 w-4" />
-              </Link>
+              </button>
               <Link
                 to="/warnings"
                 className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-surface-600 hover:bg-surface-800 text-surface-200 text-sm font-medium rounded transition-colors"

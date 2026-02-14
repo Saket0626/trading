@@ -68,7 +68,7 @@ export function ModulePage() {
               key={lesson.id}
               className="rounded-lg border border-surface-200 dark:border-surface-700 overflow-hidden"
             >
-              <div className="flex items-center gap-4 p-4 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all">
+              <div className="flex items-center gap-4 p-4 hover:bg-surface-50 dark:hover:bg-surface-800/50 transition-all flex-nowrap">
                 <Link
                   to={`/learn/${levelId}/${moduleSlug}/${lesson.slug}`}
                   className="flex items-center gap-4 flex-1 min-w-0 group"
@@ -93,13 +93,14 @@ export function ModulePage() {
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     setExpandedLessonId(isExpanded ? null : lesson.id);
                   }}
-                  className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-surface-300 dark:border-surface-600 text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 hover:border-primary-400 dark:hover:border-primary-500 transition-colors"
+                  className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-surface-300 dark:border-surface-600 text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 hover:border-primary-400 dark:hover:border-primary-500 transition-colors cursor-pointer"
                   aria-expanded={isExpanded}
                   aria-label={isExpanded ? "Hide summary" : "Show summary"}
                 >
-                  <span className="text-sm font-medium">Summary</span>
+                  <span className="text-sm font-medium whitespace-nowrap">Summary</span>
                   {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </button>
               </div>

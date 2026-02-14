@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Moon, Sun, Menu, X, GraduationCap, Search, BarChart3, LogOut } from "lucide-react";
 import { useState, useCallback } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
@@ -44,14 +44,14 @@ export function Header() {
       role="banner"
     >
       <div className="container mx-auto px-4 flex h-16 items-center justify-between gap-4">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-2 font-semibold text-base shrink-0"
           aria-label="ChartWise - Home"
         >
           <GraduationCap className="h-6 w-6 text-primary-600 dark:text-primary-400" aria-hidden />
           <span className="hidden sm:inline">ChartWise</span>
-        </a>
+        </Link>
 
         <form
           onSubmit={handleSearch}
@@ -75,23 +75,23 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-1" role="navigation">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.to}
-              href={link.to}
+              to={link.to}
               className="px-3 py-2 rounded text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-800 text-sm font-medium transition-colors duration-150"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           {isAdmin && (
             <>
-              <a
-                href="/admin/dashboard"
+              <Link
+                to="/admin/dashboard"
                 className="px-3 py-2 rounded-lg text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 font-medium transition-colors flex items-center gap-1.5"
               >
                 <BarChart3 className="h-4 w-4" />
                 Analytics
-              </a>
+              </Link>
               <button
                 onClick={deactivate}
                 className="px-3 py-2 rounded-lg text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 font-medium transition-colors flex items-center gap-1.5"
@@ -144,25 +144,25 @@ export function Header() {
         >
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.to}
-                href={link.to}
+                to={link.to}
                 onClick={() => setMobileMenuOpen(false)}
                 className="py-3 px-4 rounded text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-800 text-sm font-medium transition-colors duration-150"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             {isAdmin && (
               <>
-                <a
-                  href="/admin/dashboard"
+                <Link
+                  to="/admin/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
                   className="py-3 px-4 rounded-lg text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-900/20 font-medium flex items-center gap-2"
                 >
                   <BarChart3 className="h-4 w-4" />
                   Analytics
-                </a>
+                </Link>
                 <button
                   onClick={() => {
                     deactivate();
