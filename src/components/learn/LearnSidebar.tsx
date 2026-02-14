@@ -66,18 +66,18 @@ export function LearnSidebar() {
     >
       <div className="flex flex-col overflow-y-auto flex-1 min-h-0">
         <div className="flex items-center justify-between gap-2 mb-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+              Curriculum
+            </p>
             <button
               onClick={toggleCurriculum}
-              className="p-1.5 rounded-md text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] shrink-0"
+              className="p-1.5 rounded-md text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
               aria-expanded="true"
               aria-label="Hide curriculum"
               title="Hide curriculum"
             >
               <PanelLeftClose className="h-4 w-4" aria-hidden />
             </button>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
-              Curriculum
-            </p>
         </div>
         <nav className="flex-1 overflow-y-auto space-y-1" aria-label="Course curriculum">
           {LEVELS.map((level) => {
