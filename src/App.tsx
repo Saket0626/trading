@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ProgressProvider } from "./contexts/ProgressContext";
 import { SidebarProvider } from "./contexts/SidebarContext";
@@ -12,25 +12,26 @@ import { MarketTicker } from "./components/MarketTicker";
 import { OfflineBanner } from "./components/OfflineBanner";
 import { UsernamePromptModal } from "./components/UsernamePromptModal";
 import { AdminShell } from "./components/admin/AdminShell";
-import { Navigate } from "react-router-dom";
 import { useAdmin } from "./contexts/AdminContext";
 
-const HomePage = lazy(() => import("./pages/HomePage").then((m) => ({ default: m.HomePage })));
-const LearnIndexPage = lazy(() => import("./pages/LearnIndexPage").then((m) => ({ default: m.LearnIndexPage })));
-const LearnPage = lazy(() => import("./pages/LearnPage").then((m) => ({ default: m.LearnPage })));
-const ModulePage = lazy(() => import("./pages/ModulePage").then((m) => ({ default: m.ModulePage })));
-const LessonPage = lazy(() => import("./pages/LessonPage").then((m) => ({ default: m.LessonPage })));
-const WarningsPage = lazy(() => import("./pages/WarningsPage").then((m) => ({ default: m.WarningsPage })));
-const SimulatorPage = lazy(() => import("./pages/SimulatorPage").then((m) => ({ default: m.SimulatorPage })));
-const ToolsPage = lazy(() => import("./pages/ToolsPage").then((m) => ({ default: m.ToolsPage })));
-const ProgressPage = lazy(() => import("./pages/ProgressPage").then((m) => ({ default: m.ProgressPage })));
-const GlossaryPage = lazy(() => import("./pages/GlossaryPage").then((m) => ({ default: m.GlossaryPage })));
-const SearchPage = lazy(() => import("./pages/SearchPage").then((m) => ({ default: m.SearchPage })));
-const DonationsPage = lazy(() => import("./pages/DonationsPage").then((m) => ({ default: m.DonationsPage })));
-const TradePage = lazy(() => import("./pages/TradePage").then((m) => ({ default: m.TradePage })));
-const ApiSetupPage = lazy(() => import("./pages/ApiSetupPage").then((m) => ({ default: m.ApiSetupPage })));
-const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })));
-const AdminDashboardPage = lazy(() => import("./pages/AdminDashboardPage").then((m) => ({ default: m.AdminDashboardPage })));
+const L = (fn: () => Promise<Record<string, React.ComponentType>>, n: string) =>
+  lazy(() => fn().then((m) => ({ default: m[n] })));
+const HomePage = L(() => import("./pages/HomePage"), "HomePage");
+const LearnIndexPage = L(() => import("./pages/LearnIndexPage"), "LearnIndexPage");
+const LearnPage = L(() => import("./pages/LearnPage"), "LearnPage");
+const ModulePage = L(() => import("./pages/ModulePage"), "ModulePage");
+const LessonPage = L(() => import("./pages/LessonPage"), "LessonPage");
+const WarningsPage = L(() => import("./pages/WarningsPage"), "WarningsPage");
+const SimulatorPage = L(() => import("./pages/SimulatorPage"), "SimulatorPage");
+const ToolsPage = L(() => import("./pages/ToolsPage"), "ToolsPage");
+const ProgressPage = L(() => import("./pages/ProgressPage"), "ProgressPage");
+const GlossaryPage = L(() => import("./pages/GlossaryPage"), "GlossaryPage");
+const SearchPage = L(() => import("./pages/SearchPage"), "SearchPage");
+const DonationsPage = L(() => import("./pages/DonationsPage"), "DonationsPage");
+const TradePage = L(() => import("./pages/TradePage"), "TradePage");
+const ApiSetupPage = L(() => import("./pages/ApiSetupPage"), "ApiSetupPage");
+const NotFoundPage = L(() => import("./pages/NotFoundPage"), "NotFoundPage");
+const AdminDashboardPage = L(() => import("./pages/AdminDashboardPage"), "AdminDashboardPage");
 
 function PageSkeleton() {
   return (

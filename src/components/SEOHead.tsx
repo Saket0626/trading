@@ -11,16 +11,14 @@ export function SEOHead() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const canonicalUrl = `${BASE_URL}${pathname === "/" ? "/" : pathname}`;
-
-    // Update or create canonical link
-    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    const url = `${BASE_URL}${pathname === "/" ? "/" : pathname}`;
+    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!link) {
       link = document.createElement("link");
       link.rel = "canonical";
       document.head.appendChild(link);
     }
-    link.href = canonicalUrl;
+    link.href = url;
   }, [pathname]);
 
   return null;

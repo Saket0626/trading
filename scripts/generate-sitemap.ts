@@ -8,46 +8,18 @@ import { getLessonById } from "../src/data/lessons";
 
 const BASE_URL = "https://www.chartwise.info";
 
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) => {
-    switch (c) {
-      case "<": return "&lt;";
-      case ">": return "&gt;";
-      case "&": return "&amp;";
-      case "'": return "&apos;";
-      case '"': return "&quot;";
-      default: return c;
-    }
-  });
-}
+const esc: Record<string, string> = { "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" };
+const escapeXml = (s: string) => s.replace(/[<>&'"]/g, (c) => esc[c] ?? c);
 
-const urls: string[] = [];
-
-// Static routes
-urls.push(`${BASE_URL}/`);
-urls.push(`${BASE_URL}/learn`);
-urls.push(`${BASE_URL}/warnings`);
-urls.push(`${BASE_URL}/simulator`);
-urls.push(`${BASE_URL}/tools`);
-urls.push(`${BASE_URL}/progress`);
-urls.push(`${BASE_URL}/trade`);
-urls.push(`${BASE_URL}/glossary`);
-urls.push(`${BASE_URL}/search`);
-urls.push(`${BASE_URL}/donations`);
-
-// Level index pages
-for (const level of LEVELS) {
-  urls.push(`${BASE_URL}/learn/${level.id}`);
-}
-
-// Module and lesson pages
-for (const module of MODULES) {
-  urls.push(`${BASE_URL}/learn/${module.level}/${module.slug}`);
-  for (const lessonId of module.lessonIds) {
-    const lesson = getLessonById(lessonId);
-    if (lesson) {
-      urls.push(`${BASE_URL}/learn/${module.level}/${module.slug}/${lesson.slug}`);
-    }
+const urls: string[] = [
+  ...["", "/learn", "/warnings", "/simulator", "/tools", "/progress", "/trade", "/glossary", "/search", "/donations"].map((p) => BASE_URL + (p || "/")),
+];
+for (const level of LEVELS) urls.push(`${BASE_URL}/learn/${level.id}`);
+for (const m of MODULES) {
+  urls.push(`${BASE_URL}/learn/${m.level}/${m.slug}`);
+  for (const id of m.lessonIds) {
+    const lesson = getLessonById(id);
+    if (lesson) urls.push(`${BASE_URL}/learn/${m.level}/${m.slug}/${lesson.slug}`);
   }
 }
 
