@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { User, Save } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
+import { useTicker } from "../contexts/TickerContext";
 import { isLeaderboardEnabled } from "../lib/supabase";
 import { checkUsernameAvailable, getLeaderboardUserId } from "../services/leaderboard";
 
@@ -10,6 +11,7 @@ const DISMISSED_KEY = "chartwise-username-prompt-dismissed";
 
 export function UsernamePromptModal() {
   const { completedLessons, username, setUsername } = useProgress();
+  const { openCustomizer } = useTicker();
   const [dismissed, setDismissed] = useState(() => {
     try {
       return localStorage.getItem(DISMISSED_KEY) === "1";
@@ -45,7 +47,8 @@ export function UsernamePromptModal() {
     setUsername(trimmed);
     setUsernameSaved(true);
     setTimeout(() => setUsernameSaved(false), 2000);
-  }, [usernameInput, userId, setUsername]);
+    openCustomizer();
+  }, [usernameInput, userId, setUsername, openCustomizer]);
 
   useEffect(() => {
     if (shouldShow) {

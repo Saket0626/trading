@@ -1,31 +1,22 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchQuote } from "../services/marketData";
 import type { Quote } from "../services/marketData";
+import type { TickerOption } from "../data/tickerOptions";
+import { DEFAULT_TICKER } from "../data/tickerOptions";
 
-const TICKER_SYMBOLS = [
-  { symbol: "BTCUSD", type: "crypto" as const },
-  { symbol: "ETHUSD", type: "crypto" as const },
-  { symbol: "SOLUSD", type: "crypto" as const },
-  { symbol: "SPY", type: "stocks" as const },
-  { symbol: "AAPL", type: "stocks" as const },
-  { symbol: "MSFT", type: "stocks" as const },
-  { symbol: "NVDA", type: "stocks" as const },
-  { symbol: "GOOGL", type: "stocks" as const },
-  { symbol: "AMZN", type: "stocks" as const },
-  { symbol: "QQQ", type: "stocks" as const },
-  { symbol: "EURUSD", type: "forex" as const },
-  { symbol: "GBPUSD", type: "forex" as const },
-  { symbol: "USDJPY", type: "forex" as const },
-];
+const DEFAULT_SYMBOLS: TickerOption[] = DEFAULT_TICKER;
 
-export function useTickerData(pollMs = 30000) {
+export function useTickerData(
+  pollMs = 30000,
+  symbols: TickerOption[] = DEFAULT_SYMBOLS
+) {
   const [quotes, setQuotes] = useState<Record<string, Quote>>({});
   const [loading, setLoading] = useState(true);
 
   const load = useCallback(async () => {
     setLoading(true);
     const results = await Promise.all(
-      TICKER_SYMBOLS.map(async ({ symbol, type }) => {
+      symbols.map(async ({ symbol, type }) => {
         const q = await fetchQuote(symbol, type);
         return { symbol, quote: q };
       })
@@ -36,7 +27,7 @@ export function useTickerData(pollMs = 30000) {
     });
     setQuotes(map);
     setLoading(false);
-  }, []);
+  }, [symbols]);
 
   useEffect(() => {
     load();

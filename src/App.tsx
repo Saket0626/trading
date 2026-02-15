@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ProgressProvider } from "./contexts/ProgressContext";
+import { TickerProvider } from "./contexts/TickerContext";
 import { SidebarProvider } from "./contexts/SidebarContext";
 import { AdminProvider } from "./contexts/AdminContext";
 import { Header } from "./components/Layout/Header";
@@ -11,7 +12,9 @@ import { SEOHead } from "./components/SEOHead";
 import { MarketTicker } from "./components/MarketTicker";
 import { OfflineBanner } from "./components/OfflineBanner";
 import { UsernamePromptModal } from "./components/UsernamePromptModal";
+import { TickerCustomizerModal } from "./components/TickerCustomizerModal";
 import { AdminShell } from "./components/admin/AdminShell";
+import { useTicker } from "./contexts/TickerContext";
 import { useAdmin } from "./contexts/AdminContext";
 
 const L = (fn: () => Promise<Record<string, React.ComponentType>>, n: string) =>
@@ -51,6 +54,7 @@ function AdminRoute({ children }: { children: React.ReactNode }) {
 }
 
 function AppLayoutInner() {
+  const { isCustomizerOpen, closeCustomizer } = useTicker();
   return (
     <AdminShell>
     <div className="flex flex-col min-h-screen">
@@ -81,6 +85,7 @@ function AppLayoutInner() {
       <Footer />
       <OfflineBanner />
       <UsernamePromptModal />
+      <TickerCustomizerModal isOpen={isCustomizerOpen} onClose={closeCustomizer} />
     </div>
     </AdminShell>
   );
@@ -90,6 +95,7 @@ function App() {
   return (
     <ThemeProvider>
       <ProgressProvider>
+        <TickerProvider>
         <SidebarProvider>
         <AdminProvider>
           <BrowserRouter>
@@ -99,6 +105,7 @@ function App() {
           </BrowserRouter>
         </AdminProvider>
         </SidebarProvider>
+        </TickerProvider>
       </ProgressProvider>
     </ThemeProvider>
   );

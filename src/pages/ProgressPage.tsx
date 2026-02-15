@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { Trophy, BookOpen, Target, Flame, Award, Medal, BarChart3, User, Save } from "lucide-react";
+import { Trophy, BookOpen, Target, Flame, Award, Medal, BarChart3, User, Save, BarChart2 } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
+import { useTicker } from "../contexts/TickerContext";
 import { getProgressPercentage } from "../lib/continue";
 import { DailyChallenge } from "../components/DailyChallenge";
 import { isLeaderboardEnabled } from "../lib/supabase";
@@ -71,6 +72,7 @@ function getLevelTier(xp: number, progressPercent: number): { tier: string; next
 
 export function ProgressPage() {
   const { xp, completedLessons, badges, streakDays, username, setUsername, addBadge } = useProgress();
+  const { openCustomizer, tickerItems } = useTicker();
   const { paperTradingPnl, paperTradingPnlPercent } = useSimulatorStats();
   const [usernameInput, setUsernameInput] = useState(username ?? "");
   const [usernameSaved, setUsernameSaved] = useState(false);
@@ -218,6 +220,29 @@ export function ProgressPage() {
           </div>
         </div>
       )}
+
+      <div className="mb-6 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-lg border border-[var(--border-subtle)] flex items-center justify-center">
+              <BarChart2 className="h-6 w-6 text-[var(--accent-primary)]" />
+            </div>
+            <div>
+              <p className="text-[13px] font-semibold text-[var(--text-primary)] uppercase tracking-wide">Ticker bar</p>
+              <p className="text-sm text-[var(--text-secondary)]">
+                {tickerItems.length} symbols: {tickerItems.map((t) => t.symbol).join(", ")}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={openCustomizer}
+            className="px-4 py-2 rounded-lg border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm font-medium hover:bg-[var(--bg-tertiary)] transition-colors"
+          >
+            Customize
+          </button>
+        </div>
+      </div>
 
       <div className="mb-6 p-5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
         <div className="flex items-center gap-4">
