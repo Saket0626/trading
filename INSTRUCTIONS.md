@@ -4,6 +4,22 @@ This file summarizes the instructions and changes applied to the trading educati
 
 ---
 
+## Quick start — Navigate to the project folder
+
+From your terminal, go to the trading project folder:
+
+```bash
+cd ~/trading
+```
+
+Or with the full path:
+
+```bash
+cd /Users/saketamanana/trading
+```
+
+---
+
 ## 1. Railway deployment (HTTP 502 fix)
 
 ### What was done

@@ -13,4 +13,4 @@ cmds = ["npm run build"]
 # Explicitly bind to 0.0.0.0 so Railway's proxy can reach the app
 # PORT is set by Railway; fallback to 3000 for local
 [start]
-cmd = "npx serve dist -s -l tcp://0.0.0.0:${PORT:-3000}"
+cmd = "node server.js"
