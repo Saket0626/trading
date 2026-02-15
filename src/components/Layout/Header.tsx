@@ -41,10 +41,10 @@ export function Header() {
         <a
           href="/"
           className="flex items-center gap-2 shrink-0 font-display font-semibold text-[var(--text-primary)] text-lg"
-          aria-label="ChartWise - Home"
+          aria-label="Chartwise - Home"
         >
           <CandlestickChart className="h-6 w-6 text-[var(--accent-primary)]" aria-hidden />
-          <span className="hidden sm:inline">ChartWise</span>
+          <span className="hidden sm:inline">Chartwise</span>
         </a>
 
         <form

@@ -57,7 +57,7 @@ export function HomePage() {
                 <ChevronRight className="h-4 w-4" />
               </a>
               <h1 className="font-display text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--text-primary)] mb-4 animate-fade-up" style={{ animationDelay: "100ms" }}>
-                Learn Day Trading.
+                Chartwise: Learn Day Trading.
                 <br />
                 <span
                   className="bg-gradient-to-r from-[#00D4AA] to-[#38BDF8] bg-clip-text text-transparent"
@@ -67,7 +67,7 @@ export function HomePage() {
                 </span>
               </h1>
               <p className="text-lg text-[var(--text-secondary)] max-w-[480px] mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "200ms" }}>
-                ChartWise is the most structured trading education platform on the internet.
+                Chartwise is the most structured trading education platform on the internet.
                 From your first candlestick to building quant strategies — all in one place.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8 animate-fade-up" style={{ animationDelay: "300ms" }}>
@@ -389,7 +389,7 @@ export function HomePage() {
       <section className="py-20 border-t border-[var(--border-subtle)]">
         <div className="max-w-[1200px] mx-auto px-8">
           <h2 className="font-display text-3xl font-semibold text-[var(--text-primary)] mb-2">
-            Your Learning Path
+            Your Chartwise Learning Path
           </h2>
           <p className="text-[var(--text-secondary)] max-w-2xl mb-12">
             Five levels take you from "what is money?" to building quantitative trading systems.

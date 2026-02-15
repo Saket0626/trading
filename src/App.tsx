@@ -7,6 +7,7 @@ import { AdminProvider } from "./contexts/AdminContext";
 import { Header } from "./components/Layout/Header";
 import { Footer } from "./components/Layout/Footer";
 import { AnalyticsTracker } from "./components/AnalyticsTracker";
+import { SEOHead } from "./components/SEOHead";
 import { MarketTicker } from "./components/MarketTicker";
 import { OfflineBanner } from "./components/OfflineBanner";
 import { UsernamePromptModal } from "./components/UsernamePromptModal";
@@ -91,6 +92,7 @@ function App() {
         <SidebarProvider>
         <AdminProvider>
           <BrowserRouter>
+            <SEOHead />
             <AnalyticsTracker />
             <AppLayoutInner />
           </BrowserRouter>

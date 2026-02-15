@@ -35,7 +35,7 @@ export function Footer() {
             <div className="lg:col-span-1">
               <a href="/" className="flex items-center gap-2 font-display font-semibold text-xl text-[var(--text-primary)] mb-4">
                 <CandlestickChart className="h-6 w-6 text-[var(--accent-primary)]" />
-                ChartWise
+                Chartwise
               </a>
               <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed">
                 Learn trading from scratch to quantitative expertise. Built with honesty about risks
@@ -117,7 +117,7 @@ export function Footer() {
           </div>
           <div className="mt-12 pt-8 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-[13px] text-[var(--text-secondary)] order-2 sm:order-1">
-              © {new Date().getFullYear()} ChartWise. Privacy · Terms
+              © {new Date().getFullYear()} Chartwise. Privacy · Terms
             </p>
             <p className="text-[13px] text-[var(--text-secondary)] text-center sm:text-left order-1 sm:order-2 max-w-xl">
               <strong>Important:</strong> Trading involves substantial risk of loss. Past performance does not guarantee future results. This platform is for educational purposes only.

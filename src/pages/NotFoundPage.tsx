@@ -7,8 +7,11 @@ export function NotFoundPage() {
       <h1 className="font-display text-6xl font-bold text-[var(--text-primary)] mb-2">
         404
       </h1>
-      <p className="text-xl text-[var(--text-secondary)] mb-6 text-center">
+      <p className="text-xl text-[var(--text-secondary)] mb-2 text-center">
         Page not found. The page you're looking for doesn't exist or has been moved.
+      </p>
+      <p className="text-[var(--text-secondary)] mb-6 text-center">
+        Return to Chartwise to continue learning trading.
       </p>
       <div className="flex flex-wrap gap-4 justify-center">
         <Link
@@ -16,7 +19,7 @@ export function NotFoundPage() {
           className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors"
         >
           <Home className="h-5 w-5" />
-          Go Home
+          Back to Chartwise Home
         </Link>
         <Link
           to="/glossary"

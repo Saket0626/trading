@@ -1,0 +1,8 @@
+# robots.txt for Chartwise - https://www.chartwise.info
+# Allows all crawlers to index the site
+
+User-agent: *
+Allow: /
+
+# Point crawlers to the sitemap
+Sitemap: https://www.chartwise.info/sitemap.xml
