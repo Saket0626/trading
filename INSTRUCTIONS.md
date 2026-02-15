@@ -23,9 +23,15 @@ cd /Users/saketamanana/trading
 ## 1. Railway deployment (HTTP 502 fix)
 
 ### What was done
-- **`nixpacks.toml`** added with explicit build and start so the app builds and listens correctly on Railway.
-- **`package.json` start script** updated so the server listens on all interfaces:  
-  `serve dist -s -l tcp://0.0.0.0:${PORT:-3000}`
+- **`nixpacks.toml`** — explicit build and start so the app builds and listens correctly on Railway.
+- **`server.js`** — Express server that serves `sitemap.xml` and `robots.txt` **before** the SPA fallback. Uses `node server.js`.
+- **`package.json` start script** — `node server.js`.
+
+### Sitemap / robots 404 fix
+The Express server registers `/sitemap.xml` and `/robots.txt` routes first, so they are never caught by the SPA fallback. After deploy:
+1. Visit `https://www.chartwise.info/sitemap.xml` — you should see XML, not the 404 page.
+2. If you use Cloudflare or another CDN, **purge the cache** for `/sitemap.xml` and `/robots.txt`.
+3. Check Railway Deploy logs for `sitemap.xml exists: true` to confirm the file is in the build.
 
 ### If you still get 502
 1. **Redeploy** after pushing these changes.
