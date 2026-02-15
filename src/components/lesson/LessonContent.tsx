@@ -1,31 +1,40 @@
 import type { ComponentType } from "react";
+import { lazy, Suspense } from "react";
 import type { LessonContent as LessonContentType } from "../../types";
 import { Lightbulb, AlertTriangle, Target, BookOpen, CheckCircle, Eye } from "lucide-react";
-import { CandlestickBuilder } from "../charts/CandlestickBuilder";
-import { WhichMarketQuiz } from "../quiz/WhichMarketQuiz";
-import { SupplyDemandSimulator } from "./SupplyDemandSimulator";
-import { ConceptCheck } from "./ConceptCheck";
-import { RiskRewardCalculator } from "../tools/RiskRewardCalculator";
-import { PositionSizeCalculator } from "../tools/PositionSizeCalculator";
-import { PipCalculator } from "../tools/PipCalculator";
-import { Flashcards, type FlashcardsProps } from "../learn/Flashcards";
 
-const FlashcardsWrapper = (props: Record<string, unknown>) => (
-  <Flashcards
-    cards={(props.cards as FlashcardsProps["cards"]) ?? []}
-    title={(props.title as string) ?? "Chapter Flashcards"}
-  />
+const LazyFlashcards = lazy(() =>
+  import("../learn/Flashcards").then((m) => ({ default: m.Flashcards }))
+);
+const LazyCandlestickBuilder = lazy(() =>
+  import("../charts/CandlestickBuilder").then((m) => ({ default: m.CandlestickBuilder }))
+);
+const LazyWhichMarketQuiz = lazy(() =>
+  import("../quiz/WhichMarketQuiz").then((m) => ({ default: m.WhichMarketQuiz }))
+);
+const LazySupplyDemandSimulator = lazy(() =>
+  import("./SupplyDemandSimulator").then((m) => ({ default: m.SupplyDemandSimulator }))
+);
+const LazyConceptCheck = lazy(() => import("./ConceptCheck").then((m) => ({ default: m.ConceptCheck })));
+const LazyRiskRewardCalculator = lazy(() =>
+  import("../tools/RiskRewardCalculator").then((m) => ({ default: m.RiskRewardCalculator }))
+);
+const LazyPositionSizeCalculator = lazy(() =>
+  import("../tools/PositionSizeCalculator").then((m) => ({ default: m.PositionSizeCalculator }))
+);
+const LazyPipCalculator = lazy(() =>
+  import("../tools/PipCalculator").then((m) => ({ default: m.PipCalculator }))
 );
 
-const COMPONENTS: Record<string, ComponentType<Record<string, unknown>>> = {
-  Flashcards: FlashcardsWrapper as ComponentType<Record<string, unknown>>,
-  CandlestickBuilder,
-  WhichMarketQuiz,
-  SupplyDemandSimulator,
-  ConceptCheck,
-  RiskRewardCalculator,
-  PositionSizeCalculator,
-  PipCalculator,
+const LAZY_COMPONENTS: Record<string, ComponentType<Record<string, unknown>>> = {
+  Flashcards: LazyFlashcards as ComponentType<Record<string, unknown>>,
+  CandlestickBuilder: LazyCandlestickBuilder as ComponentType<Record<string, unknown>>,
+  WhichMarketQuiz: LazyWhichMarketQuiz as ComponentType<Record<string, unknown>>,
+  SupplyDemandSimulator: LazySupplyDemandSimulator as ComponentType<Record<string, unknown>>,
+  ConceptCheck: LazyConceptCheck as ComponentType<Record<string, unknown>>,
+  RiskRewardCalculator: LazyRiskRewardCalculator as ComponentType<Record<string, unknown>>,
+  PositionSizeCalculator: LazyPositionSizeCalculator as ComponentType<Record<string, unknown>>,
+  PipCalculator: LazyPipCalculator as ComponentType<Record<string, unknown>>,
 };
 
 const typeConfig = {
@@ -83,7 +92,7 @@ export function LessonContentBlock({ block, sectionId }: { block: LessonContentT
     block.type === "pro-tip" ||
     block.type === "preview";
 
-  const CustomComponent = block.component ? COMPONENTS[block.component] : null;
+  const CustomComponent = block.component ? LAZY_COMPONENTS[block.component] : null;
   const Wrapper = sectionId ? "section" : "div";
   const wrapperProps = sectionId ? { id: sectionId } : {};
 
@@ -104,7 +113,13 @@ export function LessonContentBlock({ block, sectionId }: { block: LessonContentT
               {block.content}
             </p>
           )}
-          <CustomComponent {...(block.props || {})} />
+          <Suspense
+            fallback={
+              <div className="animate-pulse h-24 rounded-lg bg-[var(--bg-tertiary)]" />
+            }
+          >
+            <CustomComponent {...(block.props || {})} />
+          </Suspense>
         </div>
       ) : (
         <div className="flex gap-3">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import {
   Calculator,
@@ -21,11 +21,14 @@ import { RiskRewardCalculator } from "../components/tools/RiskRewardCalculator";
 import { PipCalculator } from "../components/tools/PipCalculator";
 import { CompoundInterestCalculator } from "../components/tools/CompoundInterestCalculator";
 import { CandlestickBuilder } from "../components/charts/CandlestickBuilder";
-import { PythonSandbox } from "../components/tools/PythonSandbox";
 import { EconomicCalendar } from "../components/tools/EconomicCalendar";
 import { OrderBookVisualizer } from "../components/tools/OrderBookVisualizer";
 import { PatternRecognitionGame } from "../components/tools/PatternRecognitionGame";
 import { MarketCorrelationHeatmap } from "../components/tools/MarketCorrelationHeatmap";
+
+const PythonSandbox = lazy(() =>
+  import("../components/tools/PythonSandbox").then((m) => ({ default: m.PythonSandbox }))
+);
 
 const tools = [
   { id: "position-size", title: "Position Size Calculator", icon: Calculator, built: true },
@@ -76,7 +79,17 @@ export function ToolsPage() {
       case "candlestick":
         return <CandlestickBuilder />;
       case "python":
-        return <PythonSandbox />;
+        return (
+          <Suspense
+            fallback={
+              <div className="p-8 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] animate-pulse min-h-[200px] flex items-center justify-center">
+                <span className="text-[var(--text-muted)]">Loading editor…</span>
+              </div>
+            }
+          >
+            <PythonSandbox />
+          </Suspense>
+        );
       case "economic-calendar":
         return <EconomicCalendar />;
       case "order-book":
