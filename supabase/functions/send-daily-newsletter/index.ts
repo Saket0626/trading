@@ -10,7 +10,8 @@ const BREVO_API_KEY = Deno.env.get("BREVO_API_KEY");
 const FINNHUB_KEY = Deno.env.get("FINNHUB_API_KEY");
 const CRON_SECRET = Deno.env.get("CRON_SECRET");
 const RESEND_FROM = Deno.env.get("RESEND_FROM") ?? "ChartWise <onboarding@resend.dev>";
-const SITE_URL = Deno.env.get("SITE_URL") ?? "https://trading-production-a963.up.railway.app";
+const SITE_URL = Deno.env.get("SITE_URL") ?? "https://www.chartwise.info";
+const LEARNING_LINK = "https://chartwise.info";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -55,7 +56,7 @@ function dailyEmailHtml(siteUrl: string, headlines: string[]): string {
   <p><strong>Come back and continue learning</strong> — every lesson brings you closer to trading with confidence.</p>
   ${headlines.length > 0 ? `<p style="margin-top: 20px;"><strong>Today&rsquo;s headlines:</strong></p>${headlinesHtml}` : ""}
   <p style="margin-top: 24px;">
-    <a href="${siteUrl}" style="display: inline-block; padding: 12px 24px; background: #00D4AA; color: #0A0D12; text-decoration: none; font-weight: 600; border-radius: 8px;">Continue Learning</a>
+    <a href="${LEARNING_LINK}" style="display: inline-block; padding: 12px 24px; background: #00D4AA; color: #0A0D12; text-decoration: none; font-weight: 600; border-radius: 8px;">Continue Learning</a>
   </p>
   <p style="color: #64748b; font-size: 14px; margin-top: 32px;">ChartWise — Learn trading from zero to quant. Education first, trading second.</p>
 </body>

@@ -8,14 +8,15 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 const BREVO_API_KEY = Deno.env.get("BREVO_API_KEY");
 const RESEND_FROM = Deno.env.get("RESEND_FROM") ?? "ChartWise <onboarding@resend.dev>";
 const BREVO_FROM = Deno.env.get("BREVO_FROM"); // e.g. "ChartWise <hello@yourdomain.com>" — must be verified in Brevo
-const SITE_URL = Deno.env.get("SITE_URL") ?? "https://trading-production-a963.up.railway.app";
+const SITE_URL = Deno.env.get("SITE_URL") ?? "https://www.chartwise.info";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const WELCOME_HTML = (siteUrl: string) => `
+const CHARTWISE_URL = "https://chartwise.info";
+const WELCOME_HTML = () => `
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Welcome to ChartWise</title></head>
@@ -24,7 +25,7 @@ const WELCOME_HTML = (siteUrl: string) => `
   <p>Thanks for signing up for the ChartWise newsletter. You'll get updates on new lessons, tips, and platform improvements.</p>
   <p>In the meantime, start learning — everything is free.</p>
   <p style="margin-top: 24px;">
-    <a href="${siteUrl}" style="display: inline-block; padding: 12px 24px; background: #00D4AA; color: #0A0D12; text-decoration: none; font-weight: 600; border-radius: 8px;">Start Learning</a>
+    <a href="${CHARTWISE_URL}" style="display: inline-block; padding: 12px 24px; background: #00D4AA; color: #0A0D12; text-decoration: none; font-weight: 600; border-radius: 8px;">Start Learning</a>
   </p>
   <p style="color: #64748b; font-size: 14px; margin-top: 32px;">ChartWise — Learn trading from zero to quant. Education first, trading second.</p>
 </body>
@@ -47,7 +48,7 @@ async function sendViaResend(email: string): Promise<Response> {
       from: RESEND_FROM,
       to: [email],
       subject: "Welcome to ChartWise — Start Learning Trading",
-      html: WELCOME_HTML(SITE_URL),
+      html: WELCOME_HTML(),
     }),
   });
   const data = await res.json();
@@ -77,7 +78,7 @@ async function sendViaBrevo(email: string): Promise<Response> {
       sender: { name: sender.name, email: sender.email },
       to: [{ email }],
       subject: "Welcome to ChartWise — Start Learning Trading",
-      htmlContent: WELCOME_HTML(SITE_URL),
+      htmlContent: WELCOME_HTML(),
     }),
   });
   const data = await res.json();
