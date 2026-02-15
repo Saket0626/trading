@@ -31,6 +31,8 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
         globIgnores: ["**/og-image.png"],
         cleanupOutdatedCaches: true,
+        // Let sitemap.xml and robots.txt reach the server (don't intercept with index.html)
+        navigateFallbackDenylist: [/^\/sitemap\.xml/, /^\/robots\.txt/],
       },
     }),
   ],

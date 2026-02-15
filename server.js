@@ -16,19 +16,22 @@ const HOST = "0.0.0.0";
 
 const app = express();
 
-// Explicit routes for SEO files FIRST (must run before static/SPA fallback)
-app.get("/sitemap.xml", (req, res) => {
-  res.type("application/xml");
-  res.sendFile(path.join(DIST, "sitemap.xml"), (err) => {
-    if (err) res.status(404).send("Not Found");
-  });
-});
-
-app.get("/robots.txt", (req, res) => {
-  res.type("text/plain");
-  res.sendFile(path.join(DIST, "robots.txt"), (err) => {
-    if (err) res.status(404).send("Not Found");
-  });
+// FIRST: Handle sitemap and robots by raw path (catches any proxy/routing quirks)
+app.use((req, res, next) => {
+  const pathname = req.path || (req.url && req.url.split("?")[0]) || "";
+  if (pathname === "/sitemap.xml" || pathname.endsWith("/sitemap.xml")) {
+    res.type("application/xml");
+    return res.sendFile(path.join(DIST, "sitemap.xml"), (err) => {
+      if (err) res.status(404).send("Not Found");
+    });
+  }
+  if (pathname === "/robots.txt" || pathname.endsWith("/robots.txt")) {
+    res.type("text/plain");
+    return res.sendFile(path.join(DIST, "robots.txt"), (err) => {
+      if (err) res.status(404).send("Not Found");
+    });
+  }
+  next();
 });
 
 // Serve static files (assets, favicons, etc.) - does NOT serve index for /
