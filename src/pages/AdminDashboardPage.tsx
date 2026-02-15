@@ -1,15 +1,57 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   getAnalyticsSummary,
   exportAnalyticsJson,
   exportAnalyticsCsv,
 } from "../lib/analytics";
-import { BarChart3, Download, FileJson } from "lucide-react";
+import { BarChart3, Download, FileJson, CheckCircle, XCircle, Clock } from "lucide-react";
+
+function formatDateTimeWithSeconds(isoStr: string): string {
+  const d = new Date(isoStr);
+  return d.toLocaleString(undefined, {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
+
+type HealthStatus = "checking" | "ok" | "fail";
 
 export function AdminDashboardPage() {
   const [, setRefreshKey] = useState(0);
   const summary = getAnalyticsSummary();
+  const [loadedAt, setLoadedAt] = useState<string>("");
+  const [sitemapStatus, setSitemapStatus] = useState<HealthStatus>("checking");
+  const [robotsStatus, setRobotsStatus] = useState<HealthStatus>("checking");
+  const [homeStatus, setHomeStatus] = useState<HealthStatus>("checking");
+
+  const runHealthChecks = useCallback(() => {
+    setLoadedAt(new Date().toISOString());
+    setSitemapStatus("checking");
+    setRobotsStatus("checking");
+    setHomeStatus("checking");
+    const base = window.location.origin;
+    Promise.all([
+      fetch(`${base}/sitemap.xml`, { method: "HEAD" })
+        .then((r) => setSitemapStatus(r.ok ? "ok" : "fail"))
+        .catch(() => setSitemapStatus("fail")),
+      fetch(`${base}/robots.txt`, { method: "HEAD" })
+        .then((r) => setRobotsStatus(r.ok ? "ok" : "fail"))
+        .catch(() => setRobotsStatus("fail")),
+      fetch(base, { method: "HEAD" })
+        .then((r) => setHomeStatus(r.ok ? "ok" : "fail"))
+        .catch(() => setHomeStatus("fail")),
+    ]);
+  }, []);
+
+  useEffect(() => {
+    runHealthChecks();
+  }, [runHealthChecks]);
 
   const handleExportJson = useCallback(() => {
     const blob = new Blob([exportAnalyticsJson()], {
@@ -69,7 +111,10 @@ export function AdminDashboardPage() {
         </div>
         <div className="flex gap-2 flex-wrap">
           <button
-            onClick={() => setRefreshKey((k) => k + 1)}
+            onClick={() => {
+              setRefreshKey((k) => k + 1);
+              runHealthChecks();
+            }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-surface-200 dark:border-surface-600 bg-white dark:bg-surface-800 text-[var(--text-primary)] hover:bg-surface-50 dark:hover:bg-surface-700"
           >
             Refresh
@@ -90,6 +135,69 @@ export function AdminDashboardPage() {
           </button>
         </div>
       </header>
+
+      <section className="mb-8 p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/50">
+        <h2 className="font-display text-lg font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
+          <Clock className="h-5 w-5 text-amber-500" />
+          Last Updated &amp; Deployment Status
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Build / Deploy time</p>
+            <p className="text-sm font-mono text-[var(--text-primary)]">
+              {typeof __BUILD_TIME__ !== "undefined"
+                ? formatDateTimeWithSeconds(__BUILD_TIME__)
+                : "—"}
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Dashboard loaded at</p>
+            <p className="text-sm font-mono text-[var(--text-primary)]">
+              {loadedAt ? formatDateTimeWithSeconds(loadedAt) : "—"}
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Sitemap</p>
+            <div className="flex items-center gap-2">
+              {sitemapStatus === "checking" && (
+                <span className="text-sm text-[var(--text-muted)]">Checking…</span>
+              )}
+              {sitemapStatus === "ok" && (
+                <>
+                  <CheckCircle className="h-5 w-5 text-emerald-500" />
+                  <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">OK</span>
+                </>
+              )}
+              {sitemapStatus === "fail" && (
+                <>
+                  <XCircle className="h-5 w-5 text-red-500" />
+                  <span className="text-sm font-medium text-red-600 dark:text-red-400">Failed</span>
+                </>
+              )}
+            </div>
+          </div>
+          <div>
+            <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Robots &amp; Home</p>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5">
+                {robotsStatus === "checking" && <span className="text-xs text-[var(--text-muted)]">…</span>}
+                {robotsStatus === "ok" && <CheckCircle className="h-4 w-4 text-emerald-500" />}
+                {robotsStatus === "fail" && <XCircle className="h-4 w-4 text-red-500" />}
+                <span className="text-xs text-[var(--text-secondary)]">robots.txt</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                {homeStatus === "checking" && <span className="text-xs text-[var(--text-muted)]">…</span>}
+                {homeStatus === "ok" && <CheckCircle className="h-4 w-4 text-emerald-500" />}
+                {homeStatus === "fail" && <XCircle className="h-4 w-4 text-red-500" />}
+                <span className="text-xs text-[var(--text-secondary)]">home</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="mt-3 text-xs text-[var(--text-muted)]">
+          Build time shows when this deployment was built. Health checks verify sitemap.xml, robots.txt, and the homepage return 200.
+        </p>
+      </section>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
         <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800">
