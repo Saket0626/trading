@@ -20,10 +20,9 @@ function formatDateTimeWithSeconds(isoStr: string): string {
   });
 }
 
-/** Format build time in Texas (Central) time, moved up 2 hours */
+/** Format build time in Texas (Central) time */
 function formatBuildTimeTexas(isoStr: string): string {
   const d = new Date(isoStr);
-  d.setHours(d.getHours() + 2);
   return d.toLocaleString("en-US", {
     weekday: "short",
     year: "numeric",
