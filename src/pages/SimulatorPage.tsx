@@ -170,8 +170,7 @@ function SimulatorContent() {
         Paper Trading Simulator
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        Real live market data. Stocks $100k, Forex $1k, Crypto $5k, Commodities $10k, Futures $10k. Add
-        VITE_FINNHUB_API_KEY for stocks.
+        Real live market data. Stocks $100k, Forex $1k, Crypto $5k, Commodities $10k, Futures $10k.
       </p>
 
       {activeAccount === "forex" && (
