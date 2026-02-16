@@ -436,6 +436,8 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "P/E, P/B, ROE, and margins help compare and value companies. The lesson covers key ratios and red flags. You'll screen and analyze with fundamentals.",
   "earnings-trading":
     "Earnings reports move stock prices—volatility and gap risk. The lesson explains how to trade around earnings or avoid them. You'll manage earnings exposure.",
+  "news-trading":
+    "News drives price through implications—Fed, economic data, company-specific, and geopolitics. The lesson teaches how to interpret news, anticipate reactions, and trade the reaction rather than the headline. With the Headline vs Reality analogy, a Fed-cut example, and common traps, you'll use calendars and structure for high-quality news trades.",
   "fundamentals-summary":
     "Fundamentals matter for investing and swing trading—less for day trading. The lesson recaps when to use fundamentals vs technicals. You'll complete the fundamentals module.",
 
@@ -461,6 +463,8 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "VWAP acts as intraday support/resistance—pullbacks to VWAP in a trend offer entries. The lesson teaches how to use VWAP. You'll trade with institutional flow.",
   "breakout-strategy":
     "Breakout trading enters when price breaks key levels—with volume confirmation. The lesson covers identification and risk management. You'll trade breakouts systematically.",
+  "entry-timing":
+    "Knowing when to enter and when not to enter separates disciplined traders from overtraders. The lesson covers clear setup + alignment, confluence, and the traps to avoid: choppy markets, counter-trend, no stop, and emotional trading. With positive and negative examples, the sniper analogy, and the no-trade log, you'll build a filter for high-quality entries only.",
   "strategies-summary":
     "ORB, VWAP, and breakout strategies each have a role—the lesson recaps when to use each. You'll complete the strategies module.",
 
@@ -521,6 +525,8 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "Markets influence each other—stocks, bonds, commodities, and currencies are linked. The lesson introduces intermarket relationships. You'll see the big picture.",
   "vix-fear":
     "The VIX measures implied volatility—fear and complacency in the market. The lesson explains how to read and use it. You'll add VIX to your toolkit.",
+  "top-down-analysis":
+    "Top-down analysis filters from macro → sector → asset → entry. The lesson teaches how to align trades with the tide: check rates, growth, and risk sentiment first; then sector leadership; then the best technical setup. With the funnel analogy, trade and counter-examples, and a pre-open checklist, you'll enter only when the bigger picture supports the trade.",
   "intermarket-summary":
     "Intermarket analysis and the VIX provide context for your trades—how stocks, bonds, commodities, and currencies influence each other. The lesson recaps the key relationships and how to use the fear gauge in your analysis. You'll complete the intermarket module with a bigger-picture view of markets.",
 

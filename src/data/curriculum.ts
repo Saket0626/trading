@@ -502,7 +502,7 @@ export const MODULES: Module[] = [
     level: 3,
     order: 6,
     description: "Financial statements, ratios, earnings, economic calendar.",
-    lessonIds: ["financial-statements", "key-ratios", "earnings-trading", "fundamentals-summary"],
+    lessonIds: ["financial-statements", "key-ratios", "earnings-trading", "news-trading", "fundamentals-summary"],
     icon: "FileText",
   },
   {
@@ -532,7 +532,7 @@ export const MODULES: Module[] = [
     level: 3,
     order: 9,
     description: "ORB, VWAP, gap trading, breakout strategies.",
-    lessonIds: ["orb-strategy", "vwap-strategy", "breakout-strategy", "strategies-summary"],
+    lessonIds: ["orb-strategy", "vwap-strategy", "breakout-strategy", "entry-timing", "strategies-summary"],
     icon: "Target",
   },
   {
@@ -612,7 +612,7 @@ export const MODULES: Module[] = [
     level: 4,
     order: 5,
     description: "How markets affect each other, VIX, correlations.",
-    lessonIds: ["intermarket-basics", "vix-fear", "intermarket-summary"],
+    lessonIds: ["intermarket-basics", "vix-fear", "top-down-analysis", "intermarket-summary"],
     icon: "Link",
   },
   {

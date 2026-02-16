@@ -48,10 +48,87 @@ export const fundamentalAnalysisLessons: Lesson[] = [
     { type: "interactive", heading: "Check Your Understanding", content: "Earnings and risk.", component: "ConceptCheck", props: { question: "Why is it risky to hold a full-sized position through an earnings report?", reveal: "The stock can gap up or down 5–20%+ on the news. Your stop may not get filled at your price (slippage or gap), so you can lose more than your planned risk. Many traders reduce size or avoid holding through the event." } },
     { type: "key-takeaway", heading: "Key Takeaway", content: "Earnings cause big, fast moves. Manage risk: smaller size, wider stops, or avoid holding through the report. Trade the reaction only if you have a clear plan." },
   ], true),
-  createLesson("fundamentals-summary", 4, "Fundamental Analysis: Summary", "fundamentals-summary", "10 min", ["When to use fundamentals vs technicals", "Recap key tools"], [
-    { type: "text", heading: "When Fundamentals Matter Most", content: "For long-term investing, fundamentals are central: you're buying a business, so revenue, profit, cash flow, and balance sheet health matter. For swing trading (days to weeks), fundamentals can filter which stocks to trade (e.g. only longs in companies with strong earnings growth) and help you avoid names with looming bad news. For day trading, fundamentals matter less for each tick—price action and order flow dominate. But knowing when earnings are, and whether the company is generally healthy, still helps you avoid holding through a report or trading a name that's about to gap on news. Use fundamentals to set the stage; use technicals and risk management to time entries and exits." },
-    { type: "text", heading: "Recap", content: "You now know the three statements (income, balance sheet, cash flow), key ratios (P/E, P/B, ROE, margins, debt), and how earnings reports work and why they're risky to trade through. Combine this with technical analysis and strict risk rules. Even the best fundamentals don't guarantee short-term price movement—so never bet the farm on one report or one ratio." },
+  createLesson("news-trading", 4, "Reading News and Trading the Impact", "news-trading", "25 min", ["Interpret news for stock impact", "Anticipate market reactions", "Avoid traps and false signals"], [
+    {
+      type: "text",
+      heading: "News Drives Price—But Not Always Obvious",
+      content:
+        "News—earnings, Fed, economic data, geopolitics, company-specific—can move stocks sharply. The direction isn't always intuitive. A 'good' jobs report can send stocks down if it implies the Fed will stay hawkish. A 'bad' GDP number can lift stocks if it means more stimulus. Your job is to think through the chain: What does this news imply? How will institutions and algorithms react? Which sectors or stocks benefit or suffer? Then: Does price action confirm or contradict that story?",
+    },
+    {
+      type: "analogy",
+      heading: "Headline vs Reality",
+      content:
+        "Headlines are the first draft; price is the final edit. The market digests news in seconds—institutions and algorithms react before you finish reading. By the time you act on the headline, the initial move may be done. Your edge is in interpreting what the news implies, forming a view, and then trading the reaction—whether price confirms or contradicts your view. Don't chase the headline; trade the structure that forms after it.",
+    },
+    {
+      type: "text",
+      heading: "Fed and Rates",
+      content:
+        "Fed news is macro-critical. Hawkish (rates higher for longer, tough on inflation) → pressure on long-duration growth, potential support for financials and dollar. Dovish (cuts coming, growth prioritized) → support for growth stocks, bonds, risk assets. Watch the dot plot, language ('data dependent,' 'patient'), and surprises vs expectations. Often the market has priced in a certain outcome—the surprise vs consensus matters more than the headline. After a decision, check: did stocks, bonds, and dollar move as you'd expect? If not, the market is telling you something different.",
+    },
+    {
+      type: "text",
+      heading: "Economic Data",
+      content:
+        "Jobs, CPI, GDP, retail sales, PMI—each has implications. Strong jobs + hot CPI = hawkish Fed = potential stock pressure. Weak jobs + cool CPI = dovish Fed = potential stock support. But context matters: sometimes 'bad' data is already expected and priced in; the beat/miss vs estimate drives the move. Sector impact: strong consumer data can lift retail, travel; weak data can hurt cyclicals. PMI and industrial data affect materials, industrials. Build a simple framework: strong data → Fed hawkish? Weak data → Fed dovish? Then map to sectors.",
+    },
+    {
+      type: "text",
+      heading: "Company-Specific News",
+      content:
+        "M&A, product launches, recalls, lawsuits, management changes, guidance—each affects the stock. M&A: acquirer often dips (paying a premium), target rallies. Product recall: company and sometimes sector hit. Positive guidance: stock can gap up; negative can gap down. Read beyond the headline: Is it new information or old news repackaged? Has the stock already moved? A 'positive' story after a 20% run may be priced in. Compare the news to what was expected (analyst estimates, prior guidance) to gauge surprise.",
+    },
+    {
+      type: "text",
+      heading: "Geopolitics",
+      content:
+        "Geopolitical shocks—tariffs, conflict, supply-chain disruption—often trigger risk-off: flight to safety (bonds, yen, dollar), pressure on risk assets. Sector impact varies: defense may rally on conflict; airlines and travel may sell off. Energy can spike on supply fears. Don't assume 'bad news = down'—map the chain: Who benefits? Who suffers? Then watch price. Geopolitical events are often unpredictable; if you're wrong, cut quickly.",
+    },
+    {
+      type: "text",
+      heading: "How to Read and React",
+      content:
+        "Don't trade the headline—trade the reaction. Wait for the initial spike to settle (often 5–15 minutes). See if price holds the move or fades. A stock that gaps up on news but quickly sells off is telling you the news wasn't that good or was priced in. One that holds the gap and builds is confirming. Use volume: high volume on the move suggests conviction. Also compare the stock to its sector and the broad market—is it moving alone (stock-specific) or with everything (macro)? That tells you what's driving the move.",
+    },
+    {
+      type: "example",
+      heading: "Example: Fed Cut, Priced In",
+      content:
+        "The Fed cuts 25bps, exactly as expected. Stocks gap up at the open, then fade in the first hour—selling into strength. Interpretation: The cut was priced in; the gap was the reaction, and profit-taking is winning. Don't chase the gap. Wait for a pullback: if support holds and buyers step in, that's your entry. If price keeps fading, the market is saying the cut wasn't enough or something else matters more. Trade the structure that forms, not the headline.",
+    },
+    {
+      type: "warning",
+      heading: "Common Traps",
+      content:
+        "Avoid trading the first tick—algorithms and pros react in milliseconds; you'll often get filled at the worst price. Avoid assuming 'good news = up' and 'bad news = down'—markets discount the future and often reverse on 'obvious' news. Avoid holding through major scheduled news (Fed, earnings) without a plan. And avoid chasing a stock that's already moved 10% on the news—the edge is often gone. Wait for a pullback and structure, or skip.",
+    },
+    {
+      type: "pro-tip",
+      heading: "Pro Tip",
+      content:
+        "Use an economic calendar and earnings calendar. Know what's coming each week. Before the open, scan headlines from trusted sources (Reuters, Bloomberg, Fed, company IR). Form a view: What would bullish vs bearish news look like? What's the base case? Then watch price—does it confirm or contradict? Trade the confirmation, not the guess.",
+    },
+    {
+      type: "interactive",
+      heading: "Check Your Understanding",
+      content: "News and reaction.",
+      component: "ConceptCheck",
+      props: { question: "Why might a 'good' jobs report cause stocks to sell off?", reveal: "If jobs are too strong, the Fed may keep rates higher for longer to fight inflation. Markets discount future policy—hawkish Fed = pressure on stock valuations." },
+    },
+    {
+      type: "interactive",
+      heading: "Think It Through",
+      content: "Chasing the move.",
+      component: "ConceptCheck",
+      props: { question: "A stock has already rallied 12% on positive news before you see it. What should you do?", reveal: "The edge is often gone—the move is priced in. Chasing usually means buying at the worst level. Wait for a pullback and see if support holds, or skip. Better to miss a move than to buy the top." },
+    },
+    { type: "key-takeaway", heading: "Key Takeaway", content: "News drives price via implications (Fed, growth, sector). Think through the chain, then trade the reaction—not the headline. Use calendars, wait for structure, avoid chasing." },
+  ], true),
+  createLesson("fundamentals-summary", 5, "Fundamental Analysis: Summary", "fundamentals-summary", "10 min", ["When to use fundamentals vs technicals", "Recap key tools"], [
+    { type: "text", heading: "When Fundamentals Matter Most", content: "For long-term investing, fundamentals are central: you're buying a business, so revenue, profit, cash flow, and balance sheet health matter. For swing trading (days to weeks), fundamentals can filter which stocks to trade (e.g. only longs in companies with strong earnings growth) and help you avoid names with looming bad news. Reading news and trading the reaction—Fed, economic data, company-specific, geopolitics—helps you anticipate moves and avoid headline traps; it's part of the fundamentals toolkit for active traders. For day trading, fundamentals matter less for each tick—price action and order flow dominate. But knowing when earnings are, whether the company is generally healthy, and how to interpret news still helps you avoid holding through a report or chasing a move that's already priced in. Use fundamentals to set the stage; use technicals and risk management to time entries and exits." },
+    { type: "text", heading: "Recap", content: "You now know the three statements (income, balance sheet, cash flow), key ratios (P/E, P/B, ROE, margins, debt), how earnings reports work and why they're risky to trade through, and how to read news and trade the reaction—interpreting Fed, economic data, company-specific news, and geopolitics, then waiting for price to confirm before entering. Combine this with technical analysis and strict risk rules. Even the best fundamentals don't guarantee short-term price movement—so never bet the farm on one report or one ratio." },
     { type: "interactive", heading: "Final Check", content: "Fundamentals and time horizon.", component: "ConceptCheck", props: { question: "For a day trader, what is the main use of fundamental analysis?", reveal: "Context: knowing earnings dates to avoid holding through them, and filtering which names are generally healthy vs distressed. Entry and exit timing are still driven by technicals and risk management." } },
-    { type: "key-takeaway", heading: "Key Takeaway", content: "Fundamentals = financial health and valuation. Use for investing and swing filters; use technicals and risk management for timing. Respect earnings volatility." },
+    { type: "key-takeaway", heading: "Key Takeaway", content: "Fundamentals = financial health, valuation, and news interpretation. Use for investing and swing filters; use technicals and risk management for timing. Respect earnings volatility; trade the reaction, not the headline." },
   ], true),
 ];

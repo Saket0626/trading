@@ -253,6 +253,16 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("et2", "Trading through earnings is risky because:", ["Volume is low", "Stock can gap 5–20%+; stops may not fill", "Only stocks", "P/E changes"], 1, "Earnings cause large fast moves; slippage and gaps."),
     q("et3", "For day traders, fundamentals are mainly:", ["Every entry", "Context: earnings dates, avoiding bad names", "Replace technicals", "P/E only"], 1, "Fundamentals for context and filters; technicals for execution."),
   ],
+  "news-trading": [
+    q("nt1", "A 'good' jobs report can send stocks down because:", ["Jobs don't matter", "Strong data may mean Fed keeps rates higher for longer", "Only bonds matter", "Volume drops"], 1, "Markets discount future policy; hawkish Fed = stock pressure."),
+    q("nt2", "When trading news, you should:", ["Trade the first tick", "Trade the reaction—wait for spike to settle, see if price confirms", "Only buy", "Ignore volume"], 1, "Don't trade the headline; trade the reaction and structure."),
+    q("nt3", "Company-specific news like M&A typically:", ["Has no effect", "Target rallies; acquirer often dips (paying premium)", "Only affects forex", "Only at close"], 1, "M&A: target usually up, acquirer often down on premium paid."),
+    q("nt4", "A common trap when trading news is:", ["Using a calendar", "Chasing a stock that's already moved 10% on the news", "Waiting for structure", "Comparing to sector"], 1, "Chasing big moves often means the edge is gone."),
+    q("nt5", "Before the open, form a view on:", ["Nothing", "What bullish vs bearish news would look like; then watch if price confirms", "Only earnings", "Only volume"], 1, "Have a base case; trade confirmation, not guesswork."),
+    q("nt6", "If the Fed cuts as expected and stocks gap up then fade, that suggests:", ["Buy the gap", "Cut was priced in; profit-taking. Wait for pullback and structure", "Only sell", "Only for bonds"], 1, "Expected news = often priced in. Fade = market saying it wasn't enough or something else matters."),
+    q("nt7", "Geopolitical shocks (tariffs, conflict) often trigger:", ["Only stock rallies", "Risk-off: flight to safety, dollar strength, pressure on risk assets", "Only crypto up", "Only bonds down"], 1, "Geopolitical stress = risk-off; map who benefits (defense, dollar) vs suffers (travel, EM)."),
+    q("nt8", "A stock gaps up on news but quickly sells off. That tells you:", ["Buy the dip immediately", "News wasn't that good or was priced in; buyers stepping aside", "Only hold", "Only for options"], 1, "Quick fade after gap = weak conviction or priced in. Trade the structure that forms."),
+  ],
   "fundamentals-summary": [
     q("fa1", "The income statement shows:", ["Only assets", "Revenue, expenses, and profit over a period", "Only cash flow", "Only equity"], 1, "Income statement = revenue − expenses = profit over a period (quarter or year)."),
     q("fa2", "The balance sheet equation is:", ["Revenue = Profit", "Assets = Liabilities + Equity", "Cash = Earnings", "P/E = Price/Book"], 1, "Assets = Liabilities + Equity; it's a snapshot at a point in time."),
@@ -272,6 +282,8 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("fa16", "Earnings guidance is:", ["Only historical", "Management's forward-looking expectations", "Only for balance sheet", "Only cash flow"], 1, "Guidance = management's outlook; often drives reaction as much as the beat/miss."),
     q("fa17", "For a day trader, fundamentals are mainly used to:", ["Time every entry", "Context: earnings dates, avoiding bad names", "Replace technicals", "Only P/E"], 1, "Day trading = technicals and execution; fundamentals for context and filters."),
     q("fa18", "A company can report profit but have weak cash flow if:", ["It never happens", "Revenue is booked but not collected; or heavy capex", "Only in forex", "P/E is low"], 1, "Profit can include non-cash items; cash flow shows real cash generation."),
+    q("fa19", "When trading news, you should:", ["Trade the headline immediately", "Trade the reaction—wait for spike to settle, see if price confirms", "Only buy", "Ignore volume"], 1, "Don't trade the headline; trade the reaction. Wait for structure to form, then confirm or contradict your view."),
+    q("fa20", "A 'good' jobs report can sometimes send stocks down because:", ["Jobs don't matter", "Strong data may mean Fed keeps rates higher—hawkish = stock pressure", "Only bonds matter", "Volume drops"], 1, "Markets discount future policy. Strong jobs = hawkish Fed = pressure on valuations."),
   ],
   "psychology-basics": [
     q("psyb1", "Trading is often mostly:", ["Technical", "Mental: discipline and emotional control", "Indicators", "Speed"], 1, "Discipline and execution often matter more than one more indicator."),
@@ -366,6 +378,16 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("bo2", "False breakout (fakeout) occurs when:", ["Never", "Price breaks level then reverses back inside", "Volume high", "Only stocks"], 1, "Fakeout = break then reversal; use stops and confirmation."),
     q("bo3", "Breakout confirmation often includes:", ["Nothing", "Volume increase and/or close beyond level", "RSI only", "Open only"], 1, "Volume and close beyond level confirm breakout."),
   ],
+  "entry-timing": [
+    q("ent1", "Enter when you have:", ["Any chart pattern", "Clear setup, alignment with trend, and defined stop/target", "RSI overbought only", "Volume spike only"], 1, "Quality entries need setup + alignment + risk defined."),
+    q("ent2", "Confluence means:", ["One indicator", "Multiple factors agreeing (e.g. ORB + volume + sector support)", "Only volume", "Only VWAP"], 1, "Confluence = several signals agreeing; higher probability."),
+    q("ent3", "You should NOT enter when:", ["Setup is clear", "Market is choppy, setup unclear, or against the dominant trend", "Risk-reward is 1:2", "Volume confirms"], 1, "Avoid choppy, unclear, and counter-trend setups."),
+    q("ent4", "Never enter without:", ["A target only", "A defined stop and what invalidates the trade", "Volume", "RSI signal"], 1, "Stop and invalidation level are non-negotiable."),
+    q("ent5", "The best traders often:", ["Trade every day", "Have more no-trade days than trade days—quality over quantity", "Only scalp", "Only use one strategy"], 1, "Patience and selectivity often beat overtrading."),
+    q("ent6", "Entering in the first or last 5–15 minutes without a catalyst is risky because:", ["Volume is always high then", "Those minutes are often erratic; wait for structure", "Only for forex", "Only for options"], 1, "Open and close often whipsaw; need catalyst or clear setup."),
+    q("ent7", "A 'no-trade' log helps you:", ["Trade more", "See patterns in why you sat out; build discipline", "Only track P&L", "Only for backtesting"], 1, "Understanding why you didn't trade reinforces selectivity."),
+    q("ent8", "If SPY is breaking down and VIX is spiking, going long a random stock is:", ["High-probability", "Fighting the dominant trend; odds against you", "Only fine for tech", "Only fine at support"], 1, "Don't fight the broad market; align with context."),
+  ],
   "strategies-summary": [
     q("st1", "ORB stands for:", ["Order Rate Book", "Opening Range Breakout", "Only Random Buy", "Option Risk Balance"], 1, "Opening Range Breakout—trading the break of the first 15–30 min range."),
     q("st2", "In ORB, the stop is typically placed:", ["At entry", "On the opposite side of the opening range", "Only for forex", "At VWAP"], 1, "Long stop below range low; short stop above range high."),
@@ -387,6 +409,8 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("st18", "Liquid names (stocks, forex majors) are preferred for VWAP because:", ["Cheaper", "Tight spreads and reliable VWAP behavior", "Only for options", "Only for crypto"], 1, "Liquidity supports clean VWAP and execution."),
     q("st19", "Adding to a breakout before confirmation often:", ["Increases profit", "Increases risk of false breakout; wait for close/volume", "Only in forex", "Only at open"], 1, "First tick can be fake-out; confirm first."),
     q("st20", "Pick one strategy, paper trade it, then:", ["Trade maximum size", "Go live with small size and same rules", "Only change rules", "Only trade forex"], 1, "Master one approach before adding others; size small at first."),
+    q("st21", "You should NOT enter when:", ["Setup is clear with confluence", "Market is choppy, setup unclear, or against the dominant trend", "Stop and target are defined", "Sector aligns"], 1, "Avoid choppy, unclear, counter-trend; wait for high-quality setup."),
+    q("st22", "Confluence in entry timing means:", ["One signal only", "Multiple factors agreeing (e.g. ORB + volume + sector support)", "Only volume", "Only at the open"], 1, "Confluence = several signals agreeing; higher probability entries."),
   ],
   "broker-criteria": [
     q("bc1", "Key broker criteria include:", ["Only commission", "Fees, execution, platform, customer service", "Volume only", "P/E only"], 1, "Consider fees, execution quality, platform, support."),
@@ -593,10 +617,21 @@ const level4ModuleQuizzes: Record<string, QuizQuestion[]> = {
     q("vx2", "When VIX spikes, it usually means:", ["Low fear", "Elevated fear; options expensive", "Only low vol", "Buy signal"], 1, "High VIX = fear gauge; options get expensive."),
     q("vx3", "VIX and S&P 500 are typically:", ["Positively correlated", "Negatively correlated", "Uncorrelated", "Only at open"], 1, "Stocks down → VIX up; stocks up → VIX down."),
   ],
+  "top-down-analysis": [
+    q("tda1", "In top-down analysis, the correct order is:", ["Asset first, then sector, then macro", "Macro first, then sector, then asset and entry", "Sector only", "Entry first"], 1, "Macro → sector → asset → entry. Entry is last, not first."),
+    q("tda2", "Rising rates and strong growth typically favor:", ["Long-duration tech", "Cyclicals (financials, industrials, materials)", "Defensives only", "Gold only"], 1, "Strong growth + higher rates = cyclicals; weak growth + lower rates = defensives/growth."),
+    q("tda3", "If macro says risk-off, you should:", ["Look for aggressive longs", "Not look for aggressive longs—align with macro", "Only trade VIX", "Ignore sector"], 1, "Don't swim against the macro tide."),
+    q("tda4", "Top-down works best when:", ["The picture is mixed and unclear", "The macro picture is clear—then trade in that direction", "You skip sector", "Only at the open"], 1, "Clear macro = better top-down; mixed = reduce size or wait."),
+    q("tda5", "Once macro and sector align, you:", ["Enter immediately", "Find the best individual setup in the favored sector with clean technical entry", "Ignore technicals", "Trade any sector"], 1, "Entry is the last step: find the best setup in the aligned sector."),
+    q("tda6", "Sector ETFs (XLK, XLF, XLE) help you:", ["Pick individual stocks only", "See which sectors are leading or lagging; align bias with flow", "Only for forex", "Only at close"], 1, "Sector ETFs show rotation; trade in direction of leading sectors."),
+    q("tda7", "If you can't find a clean setup in the favored sector, you should:", ["Force a trade in a lagging sector", "Wait—don't force; forcing against macro/sector is low-probability", "Only trade VIX", "Only trade at open"], 1, "No setup = no trade. Forcing in wrong sector = fighting the tide."),
+    q("tda8", "Energy surging on supply shock while macro is bearish is an example of:", ["Always follow macro", "Sector-specific driver; energy can buck trend—know the drivers", "Ignore sector", "Only trade macro"], 1, "Sector can buck macro when it has its own catalyst; know why."),
+  ],
   "intermarket-summary": [
     q("im1", "Bonds and stocks often move inversely because:", ["They are the same", "Rising yields can hurt stock valuations; flight to safety", "Only in recessions", "Only in expansions"], 1, "Yields up can hurt stocks; flight to safety to bonds."),
     q("im2", "The VIX measures:", ["Stock returns", "Implied volatility of S&P 500 options", "Volume only", "Only bonds"], 1, "VIX = implied vol; fear gauge."),
     q("im3", "When VIX spikes, it usually means:", ["Low fear", "Elevated fear; options expensive", "Only low vol", "Only for stocks"], 1, "High VIX = fear, options expensive."),
+    q("im4", "Top-down analysis means:", ["Entry first, then find a stock", "Macro first, then sector, then asset and entry—align with the tide", "Only sector", "Only technicals"], 1, "Macro → sector → asset → entry. Don't skip the funnel."),
   ],
 };
 

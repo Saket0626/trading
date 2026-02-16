@@ -79,12 +79,89 @@ export const dayTradingStrategiesLessons: Lesson[] = [
     { type: "interactive", heading: "Check Your Understanding", content: "Confirmation reduces false breakouts.", component: "ConceptCheck", props: { question: "What confirms a breakout?", reveal: "A close beyond the level plus volume. Without volume, breakouts often fail. Some also wait for a retest of the broken level." } },
     { type: "key-takeaway", heading: "Key Takeaway", content: "Breakout = close beyond key level + volume. Stop inside the level; target measured move. Wait for confirmation—don't chase the first tick." },
   ], true),
-  createLesson("strategies-summary", 4, "Day Trading Strategies: Summary", "strategies-summary", "12 min", ["When to use each strategy"], [
+  createLesson("entry-timing", 4, "When to Enter, When Not to Enter", "entry-timing", "26 min", ["Know when to pull the trigger", "Avoid low-probability setups", "Build discipline"], [
+    {
+      type: "text",
+      heading: "Enter When: Clear Setup + Alignment",
+      content:
+        "Enter when you have a clear, rule-based setup that matches your strategy (ORB, VWAP pullback, breakout), plus alignment with higher-timeframe context. Alignment means: the move is in the direction of the daily trend, or at least not fighting it; key levels (support, resistance, VWAP) are clear; volume confirms the move; and your risk-reward is at least 1:2. You should be able to state in one sentence why you're entering and where you'll exit if wrong. If you can't, don't enter.",
+    },
+    {
+      type: "text",
+      heading: "Enter When: Confluence",
+      content:
+        "The best entries often have confluence—multiple factors agreeing. Examples: ORB breakout in the direction of the prior day's close, at a key level, with volume above average. Or: VWAP pullback in an uptrend, with the sector ETF (e.g. XLK) also holding support. Or: breakout above resistance that was tested three times, with a higher low on the way up. One signal can work; two or three increase the odds. Wait for confluence when possible instead of taking the first touch.",
+    },
+    {
+      type: "text",
+      heading: "Do NOT Enter: Choppy or Unclear",
+      content:
+        "Don't enter when the market is choppy—price whipsawing in a tight range with no clear direction. Choppy markets eat stops. If the last three breakouts failed and price keeps reversing, step back. Don't enter when your setup is unclear: e.g. 'maybe it's a breakout' or 'it might hold VWAP.' If you're guessing, stay out. Don't enter in the first or last 5–15 minutes without a clear catalyst—those minutes are often erratic. And don't enter when you're emotional—after a big loss, chasing revenge, or overtrading to 'get it back.'",
+    },
+    {
+      type: "text",
+      heading: "Do NOT Enter: Against the Tide",
+      content:
+        "Don't enter when you're fighting the dominant trend or macro. Example: shorting a stock in a strong sector that's making higher highs, just because it's 'overbought.' Or going long a stock when the broad market (SPY, QQQ) is breaking down and VIX is spiking. One stock can buck the trend, but the odds are against you. Don't enter when major news or events are imminent (Fed, earnings, jobs report) unless you have a specific plan for that event. Uncertainty around catalysts increases slippage and gap risk.",
+    },
+    {
+      type: "text",
+      heading: "Do NOT Enter: No Clear Stop or Target",
+      content:
+        "Never enter without knowing exactly where your stop is and what invalidates the trade. If you can't define the stop, you don't have a real setup. Same for target: have a level or R-multiple in mind. Entering 'and we'll see' is gambling. Also avoid entering when the stop would be so wide that one loss would blow your risk budget—e.g. a 3% stop on a stock when you only risk 1% per trade. Size or skip.",
+    },
+    {
+      type: "analogy",
+      heading: "The Sniper Analogy",
+      content:
+        "Think of trading like a sniper. A sniper doesn't fire at every movement. They wait for a clear target, steady conditions, and high probability. One well-placed shot beats a dozen wild ones. In trading, one high-quality entry with confluence beats five mediocre ones. Patience is a skill. When conditions aren't right, don't shoot—don't enter.",
+    },
+    {
+      type: "example",
+      heading: "Example: When TO Enter",
+      content:
+        "SPY has been in an uptrend for the session, making higher highs; tech (XLK) is leading. A large-cap tech stock pulls back to VWAP on the 15m, volume dries up, then a bullish engulfing candle forms with volume. You have: clear setup (VWAP bounce), alignment (uptrend, sector leading), confluence (volume confirmation, prior support), and a defined stop (below VWAP) and target (prior high). That's a high-quality entry—pull the trigger.",
+    },
+    {
+      type: "example",
+      heading: "Example: When NOT to Enter",
+      content:
+        "The market has whipsawed the last three breakouts; SPY is flat with no clear trend; volume is below average. You see a potential ORB on one stock—it's breaking the range. Do NOT enter. The broad context says chop—breakouts are failing, and you'd be fighting the dominant condition. Wait for SPY to show direction and volume, or sit out. One avoided bad trade is a win.",
+    },
+    {
+      type: "warning",
+      heading: "Common Mistake",
+      content:
+        "Overtrading—taking marginal setups because you 'need' to trade. One forced trade can undo a week of discipline. If you can't articulate in one sentence why the setup is high-quality and where you'll exit if wrong, stay out. The goal is to trade well, not to trade often.",
+    },
+    {
+      type: "pro-tip",
+      heading: "Pro Tip",
+      content:
+        "Keep a 'no-trade' log. On days you don't take a trade, write why: 'Choppy,' 'No setup,' 'Against trend,' 'Emotional.' Over time you'll see patterns. The goal isn't to trade every day—it's to trade well when the setup appears. The best traders often have more no-trade days than trade days.",
+    },
+    {
+      type: "interactive",
+      heading: "Check Your Understanding",
+      content: "When not to enter.",
+      component: "ConceptCheck",
+      props: { question: "Why should you avoid entering when the market is choppy?", reveal: "Choppy markets whipsaw—breakouts fail, pullbacks continue lower. Your stops get hit repeatedly. Wait for a clear direction and structure before entering." },
+    },
+    {
+      type: "interactive",
+      heading: "Think It Through",
+      content: "The stop requirement.",
+      component: "ConceptCheck",
+      props: { question: "Why is a defined stop non-negotiable before every entry?", reveal: "Without a stop, you don't have a real setup—you don't know what invalidates the trade or how much you can lose. 'We'll see' is gambling. A stop forces you to define risk upfront and prevents emotional holding when wrong." },
+    },
+    { type: "key-takeaway", heading: "Key Takeaway", content: "Enter: clear setup, confluence, alignment, defined stop/target. Don't enter: choppy, unclear, against trend, no stop, or emotional. Quality over quantity." },
+  ], true),
+  createLesson("strategies-summary", 5, "Day Trading Strategies: Summary", "strategies-summary", "12 min", ["When to use each strategy"], [
     {
       type: "text",
       heading: "Recap",
       content:
-        "ORB: first 15–30 min range break; good with catalyst. VWAP: pullbacks to VWAP in trend for intraday S/R. Breakout: close beyond level + volume; measured move target. All require clear entry, stop, target and 1:2+ risk-reward. Pick one, paper trade it, then go live with small size.\n\nDon't use all three at once when starting. Master one—get 50+ paper trades with it—then consider adding another. Each strategy has its own nuances. Spreading attention across too many approaches slows learning and creates confusion when two strategies conflict (e.g. ORB says short, VWAP says wait for pullback).",
+        "ORB: first 15–30 min range break; good with catalyst. VWAP: pullbacks to VWAP in trend for intraday S/R. Breakout: close beyond level + volume; measured move target. When to enter vs when not to enter: trade only when you have a clear setup, confluence, alignment with the trend, and defined stop/target; avoid choppy markets, unclear setups, and emotional trades. All strategies require 1:2+ risk-reward. Pick one, paper trade it, then go live with small size.\n\nDon't use all three at once when starting. Master one—get 50+ paper trades with it—then consider adding another. Each strategy has its own nuances. Spreading attention across too many approaches slows learning and creates confusion when two strategies conflict (e.g. ORB says short, VWAP says wait for pullback).",
     },
     {
       type: "warning",
@@ -93,6 +170,6 @@ export const dayTradingStrategiesLessons: Lesson[] = [
         "Chasing every breakout or ORB without a filter. On choppy days, you'll get chopped. Add a filter: e.g. only take ORB when the range is at least X% of average daily range, or only take breakouts when price is in the direction of the higher-timeframe trend. Quality over quantity.",
     },
     { type: "interactive", heading: "Final Check", content: "Strategy and confirmation.", component: "ConceptCheck", props: { question: "Why is volume important on breakouts?", reveal: "Low-volume breakouts often fail (no conviction). Higher volume suggests real participation and increases the odds the move will continue." } },
-    { type: "key-takeaway", heading: "Key Takeaway", content: "ORB, VWAP, breakout—each has clear rules. Use one, confirm with volume and structure, and always use stops and targets." },
+    { type: "key-takeaway", heading: "Key Takeaway", content: "ORB, VWAP, breakout—each has clear rules. Know when to enter and when to sit out. Use one strategy, confirm with volume and structure, always use stops and targets, and trade only when the setup is high-quality." },
   ], true),
 ];
