@@ -82,9 +82,21 @@ export const dayTradingStrategiesLessons: Lesson[] = [
   createLesson("entry-timing", 4, "When to Enter, When Not to Enter", "entry-timing", "26 min", ["Know when to pull the trigger", "Avoid low-probability setups", "Build discipline"], [
     {
       type: "text",
+      heading: "The 3-Timeframe Rule",
+      content:
+        "Pros often use three timeframes: one for trend (the big picture), one for setup (where the opportunity forms), and one for entry (precise trigger). Example: daily for trend, 4H for setup, 15min for entry. You decide the daily is bullish → you look for bullish setups on the 4H (pullbacks to support, breakouts) → you enter on the 15min when price gives a clear trigger (e.g. bullish engulfing at support). Trading with the higher timeframe and entering on the lower gives you alignment and precision. Never skip the higher timeframe—trading a 15min chart without checking the daily is like driving without a map.",
+    },
+    {
+      type: "text",
       heading: "Enter When: Clear Setup + Alignment",
       content:
         "Enter when you have a clear, rule-based setup that matches your strategy (ORB, VWAP pullback, breakout), plus alignment with higher-timeframe context. Alignment means: the move is in the direction of the daily trend, or at least not fighting it; key levels (support, resistance, VWAP) are clear; volume confirms the move; and your risk-reward is at least 1:2. You should be able to state in one sentence why you're entering and where you'll exit if wrong. If you can't, don't enter.",
+    },
+    {
+      type: "text",
+      heading: "The Trigger Candle — Wait for the Close",
+      content:
+        "The trigger candle is the candle that confirms your setup and signals entry. Don't enter on the first tick—wait for the candle to close. A breakout above resistance that spikes and then closes back inside is a fake-out; a close above the level confirms buyers held the break. Same for pullbacks: a bullish engulfing at support isn't confirmed until that candle closes. Entering mid-candle means you're guessing; the wick can extend and reverse. Patience: wait for the close, then enter. For day trading, that might mean the 1min or 5min close; for swing, the 4H or daily close.",
     },
     {
       type: "text",
@@ -109,6 +121,18 @@ export const dayTradingStrategiesLessons: Lesson[] = [
       heading: "Do NOT Enter: No Clear Stop or Target",
       content:
         "Never enter without knowing exactly where your stop is and what invalidates the trade. If you can't define the stop, you don't have a real setup. Same for target: have a level or R-multiple in mind. Entering 'and we'll see' is gambling. Also avoid entering when the stop would be so wide that one loss would blow your risk budget—e.g. a 3% stop on a stock when you only risk 1% per trade. Size or skip.",
+    },
+    {
+      type: "text",
+      heading: "Gap Opens — What to Do and What Not to Do",
+      content:
+        "A gap open means price opens significantly above or below the prior close (overnight news, earnings, macro). What NOT to do: chase the gap in the first 5–15 minutes. Gaps often fill (price retraces toward the prior close) or extend; the first few minutes are chaotic. Don't assume 'gap up = buy' or 'gap down = sell.' What to do: wait for structure. Let the opening range form (first 15–30 min). If the gap holds and builds in one direction, you can trade the continuation. If the gap fills, you can trade the retest. If you're unsure, sit out. Gaps increase slippage and widen spreads—trade only when you have a clear plan.",
+    },
+    {
+      type: "text",
+      heading: "A+ vs B/C Setups",
+      content:
+        "Not every setup is equal. An A+ setup has: clear trend alignment, confluence (multiple factors agreeing), defined stop and target, 1:2+ risk-reward, volume confirmation, and no major news in the next 30 minutes. A B setup might have most of that but one weak link—e.g. marginal volume. A C setup is marginal: choppy context, unclear level, or you're forcing it. Trade A+ setups at full size. Trade B setups at half size or skip. Never trade C setups. The goal isn't to trade every day—it's to trade well when the setup is A+.",
     },
     {
       type: "analogy",

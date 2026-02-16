@@ -58,8 +58,35 @@ export const marketMechanicsLessons: Lesson[] = [
     { type: "interactive", heading: "Think It Through", content: "What causes slippage?", component: "ConceptCheck", props: { question: "What causes slippage?", reveal: "Fast markets (price moves before your order fills) and low liquidity (not enough size at your price). You get a worse fill than expected. Use limits and liquid names to reduce it." } },
     { type: "key-takeaway", heading: "Key Takeaway", content: "Slippage = worse fill than expected. Caused by speed and thin liquidity. Use limits where possible; trade liquid instruments." },
   ], true),
-  createLesson("mechanics-summary", 3, "Market Mechanics: Summary", "mechanics-summary", "8 min", ["Recap order types and execution"], [
-    { type: "text", heading: "Recap", content: "Market orders fill fast but can slip; limit orders control price but may not fill. Stop and trailing stops manage risk. Slippage comes from fast markets and low liquidity—trade liquid names and use limits when precision matters." },
+  createLesson("market-halts", 3, "Trading Halts and Circuit Breakers", "market-halts", "14 min", ["What halts and circuit breakers are", "Why they exist", "How they affect you"], [
+    {
+      type: "text",
+      heading: "What Are Trading Halts?",
+      content:
+        "A trading halt stops trading in a security (or the whole market) for a period. Halts give everyone time to digest news before trading resumes. Single-stock halts are common: a company announces major news (earnings surprise, merger, FDA decision) and the exchange halts the stock for 5–15 minutes so the news can be disseminated. When the halt lifts, the stock can gap sharply—up or down—as the new information is priced in. If you're holding through a halt, you can't exit until trading resumes; your stop order won't fill during the halt. That's a key risk: you're locked in.",
+    },
+    {
+      type: "text",
+      heading: "Circuit Breakers",
+      content:
+        "Circuit breakers halt the entire market when indices drop by a set percentage. In the US, Level 1 kicks in when the S&P 500 drops 7% from the prior close—a 15-minute halt. Level 2 at 13%—another 15-minute halt. Level 3 at 20%—trading stops for the rest of the day. These are designed to prevent panic selling and give investors a chance to regroup. Circuit breakers are rare—they've triggered in March 2020 and during the 1987 crash. When they do, all equity trading stops. Your orders don't fill; you can't exit. After the halt, trading resumes and price can gap significantly.",
+    },
+    {
+      type: "example",
+      heading: "Example",
+      content:
+        "A biotech stock announces positive FDA approval at 10 AM. The exchange halts the stock for 10 minutes. Before the halt: $15. When trading resumes: it opens at $28—buyers rush in. If you were short, your stop at $16 never filled during the halt; you're exposed to the gap. Lesson: holding through known catalysts (earnings, FDA, etc.) means you accept halt risk. Your stop is not guaranteed to execute during a halt.",
+    },
+    {
+      type: "warning",
+      heading: "What This Means for You",
+      content:
+        "Never assume your stop will protect you during a halt. If a stock is halted, your stop order is paused—it won't trigger until trading resumes, and when it does, the price may have gapped through your level. You could lose more than you planned. Avoid holding large positions through known catalysts (earnings, FDA, merger votes) unless you accept that risk. For broad market circuit breakers: they're rare, but if one triggers, you're stuck until the halt ends. Position sizing and knowing when catalysts occur help you manage this risk.",
+    },
+    { type: "key-takeaway", heading: "Key Takeaway", content: "Halts stop trading; your orders don't fill during a halt. Circuit breakers halt the whole market on big drops. Know that stops aren't guaranteed during halts—size and catalyst awareness matter." },
+  ], true),
+  createLesson("mechanics-summary", 4, "Market Mechanics: Summary", "mechanics-summary", "8 min", ["Recap order types, execution, and halts"], [
+    { type: "text", heading: "Recap", content: "Market orders fill fast but can slip; limit orders control price but may not fill. Stop and trailing stops manage risk. Slippage comes from fast markets and low liquidity—trade liquid names and use limits when precision matters. Trading halts (single-stock or circuit breakers) pause all trading; your orders won't fill during a halt. Stops are not guaranteed during halts—avoid holding large size through known catalysts (earnings, FDA, etc.) unless you accept that risk." },
     { type: "interactive", heading: "Final Check", content: "Execution quality.", component: "ConceptCheck", props: { question: "How can you minimize slippage?", reveal: "Use limit orders when you can; trade liquid instruments; avoid trading through high-volatility news if you need a precise fill." } },
     { type: "key-takeaway", heading: "Key Takeaway", content: "Choose order type by need: speed vs price. Understand slippage and liquidity so execution doesn't erode your edge." },
   ], true),

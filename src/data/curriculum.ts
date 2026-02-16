@@ -190,6 +190,7 @@ export const MODULES: Module[] = [
       "line-charts",
       "bar-charts",
       "candlestick-charts-intro",
+      "heikin-renko",
       "volume-intro",
       "timeframes-explained",
       "same-asset-timeframes",
@@ -551,8 +552,8 @@ export const MODULES: Module[] = [
     slug: "market-mechanics",
     level: 3,
     order: 11,
-    description: "Order types, bid-ask spread, order execution.",
-    lessonIds: ["order-types", "order-execution", "mechanics-summary"],
+    description: "Order types, bid-ask spread, order execution, halts and circuit breakers.",
+    lessonIds: ["order-types", "order-execution", "market-halts", "mechanics-summary"],
     icon: "Settings",
   },
   {

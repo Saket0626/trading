@@ -18,6 +18,11 @@ export const level2Quizzes: Record<string, QuizQuestion[]> = {
     { id: "uc14", question: "A common mistake is to see a 'reversal' on a 5-minute chart when the daily trend is still strong. This often leads to:", options: ["Guaranteed profits", "Getting run over by the larger trend", "Better entries only", "No impact"], correctIndex: 1, explanation: "What looks like a reversal on a short timeframe may just be a pullback in the larger trend. Always consider the next higher timeframe." },
     { id: "uc15", question: "Which chart type shows only the close, connected by a line?", options: ["Bar chart", "Candlestick chart", "Line chart", "Volume chart"], correctIndex: 2, explanation: "A line chart plots closing prices and connects them with a line. Bar and candlestick show full OHLC." },
   ],
+  "heikin-renko": [
+    { id: "hr1", question: "Heikin-Ashi candles use:", options: ["Raw OHLC only", "Averaged/modified prices (smoother trend view)", "Volume only", "Time only"], correctIndex: 1, explanation: "HA uses averaged open/close; results in smoother candles and clearer trend—but price levels don't match actual market price." },
+    { id: "hr2", question: "Renko charts form bricks when:", options: ["Time passes", "Price moves a fixed amount", "Volume increases", "Open equals close"], correctIndex: 1, explanation: "Renko is price-based: each brick forms when price moves by a set amount. Time doesn't matter." },
+    { id: "hr3", question: "For placing your stop loss, you should use:", options: ["Heikin-Ashi levels directly", "Renko brick levels directly", "Standard candlestick chart for actual price levels", "Either HA or Renko"], correctIndex: 2, explanation: "HA and Renko use modified or delayed prices—use standard candles for entry, stop, and target placement." },
+  ],
   "candlestick-anatomy": [
     {
       id: "q1",

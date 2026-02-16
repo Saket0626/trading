@@ -95,6 +95,8 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "Bar charts show open, high, low, and close for each period—more information than a line. The lesson covers how to read each bar and what the range tells you about volatility and buyer/seller conflict. You'll see bars as a step toward understanding candlesticks.",
   "candlestick-charts-intro":
     "Candlestick charts display OHLC with a body and wicks—the most informative chart type for traders. The lesson introduces the structure: body for open-close range, wicks for high-low. You'll see why candlesticks reveal market psychology and price action at a glance.",
+  "heikin-renko":
+    "Heikin-Ashi smooths candles for cleaner trend view; Renko filters by price move, not time. Both reduce noise but alter or delay price—use them for trend bias; use standard candles for entry, stop, and target placement.",
   "volume-intro":
     "Volume shows how many shares or contracts traded—confirmation for price moves. The lesson explains why volume matters: high volume on a breakout suggests conviction; low volume suggests weakness. You'll learn to use volume as a filter and confirmation tool.",
   "timeframes-explained":
@@ -433,7 +435,7 @@ export const LESSON_SUMMARIES: Record<string, string> = {
   "financial-statements":
     "The income statement, balance sheet, and cash flow statement reveal a company's health. The lesson teaches how to read each. You'll use financials for fundamental analysis.",
   "key-ratios":
-    "P/E, P/B, ROE, and margins help compare and value companies. The lesson covers key ratios and red flags. You'll screen and analyze with fundamentals.",
+    "P/E, P/B, ROE, EV/EBITDA, and margins help compare and value companies. The lesson covers key ratios and red flags. You'll screen and analyze with fundamentals.",
   "earnings-trading":
     "Earnings reports move stock prices—volatility and gap risk. The lesson explains how to trade around earnings or avoid them. You'll manage earnings exposure.",
   "news-trading":
@@ -479,6 +481,8 @@ export const LESSON_SUMMARIES: Record<string, string> = {
     "Market, limit, and stop orders each have a use—immediate fill vs price control. The lesson covers when to use each. You'll place orders correctly.",
   "order-execution":
     "Orders fill through market makers or ECNs—slippage and liquidity matter. The lesson explains execution and how to get fair fills. You'll understand the mechanics.",
+  "market-halts":
+    "Trading halts and circuit breakers pause trading—your orders won't fill during a halt. The lesson covers single-stock halts (news) and broad market circuit breakers (big drops). Know that stops aren't guaranteed during halts; size and catalyst awareness matter.",
   "mechanics-summary":
     "Order types and execution are the plumbing of trading—market, limit, and stop orders each have a purpose. The lesson recaps when to use each type and how orders get filled through market makers or ECNs. You'll complete the mechanics module with a solid understanding of how trades reach the market.",
 

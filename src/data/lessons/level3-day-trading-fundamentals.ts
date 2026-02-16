@@ -43,6 +43,12 @@ export const dayTradingFundamentalsLessons: Lesson[] = [
         "Day trading is like a restaurant shift: you show up, work the session, and when you leave, your 'tables' (positions) are cleared. Nothing carries over. Swing trading is like running a catering business—you have orders (positions) that span days or weeks. Day trading gives you a fresh start every morning; you're not waking up to a gap that wiped out your position. But it also means you have to perform during the shift—no postponing decisions.",
     },
     {
+      type: "text",
+      heading: "The Opening Hour (9:30–10:30 AM ET) — Why It's Special",
+      content:
+        "The first hour of the US stock market (9:30–10:30 AM Eastern) is unique. Overnight news and pre-market orders get digested; institutions and algos execute their opening prints; volume is typically highest in this window. Many day traders focus on this period because it often sets the tone for the day—breakouts from the opening range, VWAP reclaims, and momentum plays tend to work best when liquidity is high. The opening hour can be volatile: gaps get filled or extended, and the first 15–30 minutes (the 'opening range') is used by ORB (Opening Range Breakout) traders as a key reference. After 10:30, volume often tapers into the lunch lull. Know that 9:30–10:30 is when the most action happens for US equities—plan your focus accordingly.",
+    },
+    {
       type: "warning",
       heading: "Common Mistake",
       content:

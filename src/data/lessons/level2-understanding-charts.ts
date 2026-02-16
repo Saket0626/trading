@@ -311,12 +311,60 @@ export const understandingChartsLessons: Lesson[] = [
     hasQuiz: true,
   },
   {
+    id: "heikin-renko",
+    title: "Heikin-Ashi and Renko Charts",
+    slug: "heikin-renko",
+    level: 2,
+    moduleId: MODULE_ID,
+    order: 6,
+    duration: "12 min",
+    objectives: [
+      "Understand Heikin-Ashi and Renko charts",
+      "Know when and why to use them",
+      "See their limitations vs standard candles",
+    ],
+    prerequisites: ["candlestick-charts-intro"],
+    content: [
+      {
+        type: "text",
+        heading: "What Is Heikin-Ashi?",
+        content:
+          "Heikin-Ashi (HA) means 'average bar' in Japanese. It's a modified candlestick that uses averaged prices instead of raw OHLC. The HA close = (Open + High + Low + Close) / 4. The HA open = (previous HA open + previous HA close) / 2. High and low use the max/min of the true high, true low, and the calculated open/close. The result: smoother candles, fewer wicks, and a cleaner view of the trend. HA candles often show fewer reversals and longer runs—they filter out noise. That's the upside: trend is clearer. The downside: HA price levels don't match actual price. Your stop at $100 on an HA chart might not correspond to $100 on the actual price chart. Use HA for trend direction; use standard candles for precise entry and stop levels.",
+      },
+      {
+        type: "text",
+        heading: "What Is Renko?",
+        content:
+          "Renko charts are price-based, not time-based. Each brick forms when price moves a fixed amount (e.g. $1 or 10 pips). A green brick appears when price rises by that amount; a red brick when it falls. Time doesn't matter—if price stays flat for an hour, no new brick appears. Renko filters out time and small moves: you only see bricks when price actually moves. That makes trends very clear—no tiny candles, no choppy wicks. The downside: Renko lags. A brick only forms after the full move; you might miss the start of a move. And Renko hides time—you can't see how fast price moved. Use Renko for clean trend view; use time-based charts for precise timing.",
+      },
+      {
+        type: "example",
+        heading: "Example: Heikin-Ashi vs Standard",
+        content:
+          "On a standard 5m chart, price might show 10 alternating red and green candles in 50 minutes—choppy. On Heikin-Ashi for the same period, you might see 3–4 green candles in a row—clear uptrend. HA smoothed the noise. But if you placed a stop at the HA candle low, that low might be $99.50—while actual price never went below $100. So HA is great for trend bias; use the standard chart for your actual stop and target prices.",
+      },
+      {
+        type: "warning",
+        heading: "Common Mistake",
+        content:
+          "Trading Heikin-Ashi or Renko as if the price levels are real. HA and Renko use modified or delayed prices—your stop and target on those charts may not match actual market price. Use them for trend and structure; switch to standard candlesticks for entry, stop, and target placement.",
+      },
+      {
+        type: "key-takeaway",
+        heading: "Key Takeaway",
+        content:
+          "Heikin-Ashi smooths candles for cleaner trend view; Renko filters by price move. Both reduce noise but alter or delay price—use standard candles for actual entry/stop/target levels.",
+      },
+    ],
+    hasQuiz: true,
+  },
+  {
     id: "volume-intro",
     title: "Volume: What It Is and Why It Matters",
     slug: "volume-intro",
     level: 2,
     moduleId: MODULE_ID,
-    order: 6,
+    order: 7,
     duration: "12 min",
     objectives: [
       "Define volume",
@@ -389,7 +437,7 @@ export const understandingChartsLessons: Lesson[] = [
     slug: "timeframes-explained",
     level: 2,
     moduleId: MODULE_ID,
-    order: 7,
+    order: 8,
     duration: "12 min",
     objectives: [
       "Understand 1-min to monthly timeframes",
@@ -462,7 +510,7 @@ export const understandingChartsLessons: Lesson[] = [
     slug: "same-asset-timeframes",
     level: 2,
     moduleId: MODULE_ID,
-    order: 8,
+    order: 9,
     duration: "12 min",
     objectives: [
       "See how one asset looks on 1m vs daily",

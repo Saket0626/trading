@@ -247,6 +247,7 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("kr1", "P/E ratio is:", ["Earnings / Price", "Price / Earnings per share", "Profit only", "Volume"], 1, "P/E = price ÷ EPS; what you pay per $1 earnings."),
     q("kr2", "ROE measures:", ["Only revenue", "How well company uses equity to generate profit", "Only debt", "Only cash"], 1, "ROE = net income ÷ shareholders' equity."),
     q("kr3", "Low P/E might mean:", ["Always buy", "Value or expected trouble; compare to peers", "High growth only", "Tech only"], 1, "Low P/E = value or decline; context matters."),
+    q("kr4", "EV/EBITDA values the company:", ["Only on earnings", "Whole business (debt + equity − cash) vs operating profit before interest/depreciation", "Only revenue", "Only P/E"], 1, "EV/EBITDA strips out debt and depreciation; useful for comparing companies with different capital structures."),
   ],
   "earnings-trading": [
     q("et1", "'Beat earnings' means:", ["Revenue only beat", "EPS was higher than analysts expected", "Cash flow beat", "P/E increased"], 1, "Beat = actual EPS above consensus."),
@@ -383,6 +384,8 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("ent2", "Confluence means:", ["One indicator", "Multiple factors agreeing (e.g. ORB + volume + sector support)", "Only volume", "Only VWAP"], 1, "Confluence = several signals agreeing; higher probability."),
     q("ent3", "You should NOT enter when:", ["Setup is clear", "Market is choppy, setup unclear, or against the dominant trend", "Risk-reward is 1:2", "Volume confirms"], 1, "Avoid choppy, unclear, and counter-trend setups."),
     q("ent4", "Never enter without:", ["A target only", "A defined stop and what invalidates the trade", "Volume", "RSI signal"], 1, "Stop and invalidation level are non-negotiable."),
+    q("ent9", "The 3-timeframe rule typically uses:", ["One chart only", "One for trend, one for setup, one for entry (e.g. daily/4H/15min)", "Only 1m charts", "Only weekly"], 1, "Trend TF, setup TF, entry TF—align and drill down."),
+    q("ent10", "You should wait for the trigger candle to close before entering because:", ["Candles don't matter", "A spike that reverses before close is a fake-out; confirmation requires a close", "Only for options", "Only for forex"], 1, "Mid-candle entries = guessing; close confirms the breakout or pattern."),
     q("ent5", "The best traders often:", ["Trade every day", "Have more no-trade days than trade days—quality over quantity", "Only scalp", "Only use one strategy"], 1, "Patience and selectivity often beat overtrading."),
     q("ent6", "Entering in the first or last 5–15 minutes without a catalyst is risky because:", ["Volume is always high then", "Those minutes are often erratic; wait for structure", "Only for forex", "Only for options"], 1, "Open and close often whipsaw; need catalyst or clear setup."),
     q("ent7", "A 'no-trade' log helps you:", ["Trade more", "See patterns in why you sat out; build discipline", "Only track P&L", "Only for backtesting"], 1, "Understanding why you didn't trade reinforces selectivity."),
@@ -446,6 +449,11 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("oe2", "Slippage occurs when:", ["Never", "Fill price differs from expected (e.g. in fast markets)", "Volume high", "Limit only"], 1, "Slippage = actual fill differs from expected; common in volatile markets."),
     q("oe3", "Limit orders avoid:", ["All costs", "Slippage (you set max buy or min sell price)", "Spread", "Volume"], 1, "Limit sets your max/min; avoids adverse slippage."),
   ],
+  "market-halts": [
+    q("mh1", "During a trading halt, your stop order:", ["Fills immediately", "Does not fill—trading is paused until the halt ends", "Only for stocks", "Only for forex"], 1, "Halts pause all trading; your stop won't execute until trading resumes."),
+    q("mh2", "Circuit breakers halt the entire market when:", ["Volume drops", "The S&P 500 drops by a set percentage (e.g. 7%, 13%, 20%)", "Only at the open", "Only for single stocks"], 1, "Circuit breakers trigger on broad market drops to allow digestion of news."),
+    q("mh3", "Why should you avoid holding large positions through known catalysts (earnings, FDA)?", ["Catalysts don't matter", "Halts can lock you in; stops won't fill during a halt; you're exposed to gap risk", "Only for options", "Only for forex"], 1, "Halts mean you can't exit; when trading resumes, price may gap through your stop."),
+  ],
   "mechanics-summary": [
     q("me1", "A market order:", ["Executes at your limit price only", "Executes immediately at best available price (may slip)", "Never fills", "Only for closing"], 1, "Market = immediate fill; possible slippage in fast or thin markets."),
     q("me2", "A limit order:", ["Always fills immediately", "Fills only at your price or better; may not fill", "Is only for stops", "Expires in 1 minute"], 1, "Limit = price control; may not fill if price doesn't reach level."),
@@ -462,6 +470,7 @@ export const level3Quizzes: Record<string, QuizQuestion[]> = {
     q("me13", "Stop-limit order:", ["Always fills", "Triggers a limit order at stop price; may not fill in fast move", "Only for forex", "Only at open"], 1, "Stop-limit = limit at trigger; more control, fill risk."),
     q("me14", "Bracket order typically includes:", ["Only entry", "Entry + stop loss + take profit together", "Only for forex", "Only for options"], 1, "Bracket = entry with stop and target in one order."),
     q("me15", "Liquidity refers to:", ["Only volatility", "Ease of entering/exiting at desired price", "Only for crypto", "Only at close"], 1, "Liquidity = how easily you can trade at fair price."),
+    q("me16", "During a trading halt, your stop order:", ["Fills at your price", "Does not execute—trading is paused", "Only for stocks", "Only at the open"], 1, "Halts pause all trading; orders don't fill until trading resumes."),
   ],
   "costs-overview": [
     q("co1", "Trading costs include:", ["Only commission", "Commission, spread, slippage, financing", "Volume only", "P/E only"], 1, "Costs: commission, spread, slippage, overnight fees."),

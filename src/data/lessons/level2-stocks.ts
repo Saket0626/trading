@@ -351,6 +351,18 @@ export const stocksDeepDiveLessons: Lesson[] = [
           "Leveraged ETFs aim to deliver a multiple of the daily return of an index—e.g. 2x or 3x the S&P 500. They use swaps and futures to achieve this. Critically, the leverage resets daily. Over time, volatility causes path dependency: 2x daily moves don't compound to 2x long-term returns. In choppy markets, leveraged ETFs can lose value even if the index ends flat. Inverse ETFs aim to deliver the opposite of an index's daily return; -1x, -2x, -3x exist. Same daily-reset caveat: they're not meant for long-term hedging. Both are for short-term tactical trades only—never hold as permanent positions.",
       },
       {
+        type: "example",
+        heading: "Why Leveraged ETFs Decay (The Math)",
+        content:
+          "Suppose the S&P 500 goes up 10% one day, then down 10% the next. Your $100 in SPY: Day 1 → $110. Day 2 → $99 (down 10% from $110). You're down 1%. A 3x leveraged ETF (e.g. UPRO): Day 1 → $130 (up 30%). Day 2 → $91 (down 30% from $130). You're down 9%—even though the index is only down 1%. That's decay. Volatility (up and down) erodes leveraged ETFs over time. They're designed for daily rebalancing, not long-term holds. Holding a 3x ETF for months in a choppy market can wipe you out even if the index ends flat or slightly up.",
+      },
+      {
+        type: "warning",
+        heading: "Common Mistake",
+        content:
+          "Holding leveraged ETFs (TQQQ, UPRO, SQQQ, etc.) for weeks or months. They're built for intraday or overnight tactical trades—not buy-and-hold. The daily reset + volatility = decay. If you want long-term exposure to the index, use SPY, QQQ, or regular index funds.",
+      },
+      {
         type: "text",
         heading: "Bond ETFs and Sector ETFs",
         content:
