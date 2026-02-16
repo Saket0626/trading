@@ -16,7 +16,7 @@ import type {
 } from "../types/simulator";
 import { getDayTradesInWindow } from "../lib/pdt";
 
-const STORAGE_KEY = "trading-edu-simulator";
+const STORAGE_KEY = "trading-edu-simulator-v2";
 
 const INITIAL_BALANCES: Record<AccountType, number> = {
   stocks: 100000,
