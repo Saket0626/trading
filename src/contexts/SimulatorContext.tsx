@@ -19,7 +19,7 @@ import { getDayTradesInWindow } from "../lib/pdt";
 const STORAGE_KEY = "trading-edu-simulator";
 
 const INITIAL_BALANCES: Record<AccountType, number> = {
-  stocks: 25000,
+  stocks: 100000,
   forex: 1000,
   crypto: 5000,
   commodities: 10000,

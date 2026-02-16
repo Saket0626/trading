@@ -8,7 +8,7 @@ A world-class, interactive web-based trading education platform that takes compl
 - **Interactive Lessons**: Feynman technique, analogies, real-world examples, key takeaways
 - **Candlestick Mastery Module**: Full anatomy, single/multi-candle patterns, timeframes, market psychology
 - **Interactive Candlestick Builder**: Build candles by adjusting OHLC and see the result
-- **Paper Trading Simulator**: Real live market data (Binance crypto, Finnhub stocks, Open ER-API forex), Stocks $25k, Forex $1k, Crypto $5k, Commodities $10k, Live candlestick charts
+- **Paper Trading Simulator**: Real live market data (Binance crypto, Finnhub stocks, Open ER-API forex), Stocks $100k, Forex $1k, Crypto $5k, Commodities $10k, Live candlestick charts
 - **Calculators**: Position size, risk-reward, pip/forex, compound interest
 - **Python Sandbox**: Run Python in browser via Pyodide (Monaco Editor)
 - **Glossary**: 80+ trading terms with search and category filter
