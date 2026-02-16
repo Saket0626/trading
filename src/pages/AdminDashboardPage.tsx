@@ -20,6 +20,22 @@ function formatDateTimeWithSeconds(isoStr: string): string {
   });
 }
 
+/** Format build time in Texas (Central) time, moved up 2 hours */
+function formatBuildTimeTexas(isoStr: string): string {
+  const d = new Date(isoStr);
+  d.setHours(d.getHours() + 2);
+  return d.toLocaleString("en-US", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZone: "America/Chicago",
+  });
+}
+
 type HealthStatus = "checking" | "ok" | "fail";
 
 export function AdminDashboardPage() {
@@ -146,7 +162,7 @@ export function AdminDashboardPage() {
             <p className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-1">Build / Deploy time</p>
             <p className="text-sm font-mono text-[var(--text-primary)]">
               {typeof __BUILD_TIME__ !== "undefined"
-                ? formatDateTimeWithSeconds(__BUILD_TIME__)
+                ? formatBuildTimeTexas(__BUILD_TIME__)
                 : "—"}
             </p>
           </div>
