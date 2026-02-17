@@ -3,6 +3,7 @@ import { User, Save } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
 import { useTicker } from "../contexts/TickerContext";
 import { isLeaderboardEnabled } from "../lib/supabase";
+import { getEffectiveLeaderboardLessonsCount } from "../lib/continue";
 import { checkUsernameAvailable, getLeaderboardUserId } from "../services/leaderboard";
 
 const LESSONS_THRESHOLD = 2;
@@ -10,7 +11,8 @@ const LESSONS_THRESHOLD = 2;
 const DISMISSED_KEY = "chartwise-username-prompt-dismissed";
 
 export function UsernamePromptModal() {
-  const { completedLessons, username, setUsername } = useProgress();
+  const { completedLessons, username, setUsername, getQuizScore } = useProgress();
+  const effectiveLeaderboardCount = getEffectiveLeaderboardLessonsCount(completedLessons, getQuizScore);
   const { openCustomizer } = useTicker();
   const [dismissed, setDismissed] = useState(() => {
     try {
@@ -30,7 +32,7 @@ export function UsernamePromptModal() {
   const shouldShow =
     !dismissed &&
     leaderboardEnabled &&
-    completedLessons.length >= LESSONS_THRESHOLD &&
+    effectiveLeaderboardCount >= LESSONS_THRESHOLD &&
     !username?.trim();
 
   const handleSave = useCallback(async () => {
@@ -84,7 +86,7 @@ export function UsernamePromptModal() {
                 id="username-prompt-desc"
                 className="mt-1 text-sm text-[var(--text-secondary)]"
               >
-                You&apos;ve completed {completedLessons.length} lessons. Choose a username to join the leaderboard and compete with other learners.
+                You&apos;ve completed {effectiveLeaderboardCount} lessons. Choose a username to join the leaderboard and compete with other learners.
               </p>
             </div>
           </div>

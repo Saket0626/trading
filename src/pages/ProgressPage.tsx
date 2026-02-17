@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Trophy, BookOpen, Target, Flame, Award, Medal, BarChart3, User, Save, BarChart2 } from "lucide-react";
 import { useProgress } from "../contexts/ProgressContext";
 import { useTicker } from "../contexts/TickerContext";
-import { getProgressPercentage } from "../lib/continue";
+import { getProgressPercentage, getEffectiveLeaderboardLessonsCount } from "../lib/continue";
 import { DailyChallenge } from "../components/DailyChallenge";
 import { isLeaderboardEnabled } from "../lib/supabase";
 import {
@@ -71,7 +71,8 @@ function getLevelTier(xp: number, progressPercent: number): { tier: string; next
 }
 
 export function ProgressPage() {
-  const { xp, completedLessons, badges, streakDays, username, setUsername, addBadge } = useProgress();
+  const { xp, completedLessons, badges, streakDays, username, setUsername, addBadge, getQuizScore } = useProgress();
+  const effectiveLeaderboardCount = getEffectiveLeaderboardLessonsCount(completedLessons, getQuizScore);
   const { openCustomizer, tickerItems } = useTicker();
   const { paperTradingPnl, paperTradingPnlPercent } = useSimulatorStats();
   const [usernameInput, setUsernameInput] = useState(username ?? "");
@@ -94,11 +95,11 @@ export function ProgressPage() {
     setUsernameInput(username ?? "");
   }, [username]);
 
-  // Sync to leaderboard when username set and at least 1 lesson
+  // Sync to leaderboard when username set and at least 1 effective lesson (passing a level exam counts all that level's lessons)
   useEffect(() => {
-    if (!leaderboardEnabled || !username?.trim() || completedLessons.length === 0) return;
-    upsertLeaderboardEntry(userId, username.trim(), completedLessons.length, paperTradingPnl, paperTradingPnlPercent);
-  }, [leaderboardEnabled, userId, username, completedLessons.length, paperTradingPnl, paperTradingPnlPercent]);
+    if (!leaderboardEnabled || !username?.trim() || effectiveLeaderboardCount === 0) return;
+    upsertLeaderboardEntry(userId, username.trim(), effectiveLeaderboardCount, paperTradingPnl, paperTradingPnlPercent);
+  }, [leaderboardEnabled, userId, username, effectiveLeaderboardCount, paperTradingPnl, paperTradingPnlPercent]);
 
   // Fetch leaderboards
   const loadLeaderboards = useCallback(async () => {
@@ -174,7 +175,7 @@ export function ProgressPage() {
                   <p className="text-[14px] text-[var(--text-primary)] mb-3">
                     {hasUsername
                       ? "Pick a new username (must be unique)."
-                      : "Enter a username to join the live leaderboard. You'll show up once you complete at least one lesson."}
+                      : "Enter a username to join the live leaderboard. You'll show up once you complete at least one lesson or pass a level's final exam."}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <input
@@ -289,7 +290,7 @@ export function ProgressPage() {
             </div>
             <div>
               <p className="text-3xl font-bold text-[var(--text-primary)]">
-                {completedLessons.length}
+                {effectiveLeaderboardCount}
               </p>
               <p className="text-sm text-[var(--text-secondary)]">Lessons Completed</p>
             </div>
@@ -502,13 +503,13 @@ export function ProgressPage() {
         <h2 className="font-semibold text-lg text-[var(--text-primary)] mb-4">
           Recent Activity
         </h2>
-        {completedLessons.length === 0 ? (
+        {effectiveLeaderboardCount === 0 ? (
           <p className="text-[var(--text-secondary)]">
-            Complete your first lesson to see progress here!
+            Complete your first lesson or pass a level&apos;s final exam to see progress here!
           </p>
         ) : (
           <p className="text-[var(--text-secondary)]">
-            You've completed {completedLessons.length} lesson{completedLessons.length !== 1 ? "s" : ""}.
+            You&apos;ve completed {effectiveLeaderboardCount} lesson{effectiveLeaderboardCount !== 1 ? "s" : ""}.
             Keep going!
           </p>
         )}
