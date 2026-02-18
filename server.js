@@ -1,6 +1,6 @@
 /**
  * Static file server for Chartwise (Railway deployment).
- * Serves static files (sitemap.xml, robots.txt, assets) first,
+ * Serves static files (sitemap-index.xml, robots.txt, assets) first,
  * then falls back to index.html for SPA routes.
  * Uses Express for reliable static file handling.
  */
@@ -19,9 +19,9 @@ const app = express();
 // FIRST: Handle sitemap and robots by raw path (catches any proxy/routing quirks)
 app.use((req, res, next) => {
   const pathname = req.path || (req.url && req.url.split("?")[0]) || "";
-  if (pathname === "/sitemap.xml" || pathname.endsWith("/sitemap.xml")) {
+  if (pathname === "/sitemap-index.xml" || pathname.endsWith("/sitemap-index.xml")) {
     res.type("application/xml");
-    return res.sendFile(path.join(DIST, "sitemap.xml"), (err) => {
+    return res.sendFile(path.join(DIST, "sitemap-index.xml"), (err) => {
       if (err) res.status(404).send("Not Found");
     });
   }
@@ -43,8 +43,8 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, HOST, () => {
-  const sitemapExists = existsSync(path.join(DIST, "sitemap.xml"));
+  const sitemapExists = existsSync(path.join(DIST, "sitemap-index.xml"));
   console.log(`Server running at http://${HOST}:${PORT}`);
   console.log(`Serving from: ${DIST}`);
-  console.log(`sitemap.xml exists: ${sitemapExists}`);
+  console.log(`sitemap-index.xml exists: ${sitemapExists}`);
 });

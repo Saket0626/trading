@@ -1,5 +1,5 @@
 /**
- * Generates sitemap.xml for Chartwise.
+ * Generates sitemap-index.xml for Chartwise.
  * Run: npx tsx scripts/generate-sitemap.ts
  */
 import { writeFileSync } from "fs";
@@ -36,5 +36,5 @@ ${urls
   .join("\n")}
 </urlset>`;
 
-writeFileSync("public/sitemap.xml", xml);
-console.log(`Generated sitemap.xml with ${urls.length} URLs`);
+writeFileSync("public/sitemap-index.xml", xml);
+console.log(`Generated sitemap-index.xml with ${urls.length} URLs`);

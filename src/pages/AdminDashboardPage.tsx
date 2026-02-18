@@ -52,7 +52,7 @@ export function AdminDashboardPage() {
     setHomeStatus("checking");
     const base = window.location.origin;
     Promise.all([
-      fetch(`${base}/sitemap.xml`, { method: "HEAD" })
+      fetch(`${base}/sitemap-index.xml`, { method: "HEAD" })
         .then((r) => setSitemapStatus(r.ok ? "ok" : "fail"))
         .catch(() => setSitemapStatus("fail")),
       fetch(`${base}/robots.txt`, { method: "HEAD" })
@@ -210,7 +210,7 @@ export function AdminDashboardPage() {
           </div>
         </div>
         <p className="mt-3 text-xs text-[var(--text-muted)]">
-          Build time shows when this deployment was built. Health checks verify sitemap.xml, robots.txt, and the homepage return 200.
+          Build time shows when this deployment was built. Health checks verify sitemap-index.xml, robots.txt, and the homepage return 200.
         </p>
       </section>
 
